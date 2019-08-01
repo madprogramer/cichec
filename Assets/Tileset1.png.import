@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Dirt-plowed.png-bd0514707e6711b32a0091c73e4dd329.stex"
+path="res://.import/Tileset1.png-6d732296a2a61cff61e02e4427d68432.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Dirt/Dirt-plowed.png"
-dest_files=[ "res://.import/Dirt-plowed.png-bd0514707e6711b32a0091c73e4dd329.stex" ]
+source_file="res://Assets/Tileset1.png"
+dest_files=[ "res://.import/Tileset1.png-6d732296a2a61cff61e02e4427d68432.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
