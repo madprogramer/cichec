@@ -9,7 +9,10 @@ func _init(itemName, itemTexture, itemSlot, itemValue):
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
-	hint_tooltip = "%s\n%d" % [itemName, itemValue];
+	if itemValue != -1:
+		hint_tooltip = "%s\n%d" % [itemName, itemValue];
+	else:
+		hint_tooltip = "%s" % [itemName];
 	###
 	# Rect.size_flags_horizontal = 40
 	# Rect.size_flags_vertical = 40
