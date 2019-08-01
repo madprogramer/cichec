@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var hud = get_node("HUD")
 
-const SPEED = 20
+const SPEED = 80
 
 func move():
 	var move_vec = Vector2(0, 0)
