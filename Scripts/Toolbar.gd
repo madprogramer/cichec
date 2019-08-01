@@ -9,7 +9,7 @@ onready var tilemap = $TileMap #get_node("TileMap");
 onready var itemImages = {
 	"hoe": preload("res://Assets/Hoe.png"),
 	"watering_can": preload("res://Assets/Watering_can.png"),
-	"seed": preload("res://Assets/Seed.png"),
+	"seed_bag": preload("res://Assets/Seed.png"),
 	"bag": preload("res://Assets/Bag.png")
 };
 
@@ -25,9 +25,9 @@ onready var itemDictionary = {
 		"itemIcon": itemImages["watering_can"]
 	},
 	2: {
-		"itemName": "seed",
+		"itemName": "seed_bag",
 		"itemValue": -1,
-		"itemIcon": itemImages["seed"]
+		"itemIcon": itemImages["seed_bag"]
 	},
 	3: {
 		"itemName": "bag",

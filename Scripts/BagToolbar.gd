@@ -1,54 +1,42 @@
-# Inventory.gd
 extends GridContainer;
 const ItemClass = preload("res://Scripts/Item.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 
 const slotTexture = preload("res://icon-scaled.png");
-const itemImages = [
-	preload("res://Assets/Highlight.png")
-];
-
-const itemDictionary = {
-	0: {
-		"itemName": "Ring",
-		"itemValue": 456,
-		"itemIcon": itemImages[0]
-	},
-	1: {
-		"itemName": "Sword",
-		"itemValue": 100,
-		"itemIcon": itemImages[0]
-	},
-	2: {
-		"itemName": "Iron Ring",
-		"itemValue": 987,
-		"itemIcon": itemImages[0]
-	}
-};
 
 var slotList = Array();
 var itemList = Array();
 
 var holdingItem = null;
+var currentItem = 0;
 
 func _ready():
-	for item in itemDictionary:
-		var itemName = itemDictionary[item].itemName;
-		var itemIcon = itemDictionary[item].itemIcon;
-		var itemValue = itemDictionary[item].itemValue;
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue));
-	
-	for i in range(16):
-		var slot = ItemSlotClass.new(i);
-		slotList.append(slot);
-		add_child(slot);
-		
+	pass
+
+func set_itemlist(items):
+	var itemList = []
+	for i in range(items.size()):
+		var item = items[i]
+		if item != null:
+			itemList.append(ItemClass.new(item.name, item.texture, null, -1))
+		else:
+			itemList.append(null)
+	return itemList
+
+func set_toolbar(items):
+	var itemList = set_itemlist(items)
+	print(itemList)
 	for i in range(itemList.size()):
-		slotList[i].setItem(itemList[i])
-	
+			var slot = ItemSlotClass.new(i)
+			slotList.append(slot)
+			add_child(slot)
+			
+			if itemList[i] != null:
+				slotList[i].setItem(itemList[i])
 	pass
 
 func _input(event):
+	# print(event)
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
@@ -62,16 +50,17 @@ func _gui_input(event):
 			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
 			if isClicked:
 				clickedSlot = slot;
-		
-		if holdingItem != null:
-			if clickedSlot.item != null:
+		if !clickedSlot:
+			pass
+		elif holdingItem != null:
+			if clickedSlot and clickedSlot.item != null:
 				var tempItem = clickedSlot.item;
 				var oldSlot = slotList[slotList.find(holdingItem.itemSlot)];
 				clickedSlot.pickItem();
 				clickedSlot.putItem(holdingItem);
 				holdingItem = null;
 				oldSlot.putItem(tempItem);
-			else:
+			elif clickedSlot:
 				clickedSlot.putItem(holdingItem);
 				holdingItem = null;
 		elif clickedSlot.item != null:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Toolbar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Highlight.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/BagToolbar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Highlight.png" type="Texture" id=6]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -15,11 +16,14 @@ visible = false
 [node name="Toolbar" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="SeedBag" parent="." instance=ExtResource( 4 )]
+[node name="BagToolbar" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="SeedBag" parent="." instance=ExtResource( 5 )]
 visible = false
 
 [node name="Highlight" type="TextureRect" parent="."]
 margin_top = 48.0
 margin_right = 16.0
 margin_bottom = 64.0
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )

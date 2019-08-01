@@ -10,7 +10,7 @@ func _init(slotIndex):
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND;
 	pass
-	
+
 func setItem(newItem):
 	add_child(newItem);
 	item = newItem;
