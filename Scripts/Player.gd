@@ -27,7 +27,9 @@ func _input(event):
 		elif event.pressed and hud.current_hud == "seedbag":
 			if event.scancode == KEY_SPACE:
 				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-		
+
+signal plow;
+signal water;
 
 func use(item):
 	print(item.name)
@@ -48,6 +50,11 @@ func use(item):
 			hud.show("toolbar")
 			hud.current_hud = "toolbar"
 	
+	if item.name == "hoe":
+		emit_signal("plow")
+	
+	if item.name == "watering_can":
+		emit_signal("water")
 
 func _ready():
 	pass
