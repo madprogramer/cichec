@@ -26,6 +26,10 @@ window/size/height=64
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[gui]
+
+theme/custom_font="res://Fonts/new_dynamicfont.tres"
+
 [physics]
 
 2d/cell_size=16
