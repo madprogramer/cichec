@@ -11,24 +11,24 @@ onready var dirtDictionary = {
 			"itemIcon": tilemap.tile_set.tile_get_texture(8)
 		},
 		"Plowed" : {
-			"id" : 5,
+			"id" : 12,
 			"itemName": "Plowed",
-			"itemIcon": tilemap.tile_set.tile_get_texture(5)
+			"itemIcon": tilemap.tile_set.tile_get_texture(12)
 		},
 		"Plowed_Watered" : {
-			"id" : 8,
+			"id" : 15,
 			"itemName": "Plowed_Watered",
-			"itemIcon": tilemap.tile_set.tile_get_texture(8)
+			"itemIcon": tilemap.tile_set.tile_get_texture(15)
 		},
 		"Sowed" : {
-			"id" : 6,
+			"id" : 14,
 			"itemName": "Sowed",
-			"itemIcon": tilemap.tile_set.tile_get_texture(6)
+			"itemIcon": tilemap.tile_set.tile_get_texture(14)
 		},
 		"Sowed_Watered" : {
-			"id" : 8,
+			"id" : 13,
 			"itemName": "Sowed_Watered",
-			"itemIcon": tilemap.tile_set.tile_get_texture(8)
+			"itemIcon": tilemap.tile_set.tile_get_texture(13)
 		}
 	},
 	"id" : {
@@ -37,15 +37,25 @@ onready var dirtDictionary = {
 			"itemName": "Normal",
 			"itemIcon": tilemap.tile_set.tile_get_texture(8)
 		},
-		5 : {
-			"id" : 5,
+		12 : {
+			"id" : 12,
 			"itemName": "Plowed",
-			"itemIcon": tilemap.tile_set.tile_get_texture(5)
+			"itemIcon": tilemap.tile_set.tile_get_texture(12)
 		},
-		6 : {
-			"id" : 6,
+		15 : {
+			"id" : 15,
+			"itemName": "Plowed_Watered",
+			"itemIcon": tilemap.tile_set.tile_get_texture(15)
+		},
+		14 : {
+			"id" : 14,
 			"itemName": "Sowed",
-			"itemIcon": tilemap.tile_set.tile_get_texture(6)
+			"itemIcon": tilemap.tile_set.tile_get_texture(14)
+		},
+		13 : {
+			"id" : 13,
+			"itemName": "Sowed_Watered",
+			"itemIcon": tilemap.tile_set.tile_get_texture(13)
 		}
 	}
 };
