@@ -1,20 +1,96 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://icon-scaled.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Capo/frame0.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Capo/frame1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Capo/frame2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Capo/frame3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Capo/frame4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Capo/frame5.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Capo/frame6.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Capo/frame7.png" type="Texture" id=9]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-0.png" type="Texture" id=10]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-2.png" type="Texture" id=12]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-4.png" type="Texture" id=14]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-5.png" type="Texture" id=15]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-6.png" type="Texture" id=16]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-7.png" type="Texture" id=17]
+[ext_resource path="res://Assets/CapoIdle/pixil-frame-8.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=19]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 2.0
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("IdleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+length = 1.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 5, 6, 4, 7 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6.26965, 10 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
+[node name="WalkSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 5
+
+[node name="IdleSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 5 )
+anims/walk = SubResource( 3 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 0.4, 0.8 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
-[node name="PlayerSprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 1 )
-texture = ExtResource( 2 )
-
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="HUD" parent="." instance=ExtResource( 19 )]

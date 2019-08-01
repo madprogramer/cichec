@@ -1,8 +1,19 @@
 extends KinematicBody2D
 
 onready var hud = get_node("HUD")
+onready var animationplayer = get_node("AnimationPlayer")
+onready var idlesprite = get_node("IdleSprite")
+onready var walksprite = get_node("WalkSprite")
 
 const SPEED = 80
+var direction = "right"
+
+func set_direction(d):
+	if direction == d:
+		return
+	direction = d
+	walksprite.flip_h = !walksprite.flip_h
+	idlesprite.flip_h = !idlesprite.flip_h
 
 func move():
 	var move_vec = Vector2(0, 0)
@@ -12,8 +23,22 @@ func move():
 	move_vec = move_vec.normalized()
 	
 	move_and_slide(move_vec * SPEED)
+	
+	if move_vec.x > 0:
+		set_direction("right")
+	elif move_vec.x < 0:
+		set_direction("left")
+	
+	if move_vec.x != 0 or move_vec.y != 0:
+		animationplayer.current_animation = "walk"
+		walksprite.visible = true
+	else:
+		animationplayer.current_animation = "idle"
+		idlesprite.visible = true
 
 func _process(delta):
+	idlesprite.visible = false
+	walksprite.visible = false
 	move()
 	
 func _input(event):
@@ -55,6 +80,8 @@ func use(item):
 	
 	if item.name == "watering_can":
 		emit_signal("water")
+
+
 
 func _ready():
 	pass
