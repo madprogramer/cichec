@@ -5,6 +5,7 @@ extends CanvasLayer
 onready var inventory = get_node("Inventory")
 onready var toolbar = get_node("Toolbar")
 onready var bagtoolbar = get_node("BagToolbar")
+onready var seedtoolbar = get_node("SeedToolbar")
 onready var seedbag = get_node("SeedBag")
 onready var highlight = get_node("Highlight")
 
@@ -42,14 +43,19 @@ func _input(event):
 				pass
 		elif event.pressed and current_hud == "bagtoolbar":
 			if event.scancode == KEY_SHIFT:
+				show("seedtoolbar")
+				current_hud = "seedtoolbar"
+				pass
+		elif event.pressed and current_hud == "seedtoolbar":
+			if event.scancode == KEY_SHIFT:
 				show("toolbar")
 				current_hud = "toolbar"
 				pass
-		
 
 # makes hud with name visible, makes others invisible
 
-var flag = false
+var bagtoolbar_flag = false
+var seedtoolbar_flag = false
 
 func show(name):
 	inventory.visible = false
@@ -57,13 +63,22 @@ func show(name):
 	seedbag.visible = false
 	highlight.visible = false
 	bagtoolbar.visible = false
+	seedtoolbar.visible = false
 	
-	if flag:
+	if bagtoolbar_flag:
 		for i in range(bagtoolbar.slotList.size()):
 			if bagtoolbar.slotList[i]:
 				bagtoolbar.slotList[i].queue_free()
 		bagtoolbar.slotList = []
-		flag = false
+		bagtoolbar_flag = false
+	
+	if seedtoolbar_flag:
+		for i in range(seedtoolbar.slotList.size()):
+			if seedtoolbar.slotList[i]:
+				seedtoolbar.slotList[i].queue_free()
+		seedtoolbar.slotList = []
+		seedtoolbar_flag = false
+	
 	
 	if name == "inventory":
 		inventory.visible = true
@@ -78,7 +93,14 @@ func show(name):
 			items.push_back(inventory.slotList[i].item)
 		bagtoolbar.set_toolbar(items)
 		bagtoolbar.visible = true
-		flag = true
+		bagtoolbar_flag = true
+	elif name == "seedtoolbar":
+		var items = []
+		for i in range(4):
+			items.push_back(seedbag.slotList[i].item)
+		seedtoolbar.set_toolbar(items)
+		seedtoolbar.visible = true
+		seedtoolbar_flag = true
 	else:
 		print("ERROR, %s in undefined" % name)
 	
