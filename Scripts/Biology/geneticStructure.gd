@@ -23,11 +23,28 @@ func getColor():
 	return GENES["color"]
 func getSeeds():
 	return GENES["seeds"]
-	
+
+#Compute Genes
+func computeSize(a,b):
+	return (a+b+1)/2
+func computeColor(a,b):
+	var reng = [0,0,0,0]
+	for i in range(4):
+		reng[i] = a[i]+b[i]
+	return reng
+func computeSeeds(a,b):
+	return randi()%(int(abs(a-b))) + int(max(a,b))
+
+#######################################################
+#
+# TODO: set up randomize(), somewhere
+#
+#######################################################
 
 #Initialize
-func initGenes():
-	pass
+func initGenes(structure):
+	for s in structure:
+		GENES[s] = structure[s];
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
