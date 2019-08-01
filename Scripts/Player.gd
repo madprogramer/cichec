@@ -24,6 +24,10 @@ func _input(event):
 		elif event.pressed and hud.current_hud == "inventory":
 			if event.scancode == KEY_SPACE:
 				use(hud.toolbar.slotList[hud.current_slot].item)
+		elif event.pressed and hud.current_hud == "seedbag":
+			if event.scancode == KEY_SPACE:
+				use(hud.toolbar.slotList[hud.current_slot].item)
+		
 
 func use(item):
 	print(item.name)
