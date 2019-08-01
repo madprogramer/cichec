@@ -2,15 +2,15 @@ extends GridContainer;
 const ItemClass = preload("res://Scripts/Item.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 
-const slotTexture = preload("res://icon-scaled.png");
+const slotTexture = preload("res://Assets/Slot-texture.png");
 
-onready var tilemap = $TileMap #get_node("TileMap");
+# onready var tilemap = $TileMap #get_node("TileMap");
 
 onready var itemImages = {
-	"hoe": preload("res://Assets/Hoe.png"),
-	"watering_can": preload("res://Assets/Watering_can.png"),
-	"seed_bag": preload("res://Assets/Seed.png"),
-	"bag": preload("res://Assets/Bag.png")
+	"hoe": preload("res://Assets/Hoe-cleared.png"),
+	"watering_can": preload("res://Assets/Watering_can-cleared.png"),
+	"seed_bag": preload("res://Assets/Seed-cleared.png"),
+	"bag": preload("res://Assets/Bag-cleared.png")
 };
 
 onready var itemDictionary = {

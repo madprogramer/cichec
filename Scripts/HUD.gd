@@ -3,17 +3,21 @@
 extends CanvasLayer
 
 onready var inventory = get_node("Inventory")
+onready var inventory_back = get_node("Inventory-back")
+onready var inventory_front = get_node("Inventory-front")
+
 onready var toolbar = get_node("Toolbar")
+onready var toolbar_front = get_node("Toolbar-front")
+
 onready var bagtoolbar = get_node("BagToolbar")
 onready var seedtoolbar = get_node("SeedToolbar")
 onready var seedbag = get_node("SeedBag")
 onready var highlight = get_node("Highlight")
 
 var current_hud = "toolbar"
+
 var current_slot = {
 	"toolbar" : 0,
-	"bagtoolbar" : 0,
-	"seedtoolbar" : 0
 }
 
 # sets current toolbar slot to x
@@ -24,6 +28,7 @@ func set_current_slot(name, x):
 	
 #highlights slot x
 func change_highlight(x):
+	print(x)
 	highlight.rect_position.x =  x * 16
 	pass
 
@@ -86,7 +91,12 @@ var seedtoolbar_flag = false
 
 func show(name):
 	inventory.visible = false
+	inventory_back.visible = false
+	inventory_front.visible = false
+	
 	toolbar.visible = false
+	toolbar_front.visible = false
+	
 	seedbag.visible = false
 	highlight.visible = false
 	bagtoolbar.visible = false
@@ -109,10 +119,15 @@ func show(name):
 	
 	if name == "inventory":
 		inventory.visible = true
+		inventory_back.visible = true
+		inventory_front.visible = true
 	elif name == "toolbar":
 		toolbar.visible = true
 		highlight.visible = true
+		toolbar_front.visible = true
 	elif name == "seedbag":
+		inventory_back.visible = true
+		inventory_front.visible = true
 		seedbag.visible = true
 	elif name == "bagtoolbar":
 		var items = []
@@ -122,6 +137,7 @@ func show(name):
 		bagtoolbar.visible = true
 		bagtoolbar_flag = true
 		highlight.visible = true
+		toolbar_front.visible = true
 	elif name == "seedtoolbar":
 		var items = []
 		for i in range(4):
@@ -130,6 +146,7 @@ func show(name):
 		seedtoolbar.visible = true
 		seedtoolbar_flag = true
 		highlight.visible = true
+		toolbar_front.visible = true
 	else:
 		print("ERROR, %s in undefined" % name)
 	

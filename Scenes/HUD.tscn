@@ -1,33 +1,64 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Toolbar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/BagToolbar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/SeedToolbar.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Highlight.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Inventory-background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Inventory-front.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Toolbar-front.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Toolbar-flowers.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Toolbar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/BagToolbar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/SeedToolbar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Highlight.png" type="Texture" id=11]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="Inventory" parent="." instance=ExtResource( 2 )]
+[node name="Inventory-back" type="TextureRect" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="Inventory-front" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+offset = Vector2( 32, 32 )
+
+[node name="Inventory" parent="." instance=ExtResource( 4 )]
 visible = false
 
-[node name="Toolbar" parent="." instance=ExtResource( 3 )]
+[node name="Toolbar-front" type="TextureRect" parent="."]
+margin_top = 48.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 5 )
+
+[node name="Toolbar-flowers" type="TextureRect" parent="Toolbar-front"]
+margin_top = -10.0
+margin_right = 64.0
+texture = ExtResource( 6 )
+
+[node name="Toolbar" parent="." instance=ExtResource( 7 )]
 visible = false
 
-[node name="BagToolbar" parent="." instance=ExtResource( 4 )]
+[node name="BagToolbar" parent="." instance=ExtResource( 8 )]
 visible = false
 
-[node name="SeedToolbar" parent="." instance=ExtResource( 5 )]
+[node name="SeedToolbar" parent="." instance=ExtResource( 9 )]
 visible = false
 
-[node name="SeedBag" parent="." instance=ExtResource( 6 )]
+[node name="temp" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 5 )
+offset = Vector2( 32, 56 )
+
+[node name="SeedBag" parent="." instance=ExtResource( 10 )]
 visible = false
 
 [node name="Highlight" type="TextureRect" parent="."]
 margin_top = 48.0
 margin_right = 16.0
 margin_bottom = 64.0
-texture = ExtResource( 7 )
+texture = ExtResource( 11 )
