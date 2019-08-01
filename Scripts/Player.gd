@@ -21,14 +21,25 @@ func _input(event):
 		if event.pressed and hud.current_hud == "toolbar":
 			if event.scancode == KEY_SPACE:
 				use(hud.toolbar.slotList[hud.current_slot].item)
+		elif event.pressed and hud.current_hud == "inventory":
+			if event.scancode == KEY_SPACE:
+				use(hud.toolbar.slotList[hud.current_slot].item)
 
 func use(item):
 	print(item.name)
-	# if item.name == "seed_bag":
-	#	if hud.current_hud != "seedbag":
-	#		hud.show("seedbag")
-	#	else:
-	#		hud.show("toolbar")
+	
+	if item.name == "seed_bag":
+		if hud.current_hud != "seedbag":
+			hud.show("seedbag")
+		else:
+			hud.show("toolbar")
+	
+	if item.name == "bag":
+		if hud.current_hud != "inventory":
+			hud.show("inventory")
+		else:
+			hud.show("toolbar")
+	
 
 func _ready():
 	pass
