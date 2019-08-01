@@ -10,13 +10,17 @@ onready var seedbag = get_node("SeedBag")
 onready var highlight = get_node("Highlight")
 
 var current_hud = "toolbar"
-var current_slot = 0
+var current_slot = {
+	"toolbar" : 0,
+	"bagtoolbar" : 0,
+	"seedtoolbar" : 0
+}
 
 # sets current toolbar slot to x
-func set_current_slot(x):
+func set_current_slot(name, x):
 	# print(x)
-	current_slot = x
-	change_highlight(current_slot)
+	current_slot[name] = x
+	change_highlight(current_slot[name])
 	
 #highlights slot x
 func change_highlight(x):
@@ -28,13 +32,36 @@ func _input(event):
 		# changing current toolbar tool
 		if event.pressed and current_hud == "toolbar":
 			if event.scancode == KEY_1:
-				set_current_slot(0)
+				set_current_slot("toolbar", 0)
 			elif event.scancode == KEY_2:
-				set_current_slot(1)
+				set_current_slot("toolbar", 1)
 			elif event.scancode == KEY_3:
-				set_current_slot(2)
+				set_current_slot("toolbar", 2)
 			elif event.scancode == KEY_4:
-				set_current_slot(3)
+				set_current_slot("toolbar", 3)
+		
+		# changing current toolbar tool
+		if event.pressed and current_hud == "bagtoolbar":
+			if event.scancode == KEY_1:
+				set_current_slot("bagtoolbar", 0)
+			elif event.scancode == KEY_2:
+				set_current_slot("bagtoolbar", 1)
+			elif event.scancode == KEY_3:
+				set_current_slot("bagtoolbar", 2)
+			elif event.scancode == KEY_4:
+				set_current_slot("bagtoolbar", 3)
+		
+		# changing current toolbar tool
+		if event.pressed and current_hud == "seedtoolbar":
+			if event.scancode == KEY_1:
+				set_current_slot("seedtoolbar", 0)
+			elif event.scancode == KEY_2:
+				set_current_slot("seedtoolbar", 1)
+			elif event.scancode == KEY_3:
+				set_current_slot("seedtoolbar", 2)
+			elif event.scancode == KEY_4:
+				set_current_slot("seedtoolbar", 3)
+		
 		
 		if event.pressed and current_hud == "toolbar":
 			if event.scancode == KEY_SHIFT:
@@ -94,6 +121,7 @@ func show(name):
 		bagtoolbar.set_toolbar(items)
 		bagtoolbar.visible = true
 		bagtoolbar_flag = true
+		highlight.visible = true
 	elif name == "seedtoolbar":
 		var items = []
 		for i in range(4):
@@ -101,6 +129,7 @@ func show(name):
 		seedtoolbar.set_toolbar(items)
 		seedtoolbar.visible = true
 		seedtoolbar_flag = true
+		highlight.visible = true
 	else:
 		print("ERROR, %s in undefined" % name)
 	
