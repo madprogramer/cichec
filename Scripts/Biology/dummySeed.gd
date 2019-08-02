@@ -7,9 +7,9 @@ const GrowthAnimationClass = preload("res://Scripts/Biology/growthAnimation.gd")
 # Declare member variables here. Examples:
 
 #Genes Begin
-var matGenes = initGenes()
-var patGenes = initGenes()
-var phenoGenes = initGenes()
+var matGenes = initGenes({})
+var patGenes = initGenes({})
+var phenoGenes = initGenes({})
 #Genes End
 
 #Age Begin
