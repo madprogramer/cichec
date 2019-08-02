@@ -9,31 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "geneticStructure",
-"class": "dummySeed",
-"language": "GDScript",
-"path": "res://Scripts/Biology/seeds/dummySeed.gd"
-}, {
-"base": "geneticStructure",
-"class": "dummyflower",
-"language": "GDScript",
-"path": "res://Scripts/Biology/flowers/dummyFlower.gd"
-}, {
 "base": "Node",
 "class": "geneticStructure",
 "language": "GDScript",
 "path": "res://Scripts/Biology/geneticStructure.gd"
-}, {
-"base": "dummyflower",
-"class": "sunlightFlower",
-"language": "GDScript",
-"path": "res://Scripts/Biology/flowers/sunlightFlower.gd"
 } ]
 _global_script_class_icons={
-"dummySeed": "",
-"dummyflower": "",
-"geneticStructure": "",
-"sunlightFlower": ""
+"geneticStructure": ""
 }
 
 [application]
