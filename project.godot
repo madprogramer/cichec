@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "geneticStructure",
-"class": "dummySeed",
-"language": "GDScript",
-"path": "res://Scripts/Biology/seeds/dummySeed.gd"
-}, {
-"base": "dummySeed",
+"base": "Node",
 "class": "geneticStructure",
 "language": "GDScript",
-"path": "res://Scripts/Biology/seeds/sunlightSeed.gd"
+"path": "res://Scripts/Biology/geneticStructure.gd"
 } ]
 _global_script_class_icons={
-"dummySeed": "",
 "geneticStructure": ""
 }
 

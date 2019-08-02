@@ -28,7 +28,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
@@ -36,7 +36,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 resource_name = "idle"
 length = 2.0
 loop = true
@@ -54,7 +54,8 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 4, 5, 6, 7, 8 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
 length = 1.6
 loop = true
 step = 0.2
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 5, 6, 4, 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6.26965, 10 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -82,14 +83,14 @@ frames = SubResource( 1 )
 frame = 5
 
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 4 )
 frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 3 )
-anims/walk = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/walk = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="HUD" parent="." instance=ExtResource( 19 )]
