@@ -127,6 +127,7 @@ func show(name):
 		toolbar.visible = true
 		highlight.visible = true
 		toolbar_front.visible = true
+		change_highlight(current_slot["toolbar"])
 	elif name == "seedbag":
 		inventory_back.visible = true
 		inventory_front.visible = true
@@ -140,6 +141,7 @@ func show(name):
 		bagtoolbar_flag = true
 		highlight.visible = true
 		toolbar_front.visible = true
+		change_highlight(current_slot["bagtoolbar"])
 	elif name == "seedtoolbar":
 		var items = []
 		for i in range(4):
@@ -149,6 +151,7 @@ func show(name):
 		seedtoolbar_flag = true
 		highlight.visible = true
 		toolbar_front.visible = true
+		change_highlight(current_slot["seedtoolbar"])
 	else:
 		print("ERROR, %s in undefined" % name)
 	
