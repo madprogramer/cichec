@@ -18,6 +18,8 @@ var current_hud = "toolbar"
 
 var current_slot = {
 	"toolbar" : 0,
+	"bagtoolbar" : 0,
+	"seedtoolbar" : 0
 }
 
 # sets current toolbar slot to x

@@ -59,6 +59,24 @@ onready var dirtDictionary = {
 		}
 	}
 };
+
+onready var seedDictionary = {
+	"name" : {
+		"DummySeed" : {
+			"name" : "DummySeed",
+			"id" : 0,
+			"seed" : preload("res://Scripts/Biology/dummySeed.gd")
+		}
+	},
+	"id" : {
+		0 : {
+			"name" : "DummySeed",
+			"id" : 0,
+			"seed" : preload("res://Scripts/Biology/dummySeed.gd")
+		}
+	}
+}
+
 func _ready():
 	pass
 	
@@ -110,5 +128,32 @@ func _on_Player_water():
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
 	if dirtDictionary["id"][type].itemName == "Sowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
+	
+	pass
+
+var seeds = []
+
+func _on_Player_sow(item):
+	var pos = get_mouse_cell()
+	var type = tilemap.get_cellv(pos)
+	
+	if type == -1:
+		return
+	
+	print(dirtDictionary["id"][type].itemName)
+	
+	if dirtDictionary["id"][type].itemName == "Plowed":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
+		seeds.append({
+			"item": item,
+			"cell": pos
+		})
+	elif dirtDictionary["id"][type].itemName == "Plowed_Watered":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
+		seeds.append({
+			"item": item,
+			"cell": pos
+		})
+	
 	
 	pass

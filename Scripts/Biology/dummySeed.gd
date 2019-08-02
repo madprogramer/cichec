@@ -1,5 +1,9 @@
 extends geneticStructure
 
+# Classes Begin
+const GrowthAnimationClass = preload("res://Scripts/Biology/growthAnimation.gd")
+# Classes End
+
 # Declare member variables here. Examples:
 
 #Genes Begin
@@ -12,13 +16,14 @@ var phenoGenes = initGenes()
 var age = 0;
 #Age End
 
+#Growth Animation Begin
+var growthAnimation = GrowthAnimationClass.new({
+	0: preload("res://Assets/Seeds/DummySeed/1.png")
+})
+#Growth Animation End
+
 # Phenotype computations
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _init():
+	set_name("DummySeed")
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

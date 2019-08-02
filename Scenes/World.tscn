@@ -202,4 +202,5 @@ position = Vector2( -4, -8 )
 offset = Vector2( 4, 8 )
 current = true
 [connection signal="plow" from="Player" to="." method="_on_Player_plow"]
+[connection signal="sow" from="Player" to="." method="_on_Player_sow"]
 [connection signal="water" from="Player" to="." method="_on_Player_water"]

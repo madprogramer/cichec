@@ -4,8 +4,13 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var picked = false;
+var _seed = null;
 
-func _init(itemName, itemTexture, itemSlot, itemValue):
+func _init(itemName, itemTexture, itemSlot, itemValue, _seed):
+	if _seed == null:
+		self._seed = null;
+	else:
+		self._seed = _seed.new()
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;

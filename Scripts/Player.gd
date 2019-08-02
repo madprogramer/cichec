@@ -46,17 +46,33 @@ func _input(event):
 		if event.pressed and hud.current_hud == "toolbar":
 			if event.scancode == KEY_SPACE:
 				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
+		
 		elif event.pressed and hud.current_hud == "inventory":
 			if event.scancode == KEY_SPACE:
 				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
+		
 		elif event.pressed and hud.current_hud == "seedbag":
 			if event.scancode == KEY_SPACE:
 				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
+		
+		elif event.pressed and hud.current_hud == "bagtoolbar":
+			if event.scancode == KEY_SPACE:
+				use(hud.bagtoolbar.slotList[hud.current_slot["bagtoolbar"]].item)
+		
+		elif event.pressed and hud.current_hud == "seedtoolbar":
+			if event.scancode == KEY_SPACE:
+				use(hud.seedtoolbar.slotList[hud.current_slot["seedtoolbar"]].item)
+		
 
 signal plow;
 signal water;
+signal sow;
 
 func use(item):
+	if !item:
+		print("NULL")
+		return
+	
 	print(item.name)
 	
 	if item.name == "seed_bag":
@@ -80,6 +96,9 @@ func use(item):
 	
 	if item.name == "watering_can":
 		emit_signal("water")
+	
+	if item.name == "DummySeed":
+		emit_signal("sow", item)
 
 
 

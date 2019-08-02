@@ -1,5 +1,5 @@
 extends GridContainer;
-const ItemClass = preload("res://Scripts/Item.gd");
+const ItemClass = preload("res://Scripts/Seed.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 
 const slotTexture = preload("res://icon-scaled.png");
@@ -11,22 +11,32 @@ const itemDictionary = {
 	0: {
 		"itemName": "Ring",
 		"itemValue": 456,
-		"itemIcon": itemImages[0]
+		"itemIcon": itemImages[0],
+		"_seed": null
 	},
 	1: {
 		"itemName": "Sword",
 		"itemValue": 100,
-		"itemIcon": itemImages[0]
+		"itemIcon": itemImages[0],
+		"_seed": null
 	},
 	2: {
 		"itemName": "Iron Ring",
 		"itemValue": 987,
-		"itemIcon": itemImages[0]
+		"itemIcon": itemImages[0],
+		"_seed": null
 	},
 	3: {
 		"itemName": "Temp",
 		"itemValue": 10000,
-		"itemIcon": itemImages[0]	
+		"itemIcon": itemImages[0],
+		"_seed": null
+	},
+	4: {
+		"itemName" : "DummySeed",
+		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
+		"itemValue" : -1,
+		"_seed" : preload("res://Scripts/Biology/dummySeed.gd")
 	}
 };
 
@@ -40,7 +50,8 @@ func _ready():
 		var itemName = itemDictionary[item].itemName;
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue));
+		var itemSeed = itemDictionary[item]._seed
+		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed));
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
@@ -49,7 +60,6 @@ func _ready():
 		
 	for i in range(itemList.size()):
 		slotList[i].setItem(itemList[i])
-	
 	pass
 
 func _input(event):
