@@ -65,14 +65,14 @@ onready var seedDictionary = {
 		"DummySeed" : {
 			"name" : "DummySeed",
 			"id" : 0,
-			"seed" : preload("res://Scripts/Biology/dummySeed.gd")
+			"seed" : preload("res://Scripts/Biology/seeds/dummySeed.gd")
 		}
 	},
 	"id" : {
 		0 : {
 			"name" : "DummySeed",
 			"id" : 0,
-			"seed" : preload("res://Scripts/Biology/dummySeed.gd")
+			"seed" : preload("res://Scripts/Biology/seeds/dummySeed.gd")
 		}
 	}
 }

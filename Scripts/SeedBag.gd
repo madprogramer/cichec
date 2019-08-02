@@ -36,7 +36,7 @@ const itemDictionary = {
 		"itemName" : "DummySeed",
 		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
 		"itemValue" : -1,
-		"_seed" : preload("res://Scripts/Biology/dummySeed.gd")
+		"_seed" : preload("res://Scripts/Biology/seeds/dummySeed.gd")
 	}
 };
 
