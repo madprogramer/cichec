@@ -1,20 +1,23 @@
-extends geneticStructure
+extends dummyflower
+
+class_name sunlightFlower
 
 # Declare member variables here. Examples:
 
 #Genes Begin
-var matGenes = initGenes()
-var patGenes = initGenes()
-var phenoGenes = initGenes()
+var matGenes = initGenes({})
+var patGenes = initGenes({})
+var phenoGenes = initGenes({})
 #Genes End
 
 #Age Begin
 var age = 0;
+var stages = [];
+var sprites = [];
 #Age End
 
-	
-
-# Phenotype computations
+#Phenotype computations
+#Phenotype computations end
 
 
 # Called when the node enters the scene tree for the first time.

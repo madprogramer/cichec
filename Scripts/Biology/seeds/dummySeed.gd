@@ -3,13 +3,14 @@ extends geneticStructure
 # Classes Begin
 const GrowthAnimationClass = preload("res://Scripts/Biology/growthAnimation.gd")
 # Classes End
+class_name dummySeed
 
 # Declare member variables here. Examples:
 
 #Genes Begin
-var matGenes = initGenes()
-var patGenes = initGenes()
-var phenoGenes = initGenes()
+var matGenes = initGenes({})
+var patGenes = initGenes({})
+var phenoGenes = initGenes({})
 #Genes End
 
 #Age Begin
@@ -21,6 +22,8 @@ var growthAnimation = GrowthAnimationClass.new({
 	0: preload("res://Assets/Seeds/DummySeed/1.png")
 })
 #Growth Animation End
+#Corresponding Plant
+
 
 # Phenotype computations
 
