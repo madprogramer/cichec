@@ -102,6 +102,9 @@ func use(item):
 	
 	if item.name == "SunlightSeed":
 		emit_signal("sow", item)
+		
+	if item.name == "RainbowSeed":
+		emit_signal("sow", item)
 
 
 func _ready():

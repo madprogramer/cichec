@@ -25,6 +25,16 @@ _global_script_classes=[ {
 "path": "res://Scripts/Biology/geneticStructure.gd"
 }, {
 "base": "dummyflower",
+"class": "rainbowFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/rainbowFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "rainbowSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/rainbowSeed.gd"
+}, {
+"base": "dummyflower",
 "class": "sunlightFlower",
 "language": "GDScript",
 "path": "res://Scripts/Biology/flowers/sunlightFlower.gd"
@@ -38,6 +48,8 @@ _global_script_class_icons={
 "dummySeed": "",
 "dummyflower": "",
 "geneticStructure": "",
+"rainbowFlower": "",
+"rainbowSeed": "",
 "sunlightFlower": "",
 "sunlightSeed": ""
 }

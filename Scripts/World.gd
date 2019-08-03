@@ -143,7 +143,7 @@ func _on_Player_sow(item):
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
 		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y) * tilemap.cell_size.y))
-		print (_seed)
+		# print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
 		# add_child(_seed.flower.sprite)
 		flowercontainer.add_sprite(pos, _seed.flower.sprite)
@@ -155,7 +155,7 @@ func _on_Player_sow(item):
 	elif dirtDictionary["id"][type].itemName == "Plowed_Watered":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
 		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y) * tilemap.cell_size.y))
-		print (_seed)
+		# print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
 		# add_child(_seed.flower.sprite)
 		flowercontainer.add_sprite(pos, _seed.flower.sprite)

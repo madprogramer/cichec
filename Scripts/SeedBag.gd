@@ -9,10 +9,10 @@ const itemImages = [
 
 var itemDictionary = {
 	0: {
-		"itemName" : "SunlightSeed",
+		"itemName" : "RainbowSeed",
 		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
 		"itemValue" : -1,
-		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd")
+		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd")
 	},
 	1: {
 		"itemName" : "SunlightSeed",
