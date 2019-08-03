@@ -5,29 +5,29 @@ onready var highlight = $Highlight
 
 onready var dirtList = [
 	{
-		"id" : 25,
+		"id" : 30,
 		"itemName": "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(25)
+		"itemIcon": tilemap.tile_set.tile_get_texture(30)
 	},
 	{
-		"id" : 21,
+		"id" : 26,
 		"itemName": "Plowed",
-		"itemIcon": tilemap.tile_set.tile_get_texture(21)
+		"itemIcon": tilemap.tile_set.tile_get_texture(26)
 	},
 	{
-		"id" : 22,
+		"id" : 27,
 		"itemName": "Plowed_Watered",
-		"itemIcon": tilemap.tile_set.tile_get_texture(22)
+		"itemIcon": tilemap.tile_set.tile_get_texture(27)
 	},
 	{
-		"id" : 23,
+		"id" : 28,
 		"itemName": "Sowed",
-		"itemIcon": tilemap.tile_set.tile_get_texture(23)
+		"itemIcon": tilemap.tile_set.tile_get_texture(28)
 	},
 	{
-		"id" : 24,
+		"id" : 29,
 		"itemName": "Sowed_Watered",
-		"itemIcon": tilemap.tile_set.tile_get_texture(24)
+		"itemIcon": tilemap.tile_set.tile_get_texture(29)
 	}
 ]
 
@@ -141,7 +141,7 @@ func _on_Player_sow(item):
 	
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
-		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y - 0.5) * tilemap.cell_size.y))
+		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y) * tilemap.cell_size.y))
 		print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
 		add_child(_seed.flower.sprite)
@@ -151,7 +151,7 @@ func _on_Player_sow(item):
 		})
 	elif dirtDictionary["id"][type].itemName == "Plowed_Watered":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y - 0.5) * tilemap.cell_size.y))
+		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y) * tilemap.cell_size.y))
 		print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
 		add_child(_seed.flower.sprite)
