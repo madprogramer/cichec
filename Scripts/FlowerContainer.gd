@@ -10,6 +10,7 @@ func add_sprite(pos, sprite):
 	var sprite1 = spriteMatrix[pos.x][pos.y]
 	var sprite2 = sprite
 	sprite1.offset = sprite2.offset
+	sprite1.set_self_modulate(sprite2.get_self_modulate())
 	sprite1.set_texture(sprite2.get_texture())
 	sprite1.set_hframes(sprite2.get_hframes())
 	

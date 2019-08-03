@@ -16,6 +16,12 @@ func _init(pos):
 	sprite.set_texture(preload("res://Assets/Flowers/RainbowFlower.png"))
 	sprite.set_hframes(4)
 	
+	setColor([1, 0, 0, 1])
+	
+	var color = getColor()
+	
+	sprite.set_self_modulate(Color(color[0], color[1], color[2], color[3]))
+	
 	# add_child(sprite)
 	# var x = 0
 	# x = x / x
