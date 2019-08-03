@@ -4,13 +4,16 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var picked = false;
-var _seed = null;
+var seedClass = null;
+var _seed = null
 
-func _init(itemName, itemTexture, itemSlot, itemValue, _seed):
-	if _seed == null:
-		self._seed = null;
+func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
+	# print("seedClass: ", seedClass)
+	# print("self: ", self)
+	if seedClass == null:
+		self.seedClass = null;
 	else:
-		self._seed = _seed.new()
+		self.seedClass = seedClass
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
