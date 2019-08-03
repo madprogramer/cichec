@@ -5,29 +5,29 @@ onready var highlight = $Highlight
 
 onready var dirtList = [
 	{
-		"id" : 8,
+		"id" : 25,
 		"itemName": "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(8)
+		"itemIcon": tilemap.tile_set.tile_get_texture(25)
 	},
 	{
-		"id" : 16,
+		"id" : 21,
 		"itemName": "Plowed",
-		"itemIcon": tilemap.tile_set.tile_get_texture(16)
+		"itemIcon": tilemap.tile_set.tile_get_texture(21)
 	},
 	{
-		"id" : 17,
+		"id" : 22,
 		"itemName": "Plowed_Watered",
-		"itemIcon": tilemap.tile_set.tile_get_texture(17)
+		"itemIcon": tilemap.tile_set.tile_get_texture(22)
 	},
 	{
-		"id" : 19,
+		"id" : 23,
 		"itemName": "Sowed",
-		"itemIcon": tilemap.tile_set.tile_get_texture(19)
+		"itemIcon": tilemap.tile_set.tile_get_texture(23)
 	},
 	{
-		"id" : 18,
+		"id" : 24,
 		"itemName": "Sowed_Watered",
-		"itemIcon": tilemap.tile_set.tile_get_texture(18)
+		"itemIcon": tilemap.tile_set.tile_get_texture(24)
 	}
 ]
 
@@ -39,63 +39,6 @@ var dirtDictionary = {
 		
 	}
 }
-
-#onready var dirtDictionary = {
-#	"name" : {
-#		"Normal" : {
-#			"id" : 8,
-#			"itemName": "Normal",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(8)
-#		},
-#		"Plowed" : {
-#			"id" : 16,
-#			"itemName": "Plowed",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(16)
-#		},
-#		"Plowed_Watered" : {
-#			"id" : 17,
-#			"itemName": "Plowed_Watered",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(17)
-#		},
-#		"Sowed" : {
-#			"id" : 19,
-#			"itemName": "Sowed",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(19)
-#		},
-#		"Sowed_Watered" : {
-#			"id" : 18,
-#			"itemName": "Sowed_Watered",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(18)
-#		}
-#	},
-#	"id" : {
-#		8 : {
-#			"id" : 8,
-#			"itemName": "Normal",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(8)
-#		},
-#		16 : {
-#			"id" : 16,
-#			"itemName": "Plowed",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(16)
-#		},
-#		17 : {
-#			"id" : 17,
-#			"itemName": "Plowed_Watered",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(17)
-#		},
-#		19 : {
-#			"id" : 19,
-#			"itemName": "Sowed",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(19)
-#		},
-#		18 : {
-#			"id" : 18,
-#			"itemName": "Sowed_Watered",
-#			"itemIcon": tilemap.tile_set.tile_get_texture(18)
-#		}
-#	}
-#};
 
 onready var _seedList = [
 	{
@@ -116,22 +59,6 @@ var _seedDictionary = {
 	"id" : {
 	}
 }
-#onready var seedDictionary = {
-#	"name" : {
-#		"DummySeed" : {
-#			"name" : "DummySeed",
-#			"id" : 0,
-#			"seed" : preload("res://Scripts/Biology/seeds/dummySeed.gd")
-#		}
-#	},
-#	"id" : {
-#		0 : {
-#			"name" : "DummySeed",
-#			"id" : 0,
-#			"seed" : preload("res://Scripts/Biology/seeds/dummySeed.gd")
-#		}
-#	}
-#}
 
 func _ready():
 	for dirt in dirtList:
@@ -214,7 +141,7 @@ func _on_Player_sow(item):
 	
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
-		var _seed = item.seedClass.new(Vector2(pos.x * 16 + 8, pos.y * 16))
+		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , pos.y * tilemap.cell_size.y))
 		print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
 		add_child(_seed.flower.sprite)
@@ -224,7 +151,7 @@ func _on_Player_sow(item):
 		})
 	elif dirtDictionary["id"][type].itemName == "Plowed_Watered":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-		var _seed = item.seedClass.new(Vector2(pos.x * 16 + 8, pos.y * 16))
+		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , pos.y * tilemap.cell_size.y))
 		print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
 		add_child(_seed.flower.sprite)
