@@ -23,6 +23,10 @@ func getColor():
 	return GENES["color"]
 func getSeeds():
 	return GENES["seeds"]
+func isShort():
+	if getSize() < 0.5:
+		return true
+	return false
 
 #Compute Genes
 func computeSize(a,b):

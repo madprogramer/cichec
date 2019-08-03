@@ -62,6 +62,7 @@ var _seedDictionary = {
 }
 
 func _ready():
+	randomize()
 	for dirt in dirtList:
 		dirtDictionary["name"][dirt["itemName"]] = dirt
 		dirtDictionary["id"][dirt["id"]] = dirt
