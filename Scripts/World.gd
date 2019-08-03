@@ -2,6 +2,7 @@ extends Node2D
 
 onready var tilemap = $TileMap
 onready var highlight = $Highlight
+onready var flowercontainer = $FlowerContainer
 
 onready var dirtList = [
 	{
@@ -217,7 +218,9 @@ func _on_Player_sow(item):
 		var _seed = item.seedClass.new(Vector2(pos.x * 16 + 8, pos.y * 16))
 		print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
-		add_child(_seed.flower.sprite)
+		# add_child(_seed.flower.sprite)
+		flowercontainer.add_sprite(pos, _seed.flower.sprite)
+		_seed.flower.set_sprite(flowercontainer.get_sprite(pos))
 		seeds.push_back({
 			"_seed": _seed,
 			"cell": pos
@@ -227,7 +230,9 @@ func _on_Player_sow(item):
 		var _seed = item.seedClass.new(Vector2(pos.x * 16 + 8, pos.y * 16))
 		print (_seed)
 		_seed.flower.sprite.name = str(seeds.size())
-		add_child(_seed.flower.sprite)
+		# add_child(_seed.flower.sprite)
+		flowercontainer.add_sprite(pos, _seed.flower.sprite)
+		_seed.flower.set_sprite(flowercontainer.get_sprite(pos))
 		seeds.push_back({
 			"_seed": _seed,
 			"cell": pos
