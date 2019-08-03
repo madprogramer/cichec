@@ -7,36 +7,42 @@ const itemImages = [
 	preload("res://Assets/Highlight.png")
 ];
 
-const itemDictionary = {
+var itemDictionary = {
 	0: {
+		"itemName" : "SunlightSeed",
+		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
+		"itemValue" : -1,
+		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd")
+	},
+	1: {
+		"itemName" : "SunlightSeed",
+		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
+		"itemValue" : -1,
+		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd")
+	},
+	2: {
 		"itemName": "Ring",
 		"itemValue": 456,
 		"itemIcon": itemImages[0],
 		"_seed": null
 	},
-	1: {
+	3: {
 		"itemName": "Sword",
 		"itemValue": 100,
 		"itemIcon": itemImages[0],
 		"_seed": null
 	},
-	2: {
+	4: {
 		"itemName": "Iron Ring",
 		"itemValue": 987,
 		"itemIcon": itemImages[0],
 		"_seed": null
 	},
-	3: {
+	5: {
 		"itemName": "Temp",
 		"itemValue": 10000,
 		"itemIcon": itemImages[0],
 		"_seed": null
-	},
-	4: {
-		"itemName" : "DummySeed",
-		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
-		"itemValue" : -1,
-		"_seed" : preload("res://Scripts/Biology/seeds/dummySeed.gd")
 	}
 };
 
@@ -51,6 +57,8 @@ func _ready():
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
 		var itemSeed = itemDictionary[item]._seed
+		# print("itemSeed: ", itemSeed)
+		# print("self: ", item)
 		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed));
 	
 	for i in range(16):
@@ -61,6 +69,8 @@ func _ready():
 	for i in range(itemList.size()):
 		slotList[i].setItem(itemList[i])
 	pass
+	
+	# print(slotList[5].item)
 
 func _input(event):
 	if event is InputEventMouseButton or event is InputEventMouseMotion:

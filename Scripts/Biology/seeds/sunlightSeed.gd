@@ -4,14 +4,10 @@ class_name sunlightSeed
 
 # Declare member variables here. Examples:
 
-#Genes Begin
-var matGenes = initGenes({})
-var patGenes = initGenes({})
-var phenoGenes = initGenes({})
-#Genes End
-
 #Corresponding Plant
 
+func _init(pos):
+	flower = preload("res://Scripts/Biology/flowers/sunlightFlower.gd").new(pos)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

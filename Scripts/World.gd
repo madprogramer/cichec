@@ -79,7 +79,6 @@ onready var seedDictionary = {
 
 func _ready():
 	pass
-	
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -99,6 +98,14 @@ func _process(delta):
 	clear_highlight()
 	highlight_cursor()
 	pass
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_CONTROL:
+			for item in seeds:
+				var _seed = item._seed
+				_seed.flower.age_up()
+		
 
 
 func _on_Player_plow():
@@ -144,16 +151,22 @@ func _on_Player_sow(item):
 	
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
-		seeds.append({
-			"item": item,
+		var _seed = item.seedClass.new(Vector2(pos.x * 16 + 8, pos.y * 16))
+		print (_seed)
+		_seed.flower.sprite.name = str(seeds.size())
+		add_child(_seed.flower.sprite)
+		seeds.push_back({
+			"_seed": _seed,
 			"cell": pos
 		})
 	elif dirtDictionary["id"][type].itemName == "Plowed_Watered":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-		seeds.append({
-			"item": item,
+		var _seed = item.seedClass.new(Vector2(pos.x * 16 + 8, pos.y * 16))
+		print (_seed)
+		_seed.flower.sprite.name = str(seeds.size())
+		add_child(_seed.flower.sprite)
+		seeds.push_back({
+			"_seed": _seed,
 			"cell": pos
 		})
-	
-	
 	pass
