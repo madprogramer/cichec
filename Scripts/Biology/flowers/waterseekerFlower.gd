@@ -16,13 +16,5 @@ func _init(pos):
 	sprite.set_texture(preload("res://Assets/Flowers/WaterseekerFlower.png"))
 	sprite.set_hframes(4)
 	
-	# add_child(sprite)
-	# var x = 0
-	# x = x / x
-	
 func set_sprite(sprite):
 	self.sprite = sprite
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
