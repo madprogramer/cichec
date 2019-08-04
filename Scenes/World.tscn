@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tileset1-scaled.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Tileset3.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Tileset4-scaled.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Highlight12x12.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Highlight12x12.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -322,7 +323,7 @@
 
 [sub_resource type="TileSet" id=2]
 0/name = "Highlight8x8.png 0"
-0/texture = ExtResource( 5 )
+0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 12, 12 )
@@ -339,7 +340,10 @@ script = ExtResource( 1 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 12, 12 )
 format = 1
-tile_data = PoolIntArray( -1, 30, 0, -65536, 30, 0, -65535, 30, 0, -65534, 30, 0, -65533, 30, 0, -65532, 30, 0, 65535, 30, 0, 0, 30, 0, 1, 30, 0, 2, 30, 0, 3, 30, 0, 4, 30, 0, 131071, 30, 0, 65536, 30, 0, 65537, 26, 0, 65538, 26, 0, 65539, 30, 0, 65540, 30, 0, 196607, 30, 0, 131072, 30, 0, 131073, 26, 0, 131074, 26, 0, 131075, 30, 0, 131076, 30, 0, 262143, 30, 0, 196608, 30, 0, 196609, 30, 0, 196610, 30, 0, 196611, 30, 0, 196612, 30, 0, 327679, 30, 0, 262144, 30, 0, 262145, 30, 0, 262146, 30, 0, 262147, 30, 0, 262148, 30, 0 )
+tile_data = PoolIntArray( 0, 30, 0, 1, 30, 0, 2, 30, 0, 3, 30, 0, 4, 30, 0, 65536, 30, 0, 65537, 30, 0, 65538, 30, 0, 65539, 30, 0, 65540, 30, 0, 131072, 30, 0, 131073, 30, 0, 131074, 30, 0, 131075, 30, 0, 131076, 30, 0, 196608, 30, 0, 196609, 30, 0, 196610, 30, 0, 196611, 30, 0, 196612, 30, 0, 262144, 30, 0, 262145, 30, 0, 262146, 30, 0, 262147, 30, 0, 262148, 30, 0 )
+
+[node name="DirtmarkContainer" type="Node2D" parent="."]
+script = ExtResource( 5 )
 
 [node name="Highlight" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -347,9 +351,9 @@ cell_size = Vector2( 12, 12 )
 format = 1
 
 [node name="FlowerContainer" type="Node2D" parent="."]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 32, 32 )
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]

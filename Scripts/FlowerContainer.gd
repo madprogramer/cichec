@@ -19,14 +19,14 @@ func get_sprite(pos):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in range(0, 200):
+	for i in range(0, 30):
 		var spriteArray = []
-		for j in range(0, 200):
+		for j in range(0, 30):
 			spriteArray.push_back(Sprite.new())
 		spriteMatrix.push_back(spriteArray)
 	
-	for i in range(0, 200):
-		for j in range(0, 200):
+	for i in range(0, 30):
+		for j in range(0, 30):
 			add_child(spriteMatrix[i][j])
 	
 	pass # Replace with function body.

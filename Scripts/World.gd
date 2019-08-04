@@ -3,6 +3,7 @@ extends Node2D
 onready var tilemap = $TileMap
 onready var highlight = $Highlight
 onready var flowercontainer = $FlowerContainer
+onready var dirtmarkcontainer = $DirtmarkContainer
 
 onready var dirtList = [
 	{
@@ -99,6 +100,12 @@ func _input(event):
 				_seed.flower.age_up()
 		
 
+var directions = [
+	Vector2(0, 1),
+	Vector2(-1, 0),
+	Vector2(0, -1),
+	Vector2(1, 0)
+]
 
 func _on_Player_plow():
 	var pos = get_mouse_cell()
@@ -111,8 +118,32 @@ func _on_Player_plow():
 	
 	if dirtDictionary["id"][type].itemName == "Normal":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+		for direction in range(0, 4):
+			if (tilemap.get_cellv(Vector2(
+					pos.x + directions[direction].x,
+					pos.y + directions[direction].y) ) != -1):
+				if dirtDictionary["id"][tilemap.get_cellv(Vector2(
+						pos.x + directions[direction].x,
+						pos.y + directions[direction].y) )].itemName == "Normal":
+					dirtmarkcontainer.add_sprite(
+						Vector2(
+							pos.x + directions[direction].x,
+							pos.y + directions[direction].y),
+						Vector2(
+							(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
+							(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
+						(direction) )
+		dirtmarkcontainer.add_sprite(
+			pos,
+			Vector2(
+				(pos.x) * tilemap.cell_size.x + 6,
+				(pos.y) * tilemap.cell_size.y + 6),
+			4)
 	pass
 
+func reverse_direction(direction):
+	return (direction + 0) % 4
+	# return direction
 
 func _on_Player_water():
 	var pos = get_mouse_cell()
@@ -125,9 +156,48 @@ func _on_Player_water():
 	
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+		for direction in range(0, 4):
+			var newpos = Vector2(pos.x + directions[direction].x, pos.y + directions[direction].y)
+			var typeid = tilemap.get_cellv(newpos)
+			if typeid != -1:
+				var typename = dirtDictionary["id"][typeid].itemName
+				if typename == "Normal" or typename == "Plowed" or typename == "Sowed":
+					dirtmarkcontainer.clear_sprite(pos, (direction))
+				
+				dirtmarkcontainer.water_sprite(
+					newpos,
+					Vector2(
+						(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
+						(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
+					reverse_direction(direction))
+		dirtmarkcontainer.water_sprite(
+			pos,
+			Vector2(
+				(pos.x) * tilemap.cell_size.x + 6,
+				(pos.y) * tilemap.cell_size.y + 6),
+			4)
+		
 	if dirtDictionary["id"][type].itemName == "Sowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-	
+		for direction in range(0, 4):
+			var newpos = Vector2(pos.x + directions[direction].x, pos.y + directions[direction].y)
+			var typeid = tilemap.get_cellv(newpos)
+			if typeid != -1:
+				var typename = dirtDictionary["id"][typeid].itemName
+				if typename == "Normal" or typename == "Plowed" or typename == "Sowed":
+					dirtmarkcontainer.clear_sprite(pos, (direction))
+				dirtmarkcontainer.water_sprite(
+					newpos,
+					Vector2(
+						(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
+						(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
+					reverse_direction(direction))
+		dirtmarkcontainer.water_sprite(
+			pos,
+			Vector2(
+				(pos.x) * tilemap.cell_size.x + 6,
+				(pos.y) * tilemap.cell_size.y + 6),
+			4)
 	pass
 
 var seeds = []
@@ -145,6 +215,7 @@ func _on_Player_sow(item):
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
 		var _seed = item.seedClass.new(Vector2((pos.x + 0.5) * tilemap.cell_size.x , (pos.y) * tilemap.cell_size.y))
 		# print (_seed)
+		print("FLAG")
 		_seed.flower.sprite.name = str(seeds.size())
 		# add_child(_seed.flower.sprite)
 		flowercontainer.add_sprite(pos, _seed.flower.sprite)

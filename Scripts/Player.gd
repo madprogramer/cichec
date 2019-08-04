@@ -68,6 +68,13 @@ signal plow;
 signal water;
 signal sow;
 
+var seed_names = [
+	"DummySeed",
+	"SunlightSeed",
+	"WaterseekerSeed",
+	"RainbowSeed"
+]
+
 func use(item):
 	if !item:
 		print("NULL")
@@ -97,14 +104,9 @@ func use(item):
 	if item.name == "watering_can":
 		emit_signal("water")
 	
-	if item.name == "DummySeed":
-		emit_signal("sow", item)
-	
-	if item.name == "SunlightSeed":
-		emit_signal("sow", item)
-		
-	if item.name == "RainbowSeed":
-		emit_signal("sow", item)
+	for seed_name in seed_names:
+		if seed_name == item.name:
+			emit_signal("sow", item)
 
 
 func _ready():

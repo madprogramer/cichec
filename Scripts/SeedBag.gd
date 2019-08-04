@@ -10,21 +10,21 @@ const itemImages = [
 var itemDictionary = {
 	0: {
 		"itemName" : "RainbowSeed",
-		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
+		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
 		"itemValue" : -1,
 		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd")
 	},
 	1: {
 		"itemName" : "SunlightSeed",
-		"itemIcon" : preload("res://Assets/Seed-cleared.png"),
+		"itemIcon" : preload("res://Assets/Seeds/SunlightSeed/toolbar.png"),
 		"itemValue" : -1,
 		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd")
 	},
 	2: {
-		"itemName": "Ring",
-		"itemValue": 456,
-		"itemIcon": itemImages[0],
-		"_seed": null
+		"itemName": "WaterseekerSeed",
+		"itemValue": -1,
+		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
+		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd")
 	},
 	3: {
 		"itemName": "Sword",

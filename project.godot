@@ -43,6 +43,16 @@ _global_script_classes=[ {
 "class": "sunlightSeed",
 "language": "GDScript",
 "path": "res://Scripts/Biology/seeds/sunlightSeed.gd"
+}, {
+"base": "dummyflower",
+"class": "waterseekerFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/waterseekerFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "waterseekerSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/waterseekerSeed.gd"
 } ]
 _global_script_class_icons={
 "dummySeed": "",
@@ -51,7 +61,9 @@ _global_script_class_icons={
 "rainbowFlower": "",
 "rainbowSeed": "",
 "sunlightFlower": "",
-"sunlightSeed": ""
+"sunlightSeed": "",
+"waterseekerFlower": "",
+"waterseekerSeed": ""
 }
 
 [application]
