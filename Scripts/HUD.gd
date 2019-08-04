@@ -33,76 +33,83 @@ func change_highlight(x):
 	print(x)
 	highlight.rect_position.x =  x * 16
 	pass
+	
+func switch_tools(event, current_hud_):
+	if event.scancode == KEY_1:
+		set_current_slot(current_hud_, 0)
+	elif event.scancode == KEY_2:
+		set_current_slot(current_hud_, 1)
+	elif event.scancode == KEY_3:
+		set_current_slot(current_hud_, 2)
+	elif event.scancode == KEY_4:
+		set_current_slot(current_hud_, 3)
 
 func _input(event):
 	if event is InputEventKey:
-		# changing current toolbar tool
-		if event.pressed and current_hud == "toolbar":
-			if event.scancode == KEY_1:
-				set_current_slot("toolbar", 0)
-			elif event.scancode == KEY_2:
-				set_current_slot("toolbar", 1)
-			elif event.scancode == KEY_3:
-				set_current_slot("toolbar", 2)
-			elif event.scancode == KEY_4:
-				set_current_slot("toolbar", 3)
-		
-		# changing current toolbar tool
-		if event.pressed and current_hud == "bagtoolbar":
-			if event.scancode == KEY_1:
-				set_current_slot("bagtoolbar", 0)
-			elif event.scancode == KEY_2:
-				set_current_slot("bagtoolbar", 1)
-			elif event.scancode == KEY_3:
-				set_current_slot("bagtoolbar", 2)
-			elif event.scancode == KEY_4:
-				set_current_slot("bagtoolbar", 3)
-		
-		# changing current toolbar tool
-		if event.pressed and current_hud == "seedtoolbar":
-			if event.scancode == KEY_1:
-				set_current_slot("seedtoolbar", 0)
-			elif event.scancode == KEY_2:
-				set_current_slot("seedtoolbar", 1)
-			elif event.scancode == KEY_3:
-				set_current_slot("seedtoolbar", 2)
-			elif event.scancode == KEY_4:
-				set_current_slot("seedtoolbar", 3)
-		
-		
-		if event.pressed and current_hud == "toolbar":
+		if event.pressed:
+			# changing current toolbar tool
+			if current_hud == "toolbar":
+				switch_tools(event, current_hud)
+			
+			# changing current toolbar tool
+			if current_hud == "bagtoolbar":
+				switch_tools(event, current_hud)
+			
+			# changing current toolbar tool
+			if current_hud == "seedtoolbar":
+				switch_tools(event, current_hud)
+			
 			if event.scancode == KEY_SHIFT:
-				show("bagtoolbar")
-				current_hud = "bagtoolbar"
-				pass
-		elif event.pressed and current_hud == "bagtoolbar":
-			if event.scancode == KEY_SHIFT:
-				show("seedtoolbar")
-				current_hud = "seedtoolbar"
-				pass
-		elif event.pressed and current_hud == "seedtoolbar":
-			if event.scancode == KEY_SHIFT:
-				show("toolbar")
-				current_hud = "toolbar"
-				pass
+				if current_hud == "toolbar":
+					show("bagtoolbar")
+					current_hud = "bagtoolbar"
+						
+				elif current_hud == "bagtoolbar":
+					show("seedtoolbar")
+					current_hud = "seedtoolbar"
+					
+				elif current_hud == "seedtoolbar":
+					show("toolbar")
+					current_hud = "toolbar"
+
+			if event.scancode == KEY_TAB:
+				toolbar_front.visible = !toolbar_front.visible
+				highlight.visible = !highlight.visible
+				
+				if current_hud == "toolbar":
+					toolbar.visible = !toolbar.visible
+				
+				if current_hud == "bagtoolbar":
+					bagtoolbar.visible = !bagtoolbar.visible
+				 
+				if current_hud == "seedtoolbar":
+					seedtoolbar.visible = !seedtoolbar.visible
+				
+		
 
 # makes hud with name visible, makes others invisible
 
 var bagtoolbar_flag = false
 var seedtoolbar_flag = false
 
+onready var hud_elements = [
+	inventory,
+	inventory_back,
+	inventory_front,
+	
+	toolbar,
+	toolbar_front,
+	
+	seedbag,
+	bagtoolbar,
+	seedtoolbar,
+	
+	highlight
+]
+
 func show(name):
-	inventory.visible = false
-	inventory_back.visible = false
-	inventory_front.visible = false
-	
-	toolbar.visible = false
-	toolbar_front.visible = false
-	
-	seedbag.visible = false
-	highlight.visible = false
-	bagtoolbar.visible = false
-	seedtoolbar.visible = false
+	for hud_element in hud_elements:
+		hud_element.visible = false
 	
 	if bagtoolbar_flag:
 		for i in range(bagtoolbar.slotList.size()):
@@ -117,7 +124,6 @@ func show(name):
 				seedtoolbar.slotList[i].queue_free()
 		seedtoolbar.slotList = []
 		seedtoolbar_flag = false
-	
 	
 	if name == "inventory":
 		inventory.visible = true
@@ -152,15 +158,8 @@ func show(name):
 		highlight.visible = true
 		toolbar_front.visible = true
 		change_highlight(current_slot["seedtoolbar"])
-	else:
-		print("ERROR, %s in undefined" % name)
 	
 	current_hud = name
 
-func _process(delta):
-	# show(current_hud)
-	pass
-
 func _ready():
 	show(current_hud)
-	pass
