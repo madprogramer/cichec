@@ -11,7 +11,7 @@ func global_direction(direction):
 func reverse_direction(direction):
 	return (direction + 2) % 4
 
-func add_sprite(pos, globalpos, direction):
+func add_sprite(pos, globalpos, direction, type):
 	print(pos)
 	print(direction)
 	# print(globalpos)
@@ -19,35 +19,32 @@ func add_sprite(pos, globalpos, direction):
 		for i in range(0, 4):
 			spriteMatrix[pos.x][pos.y][i].visible = false
 	else:
-		spriteMatrix[pos.x][pos.y][direction].texture = dirtmarks[direction].texture
+		if type == 0:
+			spriteMatrix[pos.x][pos.y][direction].texture = dirtmarks[direction].texture
+		elif type == 1:
+			spriteMatrix[pos.x][pos.y][direction].texture = dirtmarkswater[direction].texture
 		spriteMatrix[pos.x][pos.y][direction].rotation = dirtmarks[direction].rotation
 		spriteMatrix[pos.x][pos.y][direction].global_position = globalpos
+		spriteMatrix[pos.x][pos.y][direction].visible = true
 	
 func clear_sprite(pos, direction):
 	spriteMatrix[pos.x][pos.y][direction].free()
 	spriteMatrix[pos.x][pos.y][direction] = Sprite.new()
 	
 func water_sprite(pos, globalpos, direction):
-	direction = global_direction(direction)
-	print(pos)
-	print(direction)
-	#if 1:
-	if direction == 4:
-		for i in range(0, 4):
-			spriteMatrix[pos.x][pos.y][i].visible = false
-	#	for i in range(0, 4):
-	#		
-	#		spriteMatrix[pos.x][pos.y][i].texture = dirtmarkswater[i].texture
-	else:
-		spriteMatrix[pos.x][pos.y][direction].set_texture(dirtmarkswater[direction].get_texture())
-		spriteMatrix[pos.x][pos.y][direction].set_rotation_degrees(dirtmarkswater[direction].get_rotation_degrees())
-		spriteMatrix[pos.x][pos.y][direction].global_position = globalpos
-		# spriteMatrix[pos.x][pos.y][direction].visible = false
-		
-#func get_sprite(pos):
-#	return spriteMatrix[pos.x][pos.y]
-
-# Called when the node enters the scene tree for the first time.
+	add_sprite(pos, globalpos, direction, 1)
+#	direction = global_direction(direction)
+#	print(pos)
+#	print(direction)
+#	#if 1:
+#	if direction == 4:
+#		for i in range(0, 4):
+#			spriteMatrix[pos.x][pos.y][i].visible = false
+#	else:
+#		spriteMatrix[pos.x][pos.y][direction].set_texture(dirtmarkswater[direction].get_texture())
+#		spriteMatrix[pos.x][pos.y][direction].set_rotation_degrees(dirtmarkswater[direction].get_rotation_degrees())
+#		spriteMatrix[pos.x][pos.y][direction].global_position = globalpos
+#
 func _ready():
 	var dirtmarksprite = Sprite.new()
 	dirtmarksprite.set_texture(preload("res://Assets/Dirt/DirtMarks/1.png"))

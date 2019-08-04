@@ -25,24 +25,6 @@ var itemDictionary = {
 		"itemValue": -1,
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
 		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd")
-	},
-	3: {
-		"itemName": "Sword",
-		"itemValue": 100,
-		"itemIcon": itemImages[0],
-		"_seed": null
-	},
-	4: {
-		"itemName": "Iron Ring",
-		"itemValue": 987,
-		"itemIcon": itemImages[0],
-		"_seed": null
-	},
-	5: {
-		"itemName": "Temp",
-		"itemValue": 10000,
-		"itemIcon": itemImages[0],
-		"_seed": null
 	}
 };
 

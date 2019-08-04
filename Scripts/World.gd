@@ -132,13 +132,15 @@ func _on_Player_plow():
 						Vector2(
 							(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
 							(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
-						(direction) )
+						(direction),
+						0)
 		dirtmarkcontainer.add_sprite(
 			pos,
 			Vector2(
 				(pos.x) * tilemap.cell_size.x + 6,
 				(pos.y) * tilemap.cell_size.y + 6),
-			4)
+			4,
+			0)
 	pass
 
 func reverse_direction(direction):

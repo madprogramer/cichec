@@ -9,21 +9,6 @@ const itemImages = [
 ];
 
 const itemDictionary = {
-	0: {
-		"itemName": "Ring",
-		"itemValue": 456,
-		"itemIcon": itemImages[0]
-	},
-	1: {
-		"itemName": "Sword",
-		"itemValue": 100,
-		"itemIcon": itemImages[0]
-	},
-	2: {
-		"itemName": "Iron Ring",
-		"itemValue": 987,
-		"itemIcon": itemImages[0]
-	}
 };
 
 var slotList = Array();
