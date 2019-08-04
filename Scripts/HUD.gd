@@ -43,6 +43,37 @@ func switch_tools(event, current_hud_):
 		set_current_slot(current_hud_, 2)
 	elif event.scancode == KEY_4:
 		set_current_slot(current_hud_, 3)
+		
+func reset_toolbar_pos():
+#	if toolbar_hided_flag == false:
+#		return
+	toolbar_hided_flag = false
+	toolbar_front.rect_global_position.y = 64
+	highlight.rect_global_position.y = 64
+	
+	toolbar.rect_global_position.y = 64
+	
+	bagtoolbar.rect_global_position.y = 64
+	 
+	seedtoolbar.rect_global_position.y = 64
+
+	for i in range(0, 16):
+		yield(get_tree(), "idle_frame")
+		toolbar_front.rect_global_position.y -= 1
+		highlight.rect_global_position.y -= 1
+		
+		if current_hud == "toolbar":
+			toolbar.rect_global_position.y -= 1
+#						toolbar.visible = !toolbar.visible
+		
+		if current_hud == "bagtoolbar":
+			bagtoolbar.rect_global_position.y -= 1
+#						bagtoolbar.visible = !bagtoolbar.visible
+		 
+		if current_hud == "seedtoolbar":
+			seedtoolbar.rect_global_position.y -= 1
+
+var toolbar_hided_flag = false
 
 func _input(event):
 	if event is InputEventKey:
@@ -60,6 +91,7 @@ func _input(event):
 				switch_tools(event, current_hud)
 			
 			if event.scancode == KEY_SHIFT:
+				reset_toolbar_pos()
 				if current_hud == "toolbar":
 					show("bagtoolbar")
 					current_hud = "bagtoolbar"
@@ -73,17 +105,27 @@ func _input(event):
 					current_hud = "toolbar"
 
 			if event.scancode == KEY_TAB:
-				toolbar_front.visible = !toolbar_front.visible
-				highlight.visible = !highlight.visible
-				
-				if current_hud == "toolbar":
-					toolbar.visible = !toolbar.visible
-				
-				if current_hud == "bagtoolbar":
-					bagtoolbar.visible = !bagtoolbar.visible
-				 
-				if current_hud == "seedtoolbar":
-					seedtoolbar.visible = !seedtoolbar.visible
+				if toolbar_hided_flag == true:
+					reset_toolbar_pos()
+					toolbar_hided_flag = false
+				else:
+					toolbar_hided_flag = true
+					for i in range(0, 16):
+						yield(get_tree(), "idle_frame")
+						toolbar_front.rect_global_position.y += 1
+						highlight.rect_global_position.y += 1
+						
+						if current_hud == "toolbar":
+							toolbar.rect_global_position.y += 1
+	#						toolbar.visible = !toolbar.visible
+						
+						if current_hud == "bagtoolbar":
+							bagtoolbar.rect_global_position.y += 1
+	#						bagtoolbar.visible = !bagtoolbar.visible
+						 
+						if current_hud == "seedtoolbar":
+							seedtoolbar.rect_global_position.y += 1
+	#						seedtoolbar.visible = !seedtoolbar.visible
 				
 		
 

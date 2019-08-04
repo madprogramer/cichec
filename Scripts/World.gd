@@ -78,7 +78,6 @@ func get_mouse_cell():
 
 func highlight_cursor():
 	var mouse_cell = get_mouse_cell()
-	# print(mouse_cell.x, " ", mouse_cell.y)
 	highlight.set_cellv(mouse_cell, 0)
 	pass
 	
