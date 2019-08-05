@@ -15,3 +15,8 @@ func _init(pos):
 	print(pos)
 	sprite.set_texture(preload("res://Assets/Flowers/WaterseekerFlower.png"))
 	sprite.set_hframes(4)
+	
+	deadsprite = Sprite.new()
+	deadsprite.offset = pos
+	deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-dead.png"))
+	deadsprite.visible = false

@@ -277,8 +277,14 @@ func _on_Player_pick_seed():
 		
 	if dirtDictionary["id"][type].itemName == "Sowed":
 		for item in seeds:
-			var _seed = item._seed
-			var flower = _seed.flower
+			if item.cell == pos:
+				var _seed = item._seed
+				var flower = _seed.flower
+				if flower.isDead():
+					flower.pickup()
+					tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+					seeds.erase(item)
+				
 		
 	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":
 		pass

@@ -13,6 +13,7 @@ func add_sprite(pos, sprite, type):
 	sprite1.set_self_modulate(sprite2.get_self_modulate())
 	sprite1.set_texture(sprite2.get_texture())
 	sprite1.set_hframes(sprite2.get_hframes())
+	sprite1.set_frame(0)
 	sprite1.visible = sprite2.visible
 	
 func get_sprite(pos, type):

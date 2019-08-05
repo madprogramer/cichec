@@ -66,6 +66,11 @@ func _on_flower_death():
 	sprite.visible = false
 	deadsprite.visible = true
 	pass
+	
+func pickup():
+	sprite.visible = false
+	deadsprite.visible = false
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
