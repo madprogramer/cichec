@@ -62,36 +62,52 @@ func switch_tools(event, current_hud_):
 	elif event.scancode == KEY_4:
 		set_current_slot(current_hud_, 3)
 		
-func reset_toolbar_pos():
-#	if toolbar_hided_flag == false:
-#		return
-	toolbar_hided_flag = false
-	toolbar_front.rect_global_position.y = 64
-	highlight.rect_global_position.y = 64
-	
-	toolbar.rect_global_position.y = 64
-	
-	bagtoolbar.rect_global_position.y = 64
-	 
-	seedtoolbar.rect_global_position.y = 64
 
-	for i in range(0, 16):
-		yield(get_tree(), "idle_frame")
-		toolbar_front.rect_global_position.y -= 1
-		highlight.rect_global_position.y -= 1
-		
-		if current_hud == "toolbar":
-			toolbar.rect_global_position.y -= 1
-#						toolbar.visible = !toolbar.visible
-		
-		if current_hud == "bagtoolbar":
-			bagtoolbar.rect_global_position.y -= 1
-#						bagtoolbar.visible = !bagtoolbar.visible
-		 
-		if current_hud == "seedtoolbar":
-			seedtoolbar.rect_global_position.y -= 1
+var hiding_toolbar = false
 
-var toolbar_hided_flag = false
+func toolbar_hide():
+	if hiding_toolbar:
+		return
+	else:
+		hiding_toolbar = true
+	
+		for i in range(16):
+			yield(get_tree(), "idle_frame")
+			toolbar.rect_position.y += 1
+			seedtoolbar.rect_position.y += 1
+			bagtoolbar.rect_position.y += 1
+			
+			toolbar_front.rect_position.y += 1
+			
+			highlight.rect_position.y += 1
+		toolbar_visible = false
+		hiding_toolbar = false
+	pass
+
+var showing_toolbar = false
+
+var toolbar_visible = true
+
+func toolbar_show():
+	if hiding_toolbar:
+		return
+	elif showing_toolbar:
+		return
+	else:
+		showing_toolbar = true
+	
+		for i in range(16):
+			yield(get_tree(), "idle_frame")
+			toolbar.rect_position.y -= 1
+			seedtoolbar.rect_position.y -= 1
+			bagtoolbar.rect_position.y -= 1
+			
+			toolbar_front.rect_position.y -= 1
+			
+			highlight.rect_position.y -= 1
+		toolbar_visible = true
+		showing_toolbar = false
+	pass
 
 func _input(event):
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
@@ -99,6 +115,11 @@ func _input(event):
 	
 	elif event is InputEventKey:
 		if event.pressed:
+			if event.scancode == KEY_5:
+				if toolbar_visible:
+					toolbar_hide()
+				else:
+					toolbar_show()
 			# changing current toolbar tool
 			if current_hud == "toolbar":
 				switch_tools(event, current_hud)
@@ -112,7 +133,6 @@ func _input(event):
 				switch_tools(event, current_hud)
 			
 			if event.scancode == KEY_SHIFT:
-				reset_toolbar_pos()
 				if current_hud == "toolbar":
 					show("bagtoolbar")
 					current_hud = "bagtoolbar"
@@ -126,28 +146,11 @@ func _input(event):
 					current_hud = "toolbar"
 
 			if event.scancode == KEY_TAB:
-				if toolbar_hided_flag == true:
-					reset_toolbar_pos()
-					toolbar_hided_flag = false
+				if toolbar_visible == true:
+					toolbar_hide()
 				else:
-					toolbar_hided_flag = true
-					for i in range(0, 16):
-						yield(get_tree(), "idle_frame")
-						toolbar_front.rect_global_position.y += 1
-						highlight.rect_global_position.y += 1
-						
-						if current_hud == "toolbar":
-							toolbar.rect_global_position.y += 1
-	#						toolbar.visible = !toolbar.visible
-						
-						if current_hud == "bagtoolbar":
-							bagtoolbar.rect_global_position.y += 1
-	#						bagtoolbar.visible = !bagtoolbar.visible
-						 
-						if current_hud == "seedtoolbar":
-							seedtoolbar.rect_global_position.y += 1
-	#						seedtoolbar.visible = !seedtoolbar.visible
-				
+					toolbar_show()
+				pass #############################################################
 		
 
 # makes hud with name visible, makes others invisible
