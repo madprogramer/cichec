@@ -87,4 +87,29 @@ func _gui_input(event):
 			holdingItem = clickedSlot.item;
 			clickedSlot.pickItem();
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+			clickedSlot.item = null
 	pass
+	
+func add_seed(originalItem):
+	for i in range(16):
+		if slotList[i].item == null:
+			print("ading to slot ", i)
+			var itemName = originalItem.name
+			print (itemName)
+			
+			var itemIcon = originalItem.texture
+			print (itemIcon)
+			
+			var itemValue = -1
+			
+			var itemSeed = originalItem.seedClass
+			print (itemSeed)
+			# print("itemSeed: ", itemSeed)
+			# print("self: ", item)
+			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed);
+			slotList[i].setItem(newItem)
+#			add_child(newItem)
+#			var x = 0
+#			x = x / x
+			return i
+	return -1

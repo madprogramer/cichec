@@ -30,6 +30,9 @@ func _init(pos):
 	
 	deadsprite = Sprite.new()
 	deadsprite.offset = pos
-	deadsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-dead.png"))
+	if isShort():
+		deadsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-short-dead.png"))
+	else:
+		deadsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-dead.png"))
 	deadsprite.visible = false
 	deadsprite.set_self_modulate(sprite.get_self_modulate())

@@ -8,8 +8,7 @@ var seedClass = null;
 var _seed = null
 
 func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
-	# print("seedClass: ", seedClass)
-	# print("self: ", self)
+	# print(seedClass)
 	if seedClass == null:
 		self.seedClass = null;
 	else:
@@ -17,16 +16,13 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
+	itemIcon = itemTexture
+	
 	if itemValue != -1:
 		hint_tooltip = "%s\n%d" % [itemName, itemValue];
 	else:
 		hint_tooltip = "%s" % [itemName];
-	###
-	# Rect.size_flags_horizontal = 40
-	# Rect.size_flags_vertical = 40
-	# expand = false
-	# stretch_mode = TextureRect.STRETCH_KEEP
-	###
+		
 	self.itemSlot = itemSlot;
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND;

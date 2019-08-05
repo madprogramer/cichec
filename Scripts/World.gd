@@ -1,11 +1,12 @@
 extends Node2D
 
-onready var tilemap = $TileMap
-onready var highlight = $Highlight
-onready var flowercontainer = $FlowerContainer
-onready var dirtmarkcontainer = $DirtmarkContainer
-onready var hoeplowanimation = $HoePlowAnimation
-onready var animationcontainer = $AnimationContainer
+onready var tilemap = get_node("TileMap")
+onready var highlight = get_node("Highlight")
+onready var flowercontainer = get_node("FlowerContainer")
+onready var dirtmarkcontainer = get_node("DirtmarkContainer")
+onready var hoeplowanimation = get_node("HoePlowAnimation")
+onready var animationcontainer = get_node("AnimationContainer")
+onready var player = get_node("Player")
 
 onready var dirtList = [
 	{
@@ -246,7 +247,8 @@ func sow(pos, item):
 	
 	seeds.push_back({
 		"_seed": _seed,
-		"cell": pos
+		"cell": pos,
+		"originalItem" : item
 	})
 
 func _on_Player_sow(item):
@@ -283,6 +285,7 @@ func _on_Player_pick_seed():
 				if flower.isDead():
 					flower.pickup()
 					tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+					player.add_seed(item.originalItem)
 					seeds.erase(item)
 				
 		

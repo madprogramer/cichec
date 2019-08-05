@@ -79,9 +79,14 @@ var seed_names = [
 func use(item):
 	if !item:
 		print("NULL")
+#		var x = 0
+#		x = x / x
 		if hud.current_hud == "seedtoolbar":
 			emit_signal("pick_seed")
 		return
+#	elif dirtDictionary["id"][tilemap.get_cellv(get_mouse_cell())].name == "Sowed" or dirtDictionary["id"][tilemap.get_cellv(get_mouse_cell())].name == "Sowed_Watered":
+#		if hud.current_hud == "seedtoolbar":
+#			if flowercontainer. emit_signal("pick_seed") 
 	
 	print(item.name)
 	
@@ -93,7 +98,7 @@ func use(item):
 			hud.show("toolbar")
 			hud.current_hud = "toolbar"
 	
-	if item.name == "bag":
+	elif item.name == "bag":
 		if hud.current_hud != "inventory":
 			hud.show("inventory")
 			hud.current_hud = "inventory"
@@ -101,16 +106,29 @@ func use(item):
 			hud.show("toolbar")
 			hud.current_hud = "toolbar"
 	
-	if item.name == "hoe":
+	elif item.name == "hoe":
 		emit_signal("plow")
 	
-	if item.name == "watering_can":
+	elif item.name == "watering_can":
 		emit_signal("water")
 	
-	for seed_name in seed_names:
-		if seed_name == item.name:
-			emit_signal("sow", item)
+	else: 
+		for seed_name in seed_names:
+			if seed_name == item.name:
+				emit_signal("sow", item)
+				return
 
+func add_seed(originalItem):
+	var i = hud.seedbag.add_seed(originalItem)
+	if i < 4:
+		hud.show("seedtoolbar")
+	pass
+	
+#onready var tilemap = get_node("../TileMap") # possible bug ##############################################################
+#onready var dirtDictionary = get_node("../../World").dirtDictionary
+
+#func get_mouse_cell():
+#	return tilemap.world_to_map(get_global_mouse_position())
 
 func _ready():
 	pass
