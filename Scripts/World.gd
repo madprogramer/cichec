@@ -126,6 +126,7 @@ func _input(event):
 			for item in seeds:
 				var _seed = item._seed
 				var flower = _seed.flower
+				flower.try_polinate()
 				flower.age_up()
 				if flower.isDead():
 					pass

@@ -4,6 +4,8 @@ class_name dummyflower
 
 # Declare member variables here. Examples:
 
+#Static Variables
+
 #Genes Begin
 var matGenes = initGenes({})
 var patGenes = initGenes({})
@@ -34,6 +36,13 @@ func stage_up():
 		set_dead()
 	else:
 		change_frame(current_stage)
+
+func polinate():
+	print("There is a flower trying to spread its polen")
+	
+func try_polinate():
+	if current_stage == 3:
+		polinate();
 
 func change_frame(x):
 	sprite.set_frame(x)
