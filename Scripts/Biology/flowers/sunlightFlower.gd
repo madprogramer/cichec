@@ -17,7 +17,6 @@ func _init(pos):
 	sprite.set_hframes(4)
 	
 	deadsprite = Sprite.new()
-	deadsprite.visible = false
-	deadsprite.offset = sprite.offset
+	deadsprite.offset = pos
 	deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-dead.png"))
-	deadsprite.set_self_modulate(sprite.get_self_modulate())
+	deadsprite.visible = false

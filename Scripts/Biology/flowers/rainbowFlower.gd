@@ -29,12 +29,7 @@ func _init(pos):
 	sprite.set_self_modulate(Color(color[0], color[1], color[2], color[3]))
 	
 	deadsprite = Sprite.new()
-#	deadsprite.visible = false
-	deadsprite.set_offset(sprite.get_offset())
-	deadsprite.region_rect.size = Vector2(12,12)
+	deadsprite.offset = pos
 	deadsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-dead.png"))
+	deadsprite.visible = false
 	deadsprite.set_self_modulate(sprite.get_self_modulate())
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

@@ -46,6 +46,7 @@ func isDead():
 func set_dead():
 	print("dead")
 	dead = true
+	_on_flower_death()
 #	sprite.visible = false
 #	deadsprite.offset = sprite.offset
 #	deadsprite.visible = true
@@ -55,12 +56,16 @@ func set_sprite(sprite):
 	
 func set_deadsprite(deadsprite):
 	self.deadsprite = deadsprite
-
 #Age End
 
 #Phenotype computations
 #Phenotype computations end
 
+func _on_flower_death():
+	print("really dead")
+	sprite.visible = false
+	deadsprite.visible = true
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

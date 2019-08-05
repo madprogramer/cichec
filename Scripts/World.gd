@@ -124,16 +124,10 @@ func _input(event):
 		if event.pressed and event.scancode == KEY_CONTROL:
 			for item in seeds:
 				var _seed = item._seed
-				_seed.flower.age_up()
-				if _seed.flower.isDead():
-					print(_seed.flower.deadsprite)
-#					var x = 0
-#					x = x / x
-					flowercontainer.add_deadsprite(item.cell, _seed.flower.deadsprite)
-					_seed.flower.set_deadsprite(flowercontainer.get_sprite(item.cell))
-					_seed.flower.deadsprite.visible = true
-#					print(_seed.flower.deadsprite.visible)
-		
+				var flower = _seed.flower
+				flower.age_up()
+				if flower.isDead():
+					pass
 
 var directions = [
 	Vector2(0, 1),
@@ -242,9 +236,13 @@ func sow(pos, item):
 		(pos.y) * tilemap.cell_size.y)
 	)
 	
-	_seed.flower.sprite.name = str(seeds.size())
-	flowercontainer.add_sprite(pos, _seed.flower.sprite)
-	_seed.flower.set_sprite(flowercontainer.get_sprite(pos))
+	_seed.flower.sprite.name = str(seeds.size()) + "0"
+	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)
+	_seed.flower.set_sprite(flowercontainer.get_sprite(pos, 0))
+	
+	_seed.flower.deadsprite.name = str(seeds.size()) + "1"
+	flowercontainer.add_sprite(pos, _seed.flower.deadsprite, 1)
+	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
 	seeds.push_back({
 		"_seed": _seed,
@@ -268,6 +266,22 @@ func _on_Player_sow(item):
 		
 		sow(pos, item)
 	pass
+	
+	
+func _on_Player_pick_seed():
+	var pos = get_mouse_cell()
+	var type = tilemap.get_cellv(pos)
+	
+	if type == -1:
+		return
+		
+	if dirtDictionary["id"][type].itemName == "Sowed":
+		for item in seeds:
+			var _seed = item._seed
+			var flower = _seed.flower
+		
+	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":
+		pass
 
 func _on_HoePlowAnimation_animation_finished():
 	pass # Replace with function body.

@@ -12,19 +12,22 @@ var itemDictionary = {
 		"itemName" : "RainbowSeed",
 		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
 		"itemValue" : -1,
-		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd")
+		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+		"seedbag" : true
 	},
 	1: {
 		"itemName" : "SunlightSeed",
 		"itemIcon" : preload("res://Assets/Seeds/SunlightSeed/toolbar.png"),
 		"itemValue" : -1,
-		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd")
+		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd"),
+		"seedbag" : true
 	},
 	2: {
 		"itemName": "WaterseekerSeed",
 		"itemValue": -1,
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
-		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd")
+		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"seedbag" : true
 	}
 };
 

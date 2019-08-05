@@ -430,6 +430,7 @@ position = Vector2( -4, -8 )
 offset = Vector2( 4, 8 )
 current = true
 [connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
+[connection signal="pick_seed" from="Player" to="." method="_on_Player_pick_seed"]
 [connection signal="plow" from="Player" to="." method="_on_Player_plow"]
 [connection signal="sow" from="Player" to="." method="_on_Player_sow"]
 [connection signal="water" from="Player" to="." method="_on_Player_water"]

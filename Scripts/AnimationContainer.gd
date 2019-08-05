@@ -9,6 +9,8 @@ func _ready():
 	pass # Replace with function body.
 
 func spawn_animation(pos, animatedSprite):
+	if get_node(str(pos)) != null:
+		return
 	var newSprite = AnimatedSprite.new()
 	newSprite.set_sprite_frames(animatedSprite.get_sprite_frames())
 	newSprite.set_offset(pos * 1 / animatedSprite.get_global_scale())

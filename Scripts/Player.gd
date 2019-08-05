@@ -67,6 +67,7 @@ func _input(event):
 signal plow;
 signal water;
 signal sow;
+signal pick_seed;
 
 var seed_names = [
 	"DummySeed",
@@ -78,6 +79,8 @@ var seed_names = [
 func use(item):
 	if !item:
 		print("NULL")
+		if hud.current_hud == "seedtoolbar":
+			emit_signal("pick_seed")
 		return
 	
 	print(item.name)
