@@ -7,6 +7,8 @@ var picked = false;
 var seedClass = null;
 var _seed = null
 var count = 1
+var label = null
+var labelpos = Vector2()
 
 func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	# print(seedClass)
@@ -19,11 +21,16 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	texture = itemTexture;
 	itemIcon = itemTexture
 	
-#	if itemValue != -1:
-#		hint_tooltip = "%s\n%d" % [itemName, itemValue];
-#	else:
-#		hint_tooltip = "%s" % [itemName];
-	hint_tooltip = "%s %d" % [itemName, count] 
+	label = Label.new()
+	labelpos = label.rect_position
+	labelpos.x += 12
+	labelpos.y += 10
+	label.rect_position = labelpos
+	add_child(label)
+	set_count(count)
+	
+#	hint_tooltip = "%s %d" % [itemName, count] 
+	hint_tooltip = "%s" % [itemName] 
 		
 	self.itemSlot = itemSlot;
 	mouse_filter = Control.MOUSE_FILTER_PASS;
@@ -32,7 +39,9 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 
 func set_count(c):
 	count = c
-	hint_tooltip = "%s %d" % [itemName, count]
+#	hint_tooltip = "%s %d" % [itemName, count]
+	label.text = "%d" % [count]
+	label.rect_position = labelpos
 
 func pickItem():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE;

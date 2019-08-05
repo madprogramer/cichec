@@ -151,7 +151,7 @@ frame = 7
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "New Anim"
-frame = 5
+frame = 7
 playing = true
 
 [node name="WalkHoeSpriteDont" type="AnimatedSprite" parent="."]
