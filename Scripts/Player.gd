@@ -79,6 +79,7 @@ var seed_names = [
 func use(item):
 	if !item:
 		print("NULL")
+		print(hud.current_hud)
 #		var x = 0
 #		x = x / x
 		if hud.current_hud == "seedtoolbar":

@@ -245,10 +245,12 @@ func sow(pos, item):
 	flowercontainer.add_sprite(pos, _seed.flower.deadsprite, 1)
 	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
+	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass)
+	
 	seeds.push_back({
 		"_seed": _seed,
 		"cell": pos,
-		"originalItem" : item
+		"originalItem" : newItem
 	})
 
 func _on_Player_sow(item):
@@ -287,6 +289,7 @@ func _on_Player_pick_seed():
 					tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 					player.add_seed(item.originalItem)
 					seeds.erase(item)
+					break
 				
 		
 	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":

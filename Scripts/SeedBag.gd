@@ -77,6 +77,7 @@ func _gui_input(event):
 				var tempItem = clickedSlot.item;
 				var oldSlot = slotList[slotList.find(holdingItem.itemSlot)];
 				clickedSlot.pickItem();
+				clickedSlot.item = null
 				clickedSlot.putItem(holdingItem);
 				holdingItem = null;
 				oldSlot.putItem(tempItem);
