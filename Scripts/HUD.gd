@@ -12,7 +12,7 @@ onready var toolbar_front = get_node("Toolbar-front")
 onready var bagtoolbar = get_node("BagToolbar")
 onready var seedtoolbar = get_node("SeedToolbar")
 onready var seedbag = get_node("SeedBag")
-onready var highlight = get_node("Highlight")
+onready var highlight = get_node("HighlightTemp")
 
 var current_hud = "toolbar"
 
@@ -42,7 +42,7 @@ func set_current_slot(name, x):
 #highlights slot x
 func change_highlight(x):
 	print(x)
-	highlight.rect_position.x =  x * 16
+	highlight.offset.x =  x * 16 + 8
 	
 	if current_hud == "toolbar":
 		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Inventory-background.png" type="Texture" id=2]
@@ -7,10 +7,24 @@
 [ext_resource path="res://Assets/Toolbar-front.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Toolbar-flowers.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Highlight.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/Toolbar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/BagToolbar.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/SeedToolbar.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Highlight/pixil-frame-0.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Highlight/pixil-frame-1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Highlight/pixil-frame-2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Highlight/pixil-frame-3.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Highlight/pixil-frame-4.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Highlight/pixil-frame-5.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/Toolbar.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/BagToolbar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/SeedToolbar.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -41,18 +55,24 @@ margin_right = 64.0
 texture = ExtResource( 6 )
 
 [node name="Highlight" type="TextureRect" parent="."]
+visible = false
 margin_top = 48.0
 margin_right = 16.0
 margin_bottom = 64.0
 texture = ExtResource( 7 )
 
-[node name="Toolbar" parent="." instance=ExtResource( 8 )]
+[node name="HighlightTemp" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+playing = true
+offset = Vector2( 8, 56 )
+
+[node name="Toolbar" parent="." instance=ExtResource( 14 )]
 visible = false
 
-[node name="BagToolbar" parent="." instance=ExtResource( 9 )]
+[node name="BagToolbar" parent="." instance=ExtResource( 15 )]
 visible = false
 
-[node name="SeedToolbar" parent="." instance=ExtResource( 10 )]
+[node name="SeedToolbar" parent="." instance=ExtResource( 16 )]
 visible = false
 
 [node name="temp" type="Sprite" parent="."]
@@ -60,5 +80,5 @@ visible = false
 texture = ExtResource( 5 )
 offset = Vector2( 32, 56 )
 
-[node name="SeedBag" parent="." instance=ExtResource( 11 )]
+[node name="SeedBag" parent="." instance=ExtResource( 17 )]
 visible = false
