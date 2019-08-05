@@ -1,13 +1,26 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tileset1-scaled.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Tileset3.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Tileset4-scaled.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Highlight12x12.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Dirt/1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Dirt/grass12x12.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Dirt/grass12x12-2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Dirt/grass12x12-3.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Highlight12x12.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=20]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=21]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -320,10 +333,50 @@
 30/navigation_offset = Vector2( 0, 0 )
 30/shapes = [  ]
 30/z_index = 0
+31/name = "1.png 31"
+31/texture = ExtResource( 5 )
+31/tex_offset = Vector2( 0, 0 )
+31/modulate = Color( 1, 1, 1, 1 )
+31/region = Rect2( 126, 78, 82, 54 )
+31/tile_mode = 0
+31/occluder_offset = Vector2( 0, 0 )
+31/navigation_offset = Vector2( 0, 0 )
+31/shapes = [  ]
+31/z_index = 0
+32/name = "grass12x12.png 32"
+32/texture = ExtResource( 6 )
+32/tex_offset = Vector2( 0, 0 )
+32/modulate = Color( 1, 1, 1, 1 )
+32/region = Rect2( 0, 0, 12, 12 )
+32/tile_mode = 0
+32/occluder_offset = Vector2( 0, 0 )
+32/navigation_offset = Vector2( 0, 0 )
+32/shapes = [  ]
+32/z_index = 0
+33/name = "grass12x12-2.png 33"
+33/texture = ExtResource( 7 )
+33/tex_offset = Vector2( 0, 0 )
+33/modulate = Color( 1, 1, 1, 1 )
+33/region = Rect2( 0, 0, 12, 12 )
+33/tile_mode = 0
+33/occluder_offset = Vector2( 0, 0 )
+33/navigation_offset = Vector2( 0, 0 )
+33/shapes = [  ]
+33/z_index = 0
+34/name = "grass12x12-3.png 34"
+34/texture = ExtResource( 8 )
+34/tex_offset = Vector2( 0, 0 )
+34/modulate = Color( 1, 1, 1, 1 )
+34/region = Rect2( 0, 0, 12, 12 )
+34/tile_mode = 0
+34/occluder_offset = Vector2( 0, 0 )
+34/navigation_offset = Vector2( 0, 0 )
+34/shapes = [  ]
+34/z_index = 0
 
 [sub_resource type="TileSet" id=2]
 0/name = "Highlight8x8.png 0"
-0/texture = ExtResource( 6 )
+0/texture = ExtResource( 10 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 12, 12 )
@@ -333,6 +386,14 @@
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -340,10 +401,10 @@ script = ExtResource( 1 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 12, 12 )
 format = 1
-tile_data = PoolIntArray( 0, 30, 0, 1, 30, 0, 2, 30, 0, 3, 30, 0, 4, 30, 0, 65536, 30, 0, 65537, 30, 0, 65538, 30, 0, 65539, 30, 0, 65540, 30, 0, 131072, 30, 0, 131073, 30, 0, 131074, 30, 0, 131075, 30, 0, 131076, 30, 0, 196608, 30, 0, 196609, 30, 0, 196610, 30, 0, 196611, 30, 0, 196612, 30, 0, 262144, 30, 0, 262145, 30, 0, 262146, 30, 0, 262147, 30, 0, 262148, 30, 0 )
+tile_data = PoolIntArray( 0, 32, 0, 1, 32, 0, 2, 32, 0, 3, 32, 0, 4, 32, 0, 5, 32, 0, 65536, 32, 0, 65537, 32, 0, 65538, 32, 0, 65539, 32, 0, 65540, 32, 0, 65541, 32, 0, 131072, 32, 0, 131073, 32, 0, 131074, 32, 0, 131075, 32, 0, 131076, 32, 0, 131077, 32, 0, 196608, 32, 0, 196609, 32, 0, 196610, 32, 0, 196611, 32, 0, 196612, 32, 0, 196613, 32, 0, 262144, 32, 0, 262145, 32, 0, 262146, 32, 0, 262147, 32, 0, 262148, 32, 0, 262149, 32, 0, 327680, 32, 0, 327681, 32, 0, 327682, 32, 0, 327683, 32, 0, 327684, 32, 0, 327685, 32, 0 )
 
 [node name="DirtmarkContainer" type="Node2D" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 9 )
 
 [node name="Highlight" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -351,15 +412,24 @@ cell_size = Vector2( 12, 12 )
 format = 1
 
 [node name="FlowerContainer" type="Node2D" parent="."]
-script = ExtResource( 7 )
+script = ExtResource( 11 )
 
-[node name="Player" parent="." instance=ExtResource( 8 )]
+[node name="HoePlowAnimation" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 3 )
+speed_scale = 2.0
+
+[node name="AnimationContainer" type="Node2D" parent="."]
+script = ExtResource( 20 )
+
+[node name="Player" parent="." instance=ExtResource( 21 )]
 position = Vector2( 32, 32 )
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 position = Vector2( -4, -8 )
 offset = Vector2( 4, 8 )
 current = true
+[connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
 [connection signal="plow" from="Player" to="." method="_on_Player_plow"]
 [connection signal="sow" from="Player" to="." method="_on_Player_sow"]
 [connection signal="water" from="Player" to="." method="_on_Player_water"]

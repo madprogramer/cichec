@@ -16,6 +16,17 @@ onready var highlight = get_node("Highlight")
 
 var current_hud = "toolbar"
 
+var cursor = null
+
+func set_cursor_shape(texture):
+	if texture == null:
+		cursor.set_texture(texture)
+	else:
+		if cursor == null:
+			cursor = Sprite.new()
+			add_child(cursor)
+		cursor.set_texture(texture)
+
 var current_slot = {
 	"toolbar" : 0,
 	"bagtoolbar" : 0,
@@ -32,8 +43,15 @@ func set_current_slot(name, x):
 func change_highlight(x):
 	print(x)
 	highlight.rect_position.x =  x * 16
-	pass
 	
+	if current_hud == "toolbar":
+		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":
+			set_cursor_shape(preload("res://Assets/Hoe/MouseIcon.png"))
+		else:
+			set_cursor_shape(null)
+	else:
+		set_cursor_shape(null)
+
 func switch_tools(event, current_hud_):
 	if event.scancode == KEY_1:
 		set_current_slot(current_hud_, 0)
@@ -76,7 +94,10 @@ func reset_toolbar_pos():
 var toolbar_hided_flag = false
 
 func _input(event):
-	if event is InputEventKey:
+	if event is InputEventMouseButton or event is InputEventMouseMotion:
+		cursor.offset = Vector2(event.position.x, event.position.y);
+	
+	elif event is InputEventKey:
 		if event.pressed:
 			# changing current toolbar tool
 			if current_hud == "toolbar":

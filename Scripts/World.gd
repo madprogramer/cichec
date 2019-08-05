@@ -4,12 +4,24 @@ onready var tilemap = $TileMap
 onready var highlight = $Highlight
 onready var flowercontainer = $FlowerContainer
 onready var dirtmarkcontainer = $DirtmarkContainer
+onready var hoeplowanimation = $HoePlowAnimation
+onready var animationcontainer = $AnimationContainer
 
 onready var dirtList = [
 	{
-		"id" : 30,
+		"id" : 32,
 		"itemName": "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(30)
+		"itemIcon": tilemap.tile_set.tile_get_texture(32)
+	},
+	{
+		"id" : 33,
+		"itemName" : "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(33)
+	},
+	{
+		"id" : 34,
+		"itemName" : "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(34)
 	},
 	{
 		"id" : 26,
@@ -52,6 +64,16 @@ onready var _seedList = [
 		"name" : "SunlightSeed",
 		"id" : 1,
 		"seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd")
+	},
+	{
+		"name" : "RainbowSeed",
+		"id" : 2,
+		"seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd")
+	},
+	{
+		"name" : "WaterseekerSeed",
+		"id" : 3,
+		"seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd")
 	}
 ]
 
@@ -62,6 +84,9 @@ var _seedDictionary = {
 	}
 }
 
+func spawn_animation(pos, animatedSprite):
+	animationcontainer.spawn_animation(pos, animatedSprite)
+
 func _ready():
 	randomize()
 	for dirt in dirtList:
@@ -71,7 +96,10 @@ func _ready():
 	for _seed in _seedList:
 		_seedDictionary["name"][_seed.name] = _seed
 		_seedDictionary["id"][_seed.id] = _seed
-	pass
+	
+	for i in range(0, 6):
+		for j in range(0, 6):
+			tilemap.set_cell(j, i, 32 + randi() % 3)
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -97,6 +125,14 @@ func _input(event):
 			for item in seeds:
 				var _seed = item._seed
 				_seed.flower.age_up()
+				if _seed.flower.isDead():
+					print(_seed.flower.deadsprite)
+#					var x = 0
+#					x = x / x
+					flowercontainer.add_deadsprite(item.cell, _seed.flower.deadsprite)
+					_seed.flower.set_deadsprite(flowercontainer.get_sprite(item.cell))
+					_seed.flower.deadsprite.visible = true
+#					print(_seed.flower.deadsprite.visible)
 		
 
 var directions = [
@@ -106,6 +142,33 @@ var directions = [
 	Vector2(1, 0)
 ]
 
+func plow(pos):
+	print("plow: ", pos)
+	tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+	for direction in range(0, 4):
+		if (tilemap.get_cellv(Vector2(
+				pos.x + directions[direction].x,
+				pos.y + directions[direction].y) ) != -1):
+			if dirtDictionary["id"][tilemap.get_cellv(Vector2(
+					pos.x + directions[direction].x,
+					pos.y + directions[direction].y) )].itemName == "Normal":
+				dirtmarkcontainer.add_sprite(
+					Vector2(
+						pos.x + directions[direction].x,
+						pos.y + directions[direction].y),
+					Vector2(
+						(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
+						(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
+					(direction),
+					0)
+	dirtmarkcontainer.add_sprite(
+		pos,
+		Vector2(
+			(pos.x) * tilemap.cell_size.x + 6,
+			(pos.y) * tilemap.cell_size.y + 6),
+		4,
+		0)
+	
 func _on_Player_plow():
 	var pos = get_mouse_cell()
 	var type = tilemap.get_cellv(pos)
@@ -116,30 +179,17 @@ func _on_Player_plow():
 	print(dirtDictionary["id"][type].itemName)
 	
 	if dirtDictionary["id"][type].itemName == "Normal":
-		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
-		for direction in range(0, 4):
-			if (tilemap.get_cellv(Vector2(
-					pos.x + directions[direction].x,
-					pos.y + directions[direction].y) ) != -1):
-				if dirtDictionary["id"][tilemap.get_cellv(Vector2(
-						pos.x + directions[direction].x,
-						pos.y + directions[direction].y) )].itemName == "Normal":
-					dirtmarkcontainer.add_sprite(
-						Vector2(
-							pos.x + directions[direction].x,
-							pos.y + directions[direction].y),
-						Vector2(
-							(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
-							(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
-						(direction),
-						0)
-		dirtmarkcontainer.add_sprite(
-			pos,
-			Vector2(
+		spawn_animation(Vector2(
+			(pos.x) * tilemap.cell_size.x + 6,
+			(pos.y) * tilemap.cell_size.y + 6),
+			hoeplowanimation)
+#		animationcontainer.connect("animationFinished", self, "plow", [pos])
+		var animation = animationcontainer.get_node(
+			str(Vector2(
 				(pos.x) * tilemap.cell_size.x + 6,
-				(pos.y) * tilemap.cell_size.y + 6),
-			4,
-			0)
+				(pos.y) * tilemap.cell_size.y + 6)))
+		print(animation)
+		animation.connect("animation_finished", self, "plow", [pos])
 	pass
 	
 func water(pos):
@@ -218,3 +268,6 @@ func _on_Player_sow(item):
 		
 		sow(pos, item)
 	pass
+
+func _on_HoePlowAnimation_animation_finished():
+	pass # Replace with function body.

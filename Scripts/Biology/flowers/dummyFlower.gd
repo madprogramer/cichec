@@ -21,18 +21,40 @@ var stages = [
 var current_stage = 0
 var sprite = null
 var current_frame = 0
+var deadsprite = null
 
 func age_up():
 	age = age + 1
-	if age > stages[current_stage]:
+	if current_stage < stages.size() and age > stages[current_stage]:
 		stage_up()
 		
 func stage_up():
-	current_stage = min(stages.size()-1, current_stage + 1)
-	change_frame(current_stage)
+	current_stage = current_stage + 1
+	if current_stage >= stages.size():
+		set_dead()
+	else:
+		change_frame(current_stage)
 
 func change_frame(x):
 	sprite.set_frame(x)
+
+var dead = false
+
+func isDead():
+	return dead
+
+func set_dead():
+	print("dead")
+	dead = true
+#	sprite.visible = false
+#	deadsprite.offset = sprite.offset
+#	deadsprite.visible = true
+	
+func set_sprite(sprite):
+	self.sprite = sprite
+	
+func set_deadsprite(deadsprite):
+	self.deadsprite = deadsprite
 
 #Age End
 

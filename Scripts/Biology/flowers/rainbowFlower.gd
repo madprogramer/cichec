@@ -19,6 +19,7 @@ func _init(pos):
 		sprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-short.png"))
 	else:
 		sprite.set_texture(preload("res://Assets/Flowers/RainbowFlower.png"))
+	
 	sprite.set_hframes(4)
 	
 	setColor([1, 0, 0, 1])
@@ -27,8 +28,12 @@ func _init(pos):
 	
 	sprite.set_self_modulate(Color(color[0], color[1], color[2], color[3]))
 	
-func set_sprite(sprite):
-	self.sprite = sprite
+	deadsprite = Sprite.new()
+#	deadsprite.visible = false
+	deadsprite.set_offset(sprite.get_offset())
+	deadsprite.region_rect.size = Vector2(12,12)
+	deadsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-dead.png"))
+	deadsprite.set_self_modulate(sprite.get_self_modulate())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
