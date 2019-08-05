@@ -6,6 +6,7 @@ var itemSlot;
 var picked = false;
 var seedClass = null;
 var _seed = null
+var count = 1
 
 func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	# print(seedClass)
@@ -18,15 +19,20 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	texture = itemTexture;
 	itemIcon = itemTexture
 	
-	if itemValue != -1:
-		hint_tooltip = "%s\n%d" % [itemName, itemValue];
-	else:
-		hint_tooltip = "%s" % [itemName];
+#	if itemValue != -1:
+#		hint_tooltip = "%s\n%d" % [itemName, itemValue];
+#	else:
+#		hint_tooltip = "%s" % [itemName];
+	hint_tooltip = "%s %d" % [itemName, count] 
 		
 	self.itemSlot = itemSlot;
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND;
 	pass
+
+func set_count(c):
+	count = c
+	hint_tooltip = "%s %d" % [itemName, count]
 
 func pickItem():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE;

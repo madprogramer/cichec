@@ -93,6 +93,15 @@ func _gui_input(event):
 	
 func add_seed(originalItem):
 	for i in range(16):
+		if slotList[i].item != null:
+#			var x = 0
+#			x = x / x
+			if slotList[i].item.itemName == originalItem.itemName:
+				slotList[i].item.set_count(slotList[i].item.count + 1)
+				print(slotList[i].item.count)
+				return i
+			
+	for i in range(16):
 		if slotList[i].item == null:
 			print("ading to slot ", i)
 			var itemName = originalItem.name

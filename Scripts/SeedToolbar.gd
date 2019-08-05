@@ -19,6 +19,7 @@ func set_itemlist(items):
 		var item = items[i]
 		if item != null:
 			itemList.append(ItemClass.new(item.name, item.texture, null, -1, item.seedClass))
+			itemList[i].set_count(item.count)
 		else:
 			itemList.append(null)
 	return itemList

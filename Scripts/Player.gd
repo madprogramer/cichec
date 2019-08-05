@@ -123,6 +123,7 @@ func add_seed(originalItem):
 	var i = hud.seedbag.add_seed(originalItem)
 	if i < 4:
 		hud.show("seedtoolbar")
+	print("i: ", i)
 	pass
 	
 #onready var tilemap = get_node("../TileMap") # possible bug ##############################################################
