@@ -293,7 +293,16 @@ func _on_Player_pick_seed():
 				
 		
 	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":
-		pass
+		for item in seeds:
+			if item.cell == pos:
+				var _seed = item._seed
+				var flower = _seed.flower
+				if flower.isDead():
+					flower.pickup()
+					tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+					player.add_seed(item.originalItem)
+					seeds.erase(item)
+					break
 
 func _on_HoePlowAnimation_animation_finished():
 	pass # Replace with function body.
