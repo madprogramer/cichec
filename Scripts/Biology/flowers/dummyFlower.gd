@@ -39,10 +39,15 @@ func stage_up():
 
 func polinate():
 	print("There is a flower trying to spread its polen")
+	var polRange = 2
+	var polX = randi()%(2*polRange) - 2
+	var polY = randi()%(2*polRange) - 2
+	print(Vector2(polX,polY))
 	
 func try_polinate():
 	if current_stage == 3:
 		polinate();
+	
 
 func change_frame(x):
 	sprite.set_frame(x)
