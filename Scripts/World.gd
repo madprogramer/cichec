@@ -134,24 +134,16 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_ENTER:
+			if player.hud.dialogue_is_playing == false:
+				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
+				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 		if event.pressed and event.scancode == KEY_CONTROL:
 			
 			var polenMap = {}
 			#polenMap[speciesId][coordinate(X,Y)]
 			
 			for item in seeds:
-<<<<<<< HEAD
-				var _seed = item._seed
-				var flower = _seed.flower
-				flower.try_polinate()
-				flower.age_up()
-				if flower.isDead():
-					pass
-		if event.pressed and event.scancode == KEY_ENTER:
-			if player.hud.dialogue_is_playing == false:
-				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
-				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
-=======
 				for phase in range(3):
 					
 					#Selection
@@ -185,8 +177,6 @@ func _input(event):
 					
 					else:
 						print("Day advanced!")
-				
->>>>>>> a403ead1cebcdbcc88ec2f38b34b855b6d6f17f9
 
 var directions = [
 	Vector2(0, 1),
