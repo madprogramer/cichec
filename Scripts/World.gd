@@ -135,7 +135,12 @@ func _process(delta):
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_CONTROL:
+			
+			var polenMap = {}
+			#polenMap[speciesId][coordinate(X,Y)]
+			
 			for item in seeds:
+<<<<<<< HEAD
 				var _seed = item._seed
 				var flower = _seed.flower
 				flower.try_polinate()
@@ -146,6 +151,42 @@ func _input(event):
 			if player.hud.dialogue_is_playing == false:
 				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
 				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
+=======
+				for phase in range(3):
+					
+					#Selection
+					var _seed = item._seed
+					var _flower = _seed.flower
+					
+					#Phase 0
+					#
+					#Spread Polen if Applicable
+					#Age Up
+					#Ignore Ded
+					if phase == 0:
+						var _polen = _flower.try_polinate()
+						print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
+						
+					#Phase 1
+					#Look at polen spread, polinate valid targets
+					elif phase == 1:
+						for species in polenMap:
+							for coordinates in polenMap[species]:
+								#print("Trying to polinate")
+								print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
+					#Phase 2
+					#Age Up
+					elif phase == 2:
+						print("Todo: Add check to prevent plant from dying the day it was polinated in phase 2");
+						print("Todo: Determine how to disperse seeds from unharvested plant");
+						if _flower.isDead():
+							pass
+						_flower.age_up()
+					
+					else:
+						print("Day advanced!")
+				
+>>>>>>> a403ead1cebcdbcc88ec2f38b34b855b6d6f17f9
 
 var directions = [
 	Vector2(0, 1),
@@ -262,6 +303,9 @@ func sow(pos, item):
 	flowercontainer.add_sprite(pos, _seed.flower.deadsprite, 1)
 	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
+	#Set Position
+	_seed.pIW = pos;
+	
 	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass)
 	
 	seeds.push_back({
@@ -276,7 +320,7 @@ func _on_Player_sow(item):
 	
 	if type == -1:
 		return
-	
+		
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
 		

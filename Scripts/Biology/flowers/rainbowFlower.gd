@@ -10,6 +10,7 @@ class_name rainbowFlower
 # Called when the node enters the scene tree for the first time.
 
 func _init(pos):
+	id = 2;
 	sprite = Sprite.new()
 	sprite.offset = pos
 	print(pos)

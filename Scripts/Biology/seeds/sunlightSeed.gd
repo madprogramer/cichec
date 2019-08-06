@@ -7,4 +7,5 @@ class_name sunlightSeed
 #Corresponding Plant
 
 func _init(pos):
+	id=1;
 	flower = preload("res://Scripts/Biology/flowers/sunlightFlower.gd").new(pos)
