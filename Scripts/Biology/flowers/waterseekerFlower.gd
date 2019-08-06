@@ -10,6 +10,7 @@ class_name waterseekerFlower
 # Called when the node enters the scene tree for the first time.
 
 func _init(pos):
+	id = 3;
 	sprite = Sprite.new()
 	sprite.offset = pos
 	print(pos)

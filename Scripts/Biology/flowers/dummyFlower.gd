@@ -4,12 +4,28 @@ class_name dummyflower
 
 # Declare member variables here. Examples:
 
-#Static Variables
+#Identifier Begin
+
+var id = 0
+
+#If set to true, position will be ignored; 
+#Use for flowers stored in the inventory
+var inInventory = false;
+
+var pos = Vector2(0,0)
+
+#Identifier End
 
 #Genes Begin
-var matGenes = initGenes({})
-var patGenes = initGenes({})
-var phenoGenes = initGenes({})
+var matGenes = initGenes({"size": 0,
+	"color": [0,0,0,0],
+	"seeds": 0,})
+var patGenes = initGenes({"size": 0,
+	"color": [0,0,0,0],
+	"seeds": 0,})
+var phenoGenes = initGenes({"size": 0,
+	"color": [0,0,0,0],
+	"seeds": 0,})
 #Genes End
 
 #Age Begin
@@ -36,19 +52,6 @@ func stage_up():
 		set_dead()
 	else:
 		change_frame(current_stage)
-
-func polinate():
-	print("There is a flower trying to spread its polen")
-	var polRange = 2
-	var polX = randi()%(2*polRange) - 2
-	var polY = randi()%(2*polRange) - 2
-	print(Vector2(polX,polY))
-	
-func try_polinate():
-	if current_stage == 3:
-		polinate();
-	
-
 func change_frame(x):
 	sprite.set_frame(x)
 
@@ -71,6 +74,46 @@ func set_sprite(sprite):
 func set_deadsprite(deadsprite):
 	self.deadsprite = deadsprite
 #Age End
+
+#Polination Begin
+var polinated = false
+
+func polinate():
+	print("There is a flower trying to spread its polen")
+	print("Killer polen is eating at your flesh!")
+	
+	var polinationCount = 3;
+	var polRange = 2
+	var polen = []
+	
+	for i in range(polinationCount):
+		var polX = randi()%(2*polRange) - polRange
+		var polY = randi()%(2*polRange) - polRange
+		
+		var polenGenes = {}
+		
+		for gene in matGenes:
+			if boolChoice():
+				polenGenes[gene] = matGenes[gene];
+			else:
+				polenGenes[gene] = patGenes[gene];
+				
+		#print(Vector2(polX,polY))
+		#print(polenGenes)
+		polen.push_back( [ id, Vector2(polX,polY), polenGenes, ["INSERT MATERNAL PHENODATA", "INSERT PATERNAL PHENODATA"] ] )
+		
+	return polen
+	
+func try_polinate():
+	if current_stage == 3:
+		return polinate()
+	return []
+#Polination end
+
+#Utility
+func boolChoice():
+	return (randi()%2 == 0)
+
 
 #Phenotype computations
 #Phenotype computations end
