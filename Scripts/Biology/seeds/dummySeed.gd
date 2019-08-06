@@ -4,6 +4,10 @@ class_name dummySeed
 
 # Declare member variables here. Examples:
 
+#Identifier Begin
+var id = 0;
+#Identifier End
+
 #Genes Begin
 var matGenes = initGenes({})
 var patGenes = initGenes({})

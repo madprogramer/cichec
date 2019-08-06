@@ -10,6 +10,9 @@ var count = 1
 var label = null
 var labelpos = Vector2()
 
+#Position in World
+var pIW = Vector2()
+
 func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	# print(seedClass)
 	if seedClass == null:

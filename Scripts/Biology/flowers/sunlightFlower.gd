@@ -10,6 +10,7 @@ class_name sunlightFlower
 # Called when the node enters the scene tree for the first time.
 
 func _init(pos):
+	id = 1;
 	sprite = Sprite.new()
 	sprite.offset = pos
 	print(pos)

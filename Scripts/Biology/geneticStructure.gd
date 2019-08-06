@@ -15,7 +15,6 @@ func setColor(x):
 	GENES["color"] = x
 func setSeeds(x):
 	GENES["seeds"] = x
-	
 #Access Genes
 func getSize():
 	return GENES["size"]
@@ -49,6 +48,7 @@ func computeSeeds(a,b):
 func initGenes(structure):
 	for s in structure:
 		GENES[s] = structure[s];
+	return GENES
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
