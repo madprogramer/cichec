@@ -7,6 +7,7 @@ onready var dirtmarkcontainer = get_node("DirtmarkContainer")
 onready var hoeplowanimation = get_node("HoePlowAnimation")
 onready var animationcontainer = get_node("AnimationContainer")
 onready var player = get_node("Player")
+onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
 onready var dirtList = [
 	{
@@ -101,6 +102,15 @@ func _ready():
 	for i in range(0, 6):
 		for j in range(0, 6):
 			tilemap.set_cell(j, i, 32 + randi() % 3)
+			
+#	print(dialogueplayer)
+#	print(dialogueplayer.dialogue_file_path)
+#	print("FLAG1")
+	dialogueplayer.connect("started", player.hud, "dialogue_started")
+	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
+	dialogueplayer._ready()
+	add_child(dialogueplayer)
+#	print("FLAG2")
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -116,6 +126,8 @@ func clear_highlight():
 			highlight.set_cell(j, i, -1)
 
 func _process(delta):
+#	print("FLAG3")
+#	dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text", [dialogueplayer.dialogue[str(dialogueplayer.line)]])
 	clear_highlight()
 	highlight_cursor()
 	pass
@@ -130,6 +142,10 @@ func _input(event):
 				flower.age_up()
 				if flower.isDead():
 					pass
+		if event.pressed and event.scancode == KEY_ENTER:
+			if player.hud.dialogue_is_playing == false:
+				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
+				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 
 var directions = [
 	Vector2(0, 1),
