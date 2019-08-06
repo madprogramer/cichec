@@ -294,7 +294,7 @@ func sow(pos, item):
 	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
 	#Set Position
-	_seed.pIW = pos;
+	item.pIW = pos;			################################
 	
 	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass)
 	
