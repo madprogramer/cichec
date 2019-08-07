@@ -4,7 +4,10 @@ onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
 onready var flowercontainer = get_node("FlowerContainer")
 onready var dirtmarkcontainer = get_node("DirtmarkContainer")
+
 onready var hoeplowanimation = get_node("HoePlowAnimation")
+onready var wateringcanwateranimation = get_node("WateringCanWaterAnimation")
+
 onready var animationcontainer = get_node("AnimationContainer")
 onready var player = get_node("Player")
 onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
@@ -236,6 +239,16 @@ func _on_Player_plow():
 	pass
 	
 func water(pos):
+	var type = tilemap.get_cellv(pos)
+	
+	if type == -1:
+		return
+	
+	if dirtDictionary["id"][type].itemName == "Plowed":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+	elif dirtDictionary["id"][type].itemName == "Sowed":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
+		
 	for direction in range(0, 4):
 		var newpos = Vector2(pos.x + directions[direction].x, pos.y + directions[direction].y)
 		var newposglobal = Vector2(newpos.x * tilemap.cell_size.x + 6, newpos.y * tilemap.cell_size.y + 6)
@@ -266,15 +279,18 @@ func _on_Player_water():
 	if type == -1:
 		return
 	
-	if dirtDictionary["id"][type].itemName == "Plowed":
-		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
-		
-		water(pos)
-		
-	if dirtDictionary["id"][type].itemName == "Sowed":
-		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-		
-		water(pos)
+	if dirtDictionary["id"][type].itemName == "Plowed" or dirtDictionary["id"][type].itemName == "Sowed":
+		spawn_animation(Vector2(
+			(pos.x) * tilemap.cell_size.x + 6,
+			(pos.y) * tilemap.cell_size.y + 6),
+			wateringcanwateranimation)
+#		animationcontainer.connect("animationFinished", self, "plow", [pos])
+		var animation = animationcontainer.get_node(
+			str(Vector2(
+				(pos.x) * tilemap.cell_size.x + 6,
+				(pos.y) * tilemap.cell_size.y + 6)))
+		print(animation)
+		animation.connect("animation_finished", self, "water", [pos])
 	pass
 
 var seeds = []
@@ -356,4 +372,8 @@ func _on_Player_pick_seed():
 					break
 
 func _on_HoePlowAnimation_animation_finished():
+	pass # Replace with function body.
+
+
+func _on_WateringCanWaterAnimation_animation_finished():
 	pass # Replace with function body.

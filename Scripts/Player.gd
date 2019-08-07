@@ -3,17 +3,24 @@ extends KinematicBody2D
 onready var hud = get_node("HUD")
 onready var animationplayer = get_node("AnimationPlayer")
 onready var idlesprite = get_node("IdleSprite")
+onready var idlebacksprite = get_node("IdleBackSprite")
 onready var walksprite = get_node("WalkSprite")
 
 const SPEED = 80
-var direction = "right"
+var direction = {
+	"x" : "right",
+	"y" : "down"
+}
 
-func set_direction(d):
-	if direction == d:
-		return
-	direction = d
-	walksprite.flip_h = !walksprite.flip_h
-	idlesprite.flip_h = !idlesprite.flip_h
+func set_direction(d1, d2):
+	if direction.x != d1:
+		direction.x = d1
+		walksprite.flip_h = !walksprite.flip_h
+		idlesprite.flip_h = !idlesprite.flip_h
+		idlebacksprite.flip_h = !idlebacksprite.flip_h
+	
+	if direction.y != d2:
+		direction.y = d2
 
 func move():
 	var move_vec = Vector2(0, 0)
@@ -25,23 +32,39 @@ func move():
 	move_and_slide(move_vec * SPEED)
 	
 	if move_vec.x > 0:
-		set_direction("right")
+		set_direction("right", direction.y)
 	elif move_vec.x < 0:
-		set_direction("left")
+		set_direction("left", direction.y)
+	
+	if move_vec.y < 0:
+		set_direction(direction.x, "up")
+	elif move_vec.y > 0:
+		set_direction(direction.x, "down")
 	
 	if move_vec.x != 0 or move_vec.y != 0:
-		animationplayer.current_animation = "walk"
-		walksprite.visible = true
+		if direction.y == "down":
+			animationplayer.current_animation = "walk"
+			walksprite.visible = true
+		else:#### walk back animation
+			animationplayer.current_animation = "walk"
+			walksprite.visible = true
 	else:
-		animationplayer.current_animation = "idle"
-		idlesprite.visible = true
+		if direction.y == "down":
+			animationplayer.current_animation = "idle"
+			idlesprite.visible = true
+		else:
+			animationplayer.current_animation = "idleback"
+			idlebacksprite.visible = true
 
 func _process(delta):
 	idlesprite.visible = false
+	idlebacksprite.visible = false
 	walksprite.visible = false
 	move()
 	
 func _input(event):
+	if hud.dialogue_is_playing == true:
+		return
 	if event is InputEventKey:
 		if event.pressed and hud.current_hud == "toolbar":
 			if event.scancode == KEY_SPACE:

@@ -56,6 +56,11 @@ func change_highlight(x):
 				set_cursor_shape(preload("res://Assets/Hoe/MouseIcon.png"))
 			else:
 				set_cursor_shape(null)
+		elif toolbar.slotList[current_slot[current_hud]].item.itemName == "watering_can":
+			if dialogue_is_playing == false:
+				set_cursor_shape(preload("res://Assets/Watering_Can/MouseIcon.png"))
+			else:
+				set_cursor_shape(null)
 		else:
 			set_cursor_shape(null)
 	else:
@@ -119,16 +124,13 @@ func toolbar_show():
 	pass
 
 func _input(event):
+	if dialogue_is_playing:
+		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		cursor.offset = Vector2(event.position.x, event.position.y);
 	
 	elif event is InputEventKey:
 		if event.pressed:
-			if event.scancode == KEY_5:
-				if toolbar_visible:
-					toolbar_hide()
-				else:
-					toolbar_show()
 			# changing current toolbar tool
 			if current_hud == "toolbar":
 				switch_tools(event, current_hud)
@@ -245,11 +247,11 @@ func change_dialogue_texture(t):
 func change_dialogue_background(b):
 	dialoguebackground.texture = b
 
-var current_name = ""
+#var current_name = ""
 
 var character_textures = {
 	"Wasp" : preload("res://Assets/Characters/Wasp.png"),
-#	"Capo" : preload("res://Assets/Characters/Capo.png"),
+	"Capo" : preload("res://Assets/Characters/Capo.png"),
 	"Alpamish" : preload("res://Assets/Characters/Alpamish.png")
 }
 
@@ -257,10 +259,11 @@ func change_dialogue_text(t):
 #	print(t)
 	dialoguetext.text = t[0].text
 	dialoguename.text = t[0].name
-	if dialoguename.text != current_name:
-		if dialoguename.text != "Capo":
-			change_dialogue_texture(character_textures[dialoguename.text])
-			current_name = dialoguename.text
+#	if dialoguename.text != current_name:
+#		if dialoguename.text != "Capo":
+#			change_dialogue_texture(character_textures[dialoguename.text])
+#			current_name = dialoguename.text
+	change_dialogue_texture(character_textures[dialoguename.text])
 	
 var dialogue_is_playing = false
 
