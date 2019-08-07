@@ -437,7 +437,6 @@ speed_scale = 2.0
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 4 )
-frame = 5
 
 [node name="AnimationContainer" type="Node2D" parent="."]
 script = ExtResource( 26 )

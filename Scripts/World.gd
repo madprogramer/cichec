@@ -1,5 +1,7 @@
 extends Node2D
 
+const start_tile_size = 6
+
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
 onready var flowercontainer = get_node("FlowerContainer")
@@ -102,8 +104,8 @@ func _ready():
 		_seedDictionary["name"][_seed.name] = _seed
 		_seedDictionary["id"][_seed.id] = _seed
 	
-	for i in range(0, 6):
-		for j in range(0, 6):
+	for i in range(0, start_tile_size):
+		for j in range(0, start_tile_size):
 			tilemap.set_cell(j, i, 32 + randi() % 3)
 			
 #	print(dialogueplayer)
@@ -141,8 +143,25 @@ func _input(event):
 			if player.hud.dialogue_is_playing == false:
 				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
 				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
+		
 		if event.pressed and event.scancode == KEY_CONTROL:
-			
+			for i in range(0, start_tile_size):
+				for j in range(0, start_tile_size):
+					var type = tilemap.get_cell(j, i)
+					var name = dirtDictionary["id"][type].itemName
+					
+					if name == "Sowed_Watered":
+						plow(Vector2(j, i))
+						tilemap.set_cell(j, i, dirtDictionary["name"]["Sowed"].id)
+					elif name == "Plowed_Watered":
+						plow(Vector2(j, i))
+						tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
+						
+					if name == "Plowed":
+						if (randf() > 0.40):
+							deplow(Vector2(j, i))
+							tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
+							
 			var polenMap = {}
 			#polenMap[speciesId][coordinate(X,Y)]
 			
@@ -187,6 +206,31 @@ var directions = [
 	Vector2(0, -1),
 	Vector2(1, 0)
 ]
+
+func deplow(pos):
+	for direction in range(0, 4):
+		if (tilemap.get_cellv(Vector2(
+				pos.x + directions[direction].x,
+				pos.y + directions[direction].y) ) != -1):
+			if dirtDictionary["id"][tilemap.get_cellv(Vector2(
+					pos.x + directions[direction].x,
+					pos.y + directions[direction].y) )].itemName == "Normal":
+				dirtmarkcontainer.add_sprite(
+					Vector2(
+						pos.x + directions[direction].x,
+						pos.y + directions[direction].y),
+					Vector2(
+						(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
+						(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
+					(4),
+					0)
+	dirtmarkcontainer.add_sprite(
+		pos,
+		Vector2(
+			(pos.x) * tilemap.cell_size.x + 6,
+			(pos.y) * tilemap.cell_size.y + 6),
+		4,
+		0)
 
 func plow(pos):
 	print("plow: ", pos)
