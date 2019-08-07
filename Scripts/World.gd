@@ -16,19 +16,29 @@ onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
 onready var dirtList = [
 	{
-		"id" : 32,
+		"id" : 35,
 		"itemName": "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(32)
+		"itemIcon": tilemap.tile_set.tile_get_texture(35)
 	},
 	{
-		"id" : 33,
+		"id" : 36,
 		"itemName" : "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(33)
+		"itemIcon": tilemap.tile_set.tile_get_texture(36)
 	},
 	{
-		"id" : 34,
+		"id" : 37,
 		"itemName" : "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(34)
+		"itemIcon": tilemap.tile_set.tile_get_texture(37)
+	},
+	{
+		"id" : 38,
+		"itemName" : "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(38)
+	},
+	{
+		"id" : 39,
+		"itemName" : "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(39)
 	},
 	{
 		"id" : 26,
@@ -94,6 +104,15 @@ var _seedDictionary = {
 func spawn_animation(pos, animatedSprite):
 	animationcontainer.spawn_animation(pos, animatedSprite)
 
+func is_normal(id):
+	for dirt in dirtList:
+		if dirt.id == id:
+			if dirt.itemName == "Normal":
+				return true
+			else:
+				return false
+	return false
+
 func _ready():
 	randomize()
 	for dirt in dirtList:
@@ -106,7 +125,7 @@ func _ready():
 	
 	for i in range(0, start_tile_size):
 		for j in range(0, start_tile_size):
-			tilemap.set_cell(j, i, 32 + randi() % 3)
+			tilemap.set_cell(j, i, 35 + randi() % 5)
 			
 #	print(dialogueplayer)
 #	print(dialogueplayer.dialogue_file_path)
