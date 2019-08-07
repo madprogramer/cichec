@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-0.png-ceab34b14326377fa82b0ef890516fcb.stex"
+path="res://.import/pixil-frame-4.png-91e7d60ee75fb9386dfe067709df5057.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Watering_Can/New folder/pixil-frame-0.png"
-dest_files=[ "res://.import/pixil-frame-0.png-ceab34b14326377fa82b0ef890516fcb.stex" ]
+source_file="res://Assets/Watering_Can/WateringAnimation/pixil-frame-4.png"
+dest_files=[ "res://.import/pixil-frame-4.png-91e7d60ee75fb9386dfe067709df5057.stex" ]
 
 [params]
 
