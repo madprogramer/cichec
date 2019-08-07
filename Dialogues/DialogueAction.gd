@@ -46,6 +46,7 @@ func play_dialogue():
 func continue_dialogue():
 	if line + 1 > dialogue.size():
 		print("FINISHED")
+		dialogue = null
 		emit_signal("finished")
 	else:
 		line = line + 1
@@ -53,4 +54,5 @@ func continue_dialogue():
 
 func _process(delta):
 	if Input.is_action_just_pressed("mouse_select"):
-		continue_dialogue()
+		if dialogue:
+			continue_dialogue()
