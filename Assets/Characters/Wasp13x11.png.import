@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Toolbar.png-acf24ece9f7ea8a5c112675b3b7406c2.stex"
+path="res://.import/Wasp13x11.png-b707493c19e1713ba23571f8a3907d3e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Toolbar.png"
-dest_files=[ "res://.import/Toolbar.png-acf24ece9f7ea8a5c112675b3b7406c2.stex" ]
+source_file="res://Assets/Characters/Wasp13x11.png"
+dest_files=[ "res://.import/Wasp13x11.png-b707493c19e1713ba23571f8a3907d3e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

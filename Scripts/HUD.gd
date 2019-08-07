@@ -250,9 +250,9 @@ func change_dialogue_background(b):
 #var current_name = ""
 
 var character_textures = {
-	"Wasp" : preload("res://Assets/Characters/Wasp16x16.png"),
-	"Capo" : preload("res://Assets/Characters/Capo16x16.png"),
-	"Alpamish" : preload("res://Assets/Characters/Alpamish16x16.png")
+	"Wasp" : preload("res://Assets/Characters/Wasp13x11.png"),
+	"Capo" : preload("res://Assets/Characters/Capo13x11.png"),
+	"Alpamish" : preload("res://Assets/Characters/Alpamish13x11.png")
 }
 
 func change_dialogue_text(t):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hoe.png-68d22d305674cf9966467d247758d24f.stex"
+path="res://.import/Alpamish13x11.png-ccd38a3ceaf683e3f31d6e40a3bbc690.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hoe.png"
-dest_files=[ "res://.import/Hoe.png-68d22d305674cf9966467d247758d24f.stex" ]
+source_file="res://Assets/Characters/Alpamish13x11.png"
+dest_files=[ "res://.import/Alpamish13x11.png-ccd38a3ceaf683e3f31d6e40a3bbc690.stex" ]
 
 [params]
 

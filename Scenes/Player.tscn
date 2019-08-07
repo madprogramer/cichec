@@ -185,7 +185,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 resource_name = "walkback"
 length = 1.6
 loop = true
@@ -203,7 +203,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 6.26965, 10 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -222,7 +222,7 @@ frame = 4
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 5
+frame = 4
 playing = true
 
 [node name="IdleBackSprite" type="AnimatedSprite" parent="."]
@@ -252,10 +252,10 @@ anims/idleHoeDont = SubResource( 8 )
 anims/idleHoeFlip = SubResource( 9 )
 anims/idleback = SubResource( 10 )
 anims/walk = SubResource( 11 )
-anims/walkback = SubResource( 13 )
+anims/walkback = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="HUD" parent="." instance=ExtResource( 50 )]
