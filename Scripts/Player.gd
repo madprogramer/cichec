@@ -5,6 +5,7 @@ onready var animationplayer = get_node("AnimationPlayer")
 onready var idlesprite = get_node("IdleSprite")
 onready var idlebacksprite = get_node("IdleBackSprite")
 onready var walksprite = get_node("WalkSprite")
+onready var walkbacksprite = get_node("WalkBackSprite")
 
 const SPEED = 80
 var direction = {
@@ -16,6 +17,7 @@ func set_direction(d1, d2):
 	if direction.x != d1:
 		direction.x = d1
 		walksprite.flip_h = !walksprite.flip_h
+		walkbacksprite.flip_h = !walkbacksprite.flip_h
 		idlesprite.flip_h = !idlesprite.flip_h
 		idlebacksprite.flip_h = !idlebacksprite.flip_h
 	
@@ -45,9 +47,9 @@ func move():
 		if direction.y == "down":
 			animationplayer.current_animation = "walk"
 			walksprite.visible = true
-		else:#### walk back animation
-			animationplayer.current_animation = "walk"
-			walksprite.visible = true
+		else:
+			animationplayer.current_animation = "walkback"
+			walkbacksprite.visible = true
 	else:
 		if direction.y == "down":
 			animationplayer.current_animation = "idle"
@@ -60,6 +62,7 @@ func _process(delta):
 	idlesprite.visible = false
 	idlebacksprite.visible = false
 	walksprite.visible = false
+	walkbacksprite.visible = false
 	move()
 	
 func _input(event):
