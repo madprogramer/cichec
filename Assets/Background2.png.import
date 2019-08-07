@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bag-cleared.png-7d209b139db69cedf6091867bf35024e.stex"
+path="res://.import/Background2.png-2ee8cd714470329f42fe538982c2c12b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bag-cleared.png"
-dest_files=[ "res://.import/Bag-cleared.png-7d209b139db69cedf6091867bf35024e.stex" ]
+source_file="res://Assets/Background2.png"
+dest_files=[ "res://.import/Background2.png-2ee8cd714470329f42fe538982c2c12b.stex" ]
 
 [params]
 

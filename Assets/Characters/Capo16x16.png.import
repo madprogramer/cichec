@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bag-cleared.png-7d209b139db69cedf6091867bf35024e.stex"
+path="res://.import/Capo16x16.png-79c9232b294841b81c0e2e8aac63025e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bag-cleared.png"
-dest_files=[ "res://.import/Bag-cleared.png-7d209b139db69cedf6091867bf35024e.stex" ]
+source_file="res://Assets/Characters/Capo16x16.png"
+dest_files=[ "res://.import/Capo16x16.png-79c9232b294841b81c0e2e8aac63025e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
