@@ -31,5 +31,22 @@ func scan(pos, seedList):
 			print(flower.getColor())
 			print(flower.getSeeds())
 			print("Scan finished")
+			var x = PopupDialog.new()
+			add_child(x)
+			
+			var labels = [
+				"SIZE: " + str(flower.getSize()),
+				"COLOR: " + str(flower.getColor()),
+				"SEEDS: " + str(flower.getSeeds())
+			]
+			
+			for i in range(labels.size()):
+				var y = Label.new()
+				y.rect_position = Vector2(4, 6 * (i + 1) + i - 1)
+				y.text = labels[i]
+				x.add_child(y)
+			
+			x.popup(Rect2(0, 0, 64, 32))
+			
 			return
 	print("Couldn't find the scanned flower")
