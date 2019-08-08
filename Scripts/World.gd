@@ -198,8 +198,11 @@ func _input(event):
 					#Ignore Ded
 					if phase == 0:
 						var _polen = _flower.try_polinate()
-						print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
+						#print("STANDO POWAH")
+						print(_polen)
 						
+						print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
+						polenMap[ _polen[0] ] = 12;
 					#Phase 1
 					#Look at polen spread, polinate valid targets
 					elif phase == 1:
@@ -373,13 +376,14 @@ func sow(pos, item):
 	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
 	#Set Position
-	item.pIW = pos;			################################
+	print(pos)
+	_seed.flower.pos = pos
 	
 	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass)
 	
 	seeds.push_back({
 		"_seed": _seed,
-		"cell": pos,
+		#"cell": pos,
 		"originalItem" : newItem
 	})
 

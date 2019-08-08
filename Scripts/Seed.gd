@@ -4,14 +4,14 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var picked = false;
-var seedClass = null;
+var seedClass = dummySeed.new();
 var _seed = null
 var count = 1
 var label = null
 var labelpos = Vector2()
 
 #Position in World
-var pIW = Vector2()
+#var pIW = Vector2()
 
 func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
 	# print(seedClass)

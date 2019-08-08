@@ -98,9 +98,12 @@ func polinate():
 			else:
 				polenGenes[gene] = patGenes[gene];
 				
+		#THIS IS SO SAD 
+		#ALEXA PLAY SKILLET ~ NOT GONNA DIE 	
+			
 		#print(Vector2(polX,polY))
 		#print(polenGenes)
-		polen.push_back( [ id, Vector2(polX,polY), polenGenes, ["INSERT MATERNAL PHENODATA", "INSERT PATERNAL PHENODATA"] ] )
+		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, ["INSERT MATERNAL PHENODATA", "INSERT PATERNAL PHENODATA"] ] )
 		
 	return polen
 	
