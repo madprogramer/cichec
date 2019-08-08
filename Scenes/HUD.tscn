@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Inventory-background.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Scenes/SeedToolbar.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/DialogueBox.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/StatusBar.tscn" type="PackedScene" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -64,7 +65,7 @@ texture = ExtResource( 7 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 4
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -87,3 +88,6 @@ visible = false
 
 [node name="DialogueBox" parent="." instance=ExtResource( 18 )]
 visible = false
+
+[node name="MentalHealth" parent="." instance=ExtResource( 19 )]
+position = Vector2( 32, 46 )

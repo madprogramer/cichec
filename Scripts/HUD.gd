@@ -20,6 +20,8 @@ onready var dialoguebackground = dialoguebox.get_node("Background")
 onready var dialoguetext = dialoguebox.get_node("Text")
 onready var dialoguename = dialoguebox.get_node("Name")
 
+onready var mentalhealth = get_node("MentalHealth")
+
 var current_hud = "toolbar"
 
 var cursor = null
