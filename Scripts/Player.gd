@@ -13,6 +13,23 @@ var direction = {
 	"y" : "down"
 }
 
+func get_current_item():
+	if hud.current_hud == "toolbar":
+		return (hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
+		
+	elif hud.current_hud == "inventory":
+		return (hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
+	
+	elif hud.current_hud == "seedbag":
+		return (hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
+	
+	elif hud.current_hud == "bagtoolbar":
+		return (hud.bagtoolbar.slotList[hud.current_slot["bagtoolbar"]].item)
+	
+	if hud.current_hud == "seedtoolbar":
+		return (hud.seedtoolbar.slotList[hud.current_slot["seedtoolbar"]].item)
+	return null
+
 func set_direction(d1, d2):
 	if direction.x != d1:
 		direction.x = d1
@@ -69,31 +86,15 @@ func _input(event):
 	if hud.dialogue_is_playing == true:
 		return
 	if event is InputEventKey:
-		if event.pressed and hud.current_hud == "toolbar":
+		if event.pressed:
 			if event.scancode == KEY_SPACE:
-				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-		
-		elif event.pressed and hud.current_hud == "inventory":
-			if event.scancode == KEY_SPACE:
-				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-		
-		elif event.pressed and hud.current_hud == "seedbag":
-			if event.scancode == KEY_SPACE:
-				use(hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-		
-		elif event.pressed and hud.current_hud == "bagtoolbar":
-			if event.scancode == KEY_SPACE:
-				use(hud.bagtoolbar.slotList[hud.current_slot["bagtoolbar"]].item)
-		
-		elif event.pressed and hud.current_hud == "seedtoolbar":
-			if event.scancode == KEY_SPACE:
-				use(hud.seedtoolbar.slotList[hud.current_slot["seedtoolbar"]].item)
-		
+				use(get_current_item())
 
 signal plow;
 signal water;
 signal sow;
 signal pick_seed;
+signal scan;
 
 var seed_names = [
 	"DummySeed",
@@ -138,6 +139,9 @@ func use(item):
 	
 	elif item.name == "watering_can":
 		emit_signal("water")
+		
+	elif item.name == "scanner":
+		emit_signal("scan")
 	
 	else: 
 		for seed_name in seed_names:

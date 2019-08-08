@@ -19,7 +19,7 @@ func _ready():
 	set_value(100)
 	pass # Replace with function body.
 	
-var value = 100
+var value = 0
 	
 func set_value(x):
 	value = x

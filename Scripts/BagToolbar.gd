@@ -18,7 +18,8 @@ func set_itemlist(items):
 	for i in range(items.size()):
 		var item = items[i]
 		if item != null:
-			itemList.append(ItemClass.new(item.name, item.texture, null, -1))
+			var itemClass = item.itemClass
+			itemList.append(itemClass.new(item.name, item.texture, null, -1, itemClass))
 		else:
 			itemList.append(null)
 	return itemList

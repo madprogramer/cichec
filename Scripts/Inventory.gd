@@ -2,13 +2,21 @@
 extends GridContainer;
 const ItemClass = preload("res://Scripts/Item.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
+const scanner = preload("res://Scripts/Items/Scanner.gd");
 
 const slotTexture = preload("res://Assets/Slot-texture.png");
+
 const itemImages = [
 	preload("res://Assets/Highlight.png")
 ];
 
-const itemDictionary = {
+var itemDictionary = {
+	"scanner" : {
+		"itemName" : "scanner",
+		"itemIcon" : preload("res://Assets/Highlight.png"),
+		"itemValue" : -1,
+		"itemClass" : scanner
+	}
 };
 
 var slotList = Array();
@@ -21,7 +29,10 @@ func _ready():
 		var itemName = itemDictionary[item].itemName;
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue));
+		var itemClass = itemDictionary[item].itemClass
+		
+		# important note: not ItemClass, it is itemClass [i at the start is lowercase]
+		itemList.append(itemClass.new(itemName, itemIcon, null, itemValue, itemClass));
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);

@@ -416,7 +416,7 @@ func _on_Player_pick_seed():
 		
 	if dirtDictionary["id"][type].itemName == "Sowed":
 		for item in seeds:
-			print(item._seed)
+#			print(item._seed)
 			var cell = item._seed.flower.pos
 			if cell == pos:
 				var _seed = item._seed
@@ -446,4 +446,10 @@ func _on_HoePlowAnimation_animation_finished():
 
 
 func _on_WateringCanWaterAnimation_animation_finished():
+	pass # Replace with function body.
+
+
+func _on_Player_scan():
+	# Very ugly, but couldn't think of anything else
+	player.get_current_item().scan(get_mouse_cell(), seeds)
 	pass # Replace with function body.
