@@ -201,8 +201,9 @@ func _input(event):
 						#print("STANDO POWAH")
 						print(_polen)
 						
-						print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
-						polenMap[ _polen[0] ] = 12;
+						if _polen.size() > 0:
+							print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
+							polenMap[ _polen[0] ] = 12;
 					#Phase 1
 					#Look at polen spread, polinate valid targets
 					elif phase == 1:
@@ -415,7 +416,9 @@ func _on_Player_pick_seed():
 		
 	if dirtDictionary["id"][type].itemName == "Sowed":
 		for item in seeds:
-			if item.cell == pos:
+			print(item._seed)
+			var cell = item._seed.flower.pos
+			if cell == pos:
 				var _seed = item._seed
 				var flower = _seed.flower
 				if flower.isDead():
