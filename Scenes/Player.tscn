@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/CapoWalk3/pixil-frame-0.png" type="Texture" id=2]
@@ -9,31 +9,47 @@
 [ext_resource path="res://Assets/CapoWalk3/pixil-frame-5.png" type="Texture" id=7]
 [ext_resource path="res://Assets/CapoWalk3/pixil-frame-6.png" type="Texture" id=8]
 [ext_resource path="res://Assets/CapoWalk3/pixil-frame-7.png" type="Texture" id=9]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-0.png" type="Texture" id=10]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-1.png" type="Texture" id=11]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-2.png" type="Texture" id=12]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-3.png" type="Texture" id=13]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-4.png" type="Texture" id=14]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-5.png" type="Texture" id=15]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-6.png" type="Texture" id=16]
-[ext_resource path="res://Assets/CapoIdle2/pixil-frame-7.png" type="Texture" id=17]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-0.png" type="Texture" id=18]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-1.png" type="Texture" id=19]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-2.png" type="Texture" id=20]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-3.png" type="Texture" id=21]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-4.png" type="Texture" id=22]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-5.png" type="Texture" id=23]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-6.png" type="Texture" id=24]
-[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-7.png" type="Texture" id=25]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-0.png" type="Texture" id=26]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-1.png" type="Texture" id=27]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-2.png" type="Texture" id=28]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-3.png" type="Texture" id=29]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-4.png" type="Texture" id=30]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-5.png" type="Texture" id=31]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-6.png" type="Texture" id=32]
-[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-7.png" type="Texture" id=33]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-0.png" type="Texture" id=10]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-2.png" type="Texture" id=12]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-4.png" type="Texture" id=14]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-5.png" type="Texture" id=15]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-6.png" type="Texture" id=16]
+[ext_resource path="res://Assets/CapoWalkBack/pixil-frame-7.png" type="Texture" id=17]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-0.png" type="Texture" id=18]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-1.png" type="Texture" id=19]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-2.png" type="Texture" id=20]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-3.png" type="Texture" id=21]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-4.png" type="Texture" id=22]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-5.png" type="Texture" id=23]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-6.png" type="Texture" id=24]
+[ext_resource path="res://Assets/CapoIdle2/pixil-frame-7.png" type="Texture" id=25]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-0.png" type="Texture" id=26]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-1.png" type="Texture" id=27]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-2.png" type="Texture" id=28]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-3.png" type="Texture" id=29]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-4.png" type="Texture" id=30]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-5.png" type="Texture" id=31]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-6.png" type="Texture" id=32]
+[ext_resource path="res://Assets/CapoIdleBack/pixil-frame-7.png" type="Texture" id=33]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-0.png" type="Texture" id=34]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-1.png" type="Texture" id=35]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-2.png" type="Texture" id=36]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-3.png" type="Texture" id=37]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-4.png" type="Texture" id=38]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-5.png" type="Texture" id=39]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-6.png" type="Texture" id=40]
+[ext_resource path="res://Assets/CapoIdleHoeDont/pixil-frame-7.png" type="Texture" id=41]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-0.png" type="Texture" id=42]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-1.png" type="Texture" id=43]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-2.png" type="Texture" id=44]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-3.png" type="Texture" id=45]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-4.png" type="Texture" id=46]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-5.png" type="Texture" id=47]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-6.png" type="Texture" id=48]
+[ext_resource path="res://Assets/CapoIdleHoeFlip/pixil-frame-7.png" type="Texture" id=49]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=50]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -47,7 +63,7 @@ animations = [ {
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "New Anim",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -55,7 +71,7 @@ animations = [ {
 animations = [ {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
-"name": "default",
+"name": "New Anim",
 "speed": 5.0
 } ]
 
@@ -67,7 +83,23 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=7]
 length = 1.6
 loop = true
 step = 0.2
@@ -84,8 +116,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "idleHoeDont"
+[sub_resource type="Animation" id=8]
 length = 1.6
 loop = true
 step = 0.2
@@ -102,8 +133,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "idleHoeFlip"
+[sub_resource type="Animation" id=9]
 length = 1.6
 loop = true
 step = 0.2
@@ -120,7 +150,25 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
+resource_name = "idleback"
+length = 1.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("IdleBackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=11]
 length = 1.6
 loop = true
 step = 0.2
@@ -137,7 +185,25 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="Animation" id=12]
+resource_name = "walkback"
+length = 1.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("WalkBackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 6.26965, 10 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -148,11 +214,21 @@ visible = false
 frames = SubResource( 1 )
 frame = 7
 
-[node name="IdleSprite" type="AnimatedSprite" parent="."]
+[node name="WalkBackSprite" type="AnimatedSprite" parent="."]
+visible = false
 frames = SubResource( 2 )
+frame = 4
+
+[node name="IdleSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
 animation = "New Anim"
-frame = 1
+frame = 5
 playing = true
+
+[node name="IdleBackSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 4 )
+frame = 6
 
 [node name="WalkHoeSpriteDont" type="AnimatedSprite" parent="."]
 visible = false
@@ -162,22 +238,24 @@ visible = false
 
 [node name="IdleHoeSpriteDont" type="AnimatedSprite" parent="."]
 visible = false
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 frame = 1
 
 [node name="IdleHoeSpriteFlip" type="AnimatedSprite" parent="."]
 visible = false
-frames = SubResource( 4 )
+frames = SubResource( 6 )
 frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 5 )
-anims/idleHoeDont = SubResource( 6 )
-anims/idleHoeFlip = SubResource( 7 )
-anims/walk = SubResource( 8 )
+anims/idle = SubResource( 7 )
+anims/idleHoeDont = SubResource( 8 )
+anims/idleHoeFlip = SubResource( 9 )
+anims/idleback = SubResource( 10 )
+anims/walk = SubResource( 11 )
+anims/walkback = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 9 )
+shape = SubResource( 13 )
 
-[node name="HUD" parent="." instance=ExtResource( 34 )]
+[node name="HUD" parent="." instance=ExtResource( 50 )]

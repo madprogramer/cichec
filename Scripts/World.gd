@@ -1,28 +1,44 @@
 extends Node2D
 
+const start_tile_size = 6
+
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
 onready var flowercontainer = get_node("FlowerContainer")
 onready var dirtmarkcontainer = get_node("DirtmarkContainer")
+
 onready var hoeplowanimation = get_node("HoePlowAnimation")
+onready var wateringcanwateranimation = get_node("WateringCanWaterAnimation")
+
 onready var animationcontainer = get_node("AnimationContainer")
 onready var player = get_node("Player")
+onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
 onready var dirtList = [
 	{
-		"id" : 32,
+		"id" : 35,
 		"itemName": "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(32)
+		"itemIcon": tilemap.tile_set.tile_get_texture(35)
 	},
 	{
-		"id" : 33,
+		"id" : 36,
 		"itemName" : "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(33)
+		"itemIcon": tilemap.tile_set.tile_get_texture(36)
 	},
 	{
-		"id" : 34,
+		"id" : 37,
 		"itemName" : "Normal",
-		"itemIcon": tilemap.tile_set.tile_get_texture(34)
+		"itemIcon": tilemap.tile_set.tile_get_texture(37)
+	},
+	{
+		"id" : 38,
+		"itemName" : "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(38)
+	},
+	{
+		"id" : 39,
+		"itemName" : "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(39)
 	},
 	{
 		"id" : 26,
@@ -88,6 +104,15 @@ var _seedDictionary = {
 func spawn_animation(pos, animatedSprite):
 	animationcontainer.spawn_animation(pos, animatedSprite)
 
+func is_normal(id):
+	for dirt in dirtList:
+		if dirt.id == id:
+			if dirt.itemName == "Normal":
+				return true
+			else:
+				return false
+	return false
+
 func _ready():
 	randomize()
 	for dirt in dirtList:
@@ -98,9 +123,18 @@ func _ready():
 		_seedDictionary["name"][_seed.name] = _seed
 		_seedDictionary["id"][_seed.id] = _seed
 	
-	for i in range(0, 6):
-		for j in range(0, 6):
-			tilemap.set_cell(j, i, 32 + randi() % 3)
+	for i in range(0, start_tile_size):
+		for j in range(0, start_tile_size):
+			tilemap.set_cell(j, i, 35 + randi() % 5)
+			
+#	print(dialogueplayer)
+#	print(dialogueplayer.dialogue_file_path)
+#	print("FLAG1")
+	dialogueplayer.connect("started", player.hud, "dialogue_started")
+	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
+	dialogueplayer._ready()
+	add_child(dialogueplayer)
+#	print("FLAG2")
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -116,14 +150,37 @@ func clear_highlight():
 			highlight.set_cell(j, i, -1)
 
 func _process(delta):
+#	print("FLAG3")
+#	dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text", [dialogueplayer.dialogue[str(dialogueplayer.line)]])
 	clear_highlight()
 	highlight_cursor()
 	pass
 
 func _input(event):
 	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_ENTER:
+			if player.hud.dialogue_is_playing == false:
+				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
+				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
+		
 		if event.pressed and event.scancode == KEY_CONTROL:
-			
+			for i in range(0, start_tile_size):
+				for j in range(0, start_tile_size):
+					var type = tilemap.get_cell(j, i)
+					var name = dirtDictionary["id"][type].itemName
+					
+					if name == "Sowed_Watered":
+						plow(Vector2(j, i))
+						tilemap.set_cell(j, i, dirtDictionary["name"]["Sowed"].id)
+					elif name == "Plowed_Watered":
+						plow(Vector2(j, i))
+						tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
+						
+					if name == "Plowed":
+						if (randf() > 0.40):
+							deplow(Vector2(j, i))
+							tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
+							
 			var polenMap = {}
 			#polenMap[speciesId][coordinate(X,Y)]
 			
@@ -164,7 +221,6 @@ func _input(event):
 					
 					else:
 						print("Day advanced!")
-				
 
 var directions = [
 	Vector2(0, 1),
@@ -172,6 +228,31 @@ var directions = [
 	Vector2(0, -1),
 	Vector2(1, 0)
 ]
+
+func deplow(pos):
+	for direction in range(0, 4):
+		if (tilemap.get_cellv(Vector2(
+				pos.x + directions[direction].x,
+				pos.y + directions[direction].y) ) != -1):
+			if dirtDictionary["id"][tilemap.get_cellv(Vector2(
+					pos.x + directions[direction].x,
+					pos.y + directions[direction].y) )].itemName == "Normal":
+				dirtmarkcontainer.add_sprite(
+					Vector2(
+						pos.x + directions[direction].x,
+						pos.y + directions[direction].y),
+					Vector2(
+						(pos.x + directions[direction].x) * tilemap.cell_size.x + 6,
+						(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
+					(4),
+					0)
+	dirtmarkcontainer.add_sprite(
+		pos,
+		Vector2(
+			(pos.x) * tilemap.cell_size.x + 6,
+			(pos.y) * tilemap.cell_size.y + 6),
+		4,
+		0)
 
 func plow(pos):
 	print("plow: ", pos)
@@ -224,6 +305,16 @@ func _on_Player_plow():
 	pass
 	
 func water(pos):
+	var type = tilemap.get_cellv(pos)
+	
+	if type == -1:
+		return
+	
+	if dirtDictionary["id"][type].itemName == "Plowed":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+	elif dirtDictionary["id"][type].itemName == "Sowed":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
+		
 	for direction in range(0, 4):
 		var newpos = Vector2(pos.x + directions[direction].x, pos.y + directions[direction].y)
 		var newposglobal = Vector2(newpos.x * tilemap.cell_size.x + 6, newpos.y * tilemap.cell_size.y + 6)
@@ -254,15 +345,18 @@ func _on_Player_water():
 	if type == -1:
 		return
 	
-	if dirtDictionary["id"][type].itemName == "Plowed":
-		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
-		
-		water(pos)
-		
-	if dirtDictionary["id"][type].itemName == "Sowed":
-		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-		
-		water(pos)
+	if dirtDictionary["id"][type].itemName == "Plowed" or dirtDictionary["id"][type].itemName == "Sowed":
+		spawn_animation(Vector2(
+			(pos.x) * tilemap.cell_size.x + 6,
+			(pos.y) * tilemap.cell_size.y + 6),
+			wateringcanwateranimation)
+#		animationcontainer.connect("animationFinished", self, "plow", [pos])
+		var animation = animationcontainer.get_node(
+			str(Vector2(
+				(pos.x) * tilemap.cell_size.x + 6,
+				(pos.y) * tilemap.cell_size.y + 6)))
+		print(animation)
+		animation.connect("animation_finished", self, "water", [pos])
 	pass
 
 var seeds = []
@@ -345,4 +439,8 @@ func _on_Player_pick_seed():
 					break
 
 func _on_HoePlowAnimation_animation_finished():
+	pass # Replace with function body.
+
+
+func _on_WateringCanWaterAnimation_animation_finished():
 	pass # Replace with function body.

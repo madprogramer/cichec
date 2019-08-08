@@ -14,6 +14,14 @@ onready var seedtoolbar = get_node("SeedToolbar")
 onready var seedbag = get_node("SeedBag")
 onready var highlight = get_node("HighlightTemp")
 
+onready var dialoguebox = get_node("DialogueBox")
+onready var dialoguetexture = dialoguebox.get_node("CharacterTexture")
+onready var dialoguebackground = dialoguebox.get_node("Background")
+onready var dialoguetext = dialoguebox.get_node("Text")
+onready var dialoguename = dialoguebox.get_node("Name")
+
+onready var mentalhealth = get_node("MentalHealth")
+
 var current_hud = "toolbar"
 
 var cursor = null
@@ -46,7 +54,15 @@ func change_highlight(x):
 	
 	if current_hud == "toolbar":
 		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":
-			set_cursor_shape(preload("res://Assets/Hoe/MouseIcon.png"))
+			if dialogue_is_playing == false:
+				set_cursor_shape(preload("res://Assets/Hoe/MouseIcon.png"))
+			else:
+				set_cursor_shape(null)
+		elif toolbar.slotList[current_slot[current_hud]].item.itemName == "watering_can":
+			if dialogue_is_playing == false:
+				set_cursor_shape(preload("res://Assets/Watering_Can/MouseIcon.png"))
+			else:
+				set_cursor_shape(null)
 		else:
 			set_cursor_shape(null)
 	else:
@@ -110,16 +126,13 @@ func toolbar_show():
 	pass
 
 func _input(event):
+	if dialogue_is_playing:
+		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		cursor.offset = Vector2(event.position.x, event.position.y);
 	
 	elif event is InputEventKey:
 		if event.pressed:
-			if event.scancode == KEY_5:
-				if toolbar_visible:
-					toolbar_hide()
-				else:
-					toolbar_show()
 			# changing current toolbar tool
 			if current_hud == "toolbar":
 				switch_tools(event, current_hud)
@@ -229,3 +242,43 @@ func show(name):
 
 func _ready():
 	show(current_hud)
+	
+func change_dialogue_texture(t):
+	dialoguetexture.texture = t
+
+func change_dialogue_background(b):
+	dialoguebackground.texture = b
+
+#var current_name = ""
+
+var character_textures = {
+	"Wasp" : preload("res://Assets/Characters/Wasp13x11.png"),
+	"Capo" : preload("res://Assets/Characters/Capo13x11.png"),
+	"Alpamish" : preload("res://Assets/Characters/Alpamish13x11.png")
+}
+
+func change_dialogue_text(t):
+#	print(t)
+	dialoguetext.text = t[0].text
+	dialoguename.text = t[0].name
+#	if dialoguename.text != current_name:
+#		if dialoguename.text != "Capo":
+#			change_dialogue_texture(character_textures[dialoguename.text])
+#			current_name = dialoguename.text
+	change_dialogue_texture(character_textures[dialoguename.text])
+	
+var dialogue_is_playing = false
+
+func dialogue_started():
+	print("STARTED")
+	set_cursor_shape(null)
+	dialogue_is_playing = true
+	for hud_element in hud_elements:
+		hud_element.visible = false
+	dialoguebox.visible = true
+		
+func dialogue_finished():
+	print("FINISHED")
+	dialogue_is_playing = false
+	show("toolbar")
+	dialoguebox.visible = false
