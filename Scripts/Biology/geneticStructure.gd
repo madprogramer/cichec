@@ -31,10 +31,10 @@ func isShort():
 func computeSize(a,b):
 	return (a+b+1)/2
 func computeColor(a,b):
-	var reng = [0,0,0,0]
+	var se = [0,0,0,0]
 	for i in range(4):
-		reng[i] = a[i]+b[i]
-	return reng
+		se[i] = a[i]+b[i]
+	return se
 func computeSeeds(a,b):
 	return randi()%(int(abs(a-b))) + int(max(a,b))
 
