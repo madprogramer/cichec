@@ -458,6 +458,7 @@ func _on_Player_scan():
 	pass # Replace with function body.
 
 
+# I wait outside the pilgrim's door, with insufficient schemes 
 func _on_ExitDoor_body_shape_entered(body_id, body, body_shape, area_shape):
 	if body == player:
 		pass_day()
