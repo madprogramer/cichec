@@ -75,12 +75,12 @@ func change_highlight(x):
 	if current_hud == "toolbar":
 		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":
 			if dialogue_is_playing == false:
-				set_cursor_shape(preload("res://Assets/Hoe/MouseIcon.png"))
+				set_cursor_shape(preload("res://Assets/Items/Hoe/MouseIcon.png"))
 			else:
 				set_cursor_shape(null)
 		elif toolbar.slotList[current_slot[current_hud]].item.itemName == "watering_can":
 			if dialogue_is_playing == false:
-				set_cursor_shape(preload("res://Assets/Watering_Can/MouseIcon.png"))
+				set_cursor_shape(preload("res://Assets/Items/Watering_Can/MouseIcon.png"))
 			else:
 				set_cursor_shape(null)
 		else:
@@ -296,9 +296,9 @@ func change_dialogue_background(b):
 #var current_name = ""
 
 var character_textures = {
-	"Wasp" : preload("res://Assets/Characters/Wasp13x11.png"),
-	"Capo" : preload("res://Assets/Characters/Capo13x11.png"),
-	"Alpamish" : preload("res://Assets/Characters/Alpamish13x11.png")
+	"Wasp" : preload("res://Assets/Characters/Wasp/Wasp13x11.png"),
+	"Capo" : preload("res://Assets/Characters/Capo/Capo13x11.png"),
+	"Alpamish" : preload("res://Assets/Characters/Alpamish/Alpamish13x11.png")
 }
 
 func change_dialogue_text(t):

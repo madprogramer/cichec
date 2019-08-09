@@ -4,7 +4,7 @@ const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 
 const slotTexture = preload("res://icon-scaled.png");
 const itemImages = [
-	preload("res://Assets/Highlight.png")
+	preload("res://Assets/Highlight/Highlight.png")
 ];
 
 var itemDictionary = {

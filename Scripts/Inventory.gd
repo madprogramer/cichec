@@ -4,10 +4,10 @@ const ItemClass = preload("res://Scripts/Item.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 const scanner = preload("res://Scripts/Items/Scanner.gd");
 
-const slotTexture = preload("res://Assets/Slot-texture.png");
+const slotTexture = preload("res://Assets/Misc/Slot-texture.png");
 
 const itemImages = [
-	preload("res://Assets/Highlight.png")
+	preload("res://Assets/Highlight/Highlight.png")
 ];
 
 var itemDictionary = {
