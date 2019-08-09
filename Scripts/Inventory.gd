@@ -13,7 +13,7 @@ const itemImages = [
 var itemDictionary = {
 	"scanner" : {
 		"itemName" : "scanner",
-		"itemIcon" : preload("res://Assets/Highlight.png"),
+		"itemIcon" : preload("res://Assets/Items/Scanner/Scanner.png"),
 		"itemValue" : -1,
 		"itemClass" : scanner
 	}

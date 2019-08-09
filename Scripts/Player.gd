@@ -14,21 +14,7 @@ var direction = {
 }
 
 func get_current_item():
-	if hud.current_hud == "toolbar":
-		return (hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-		
-	elif hud.current_hud == "inventory":
-		return (hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-	
-	elif hud.current_hud == "seedbag":
-		return (hud.toolbar.slotList[hud.current_slot["toolbar"]].item)
-	
-	elif hud.current_hud == "bagtoolbar":
-		return (hud.bagtoolbar.slotList[hud.current_slot["bagtoolbar"]].item)
-	
-	if hud.current_hud == "seedtoolbar":
-		return (hud.seedtoolbar.slotList[hud.current_slot["seedtoolbar"]].item)
-	return null
+	return hud.get_current_item()
 
 func set_direction(d1, d2):
 	if direction.x != d1:

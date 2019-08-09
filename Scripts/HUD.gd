@@ -47,9 +47,27 @@ func set_current_slot(name, x):
 	current_slot[name] = x
 	change_highlight(current_slot[name])
 	
+func get_current_item():
+	if current_hud == "toolbar":
+		return (toolbar.slotList[current_slot["toolbar"]].item)
+		
+	elif current_hud == "inventory":
+		return (toolbar.slotList[current_slot["toolbar"]].item)
+	
+	elif current_hud == "seedbag":
+		return (toolbar.slotList[current_slot["toolbar"]].item)
+	
+	elif current_hud == "bagtoolbar":
+		return (bagtoolbar.slotList[current_slot["bagtoolbar"]].item)
+	
+	elif current_hud == "seedtoolbar":
+		return (seedtoolbar.slotList[current_slot["seedtoolbar"]].item)
+	return null
+	
 #highlights slot x
 func change_highlight(x):
 	print(x)
+	print(current_hud)
 	highlight.offset.x =  x * 16 + 8
 	
 	if current_hud == "toolbar":
@@ -147,16 +165,16 @@ func _input(event):
 			
 			if event.scancode == KEY_SHIFT:
 				if current_hud == "toolbar":
-					show("bagtoolbar")
 					current_hud = "bagtoolbar"
+					show("bagtoolbar")
 						
 				elif current_hud == "bagtoolbar":
-					show("seedtoolbar")
 					current_hud = "seedtoolbar"
+					show("seedtoolbar")
 					
 				elif current_hud == "seedtoolbar":
-					show("toolbar")
 					current_hud = "toolbar"
+					show("toolbar")
 
 			if event.scancode == KEY_TAB:
 				if toolbar_visible == true:
