@@ -65,7 +65,7 @@ texture = ExtResource( 7 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
+frame = 1
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -91,3 +91,7 @@ visible = false
 
 [node name="MentalHealth" parent="." instance=ExtResource( 19 )]
 position = Vector2( 32, 47 )
+
+[node name="Quest" type="PopupDialog" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0

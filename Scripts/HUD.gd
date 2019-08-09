@@ -22,6 +22,8 @@ onready var dialoguename = dialoguebox.get_node("Name")
 
 onready var mentalhealth = get_node("MentalHealth")
 
+onready var quest = get_node("Quest")
+
 var current_hud = "toolbar"
 
 var cursor = null
@@ -86,15 +88,18 @@ func change_highlight(x):
 	else:
 		set_cursor_shape(null)
 
+var switchToolKeys = [
+	KEY_1,
+	KEY_2,
+	KEY_3,
+	KEY_4
+]
+
 func switch_tools(event, current_hud_):
-	if event.scancode == KEY_1:
-		set_current_slot(current_hud_, 0)
-	elif event.scancode == KEY_2:
-		set_current_slot(current_hud_, 1)
-	elif event.scancode == KEY_3:
-		set_current_slot(current_hud_, 2)
-	elif event.scancode == KEY_4:
-		set_current_slot(current_hud_, 3)
+	for i in range(switchToolKeys.size()):
+		if event.scancode == switchToolKeys[i]:
+			set_current_slot(current_hud_, i)
+			return
 		
 
 var hiding_toolbar = false
@@ -186,7 +191,21 @@ func _input(event):
 				else:
 					toolbar_show()
 				pass #############################################################
+			
+			if event.scancode == KEY_Q:
+				quest.popup(Rect2(0, 0, 64, 32))
+				pass
 		
+		
+func set_quest(var labels = ["TEST1", "TEST2", "TEST3"]):
+	
+	for i in range(labels.size()):
+		quest.remove_child(quest.get_node(str(i)))
+		var y = Label.new()
+		y.name = str(i)
+		y.rect_position = Vector2(4, 6 * (i + 1) + i - 1)
+		y.text = labels[i]
+		quest.add_child(y)
 
 # makes hud with name visible, makes others invisible
 
@@ -266,6 +285,7 @@ func show(name):
 
 func _ready():
 	show(current_hud)
+	set_quest(["QUEST: 1", "HARVEST X FLOWERS", "TIME: X"])
 	
 func change_dialogue_texture(t):
 	dialoguetexture.texture = t
