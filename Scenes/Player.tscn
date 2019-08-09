@@ -51,7 +51,6 @@
 [ext_resource path="res://Assets/Characters/Capo/CapoIdleHoeFlip/pixil-frame-7.png" type="Texture" id=49]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=50]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],

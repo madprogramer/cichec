@@ -23,6 +23,7 @@ onready var dialoguename = dialoguebox.get_node("Name")
 onready var mentalhealth = get_node("MentalHealth")
 
 onready var quest = get_node("Quest")
+onready var progressbar = get_node("Quest/ProgressBar")
 
 var current_hud = "toolbar"
 
@@ -197,7 +198,7 @@ func _input(event):
 				pass
 		
 		
-func set_quest(var labels = ["TEST1", "TEST2", "TEST3"]):
+func set_quest(var labels = ["TEST1", "TEST2", "TEST3"], var progress = 0):
 	
 	for i in range(labels.size()):
 		quest.remove_child(quest.get_node(str(i)))
@@ -206,6 +207,8 @@ func set_quest(var labels = ["TEST1", "TEST2", "TEST3"]):
 		y.rect_position = Vector2(4, 6 * (i + 1) + i - 1)
 		y.text = labels[i]
 		quest.add_child(y)
+	
+	progressbar.set_value(progress)
 
 # makes hud with name visible, makes others invisible
 

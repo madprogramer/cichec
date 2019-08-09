@@ -20,10 +20,6 @@
 [ext_resource path="res://Scenes/DialogueBox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/StatusBar.tscn" type="PackedScene" id=19]
 
-
-
-
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
@@ -69,7 +65,7 @@ texture = ExtResource( 7 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -97,5 +93,9 @@ visible = false
 position = Vector2( 32, 47 )
 
 [node name="Quest" type="PopupDialog" parent="."]
+visible = true
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="ProgressBar" parent="Quest" instance=ExtResource( 19 )]
+position = Vector2( 32, 32 )
