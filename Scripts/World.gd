@@ -155,6 +155,66 @@ func _process(delta):
 	clear_highlight()
 	highlight_cursor()
 	pass
+	
+func pass_day():
+	for i in range(0, start_tile_size):
+		for j in range(0, start_tile_size):
+			var type = tilemap.get_cell(j, i)
+			var name = dirtDictionary["id"][type].itemName
+			
+			if name == "Sowed_Watered":
+				plow(Vector2(j, i))
+				tilemap.set_cell(j, i, dirtDictionary["name"]["Sowed"].id)
+			elif name == "Plowed_Watered":
+				plow(Vector2(j, i))
+				tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
+				
+			if name == "Plowed":
+				if (randf() > 0.40):
+					deplow(Vector2(j, i))
+					tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
+					
+	var polenMap = {}
+	#polenMap[speciesId][coordinate(X,Y)]
+	
+	for item in seeds:
+		for phase in range(3):
+			
+			#Selection
+			var _seed = item._seed
+			var _flower = _seed.flower
+			
+			#Phase 0
+			#
+			#Spread Polen if Applicable
+			#Age Up
+			#Ignore Ded
+			if phase == 0:
+				var _polen = _flower.try_polinate()
+				#print("STANDO POWAH")
+				print(_polen)
+				
+				if _polen.size() > 0:
+					print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
+					polenMap[ _polen[0] ] = 12;
+			#Phase 1
+			#Look at polen spread, polinate valid targets
+			elif phase == 1:
+				for species in polenMap:
+					for coordinates in polenMap[species]:
+						#print("Trying to polinate")
+						print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
+			#Phase 2
+			#Age Up
+			elif phase == 2:
+				print("Todo: Add check to prevent plant from dying the day it was polinated in phase 2");
+				print("Todo: Determine how to disperse seeds from unharvested plant");
+				if _flower.isDead():
+					pass
+				_flower.age_up()
+			
+			else:
+				print("Day advanced!")
 
 func _input(event):
 	if event is InputEventKey:
@@ -164,64 +224,7 @@ func _input(event):
 				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 		
 		if event.pressed and event.scancode == KEY_CONTROL:
-			for i in range(0, start_tile_size):
-				for j in range(0, start_tile_size):
-					var type = tilemap.get_cell(j, i)
-					var name = dirtDictionary["id"][type].itemName
-					
-					if name == "Sowed_Watered":
-						plow(Vector2(j, i))
-						tilemap.set_cell(j, i, dirtDictionary["name"]["Sowed"].id)
-					elif name == "Plowed_Watered":
-						plow(Vector2(j, i))
-						tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
-						
-					if name == "Plowed":
-						if (randf() > 0.40):
-							deplow(Vector2(j, i))
-							tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
-							
-			var polenMap = {}
-			#polenMap[speciesId][coordinate(X,Y)]
-			
-			for item in seeds:
-				for phase in range(3):
-					
-					#Selection
-					var _seed = item._seed
-					var _flower = _seed.flower
-					
-					#Phase 0
-					#
-					#Spread Polen if Applicable
-					#Age Up
-					#Ignore Ded
-					if phase == 0:
-						var _polen = _flower.try_polinate()
-						#print("STANDO POWAH")
-						print(_polen)
-						
-						if _polen.size() > 0:
-							print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
-							polenMap[ _polen[0] ] = 12;
-					#Phase 1
-					#Look at polen spread, polinate valid targets
-					elif phase == 1:
-						for species in polenMap:
-							for coordinates in polenMap[species]:
-								#print("Trying to polinate")
-								print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
-					#Phase 2
-					#Age Up
-					elif phase == 2:
-						print("Todo: Add check to prevent plant from dying the day it was polinated in phase 2");
-						print("Todo: Determine how to disperse seeds from unharvested plant");
-						if _flower.isDead():
-							pass
-						_flower.age_up()
-					
-					else:
-						print("Day advanced!")
+			pass_day()
 
 var directions = [
 	Vector2(0, 1),
@@ -452,4 +455,11 @@ func _on_WateringCanWaterAnimation_animation_finished():
 func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
 	player.get_current_item().scan(get_mouse_cell(), seeds)
+	pass # Replace with function body.
+
+
+func _on_ExitDoor_body_shape_entered(body_id, body, body_shape, area_shape):
+	if body == player:
+		pass_day()
+		player.position = Vector2(32, 32)
 	pass # Replace with function body.

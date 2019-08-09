@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tileset1-scaled.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Assets/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=26]
 [ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=27]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/Entities/Door.tscn" type="PackedScene" id=29]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -499,6 +500,9 @@ position = Vector2( 32, 32 )
 position = Vector2( -4, -7.91221 )
 offset = Vector2( 4, 8 )
 current = true
+
+[node name="ExitDoor" parent="." instance=ExtResource( 29 )]
+position = Vector2( 31.2796, -21.8513 )
 [connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
 [connection signal="animation_finished" from="WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
 [connection signal="pick_seed" from="Player" to="." method="_on_Player_pick_seed"]
@@ -506,3 +510,4 @@ current = true
 [connection signal="scan" from="Player" to="." method="_on_Player_scan"]
 [connection signal="sow" from="Player" to="." method="_on_Player_sow"]
 [connection signal="water" from="Player" to="." method="_on_Player_water"]
+[connection signal="body_shape_entered" from="ExitDoor" to="." method="_on_ExitDoor_body_shape_entered"]
