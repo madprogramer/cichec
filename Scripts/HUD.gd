@@ -113,7 +113,9 @@ func toolbar_hide():
 			
 			toolbar_front.rect_position.y += 1
 			
-			highlight.rect_position.y += 1
+			highlight.offset.y += 1
+			
+			mentalhealth.position.y += 1
 		toolbar_visible = false
 		hiding_toolbar = false
 	pass
@@ -138,7 +140,9 @@ func toolbar_show():
 			
 			toolbar_front.rect_position.y -= 1
 			
-			highlight.rect_position.y -= 1
+			highlight.offset.y -= 1
+			
+			mentalhealth.position.y -= 1
 		toolbar_visible = true
 		showing_toolbar = false
 	pass
@@ -201,12 +205,14 @@ onready var hud_elements = [
 	bagtoolbar,
 	seedtoolbar,
 	
-	highlight
+	highlight,
+	mentalhealth
 ]
 
 func show(name):
 	for hud_element in hud_elements:
-		hud_element.visible = false
+		if hud_element != mentalhealth:
+			hud_element.visible = false
 	
 	if bagtoolbar_flag:
 		for i in range(bagtoolbar.slotList.size()):
