@@ -192,24 +192,37 @@ func pass_day():
 			if phase == 0:
 				var _polen = _flower.try_polinate()
 				#print("STANDO POWAH")
-				print(_polen)
-				
+				#print(_polen)
 				if _polen.size() > 0:
-					print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
-					polenMap[ _polen[0] ] = 12;
+					#print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
+					for p in _polen:
+						if not p[0] in polenMap:
+							polenMap[ p[0] ] = {} 
+						polenMap[ p[0] ][ p[1] ] = p;
 			#Phase 1
 			#Look at polen spread, polinate valid targets
 			elif phase == 1:
 				for species in polenMap:
 					for coordinates in polenMap[species]:
+						print("Polinating " + String(coordinates) + " with " + String(species) + " polen.")
 						#print("Trying to polinate")
 						print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
+						
+						
+						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
+						#ID farklıysa atla
+						
+						#FIXTHIS.getPolinated(polenMap[species][coordinates])
+						#use FIXTHIS.harvest() to collect
+							
 			#Phase 2
 			#Age Up
 			elif phase == 2:
-				print("Todo: Add check to prevent plant from dying the day it was polinated in phase 2");
+				#print("Todo: Add check to prevent plant from dying the day it was polinated in phase 2");
 				print("Todo: Determine how to disperse seeds from unharvested plant");
 				if _flower.isDead():
+					pass
+				if _flower.isPolinated():
 					pass
 				_flower.age_up()
 			

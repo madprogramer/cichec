@@ -18,13 +18,13 @@ var pos = Vector2(0,0)
 
 #Genes Begin
 var matGenes = initGenes({"size": 0,
-	"color": [0,0,0,0],
+	"color": [0,0,0],
 	"seeds": 0,})
 var patGenes = initGenes({"size": 0,
-	"color": [0,0,0,0],
+	"color": [0,0,0],
 	"seeds": 0,})
 var phenoGenes = initGenes({"size": 0,
-	"color": [0,0,0,0],
+	"color": [0,0,0],
 	"seeds": 0,})
 #Genes End
 
@@ -111,6 +111,20 @@ func try_polinate():
 	if current_stage == 3:
 		return polinate()
 	return []
+	
+func getPolinated(polenData):
+	
+	#use polenData to generate seeds
+	polinated = true
+
+func isPolinated():
+	return polinated
+	
+func harvest():
+	print("TODO: ADD CORRECT SEEDS TO INVENTORY")
+	polinated = false
+	set_dead()
+
 #Polination end
 
 #Utility
