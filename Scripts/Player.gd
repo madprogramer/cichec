@@ -68,6 +68,12 @@ func _process(delta):
 	walkbacksprite.visible = false
 	move()
 	
+var validNames = [
+	"hoe",
+	"watering_can",
+	"scanner"
+]
+	
 func _input(event):
 	if hud.dialogue_is_playing == true:
 		return
@@ -75,6 +81,14 @@ func _input(event):
 		if event.pressed:
 			if event.scancode == KEY_SPACE:
 				use(get_current_item())
+				
+	else:
+		if Input.is_action_just_pressed("mouse_select"):
+			var current_item = get_current_item()
+			for validName in validNames:
+				if current_item.name == validName:
+					use(get_current_item())
+					break
 
 signal plow;
 signal water;

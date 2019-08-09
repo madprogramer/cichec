@@ -71,8 +71,9 @@ func _gui_input(event):
 			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
 			if isClicked:
 				clickedSlot = slot;
-		
-		if holdingItem != null:
+		if clickedSlot == null:
+			pass
+		elif holdingItem != null:
 			if clickedSlot.item != null:
 				var tempItem = clickedSlot.item;
 				var oldSlot = slotList[slotList.find(holdingItem.itemSlot)];
