@@ -236,7 +236,7 @@ func pass_day():
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
 						
-						if speciesAt == species:
+						if speciesAt == species and !flowerAt.isDead():
 							flowerAt.getPolinated(polenMap[species][coordinates])
 						#use FIXTHIS.harvest() to collect
 							
@@ -472,7 +472,7 @@ func _on_Player_pick_seed():
 		if flower.isDead():
 			flower.pickup()
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
-			player.add_seed(item.originalItem)
+			player.add_seed(flower.newSeed)
 			seeds[pos.x][pos.y] = null
 			return
 				

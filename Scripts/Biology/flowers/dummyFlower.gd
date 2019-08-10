@@ -119,7 +119,7 @@ func try_polinate():
 var newSeed = null
 	
 func getPolinated(polenData):
-	print("Someone is trying to polinate me: ", polenData)
+#	print("Someone is trying to polinate me: ", polenData)
 	var polenGenes = polenData[2]
 	
 	#use polenData to generate seeds
@@ -129,13 +129,13 @@ func getPolinated(polenData):
 	
 #	self.setColor()
 	
-	print("pollinated")
+#	print("pollinated")
 	sprite.visible = false
 	pollinatedsprite.visible = true
 	deadsprite.visible = false
 	
 #	print("TODO: Update sprite of polinated");
-	print("TODO: Generate seeds: polenData holds Information from father plant")
+#	print("TODO: Generate seeds: polenData holds Information from father plant")
 	print("polenGenes holds information from mother");
 
 func isPolinated():
@@ -145,6 +145,7 @@ func harvest():
 	print("TODO: ADD CORRECT SEEDS TO INVENTORY")
 	polinated = false
 	set_dead()
+	return newSeed
 
 #Polination end
 
