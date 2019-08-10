@@ -222,7 +222,7 @@ frame = 4
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 2
+frame = 4
 playing = true
 
 [node name="IdleBackSprite" type="AnimatedSprite" parent="."]

@@ -65,7 +65,7 @@ texture = ExtResource( 7 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( 8, 56 )
 

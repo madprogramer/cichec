@@ -234,8 +234,8 @@ onready var hud_elements = [
 
 func show(name):
 	for hud_element in hud_elements:
-		if hud_element != mentalhealth:
-			hud_element.visible = false
+#		if hud_element != mentalhealth:
+		hud_element.visible = false
 	
 	if bagtoolbar_flag:
 		for i in range(bagtoolbar.slotList.size()):
@@ -260,6 +260,7 @@ func show(name):
 		highlight.visible = true
 		toolbar_front.visible = true
 		change_highlight(current_slot["toolbar"])
+		mentalhealth.visible = true
 	elif name == "seedbag":
 		inventory_back.visible = true
 		inventory_front.visible = true
@@ -274,6 +275,7 @@ func show(name):
 		highlight.visible = true
 		toolbar_front.visible = true
 		change_highlight(current_slot["bagtoolbar"])
+		mentalhealth.visible = true
 	elif name == "seedtoolbar":
 		var items = []
 		for i in range(4):
@@ -284,6 +286,7 @@ func show(name):
 		highlight.visible = true
 		toolbar_front.visible = true
 		change_highlight(current_slot["seedtoolbar"])
+		mentalhealth.visible = true
 	
 	current_hud = name
 
