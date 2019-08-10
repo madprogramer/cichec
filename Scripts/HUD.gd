@@ -321,11 +321,6 @@ func change_dialogue_text(t):
 
 	dialoguething.frame = 0
 	
-#	if dialoguename.text != current_name:
-#		if dialoguename.text != "Capo":
-#			change_dialogue_texture(character_textures[dialoguename.text])
-#			current_name = dialoguename.text
-	
 var dialogue_is_playing = false
 
 func dialogue_started():
