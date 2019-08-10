@@ -9,11 +9,13 @@ var _seed = null
 var count = 1
 var label = null
 var labelpos = Vector2()
+var GENES = {}
 
 #Position in World
 #var pIW = Vector2()
 
-func _init(itemName, itemTexture, itemSlot, itemValue, seedClass):
+func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, GENES):
+	self.GENES = GENES
 	# print(seedClass)
 	if seedClass == null:
 		self.seedClass = null;

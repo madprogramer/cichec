@@ -83,8 +83,8 @@ func set_pollinatedsprite(pollinatedsprite):
 var polinated = false
 
 func polinate():
-	print("There is a flower trying to spread its polen")
-	print("Killer polen is eating at your flesh!")
+#	print("There is a flower trying to spread its polen")
+#	print("Killer polen is eating at your flesh!")
 	
 	var polinationCount = 3;
 	var polRange = 2
@@ -116,19 +116,25 @@ func try_polinate():
 		return polinate()
 	return []
 	
+var newSeed = null
+	
 func getPolinated(polenData):
-	#print("Someone is trying to polinate me: ", polenData)
-	var polenGenes = getPolenGenes()
+	print("Someone is trying to polinate me: ", polenData)
+	var polenGenes = polenData[2]
 	
 	#use polenData to generate seeds
 	polinated = true
+	
+	newSeed.GENES = polenGenes
+	
+#	self.setColor()
 	
 	print("pollinated")
 	sprite.visible = false
 	pollinatedsprite.visible = true
 	deadsprite.visible = false
 	
-	print("TODO: Update sprite of polinated");
+#	print("TODO: Update sprite of polinated");
 	print("TODO: Generate seeds: polenData holds Information from father plant")
 	print("polenGenes holds information from mother");
 
@@ -172,6 +178,25 @@ func pickup():
 	pollinatedsprite.visible = false
 	deadsprite.visible = false
 	queue_free()
+	
+const ItemClass = preload("res://Scripts/Seed.gd");
+	
+# pilgrim™: Ugly solutions require modern problems.
+func set_seed(originalItem):
+	var itemName = originalItem.name
+	
+	var itemIcon = originalItem.texture
+	
+	var itemValue = -1
+	
+	var itemSeed = originalItem.seedClass
+	
+	var GENES = originalItem.GENES
+	
+	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
+
+func set_genes(GENES):
+	initGenes(GENES)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -404,8 +404,11 @@ func _on_Player_water():
 func sow(pos, item):
 	var _seed = item.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
-		(pos.y) * tilemap.cell_size.y)
+		(pos.y) * tilemap.cell_size.y),
+		item.GENES
 	)
+	
+	_seed.flower.set_seed(item)
 	
 	_seed.flower.sprite.name = str(seeds.size()) + "0"
 	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)
@@ -423,7 +426,7 @@ func sow(pos, item):
 	print(pos)
 	_seed.flower.pos = pos
 	
-	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass)
+	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.GENES)
 	
 	seeds[pos.x][pos.y] = {
 		"_seed": _seed,

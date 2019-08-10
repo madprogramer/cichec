@@ -6,6 +6,7 @@ class_name sunlightSeed
 
 #Corresponding Plant
 
-func _init(pos):
+func _init(pos, GENES):
 	id=1;
 	flower = preload("res://Scripts/Biology/flowers/sunlightFlower.gd").new(pos)
+	flower.set_genes(GENES)

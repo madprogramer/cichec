@@ -13,6 +13,11 @@ var itemDictionary = {
 		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
 		"itemValue" : -1,
 		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+		"GENES" : {
+			"size": 0,
+			"color": [0,0,0,0],
+			"seeds": 0,
+		},
 		"seedbag" : true
 	},
 	1: {
@@ -20,6 +25,11 @@ var itemDictionary = {
 		"itemIcon" : preload("res://Assets/Seeds/SunlightSeed/toolbar.png"),
 		"itemValue" : -1,
 		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd"),
+		"GENES" : {
+			"size": 0,
+			"color": [0,0,0,0],
+			"seeds": 0,
+		},
 		"seedbag" : true
 	},
 	2: {
@@ -27,6 +37,11 @@ var itemDictionary = {
 		"itemValue": -1,
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
 		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"GENES" : {
+			"size": 0,
+			"color": [0,0,0,0],
+			"seeds": 0,
+		},
 		"seedbag" : true
 	}
 };
@@ -42,9 +57,8 @@ func _ready():
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
 		var itemSeed = itemDictionary[item]._seed
-		# print("itemSeed: ", itemSeed)
-		# print("self: ", item)
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed));
+		var itemGENES = itemDictionary[item].GENES
+		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemGENES));
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
@@ -54,8 +68,6 @@ func _ready():
 	for i in range(itemList.size()):
 		slotList[i].setItem(itemList[i])
 	pass
-	
-	# print(slotList[5].item)
 
 func _input(event):
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
@@ -93,14 +105,13 @@ func _gui_input(event):
 	pass
 	
 func add_seed(originalItem):
-	for i in range(16):
-		if slotList[i].item != null:
-#			var x = 0
-#			x = x / x
-			if slotList[i].item.itemName == originalItem.itemName:
-				slotList[i].item.set_count(slotList[i].item.count + 1)
-				print(slotList[i].item.count)
-				return i
+#	The 6 lines below are commented temporarily
+#	for i in range(16):
+#		if slotList[i].item != null:
+#			if slotList[i].item.itemName == originalItem.itemName:
+#				slotList[i].item.set_count(slotList[i].item.count + 1)
+#				print(slotList[i].item.count)
+#				return i
 			
 	for i in range(16):
 		if slotList[i].item == null:
@@ -114,10 +125,11 @@ func add_seed(originalItem):
 			var itemValue = -1
 			
 			var itemSeed = originalItem.seedClass
-			print (itemSeed)
-			# print("itemSeed: ", itemSeed)
-			# print("self: ", item)
-			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed);
+#			print (itemSeed)
+			
+			var GENES = originalItem.GENES
+			
+			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
 			slotList[i].setItem(newItem)
 #			add_child(newItem)
 #			var x = 0
