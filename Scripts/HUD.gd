@@ -195,7 +195,10 @@ func _input(event):
 				pass #############################################################
 			
 			if event.scancode == KEY_Q:
-				quest.popup(Rect2(0, 0, 64, 32))
+				if quest.visible == false:
+					quest.popup(Rect2(0, 0, 64, 32))
+				else:
+					quest.hide()
 				pass
 		
 		
