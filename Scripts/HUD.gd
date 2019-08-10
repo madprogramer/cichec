@@ -19,6 +19,7 @@ onready var dialoguetexture = dialoguebox.get_node("CharacterTexture")
 onready var dialoguebackground = dialoguebox.get_node("Background")
 onready var dialoguetext = dialoguebox.get_node("Text")
 onready var dialoguename = dialoguebox.get_node("Name")
+onready var dialoguething = dialoguebox.get_node("Dialogue-thing")
 
 onready var mentalhealth = get_node("MentalHealth")
 
@@ -305,14 +306,25 @@ var character_textures = {
 }
 
 func change_dialogue_text(t):
+	dialoguething.frame = 1
 #	print(t)
-	dialoguetext.text = t[0].text
 	dialoguename.text = t[0].name
+	change_dialogue_texture(character_textures[dialoguename.text])
+	
+	dialoguetext.text = ""
+	for i in range(t[0].text.length()):
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		dialoguetext.text = dialoguetext.text.insert(i, String(t[0].text[i]) )
+		print(t[0].text[i])
+		print(dialoguetext.text)
+
+	dialoguething.frame = 0
+	
 #	if dialoguename.text != current_name:
 #		if dialoguename.text != "Capo":
 #			change_dialogue_texture(character_textures[dialoguename.text])
 #			current_name = dialoguename.text
-	change_dialogue_texture(character_textures[dialoguename.text])
 	
 var dialogue_is_playing = false
 
