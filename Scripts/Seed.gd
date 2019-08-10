@@ -10,6 +10,8 @@ var count = 1
 var label = null
 var labelpos = Vector2()
 var GENES = {}
+var fatherId = 0
+var motherId = 0
 
 #Position in World
 #var pIW = Vector2()
@@ -40,7 +42,6 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, GENES):
 	self.itemSlot = itemSlot;
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND;
-	pass
 
 func set_count(c):
 	count = c
@@ -51,10 +52,8 @@ func set_count(c):
 func pickItem():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE;
 	picked = true;
-	pass
 	
 func putItem():
 	rect_global_position = Vector2(0, 0);
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	picked = false;
-	pass

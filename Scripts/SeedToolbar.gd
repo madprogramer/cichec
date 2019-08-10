@@ -20,13 +20,15 @@ func set_itemlist(items):
 		if item != null:
 			itemList.append(ItemClass.new(item.name, item.texture, null, -1, item.seedClass, item.GENES))
 			itemList[i].set_count(item.count)
+			itemList[i].fatherId = item.fatherId
+			itemList[i].motherId = item.motherId
 		else:
 			itemList.append(null)
 	return itemList
 
 func set_toolbar(items):
 	var itemList = set_itemlist(items)
-	print(itemList)
+#	print(itemList)
 	for i in range(itemList.size()):
 			var slot = ItemSlotClass.new(i)
 			slotList.append(slot)

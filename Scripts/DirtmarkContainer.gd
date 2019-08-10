@@ -12,8 +12,8 @@ func reverse_direction(direction):
 	return (direction + 2) % 4
 
 func add_sprite(pos, globalpos, direction, type):
-	print(pos)
-	print(direction)
+#	print(pos)
+#	print(direction)
 	# print(globalpos)
 	if direction == 4:
 		for i in range(0, 4):
@@ -50,7 +50,6 @@ func _ready():
 	dirtmarksprite.set_texture(preload("res://Assets/Dirt/DirtMarks/1.png"))
 	
 	for i in range(0, 4):
-		# print("<", i, ">")
 		var newdirtmark = Sprite.new()
 		newdirtmark.set_texture(dirtmarksprite.get_texture())
 		newdirtmark.set_rotation_degrees(global_direction(i) * 90 )

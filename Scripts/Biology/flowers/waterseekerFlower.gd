@@ -11,6 +11,9 @@ class_name waterseekerFlower
 
 func _init(pos):
 	id = 3;
+	randomize()
+	uniqueId = randi()
+	
 	sprite = Sprite.new()
 	sprite.offset = pos
 	print(pos)

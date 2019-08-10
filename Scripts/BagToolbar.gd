@@ -26,7 +26,7 @@ func set_itemlist(items):
 
 func set_toolbar(items):
 	var itemList = set_itemlist(items)
-	print(itemList)
+#	print(itemList)
 	for i in range(itemList.size()):
 			var slot = ItemSlotClass.new(i)
 			slotList.append(slot)

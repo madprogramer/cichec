@@ -7,6 +7,9 @@ class_name dummyflower
 #Identifier Begin
 
 var id = 0
+var uniqueId = null
+var fatherId = 0
+var motherId = 0
 
 #If set to true, position will be ignored; 
 #Use for flowers stored in the inventory
@@ -107,7 +110,7 @@ func polinate():
 			
 		#print(Vector2(polX,polY))
 		#print(polenGenes)
-		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, ["INSERT MATERNAL PHENODATA", "INSERT PATERNAL PHENODATA"] ] )
+		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, [uniqueId, "INSERT PATERNAL PHENODATA"] ] )
 		
 	return polen
 	
@@ -125,7 +128,12 @@ func getPolinated(polenData):
 	#use polenData to generate seeds
 	polinated = true
 	
+#	print(newSeed)
+	
 	newSeed.GENES = polenGenes
+	newSeed.fatherId = polenData[3][0]
+	newSeed.motherId = polenData[3][1]
+#	print("newSeed's parents: ", polenData[3][0], " ", polenData[3][1])
 	
 #	self.setColor()
 	
@@ -195,6 +203,8 @@ func set_seed(originalItem):
 	var GENES = originalItem.GENES
 	
 	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
+	newSeed.fatherId = fatherId
+	newSeed.motherId = motherId
 
 func set_genes(GENES):
 	initGenes(GENES)
