@@ -11,6 +11,9 @@ class_name sunlightFlower
 
 func _init(pos):
 	id = 1;
+	randomize()
+	uniqueId = randi()
+	
 	sprite = Sprite.new()
 	sprite.offset = pos
 	print(pos)

@@ -85,10 +85,11 @@ func _input(event):
 	else:
 		if Input.is_action_just_pressed("mouse_select"):
 			var current_item = get_current_item()
-			for validName in validNames:
-				if current_item.name == validName:
-					use(get_current_item())
-					break
+			if current_item != null:
+				for validName in validNames:
+					if current_item.name == validName:
+						use(get_current_item())
+						break
 
 signal plow;
 signal water;
@@ -105,8 +106,8 @@ var seed_names = [
 
 func use(item):
 	if !item:
-		print("NULL")
-		print(hud.current_hud)
+#		print("NULL")
+#		print(hud.current_hud)
 #		var x = 0
 #		x = x / x
 		if hud.current_hud == "seedtoolbar":
@@ -116,7 +117,7 @@ func use(item):
 #		if hud.current_hud == "seedtoolbar":
 #			if flowercontainer. emit_signal("pick_seed") 
 	
-	print(item.name)
+#	print(item.name)
 	
 	if item.name == "seed_bag":
 		if hud.current_hud != "seedbag":
@@ -147,20 +148,10 @@ func use(item):
 		for seed_name in seed_names:
 			if seed_name == item.name:
 				emit_signal("sow", item)
-				return
+				break
 
 func add_seed(originalItem):
 	var i = hud.seedbag.add_seed(originalItem)
 	if i < 4:
 		hud.show("seedtoolbar")
 	print("i: ", i)
-	pass
-	
-#onready var tilemap = get_node("../TileMap") # possible bug ##############################################################
-#onready var dirtDictionary = get_node("../../World").dirtDictionary
-
-#func get_mouse_cell():
-#	return tilemap.world_to_map(get_global_mouse_position())
-
-func _ready():
-	pass

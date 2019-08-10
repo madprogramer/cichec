@@ -11,6 +11,9 @@ class_name rainbowFlower
 
 func _init(pos):
 	id = 2;
+	randomize()
+	uniqueId = randi()
+	
 	sprite = Sprite.new()
 	sprite.offset = pos
 	print(pos)

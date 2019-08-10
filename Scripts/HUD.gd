@@ -65,13 +65,15 @@ func get_current_item():
 		return (bagtoolbar.slotList[current_slot["bagtoolbar"]].item)
 	
 	elif current_hud == "seedtoolbar":
+		#to remove
+		var item = seedtoolbar.slotList[current_slot["seedtoolbar"]].item
 		return (seedtoolbar.slotList[current_slot["seedtoolbar"]].item)
 	return null
 	
 #highlights slot x
 func change_highlight(x):
-	print(x)
-	print(current_hud)
+#	print(x)
+#	print(current_hud)
 	highlight.offset.x =  x * 16 + 8
 	
 	if current_hud == "toolbar":
@@ -322,15 +324,15 @@ func change_dialogue_text(t):
 		yield(get_tree(), "idle_frame")
 		yield(get_tree(), "idle_frame")
 		dialoguetext.text = dialoguetext.text.insert(i, String(t[0].text[i]) )
-		print(t[0].text[i])
-		print(dialoguetext.text)
+#		print(t[0].text[i])
+#		print(dialoguetext.text)
 
 	dialoguething.frame = 0
 	
 var dialogue_is_playing = false
 
 func dialogue_started():
-	print("STARTED")
+#	print("STARTED")
 	set_cursor_shape(null)
 	dialogue_is_playing = true
 	for hud_element in hud_elements:
@@ -338,7 +340,7 @@ func dialogue_started():
 	dialoguebox.visible = true
 		
 func dialogue_finished():
-	print("FINISHED")
+#	print("FINISHED")
 	dialogue_is_playing = false
 	show("toolbar")
 	dialoguebox.visible = false

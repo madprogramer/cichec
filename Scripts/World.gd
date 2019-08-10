@@ -135,14 +135,10 @@ func _ready():
 		for j in range(0, start_tile_size):
 			tilemap.set_cell(j, i, 35 + randi() % 5)
 			
-#	print(dialogueplayer)
-#	print(dialogueplayer.dialogue_file_path)
-#	print("FLAG1")
 	dialogueplayer.connect("started", player.hud, "dialogue_started")
 	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
 	dialogueplayer._ready()
 	add_child(dialogueplayer)
-#	print("FLAG2")
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -216,7 +212,7 @@ func pass_day():
 			elif phase == 1:
 				for species in polenMap:
 					for coordinates in polenMap[species]:
-						print("Polinating " + String(coordinates) + " with " + String(species) + " polen.")
+#						print("Polinating " + String(coordinates) + " with " + String(species) + " polen.")
 						#print("Trying to polinate")
 						#print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
 						var polenData = polenMap[species][coordinates]
@@ -231,13 +227,19 @@ func pass_day():
 						else:
 							continue
 						
+
 						#print("Species at location:")
 						#print(speciesAt)
+
+						polenData[3][1] = flowerAt.uniqueId
+						print(polenData[3])
+
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
 						
 						if speciesAt == species and !flowerAt.isDead():
-							flowerAt.getPolinated(polenMap[species][coordinates])
+#							print("pollinating")
+							flowerAt.getPolinated(polenData)
 						#use FIXTHIS.harvest() to collect
 			
 			#Phase 2
@@ -302,7 +304,7 @@ func deplow(pos):
 		0)
 
 func plow(pos):
-	print("plow: ", pos)
+#	print("plow: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 	for direction in range(0, 4):
 		if (tilemap.get_cellv(Vector2(
@@ -335,7 +337,7 @@ func _on_Player_plow():
 	if type == -1:
 		return
 	
-	print(dirtDictionary["id"][type].itemName)
+#	print(dirtDictionary["id"][type].itemName)
 	
 	if dirtDictionary["id"][type].itemName == "Normal":
 		spawn_animation(Vector2(
@@ -347,7 +349,7 @@ func _on_Player_plow():
 			str(Vector2(
 				(pos.x) * tilemap.cell_size.x + 6,
 				(pos.y) * tilemap.cell_size.y + 6)))
-		print(animation)
+#		print(animation)
 		animation.connect("animation_finished", self, "plow", [pos])
 	pass
 	
@@ -413,6 +415,9 @@ func sow(pos, item):
 		item.GENES
 	)
 	
+	_seed.flower.fatherId = item.fatherId
+	_seed.flower.motherId = item.motherId
+	
 	_seed.flower.set_seed(item)
 	
 	_seed.flower.sprite.name = str(seeds.size()) + "0"
@@ -428,10 +433,13 @@ func sow(pos, item):
 	_seed.flower.set_pollinatedsprite(flowercontainer.get_sprite(pos, 2))
 	
 	#Set Position
-	print(pos)
+#	print(pos)
 	_seed.flower.pos = pos
 	
 	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.GENES)
+	
+	newItem.fatherId = item.fatherId
+	newItem.motherId = item.motherId
 	
 	seeds[pos.x][pos.y] = {
 		"_seed": _seed,
@@ -475,9 +483,9 @@ func _on_Player_pick_seed():
 		var flower = _seed.flower
 		
 		if flower.isDead():
-			flower.pickup()
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 			player.add_seed(flower.newSeed)
+			flower.pickup()
 			seeds[pos.x][pos.y] = null
 			return
 				
@@ -494,7 +502,7 @@ func _on_Player_pick_seed():
 		if flower.isDead():
 			flower.pickup()
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
-			player.add_seed(item.originalItem)
+			player.add_seed(flower.newSeed)
 			seeds[pos.x][pos.y] = null
 			return
 

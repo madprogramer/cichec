@@ -105,13 +105,14 @@ func _gui_input(event):
 	pass
 	
 func add_seed(originalItem):
-#	The 6 lines below are commented temporarily
-#	for i in range(16):
-#		if slotList[i].item != null:
-#			if slotList[i].item.itemName == originalItem.itemName:
-#				slotList[i].item.set_count(slotList[i].item.count + 1)
-#				print(slotList[i].item.count)
-#				return i
+	for i in range(16):
+		if slotList[i].item != null:
+			if slotList[i].item.itemName == originalItem.itemName:
+				if (slotList[i].item.fatherId == originalItem.fatherId and slotList[i].item.motherId == originalItem.motherId) or (slotList[i].item.fatherId == originalItem.motherId and slotList[i].item.motherId == originalItem.fatherId):
+						slotList[i].item.set_count(slotList[i].item.count + originalItem.count)
+						print("adding to slot ", i)
+						print("seed count on this slot:", slotList[i].item.count)
+						return i
 			
 	for i in range(16):
 		if slotList[i].item == null:
@@ -130,9 +131,10 @@ func add_seed(originalItem):
 			var GENES = originalItem.GENES
 			
 			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
+			
+			newItem.fatherId = originalItem.fatherId
+			newItem.motherId = originalItem.motherId
+			
 			slotList[i].setItem(newItem)
-#			add_child(newItem)
-#			var x = 0
-#			x = x / x
 			return i
 	return -1
