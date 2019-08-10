@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RainbowFlower-dead.png-ff7630d4127e83a8dfd4d18dad7ec23e.stex"
+path="res://.import/93bda25e12a88b0.png-990991137f4e44abe8e2b7448e549ec0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Flowers/RainbowFlower-dead.png"
-dest_files=[ "res://.import/RainbowFlower-dead.png-ff7630d4127e83a8dfd4d18dad7ec23e.stex" ]
+source_file="res://Assets/Flowers/93bda25e12a88b0.png"
+dest_files=[ "res://.import/93bda25e12a88b0.png-990991137f4e44abe8e2b7448e549ec0.stex" ]
 
 [params]
 

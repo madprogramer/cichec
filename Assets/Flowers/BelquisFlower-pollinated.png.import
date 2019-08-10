@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RainbowFlower-dead.png-ff7630d4127e83a8dfd4d18dad7ec23e.stex"
+path="res://.import/BelquisFlower-pollinated.png-0c57fdad210703cc6ab38edce4ae4f39.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Flowers/RainbowFlower-dead.png"
-dest_files=[ "res://.import/RainbowFlower-dead.png-ff7630d4127e83a8dfd4d18dad7ec23e.stex" ]
+source_file="res://Assets/Flowers/BelquisFlower-pollinated.png"
+dest_files=[ "res://.import/BelquisFlower-pollinated.png-0c57fdad210703cc6ab38edce4ae4f39.stex" ]
 
 [params]
 
