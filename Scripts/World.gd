@@ -206,9 +206,11 @@ func pass_day():
 					for coordinates in polenMap[species]:
 						print("Polinating " + String(coordinates) + " with " + String(species) + " polen.")
 						#print("Trying to polinate")
-						print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
-						
-						
+						#print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
+						var polenData = polenMap[species][coordinates]
+						var speciesAt = tilemap.get_cellv(polenData[1])
+						print("Species at location:")
+						print(speciesAt)
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
 						
