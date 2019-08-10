@@ -113,7 +113,7 @@ func try_polinate():
 	return []
 	
 func getPolinated(polenData):
-	
+	print("Someone is trying to polinate me: ", polenData)
 	#use polenData to generate seeds
 	polinated = true
 

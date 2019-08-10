@@ -220,13 +220,24 @@ func pass_day():
 						#print("Trying to polinate")
 						#print("Todo: In phase 1, check if anything in polenMap lies at a coordinate where this a plant of the given species AND THEN polinate");
 						var polenData = polenMap[species][coordinates]
-						var speciesAt = tilemap.get_cellv(polenData[1])
+						var seedAt
+						var flowerAt
+						var speciesAt
+						
+						if seeds[polenData[1].x][polenData[1].y] != null:
+							seedAt = seeds[polenData[1].x][polenData[1].y]._seed
+							flowerAt = seedAt.flower
+							speciesAt = flowerAt.id
+						else:
+							continue
+						
 						print("Species at location:")
 						print(speciesAt)
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
 						
-						#FIXTHIS.getPolinated(polenMap[species][coordinates])
+						if speciesAt == species:
+							flowerAt.getPolinated(polenMap[species][coordinates])
 						#use FIXTHIS.harvest() to collect
 							
 			#Phase 2
