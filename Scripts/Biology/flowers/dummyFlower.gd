@@ -90,7 +90,7 @@ func polinate():
 		var polX = randi()%(2*polRange) - polRange
 		var polY = randi()%(2*polRange) - polRange
 		
-		var polenGenes = {}
+		var polenGenes = getPolenGenes()
 		
 		for gene in matGenes:
 			if boolChoice():
@@ -113,9 +113,15 @@ func try_polinate():
 	return []
 	
 func getPolinated(polenData):
-	print("Someone is trying to polinate me: ", polenData)
+	#print("Someone is trying to polinate me: ", polenData)
+	var polenGenes = getPolenGenes()
+	
 	#use polenData to generate seeds
 	polinated = true
+	
+	print("TODO: Update sprite of polinated");
+	print("TODO: Generate seeds: polenData holds Information from father plant")
+	print("polenGenes holds information from mother");
 
 func isPolinated():
 	return polinated
@@ -130,6 +136,16 @@ func harvest():
 #Utility
 func boolChoice():
 	return (randi()%2 == 0)
+	
+func getPolenGenes():
+	var polenGenes = {}
+	
+	for gene in matGenes:
+		if boolChoice():
+			polenGenes[gene] = matGenes[gene];
+		else:
+			polenGenes[gene] = patGenes[gene];
+	return polenGenes
 
 
 #Phenotype computations
