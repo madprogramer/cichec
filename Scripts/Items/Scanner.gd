@@ -22,8 +22,12 @@ func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND;
 	pass
 	
-func scan(pos, seedList):
-	for item in seedList:
+func scan(pos, seeds):
+	for i in range(seeds.size()):	for j in range(seeds[i].size()):
+		var item = seeds[i][j]
+		if item == null:
+			continue
+		
 		var flower = item._seed.flower
 		if flower.pos == pos:
 			print("Scan results: ")

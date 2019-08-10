@@ -113,8 +113,16 @@ func is_normal(id):
 				return false
 	return false
 
+var seeds = []
+
 func _ready():
 	randomize()
+	for i in range(start_tile_size):
+		var seedsRow = []
+		for j in range(start_tile_size):
+			seedsRow.push_back(null)
+		seeds.push_back(seedsRow)
+	
 	for dirt in dirtList:
 		dirtDictionary["name"][dirt["itemName"]] = dirt
 		dirtDictionary["id"][dirt["id"]] = dirt
@@ -177,7 +185,11 @@ func pass_day():
 	var polenMap = {}
 	#polenMap[speciesId][coordinate(X,Y)]
 	
-	for item in seeds:
+	for i in range(seeds.size()):	for j in range(seeds[i].size()):
+		var item = seeds[i][j]
+		if item == null:
+			continue
+		
 		for phase in range(3):
 			
 			#Selection
@@ -378,8 +390,6 @@ func _on_Player_water():
 		animation.connect("animation_finished", self, "water", [pos])
 	pass
 
-var seeds = []
-
 func sow(pos, item):
 	var _seed = item.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
@@ -400,11 +410,11 @@ func sow(pos, item):
 	
 	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass)
 	
-	seeds.push_back({
+	seeds[pos.x][pos.y] = {
 		"_seed": _seed,
 		#"cell": pos,
 		"originalItem" : newItem
-	})
+	}
 
 func _on_Player_sow(item):
 	var pos = get_mouse_cell()
@@ -433,31 +443,37 @@ func _on_Player_pick_seed():
 		return
 		
 	if dirtDictionary["id"][type].itemName == "Sowed":
-		for item in seeds:
-#			print(item._seed)
-			var cell = item._seed.flower.pos
-			if cell == pos:
-				var _seed = item._seed
-				var flower = _seed.flower
-				if flower.isDead():
-					flower.pickup()
-					tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
-					player.add_seed(item.originalItem)
-					seeds.erase(item)
-					break
+		var item = seeds[pos.x][pos.y]
+		if item == null:
+			return
+		print(item._seed.id)
+		
+		var _seed = item._seed
+		var flower = _seed.flower
+		
+		if flower.isDead():
+			flower.pickup()
+			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+			player.add_seed(item.originalItem)
+			seeds[pos.x][pos.y] = null
+			return
 				
 		
 	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":
-		for item in seeds:
-			if item.cell == pos:
-				var _seed = item._seed
-				var flower = _seed.flower
-				if flower.isDead():
-					flower.pickup()
-					tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
-					player.add_seed(item.originalItem)
-					seeds.erase(item)
-					break
+		var item = seeds[pos.x][pos.y]
+		if item == null:
+			return
+		print(item._seed.id)
+		
+		var _seed = item._seed
+		var flower = _seed.flower
+		
+		if flower.isDead():
+			flower.pickup()
+			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+			player.add_seed(item.originalItem)
+			seeds[pos.x][pos.y] = null
+			return
 
 func _on_HoePlowAnimation_animation_finished():
 	pass # Replace with function body.
