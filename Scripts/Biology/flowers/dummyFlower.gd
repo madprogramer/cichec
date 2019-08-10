@@ -40,6 +40,7 @@ var current_stage = 0
 var sprite = null
 var current_frame = 0
 var deadsprite = null
+var pollinatedsprite = null
 
 func age_up():
 	age = age + 1
@@ -73,6 +74,9 @@ func set_sprite(sprite):
 	
 func set_deadsprite(deadsprite):
 	self.deadsprite = deadsprite
+
+func set_pollinatedsprite(pollinatedsprite):
+	self.pollinatedsprite = pollinatedsprite
 #Age End
 
 #Polination Begin
@@ -119,6 +123,11 @@ func getPolinated(polenData):
 	#use polenData to generate seeds
 	polinated = true
 	
+	print("pollinated")
+	sprite.visible = false
+	pollinatedsprite.visible = true
+	deadsprite.visible = false
+	
 	print("TODO: Update sprite of polinated");
 	print("TODO: Generate seeds: polenData holds Information from father plant")
 	print("polenGenes holds information from mother");
@@ -154,11 +163,13 @@ func getPolenGenes():
 func _on_flower_death():
 	print("really dead")
 	sprite.visible = false
+	pollinatedsprite.visible = false
 	deadsprite.visible = true
 	pass
 	
 func pickup():
 	sprite.visible = false
+	pollinatedsprite.visible = false
 	deadsprite.visible = false
 	queue_free()
 

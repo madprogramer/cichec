@@ -21,3 +21,12 @@ func _init(pos):
 	deadsprite.offset = pos
 	deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-dead.png"))
 	deadsprite.visible = false
+	
+	pollinatedsprite = Sprite.new()
+	pollinatedsprite.offset = pos
+#	if isShort():
+#		pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-short-pollinated.png"))
+#	else:
+	pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-pollinated.png"))
+	pollinatedsprite.visible = false
+	pollinatedsprite.set_self_modulate(sprite.get_self_modulate())

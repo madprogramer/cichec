@@ -25,14 +25,14 @@ func _ready():
 		var spriteArray = []
 		for j in range(0, 30):
 			var spritePhases = []
-			for k in range(0, 2):
+			for k in range(0, 3):
 				spritePhases.push_back(Sprite.new())
 			spriteArray.push_back(spritePhases)
 		spriteMatrix.push_back(spriteArray)
 	
 	for i in range(0, 30):
 		for j in range(0, 30):
-			for k in range(0, 2):
+			for k in range(0, 3):
 				add_child(spriteMatrix[i][j][k])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

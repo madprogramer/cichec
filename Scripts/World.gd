@@ -415,6 +415,10 @@ func sow(pos, item):
 	flowercontainer.add_sprite(pos, _seed.flower.deadsprite, 1)
 	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
+	_seed.flower.pollinatedsprite.name = str(seeds.size()) + "2"
+	flowercontainer.add_sprite(pos, _seed.flower.pollinatedsprite, 2)
+	_seed.flower.set_pollinatedsprite(flowercontainer.get_sprite(pos, 2))
+	
 	#Set Position
 	print(pos)
 	_seed.flower.pos = pos
