@@ -19,13 +19,16 @@ var pos = Vector2(0,0)
 #Genes Begin
 var matGenes = initGenes({"size": 0,
 	"color": [0,0,0],
-	"seeds": 0,})
+	"seeds": 0,
+	"polens": 0})
 var patGenes = initGenes({"size": 0,
 	"color": [0,0,0],
-	"seeds": 0,})
+	"seeds": 0,
+	"polens": 0})
 var phenoGenes = initGenes({"size": 0,
 	"color": [0,0,0],
-	"seeds": 0,})
+	"seeds": 0,
+	"polens": 0})
 #Genes End
 
 #Age Begin
@@ -86,7 +89,7 @@ func polinate():
 #	print("There is a flower trying to spread its polen")
 #	print("Killer polen is eating at your flesh!")
 	
-	var polinationCount = 3;
+	var polinationCount = phenoGenes.getPolens();
 	var polRange = 2
 	var polen = []
 	
@@ -165,6 +168,7 @@ func getPolenGenes():
 
 
 #Phenotype computations
+
 #Phenotype computations end
 
 func _on_flower_death():

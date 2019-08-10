@@ -190,7 +190,7 @@ func pass_day():
 		if item == null:
 			continue
 		
-		for phase in range(3):
+		for phase in range(4):
 			
 			#Selection
 			var _seed = item._seed
@@ -231,23 +231,28 @@ func pass_day():
 						else:
 							continue
 						
-						print("Species at location:")
-						print(speciesAt)
+						#print("Species at location:")
+						#print(speciesAt)
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
 						
 						if speciesAt == species and !flowerAt.isDead():
 							flowerAt.getPolinated(polenMap[species][coordinates])
 						#use FIXTHIS.harvest() to collect
-							
+			
 			#Phase 2
 			#Age Up
 			elif phase == 2:
+				print("Todo: Add waterseeker trigerred sand tile to earth updates here");
+							
+			#Phase 3
+			#Age Up
+			elif phase == 3:
 				#print("Todo: Add check to prevent plant from dying the day it was polinated in phase 2");
-				print("Todo: Determine how to disperse seeds from unharvested plant");
 				if _flower.isDead():
 					pass
 				if _flower.isPolinated():
+					print("Todo: Determine how to disperse seeds from unharvested plant");
 					pass
 				_flower.age_up()
 			

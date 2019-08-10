@@ -6,6 +6,7 @@ var GENES = {
 	"size": 0,
 	"color": [0,0,0,0],
 	"seeds": 0,
+	"polens": 0,
 }
 
 #Modify Genes
@@ -15,6 +16,9 @@ func setColor(x):
 	GENES["color"] = x
 func setSeeds(x):
 	GENES["seeds"] = x
+func setPolens(x):
+	GENES["polens"] = x
+	
 #Access Genes
 func getSize():
 	return GENES["size"]
@@ -22,6 +26,9 @@ func getColor():
 	return GENES["color"]
 func getSeeds():
 	return GENES["seeds"]
+func getPolens(x):
+	return GENES["polens"]
+	
 func isShort():
 	if getSize() < 0.5:
 		return true
@@ -38,11 +45,6 @@ func computeColor(a,b):
 func computeSeeds(a,b):
 	return randi()%(int(abs(a-b))) + int(max(a,b))
 
-#######################################################
-#
-# TODO: set up randomize(), somewhere
-#
-#######################################################
 
 #Initialize
 func initGenes(structure):
