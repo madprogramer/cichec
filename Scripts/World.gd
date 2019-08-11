@@ -164,23 +164,6 @@ func _process(delta):
 	pass
 	
 func pass_day():
-	for i in range(0, start_tile_size):
-		for j in range(0, start_tile_size):
-			var type = tilemap.get_cell(j, i)
-			var name = dirtDictionary["id"][type].itemName
-			
-			if name == "Sowed_Watered":
-				plow(Vector2(j, i))
-				tilemap.set_cell(j, i, dirtDictionary["name"]["Sowed"].id)
-			elif name == "Plowed_Watered":
-				plow(Vector2(j, i))
-				tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
-				
-			if name == "Plowed":
-				if (randf() > 0.40):
-					deplow(Vector2(j, i))
-					tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
-					
 	var polenMap = {}
 	#polenMap[speciesId][coordinate(X,Y)]
 	
@@ -189,7 +172,8 @@ func pass_day():
 		if item == null:
 			continue
 		
-		for phase in range(4):
+		for phase in range(5):
+			print("phase: ", phase)
 			
 			#Selection
 			var _seed = item._seed
@@ -249,7 +233,7 @@ func pass_day():
 			#Age Up
 			elif phase == 2:
 				print("Todo: Add waterseeker trigerred sand tile to earth updates here");
-							
+				
 			#Phase 3
 			#Age Up
 			elif phase == 3:
@@ -261,8 +245,25 @@ func pass_day():
 					pass
 				_flower.age_up()
 			
-			else:
+			elif phase == 4:
 				print("Day advanced!")
+				
+	for i in range(0, start_tile_size):
+		for j in range(0, start_tile_size):
+			var type = tilemap.get_cell(j, i)
+			var name = dirtDictionary["id"][type].itemName
+			
+			if name == "Sowed_Watered":
+				plow(Vector2(j, i))
+				tilemap.set_cell(j, i, dirtDictionary["name"]["Sowed"].id)
+			elif name == "Plowed_Watered":
+				plow(Vector2(j, i))
+				tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
+				
+			elif name == "Plowed":
+				if (randf() > 0.40):
+					deplow(Vector2(j, i))
+					tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
 
 func _input(event):
 	if event is InputEventKey:
@@ -270,7 +271,7 @@ func _input(event):
 			if player.hud.dialogue_is_playing == false:
 				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
 				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
-		
+
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
 
@@ -313,9 +314,10 @@ func plow(pos):
 		if (tilemap.get_cellv(Vector2(
 				pos.x + directions[direction].x,
 				pos.y + directions[direction].y) ) != -1):
-			if dirtDictionary["id"][tilemap.get_cellv(Vector2(
+			var dirtNameAtTarget = dirtDictionary["id"][tilemap.get_cellv(Vector2(
 					pos.x + directions[direction].x,
-					pos.y + directions[direction].y) )].itemName == "Normal":
+					pos.y + directions[direction].y) )].itemName
+			if dirtNameAtTarget == "Normal" or dirtNameAtTarget == "Plowed":
 				dirtmarkcontainer.add_sprite(
 					Vector2(
 						pos.x + directions[direction].x,
@@ -325,6 +327,9 @@ func plow(pos):
 						(pos.y + directions[direction].y) * tilemap.cell_size.y + 6),
 					(direction),
 					0)
+			
+			
+				
 	dirtmarkcontainer.add_sprite(
 		pos,
 		Vector2(
