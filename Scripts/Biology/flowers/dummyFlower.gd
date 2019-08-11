@@ -155,7 +155,7 @@ func isPolinated():
 	return polinated
 	
 func harvest():
-	print("TODO: ADD CORRECT SEEDS TO INVENTORY")
+#	print("TODO: ADD CORRECT SEEDS TO INVENTORY")
 	polinated = false
 	set_dead()
 	return newSeed

@@ -161,6 +161,19 @@ func _process(delta):
 #	dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text", [dialogueplayer.dialogue[str(dialogueplayer.line)]])
 	clear_highlight()
 	highlight_cursor()
+#	var localMousePos = get_local_mouse_position()
+#	var globalMousePos = get_global_mouse_position()
+#
+#	if localMousePos.x < 0:
+#		get_viewport().warp_mouse(Vector2(0 + globalMousePos.x - localMousePos.x, globalMousePos.y))
+#	if localMousePos.x > 64:
+#		get_viewport().warp_mouse(Vector2(64 + globalMousePos.x - localMousePos.x, globalMousePos.y))
+#
+#	if localMousePos.y < 0:
+#		get_viewport().warp_mouse(Vector2(globalMousePos.x, 0 + globalMousePos.y - localMousePos.y))
+#	if localMousePos.y > 64:
+#		get_viewport().warp_mouse(Vector2(globalMousePos.x, 64 + globalMousePos.y - localMousePos.y))
+	
 	pass
 	
 func pass_day():
@@ -187,7 +200,6 @@ func pass_day():
 			if phase == 0:
 				var _polen = _flower.try_polinate()
 				#print("STANDO POWAH")
-				#print(_polen)
 				if _polen.size() > 0:
 					#print("Todo: After fixing coordinates, propogate polenMap to determine locations polen spreads to");
 					for p in _polen:
@@ -281,6 +293,14 @@ func _input(event):
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
 
+func cursor_outside_of_window():
+	print("pos: ", get_viewport().get_mouse_position())
+	var pos = get_viewport().get_mouse_position()
+	if pos.x >= 0 and pos.x <= 64 and pos.y >= 0 and pos.y <= 64:
+		return false
+	return true
+	
+
 var directions = [
 	Vector2(0, 1),
 	Vector2(-1, 0),
@@ -346,6 +366,10 @@ func plow(pos):
 	
 func _on_Player_plow():
 	var pos = get_mouse_cell()
+	
+	if cursor_outside_of_window():
+		return
+	
 	var type = tilemap.get_cellv(pos)
 	
 	if type == -1:
@@ -405,6 +429,10 @@ func water(pos):
 
 func _on_Player_water():
 	var pos = get_mouse_cell()
+	
+	if cursor_outside_of_window():
+		return
+	
 	var type = tilemap.get_cellv(pos)
 	
 	if type == -1:
@@ -465,6 +493,10 @@ func sow(pos, item):
 
 func _on_Player_sow(item):
 	var pos = get_mouse_cell()
+	
+	if cursor_outside_of_window():
+		return
+	
 	var type = tilemap.get_cellv(pos)
 	
 	if type == -1:
@@ -484,6 +516,10 @@ func _on_Player_sow(item):
 	
 func _on_Player_pick_seed():
 	var pos = get_mouse_cell()
+	
+	if cursor_outside_of_window():
+		return
+	
 	var type = tilemap.get_cellv(pos)
 	
 	if type == -1:

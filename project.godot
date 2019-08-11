@@ -82,7 +82,12 @@ _global_script_class_icons={
 
 config/name="Cichec"
 run/main_scene="res://Scenes/World.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/Misc/Inventory-background.png"
+config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
@@ -145,4 +150,5 @@ mouse_select={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"
