@@ -92,7 +92,9 @@ func polinate():
 #	print("There is a flower trying to spread its polen")
 #	print("Killer polen is eating at your flesh!")
 	
-	var polinationCount = phenoGenes.getPolens();
+	print("https://github.com/EnoughSensei/cichec/issues/12")
+#	var polinationCount = phenoGenes.getPolens();
+	var polinationCount = 3
 	var polRange = 2
 	var polen = []
 	

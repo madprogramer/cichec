@@ -15,7 +15,8 @@ func _init(pos):
 	uniqueId = randi()
 	
 	sprite = Sprite.new()
-	sprite.offset = pos
+	sprite.position = pos
+	
 	print(pos)
 	randomize()
 	setSize(randf())
@@ -33,7 +34,8 @@ func _init(pos):
 	sprite.set_self_modulate(Color(color[0], color[1], color[2], color[3]))
 	
 	deadsprite = Sprite.new()
-	deadsprite.offset = pos
+	deadsprite.position = pos
+	
 	if isShort():
 		deadsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-short-dead.png"))
 	else:
@@ -42,7 +44,7 @@ func _init(pos):
 	deadsprite.set_self_modulate(sprite.get_self_modulate())
 	
 	pollinatedsprite = Sprite.new()
-	pollinatedsprite.offset = pos
+	pollinatedsprite.position = pos
 	if isShort():
 		pollinatedsprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-short-pollinated.png"))
 	else:

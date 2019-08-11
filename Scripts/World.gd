@@ -4,14 +4,17 @@ const start_tile_size = 6
 
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
-onready var flowercontainer = get_node("FlowerContainer")
-onready var dirtmarkcontainer = get_node("DirtmarkContainer")
 
-onready var hoeplowanimation = get_node("HoePlowAnimation")
-onready var wateringcanwateranimation = get_node("WateringCanWaterAnimation")
+onready var ysort = get_node("YSort")
 
-onready var animationcontainer = get_node("AnimationContainer")
-onready var player = get_node("Player")
+onready var flowercontainer = get_node("YSort")
+onready var dirtmarkcontainer = ysort.get_node("DirtmarkContainer")
+
+onready var hoeplowanimation = ysort.get_node("HoePlowAnimation")
+onready var wateringcanwateranimation = ysort.get_node("WateringCanWaterAnimation")
+
+onready var animationcontainer = ysort.get_node("AnimationContainer")
+onready var player = ysort.get_node("Player")
 onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
 onready var dirtList = [
