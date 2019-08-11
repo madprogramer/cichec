@@ -18,13 +18,12 @@ func water():
 
 func activate():
 	get_node("Particles2D").emitting = true
+	playing = true
 	
 	yield(get_tree().create_timer(5.0), "timeout")
 
 	playing = false
 	frame = 0
-	
-	playing = true
 
 	get_node("Particles2D").emitting = false
 
