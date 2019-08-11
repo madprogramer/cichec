@@ -23,6 +23,8 @@ func activate():
 
 	playing = false
 	frame = 0
+	
+	playing = true
 
 	get_node("Particles2D").emitting = false
 
