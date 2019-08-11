@@ -479,9 +479,7 @@ format = 1
 script = ExtResource( 11 )
 
 [node name="Sprinkler" parent="YSort" instance=ExtResource( 12 )]
-position = Vector2( 18.5519, 12.7287 )
-frame = 1
-playing = true
+position = Vector2( 19.4052, 13.6077 )
 
 [node name="ExitDoor" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 31.2796, -21.8513 )

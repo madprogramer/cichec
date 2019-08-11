@@ -247,7 +247,11 @@ func pass_day():
 			
 			elif phase == 4:
 				print("Day advanced!")
-				
+			
+	get_tree().call_group("Sprinklers", "water")
+	
+	yield(get_tree(), "idle_frame")
+	
 	for i in range(0, start_tile_size):
 		for j in range(0, start_tile_size):
 			var type = tilemap.get_cell(j, i)
@@ -264,6 +268,8 @@ func pass_day():
 				if (randf() > 0.40):
 					deplow(Vector2(j, i))
 					tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
+					
+	get_tree().call_group("Sprinklers", "activate")
 
 func _input(event):
 	if event is InputEventKey:
