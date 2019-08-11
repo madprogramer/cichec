@@ -179,6 +179,40 @@ func getPolenGenes():
 
 #Phenotype computations
 
+#TODO: DECIDE IF THESE SHOULD RETURN EXPLICIT VALLUES
+#MIGHT BE MORE USEFUL FOR SCANNER IMPLEMENTATION
+
+#Color
+#Color is Unique in that Maternal or Paternal store
+#Color data as 1 or 0
+#However for Phenogenes 0 means dark, 2 means bright
+#But 1 means at tone in between
+
+func phenoColor():
+	var myColor = [0,0,0]
+	for i in range(3):
+		myColor[i] = matGenes.color[i] + patGenes.color[i]
+	return myColor
+	
+#Size
+#Average of genes, rounded up
+func phenoSize():
+	return ceil((matGenes.size + patGenes.size)/2)
+
+#Seeds 
+#Random Number in interval of min to max
+func phenoSeeds():
+	var zuixiao = min(matGenes.seeds, patGenes.seeds)
+	var zuida = max(matGenes.seeds, patGenes.seeds)
+	return zuixiao + randi()%(zuida-zuixiao+1) + 1
+	
+#Polen
+#Random Number in interval of min to max 
+func phenoPolens():
+	var zuixiao = min(matGenes.polens, patGenes.polens)
+	var zuida = max(matGenes.polens, patGenes.polens)
+	return zuixiao + randi()%(zuida-zuixiao+1) + 1
+
 #Phenotype computations end
 
 func _on_flower_death():
@@ -207,6 +241,14 @@ func set_seed(originalItem):
 	var itemSeed = originalItem.seedClass
 	
 	var GENES = originalItem.GENES
+	
+	# themadprogramer: No u
+	#Generate GENES HERE
+	GENES["size"] = phenoSize();
+	GENES["color"] = phenoColor();
+	GENES["seeds"] = phenoSeeds();
+	GENES["polens"] = phenoPolens();
+	
 	
 	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
 	newSeed.fatherId = fatherId
