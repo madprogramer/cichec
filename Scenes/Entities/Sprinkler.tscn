@@ -25,7 +25,8 @@ script = ExtResource( 5 )
 [node name="Particles2D" type="Particles2D" parent="."]
 show_behind_parent = true
 position = Vector2( 0, -3.32167 )
-amount = 40
+amount = 15
 lifetime = 0.2
 speed_scale = 0.5
+explosiveness = 0.6
 process_material = ExtResource( 6 )
