@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Dirt/Tileset1-scaled.png" type="Texture" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=27]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/Entities/Door.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/Entities/Sprinkler.tscn" type="PackedScene" id=30]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -503,6 +504,10 @@ current = true
 
 [node name="ExitDoor" parent="." instance=ExtResource( 29 )]
 position = Vector2( 31.2796, -21.8513 )
+
+[node name="Sprinkler" parent="." instance=ExtResource( 30 )]
+position = Vector2( 53.443, 33.7957 )
+frame = 2
 [connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
 [connection signal="animation_finished" from="WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
 [connection signal="pick_seed" from="Player" to="." method="_on_Player_pick_seed"]

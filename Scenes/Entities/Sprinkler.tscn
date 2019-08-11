@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Entities/Sprinkler/Spinning/pixil-frame-0.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Entities/Sprinkler/Spinning/pixil-frame-1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Entities/Sprinkler/Spinning/pixil-frame-2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Entities/Sprinkler/Spinning/pixil-frame-3.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Entities/Sprinkler.gd" type="Script" id=5]
+[ext_resource path="res://Particles/Sprinkler.tres" type="Material" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Sprinkler" type="AnimatedSprite"]
+position = Vector2( 35.0781, 29.4037 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
+script = ExtResource( 5 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+show_behind_parent = true
+position = Vector2( 0, -3.32167 )
+amount = 40
+lifetime = 0.2
+speed_scale = 0.5
+process_material = ExtResource( 6 )
