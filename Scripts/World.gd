@@ -538,11 +538,15 @@ func _on_Player_pick_seed():
 		var _seed = item._seed
 		var flower = _seed.flower
 		
-		if flower.isDead():
+		if flower.isDead() or flower.isPolinated():
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 			player.add_seed(flower.newSeed)
-			flower.pickup()
-			seeds[pos.x][pos.y] = null
+			if flower.isDead():
+				flower.pickup()
+				seeds[pos.x][pos.y] = null
+			else:
+				flower.harvest()
+				seeds[pos.x][pos.y] = null
 			return
 				
 		

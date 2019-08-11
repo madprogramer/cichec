@@ -158,7 +158,9 @@ func harvest():
 #	print("TODO: ADD CORRECT SEEDS TO INVENTORY")
 	polinated = false
 	set_dead()
-	return newSeed
+	var seeds = newSeed
+	pickup()
+	return seeds
 
 #Polination end
 
