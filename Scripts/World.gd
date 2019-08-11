@@ -275,11 +275,12 @@ func pass_day():
 			elif name == "Plowed_Watered":
 				plow(Vector2(j, i))
 				tilemap.set_cell(j, i, dirtDictionary["name"]["Plowed"].id)
-				
 			elif name == "Plowed":
 				if (randf() > 0.40):
 					deplow(Vector2(j, i))
 					tilemap.set_cell(j, i, dirtDictionary["name"]["Normal"].id)
+			elif name == "Sowed":
+				kill_plant(Vector2(j, i))
 					
 	get_tree().call_group("Sprinklers", "activate")
 
@@ -307,6 +308,9 @@ var directions = [
 	Vector2(0, -1),
 	Vector2(1, 0)
 ]
+
+func kill_plant(pos):
+	seeds[pos.x][pos.y]._seed.flower.set_dead()
 
 func deplow(pos):
 	for direction in range(0, 4):
