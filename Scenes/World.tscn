@@ -506,8 +506,8 @@ current = true
 position = Vector2( 31.2796, -21.8513 )
 
 [node name="Sprinkler" parent="." instance=ExtResource( 30 )]
-position = Vector2( 53.443, 33.7957 )
-frame = 2
+position = Vector2( 18.5519, 12.7287 )
+frame = 1
 [connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
 [connection signal="animation_finished" from="WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
 [connection signal="pick_seed" from="Player" to="." method="_on_Player_pick_seed"]
@@ -516,3 +516,4 @@ frame = 2
 [connection signal="sow" from="Player" to="." method="_on_Player_sow"]
 [connection signal="water" from="Player" to="." method="_on_Player_water"]
 [connection signal="body_shape_entered" from="ExitDoor" to="." method="_on_ExitDoor_body_shape_entered"]
+[connection signal="sprinkler_water" from="Sprinkler" to="." method="_on_Sprinkler_sprinkler_water"]

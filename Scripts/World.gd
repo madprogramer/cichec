@@ -363,6 +363,8 @@ func water(pos):
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
 	elif dirtDictionary["id"][type].itemName == "Sowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
+	else:
+		return
 		
 	for direction in range(0, 4):
 		var newpos = Vector2(pos.x + directions[direction].x, pos.y + directions[direction].y)
@@ -526,3 +528,12 @@ func _on_ExitDoor_body_shape_entered(body_id, body, body_shape, area_shape):
 		pass_day()
 		player.position = Vector2(32, 32)
 	pass # Replace with function body.
+
+
+func _on_Sprinkler_sprinkler_water(pos):
+	print("Sprinkler finished at ", pos)
+	var cellpos = tilemap.world_to_map(pos)
+	print("...and it's cell position: ", cellpos)
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			water(Vector2(cellpos.x + i, cellpos.y + j))

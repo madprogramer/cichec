@@ -18,8 +18,7 @@ animations = [ {
 [node name="Sprinkler" type="AnimatedSprite"]
 position = Vector2( 35.0781, 29.4037 )
 frames = SubResource( 1 )
-frame = 2
-playing = true
+frame = 3
 script = ExtResource( 5 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -30,3 +29,9 @@ lifetime = 0.2
 speed_scale = 0.5
 explosiveness = 0.6
 process_material = ExtResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0.0856743, 6.7683 )
+
+[node name="OriginPosition" type="Position2D" parent="."]
+position = Vector2( -7.96774, -8.22476 )
