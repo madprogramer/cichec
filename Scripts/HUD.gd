@@ -74,7 +74,7 @@ func change_highlight(x):
 	print(current_hud)
 	highlight.offset.x =  x * 16 + 8
 	
-	if current_hud == "toolbar":
+	if current_hud == "toolbar" and toolbar.slotList[current_slot[current_hud]].item:
 		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":
 			if dialogue_is_playing == false:
 				set_cursor_shape(preload("res://Assets/Items/Hoe/MouseIcon.png"))
@@ -102,7 +102,6 @@ func switch_tools(event, current_hud_):
 		if event.scancode == switchToolKeys[i]:
 			set_current_slot(current_hud_, i)
 			return
-		
 
 var hiding_toolbar = false
 
@@ -176,14 +175,17 @@ func _input(event):
 			
 			if event.scancode == KEY_SHIFT:
 				if current_hud == "toolbar":
+					toolbar.put_holding_item()
 					current_hud = "bagtoolbar"
 					show("bagtoolbar")
 						
 				elif current_hud == "bagtoolbar":
+					bagtoolbar.put_holding_item()
 					current_hud = "seedtoolbar"
 					show("seedtoolbar")
 					
 				elif current_hud == "seedtoolbar":
+					seedtoolbar.put_holding_item()
 					current_hud = "toolbar"
 					show("toolbar")
 
@@ -293,8 +295,18 @@ func show(name):
 	
 	current_hud = name
 
+#func _process(delta):
+#	show(current_hud)
+
+func refresh():
+	print("REFRESH")
+	show(current_hud)
+
 func _ready():
 	show(current_hud)
+	toolbar.connect("toolbar_changed", self, "refresh")
+	seedtoolbar.connect("toolbar_changed", self, "refresh")
+	bagtoolbar.connect("toolbar_changed", self, "refresh")
 	set_quest(["QUEST: 1", "HARVEST X FLOWERS", "TIME: X"])
 	
 func change_dialogue_texture(t):
