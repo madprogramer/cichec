@@ -71,7 +71,8 @@ func _process(delta):
 var validNames = [
 	"hoe",
 	"watering_can",
-	"scanner"
+	"scanner",
+	"sprinkler_spawner"
 ]
 	
 func _input(event):

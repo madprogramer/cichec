@@ -62,6 +62,11 @@ onready var dirtList = [
 		"id" : 29,
 		"itemName": "Sowed_Watered",
 		"itemIcon": tilemap.tile_set.tile_get_texture(29)
+	},
+	{
+		"id" : 40,
+		"itemName" : "Sprinkler",
+		"itemIcon" : tilemap.tile_set.tile_get_texture(40)
 	}
 ]
 
@@ -603,5 +608,9 @@ func _on_Sprinkler_sprinkler_water(pos):
 			water(Vector2(cellpos.x + i, cellpos.y + j))
 
 func _on_Player_spawn_sprinkler():
-	player.get_current_item().spawn(get_global_mouse_position())
-	pass # Replace with function body.
+	var pos = get_mouse_cell()
+	if dirtDictionary["id"][tilemap.get_cellv(pos)].itemName == "Normal":
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Sprinkler"].id)
+		player.get_current_item().spawn(Vector2(
+			(pos.x + 0.5) * tilemap.cell_size.x,
+			(pos.y + 0.5) * tilemap.cell_size.y))
