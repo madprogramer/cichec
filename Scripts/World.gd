@@ -493,11 +493,14 @@ func _on_Player_water():
 	pass
 
 func sow(pos, item):
-	var _seed = item.seedClass.new(Vector2(
+	var _seed = item.dummySeed.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
 		(pos.y) * tilemap.cell_size.y),
 		item.GENES
 	)
+	
+#	var class1 = item.seedClass
+#	var class2 = item.dummySeed
 	
 	_seed.flower.fatherId = item.fatherId
 	_seed.flower.motherId = item.motherId

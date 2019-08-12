@@ -46,6 +46,7 @@ func _ready():
 		var itemValue = itemDictionary[item].itemValue;
 		var itemSeed = itemDictionary[item]._seed
 		var itemDummySeed = itemDictionary[item].dummySeed.new()
+		itemDummySeed.set_seedClass()
 		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
 		itemList[itemList.size()-1].set_count(3)
 	

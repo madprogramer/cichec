@@ -161,7 +161,6 @@ func decrease(item):
 		item = null
 		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item.queue_free()
 		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item = null
-
 	else:
 		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item.set_count(item.count)
 	

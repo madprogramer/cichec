@@ -4,6 +4,8 @@ class_name dummySeed
 
 # Declare member variables here. Examples:
 
+var seedClass = null
+
 #Identifier Begin
 var id = 0;
 #Identifier End

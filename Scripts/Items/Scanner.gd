@@ -23,8 +23,10 @@ func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	pass
 	
 func scan(pos, seeds):
-	for i in range(seeds.size()):	for j in range(seeds[i].size()):
-		var item = seeds[i][j]
+	for pos in seeds:
+		var i = pos.x
+		var j = pos.y
+		var item = seeds[pos]
 		if item == null:
 			continue
 		
