@@ -121,15 +121,22 @@ func is_normal(id):
 				return false
 	return false
 
-var seeds = []
+var seeds = {}
 
 func _ready():
 	randomize()
+	
+	"""
 	for i in range(start_tile_size):
 		var seedsRow = []
 		for j in range(start_tile_size):
 			seedsRow.push_back(null)
 		seeds.push_back(seedsRow)
+	"""
+	
+	for i in range(start_tile_size):
+		for j in range(start_tile_size):
+			seeds[Vector2(i,j)] = null
 	
 	for dirt in dirtList:
 		dirtDictionary["name"][dirt["itemName"]] = dirt
@@ -185,8 +192,9 @@ func pass_day():
 	var polenMap = {}
 	#polenMap[speciesId][coordinate(X,Y)]
 	
-	for i in range(seeds.size()):	for j in range(seeds[i].size()):
-		var item = seeds[i][j]
+	#for i in range(seeds.size()):	for j in range(seeds[i].size()):
+	for i in range(start_tile_size):	for j in range(start_tile_size):
+		var item = seeds[Vector2(i,j)]
 		if item == null:
 			continue
 		
@@ -224,8 +232,8 @@ func pass_day():
 						var flowerAt
 						var speciesAt
 						
-						if seeds[polenData[1].x][polenData[1].y] != null:
-							seedAt = seeds[polenData[1].x][polenData[1].y]._seed
+						if seeds[polenData[1]] != null:
+							seedAt = seeds[polenData[1]]._seed
 							flowerAt = seedAt.flower
 							speciesAt = flowerAt.id
 						else:
@@ -315,7 +323,7 @@ var directions = [
 ]
 
 func kill_plant(pos):
-	seeds[pos.x][pos.y]._seed.flower.set_dead()
+	seeds[pos]._seed.flower.set_dead()
 
 func deplow(pos):
 	for direction in range(0, 4):
@@ -389,7 +397,7 @@ func _plow_Routine(pos):
 func removeCrop(pos, debugMode = true):
 	if debugMode:
 		print("PRINTING")
-		print(seeds[pos.x][pos.y]._seed.flower.phenoGenes)
+		print(seeds[pos]._seed.flower.phenoGenes)
 		_pick_seed_Routine(pos, true)
 	else:
 		pass 
@@ -517,7 +525,7 @@ func sow(pos, item):
 	newItem.fatherId = item.fatherId
 	newItem.motherId = item.motherId
 	
-	seeds[pos.x][pos.y] = {
+	seeds[pos] = {
 		"_seed": _seed,
 		#"cell": pos,
 		"originalItem" : newItem
@@ -556,7 +564,7 @@ func _pick_seed_Routine(pos, force = false):
 		return
 	
 	if force:
-		var item = seeds[pos.x][pos.y]
+		var item = seeds[pos]
 		if item == null:
 			return
 		print(item._seed.id)
@@ -573,15 +581,15 @@ func _pick_seed_Routine(pos, force = false):
 		player.add_seed(flower.newSeed)
 		if flower.isDead():
 			flower.pickup()
-			seeds[pos.x][pos.y] = null
+			seeds[pos] = null
 			
 		else:
 			flower.harvest()
-			seeds[pos.x][pos.y] = null
+			seeds[pos] = null
 		return
 		
 	if dirtDictionary["id"][type].itemName == "Sowed" or dirtDictionary["id"][type].itemName == "Sowed_Watered":
-		var item = seeds[pos.x][pos.y]
+		var item = seeds[pos]
 		if item == null:
 			return
 		print(item._seed.id)
@@ -600,10 +608,10 @@ func _pick_seed_Routine(pos, force = false):
 			
 			if flower.isDead():
 				flower.pickup()
-				seeds[pos.x][pos.y] = null
+				seeds[pos] = null
 			else:
 				flower.harvest()
-				seeds[pos.x][pos.y] = null
+				seeds[pos] = null
 			return
 				
 	
