@@ -96,6 +96,7 @@ signal water;
 signal sow;
 signal pick_seed;
 signal scan;
+signal spawn_sprinkler
 
 var seed_names = [
 	"DummySeed",
@@ -140,6 +141,9 @@ func use(item):
 		
 	elif item.name == "scanner":
 		emit_signal("scan")
+		
+	elif item.name == "sprinkler_spawner":
+		emit_signal("spawn_sprinkler")
 	
 	else: 
 		for seed_name in seed_names:

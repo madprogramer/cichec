@@ -2,7 +2,6 @@
 extends GridContainer;
 const ItemClass = preload("res://Scripts/Item.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
-const scanner = preload("res://Scripts/Items/Scanner.gd");
 
 const slotTexture = preload("res://Assets/Misc/Slot-texture.png");
 
@@ -15,7 +14,13 @@ var itemDictionary = {
 		"itemName" : "scanner",
 		"itemIcon" : preload("res://Assets/Items/Scanner/Scanner.png"),
 		"itemValue" : -1,
-		"itemClass" : scanner
+		"itemClass" : preload("res://Scripts/Items/Scanner.gd")
+	},
+	"sprinkler_spawner" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
 	}
 };
 

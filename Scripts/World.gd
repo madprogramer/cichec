@@ -601,3 +601,7 @@ func _on_Sprinkler_sprinkler_water(pos):
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			water(Vector2(cellpos.x + i, cellpos.y + j))
+
+func _on_Player_spawn_sprinkler():
+	player.get_current_item().spawn(get_global_mouse_position())
+	pass # Replace with function body.
