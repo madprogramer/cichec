@@ -36,3 +36,7 @@ func _init(pos):
 	pollinatedsprite.set_texture(preload("res://Assets/Flowers/WaterseekerFlower-pollinated.png"))
 	pollinatedsprite.visible = false
 	pollinatedsprite.set_self_modulate(sprite.get_self_modulate())
+	
+func cultivate():
+	if( current_stage == 3 ):
+		print("Spreading water around, probably")
