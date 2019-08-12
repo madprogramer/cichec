@@ -389,12 +389,10 @@ func _plow_Routine(pos):
 func removeCrop(pos, debugMode = true):
 	if debugMode:
 		print("PRINTING")
-		print(seeds[pos.x][pos.y]._seed.flower.id)
+		print(seeds[pos.x][pos.y]._seed.flower.phenoGenes)
 		_pick_seed_Routine(pos, true)
 	else:
 		pass 
-		
-	
 
 func _on_Player_plow():
 	var pos = get_mouse_cell()
@@ -549,12 +547,40 @@ func _on_Player_sow(item):
 	
 
 func _pick_seed_Routine(pos, force = false):
+	#print("am I forcing")
+	#print(force)
+	
 	var type = tilemap.get_cellv(pos)
 	
 	if type == -1:
 		return
+	
+	if force:
+		var item = seeds[pos.x][pos.y]
+		if item == null:
+			return
+		print(item._seed.id)
 		
-	if dirtDictionary["id"][type].itemName == "Sowed":
+		var _seed = item._seed
+		var flower = _seed.flower
+		
+		flower.pickup()
+		if dirtDictionary["id"][type].itemName == "Sowed":
+			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+		else:
+			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+
+		player.add_seed(flower.newSeed)
+		if flower.isDead():
+			flower.pickup()
+			seeds[pos.x][pos.y] = null
+			
+		else:
+			flower.harvest()
+			seeds[pos.x][pos.y] = null
+		return
+		
+	if dirtDictionary["id"][type].itemName == "Sowed" or dirtDictionary["id"][type].itemName == "Sowed_Watered":
 		var item = seeds[pos.x][pos.y]
 		if item == null:
 			return
@@ -564,7 +590,12 @@ func _pick_seed_Routine(pos, force = false):
 		var flower = _seed.flower
 		
 		if flower.isDead() or flower.isPolinated():
-			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+			
+			if dirtDictionary["id"][type].itemName == "Sowed":
+				tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+			else:
+				tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
+				
 			player.add_seed(flower.newSeed)
 			
 			if flower.isDead():
@@ -575,46 +606,7 @@ func _pick_seed_Routine(pos, force = false):
 				seeds[pos.x][pos.y] = null
 			return
 				
-		
-	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":
-		var item = seeds[pos.x][pos.y]
-		if item == null:
-			return
-		print(item._seed.id)
-		
-		var _seed = item._seed
-		var flower = _seed.flower
-		
-		if flower.isDead() or flower.isPolinated():
-			flower.pickup()
-			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
-			player.add_seed(flower.newSeed)
-			if flower.isDead():
-				flower.pickup()
-				seeds[pos.x][pos.y] = null
-			else:
-				flower.harvest()
-				seeds[pos.x][pos.y] = null
-			return
-	elif force:
-		var item = seeds[pos.x][pos.y]
-		if item == null:
-			return
-		print(item._seed.id)
-		
-		var _seed = item._seed
-		var flower = _seed.flower
-		
-		flower.pickup()
-		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
-		player.add_seed(flower.newSeed)
-		if flower.isDead():
-			flower.pickup()
-			seeds[pos.x][pos.y] = null
-		else:
-			flower.harvest()
-			seeds[pos.x][pos.y] = null
-		return
+	
 	
 func _on_Player_pick_seed():
 	var pos = get_mouse_cell()
