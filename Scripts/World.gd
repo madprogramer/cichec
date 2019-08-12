@@ -13,7 +13,7 @@ onready var dirtmarkcontainer = ysort.get_node("DirtmarkContainer")
 onready var hoeplowanimation = ysort.get_node("HoePlowAnimation")
 onready var wateringcanwateranimation = ysort.get_node("WateringCanWaterAnimation")
 
-onready var animationcontainer = ysort.get_node("AnimationContainer")
+onready var animationcontainer = get_node("AnimationContainer")
 onready var player = ysort.get_node("Player")
 onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
