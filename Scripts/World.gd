@@ -508,12 +508,12 @@ func _on_Player_sow(item):
 		
 	if dirtDictionary["id"][type].itemName == "Plowed":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed"].id)
-		
+		player.decrease(player.get_current_item())
 		sow(pos, item)
 		
 	elif dirtDictionary["id"][type].itemName == "Plowed_Watered":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sowed_Watered"].id)
-		
+		player.decrease(player.get_current_item())
 		sow(pos, item)
 	pass
 	
@@ -541,6 +541,7 @@ func _on_Player_pick_seed():
 		if flower.isDead() or flower.isPolinated():
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 			player.add_seed(flower.newSeed)
+			
 			if flower.isDead():
 				flower.pickup()
 				seeds[pos.x][pos.y] = null
@@ -563,7 +564,12 @@ func _on_Player_pick_seed():
 			flower.pickup()
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
 			player.add_seed(flower.newSeed)
-			seeds[pos.x][pos.y] = null
+			if flower.isDead():
+				flower.pickup()
+				seeds[pos.x][pos.y] = null
+			else:
+				flower.harvest()
+				seeds[pos.x][pos.y] = null
 			return
 
 func _on_HoePlowAnimation_animation_finished():

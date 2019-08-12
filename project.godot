@@ -85,10 +85,6 @@ run/main_scene="res://Scenes/World.tscn"
 boot_splash/image="res://Assets/Misc/Inventory-background.png"
 config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/width=64

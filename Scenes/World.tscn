@@ -433,22 +433,7 @@
 39/shapes = [  ]
 39/z_index = 0
 
-<<<<<<< HEAD
-=======
-[sub_resource type="TileSet" id=2]
-0/name = "Highlight8x8.png 0"
-0/texture = ExtResource( 10 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 12, 12 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shapes = [  ]
-0/z_index = 0
-
->>>>>>> 78593eff891186fbd1240d4d447db12d6c9d3558
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": true,
@@ -456,7 +441,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
@@ -464,7 +449,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=4]
 0/name = "Highlight8x8.png 0"
 0/texture = ExtResource( 30 )
 0/tex_offset = Vector2( 0, 0 )
@@ -507,19 +492,19 @@ script = ExtResource( 14 )
 
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="YSort"]
 visible = false
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 
 [node name="HoePlowAnimation" type="AnimatedSprite" parent="YSort"]
 visible = false
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 speed_scale = 2.0
 
 [node name="DirtmarkContainer" type="Node2D" parent="YSort"]
 script = ExtResource( 29 )
 
 [node name="Highlight" type="TileMap" parent="."]
-tile_set = SubResource( 2 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 12, 12 )
 format = 1
 [connection signal="sprinkler_water" from="YSort/Sprinkler" to="." method="_on_Sprinkler_sprinkler_water"]

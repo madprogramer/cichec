@@ -48,6 +48,15 @@ func set_count(c):
 #	hint_tooltip = "%s %d" % [itemName, count]
 	label.text = "%d" % [count]
 	label.rect_position = labelpos
+	
+func decrease_count():
+	set_count(count - 1)
+	if count == 0:
+		delete()
+
+func delete():
+	itemSlot.item = null
+	queue_free()
 
 func pickItem():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE;

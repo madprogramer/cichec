@@ -105,11 +105,8 @@ var seed_names = [
 ]
 
 func use(item):
+#	print(item.name)
 	if !item:
-#		print("NULL")
-#		print(hud.current_hud)
-#		var x = 0
-#		x = x / x
 		if hud.current_hud == "seedtoolbar":
 			emit_signal("pick_seed")
 		return
@@ -146,9 +143,19 @@ func use(item):
 	
 	else: 
 		for seed_name in seed_names:
-			if seed_name == item.name:
+			if item.name.find(seed_name) != -1:
 				emit_signal("sow", item)
 				break
+				
+func decrease(item):
+	item.decrease_count()
+	if item.count == 0:
+		item = null
+
+	if item == null:
+		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item.queue_free()
+		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item = null
+	hud.show("seedtoolbar")
 
 func add_seed(originalItem):
 	var i = hud.seedbag.add_seed(originalItem)

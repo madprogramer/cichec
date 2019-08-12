@@ -15,18 +15,18 @@ func _init(pos):
 	uniqueId = randi()
 	
 	sprite = Sprite.new()
-	sprite.offset = pos
+	sprite.position = pos
 	print(pos)
 	sprite.set_texture(preload("res://Assets/Flowers/SunlightFlower.png"))
 	sprite.set_hframes(4)
 	
 	deadsprite = Sprite.new()
-	deadsprite.offset = pos
+	deadsprite.position = pos
 	deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-dead.png"))
 	deadsprite.visible = false
 	
 	pollinatedsprite = Sprite.new()
-	pollinatedsprite.offset = pos
+	pollinatedsprite.position = pos
 #	if isShort():
 #		pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-short-pollinated.png"))
 #	else:
