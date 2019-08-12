@@ -23,8 +23,8 @@ func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	pass
 	
 func scan(pos, seeds):
-	for i in range(seeds.size()):	for j in range(seeds[i].size()):
-		var item = seeds[i][j]
+	for index in seeds:
+		var item = seeds[index]
 		if item == null:
 			continue
 		
@@ -44,7 +44,8 @@ func scan(pos, seeds):
 			var labels = [
 				"SIZE: " + str(flower.getSize()),
 				"COLOR: " + str(flower.getColor()),
-				"SEEDS: " + str(flower.getSeeds())
+				"SEEDS: " + str(flower.getSeeds()),
+				"POLEN: " + str(flower.getPolens())
 			]
 			
 			for i in range(labels.size()):
