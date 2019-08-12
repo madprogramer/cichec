@@ -9,9 +9,33 @@ var id = 0;
 #Identifier End
 
 #Genes Begin
-var matGenes = initGenes({})
-var patGenes = initGenes({})
-var phenoGenes = initGenes({})
+
+#Inherited Genes
+var matGenes = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
+var patGenes = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
+	
+#Full Phenotype of Ancestor
+var phenoGenesMat = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
+	
+var phenoGenesPat = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
+	
+#Own Phenotype	
+var phenoGenes = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
 #Genes End
 
 #Corresponding Plant

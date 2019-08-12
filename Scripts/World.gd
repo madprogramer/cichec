@@ -295,7 +295,7 @@ func _input(event):
 			pass_day()
 
 func cursor_outside_of_window():
-	print("pos: ", get_viewport().get_mouse_position())
+	#print("pos: ", get_viewport().get_mouse_position())
 	var pos = get_viewport().get_mouse_position()
 	if pos.x >= 0 and pos.x <= 64 and pos.y >= 0 and pos.y <= 64:
 		return false
