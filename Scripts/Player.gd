@@ -153,13 +153,18 @@ func use(item):
 				break
 				
 func decrease(item):
+	print("count before: ", item.count)
 	item.decrease_count()
+	print("count after: ", item.count)
+	
 	if item.count == 0:
 		item = null
-
-	if item == null:
 		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item.queue_free()
 		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item = null
+
+	else:
+		hud.seedbag.slotList[hud.current_slot["seedtoolbar"]].item.set_count(item.count)
+	
 	hud.show("seedtoolbar")
 
 func add_seed(originalItem):

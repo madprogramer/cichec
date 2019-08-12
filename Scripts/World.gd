@@ -232,7 +232,7 @@ func pass_day():
 						var flowerAt
 						var speciesAt
 						
-						if seeds[polenData[1]] != null:
+						if seeds.has(polenData[1]) and seeds[polenData[1]] != null:
 							seedAt = seeds[polenData[1]]._seed
 							flowerAt = seedAt.flower
 							speciesAt = flowerAt.id

@@ -47,6 +47,7 @@ func _ready():
 		var itemSeed = itemDictionary[item]._seed
 		var itemDummySeed = itemDictionary[item].dummySeed.new()
 		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
+		itemList[itemList.size()-1].set_count(3)
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
