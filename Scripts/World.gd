@@ -520,7 +520,7 @@ func sow(pos, item):
 #	print(pos)
 	_seed.flower.pos = pos
 	
-	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.GENES)
+	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.dummySeed)
 	
 	newItem.fatherId = item.fatherId
 	newItem.motherId = item.motherId
