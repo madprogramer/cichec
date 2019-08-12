@@ -27,11 +27,12 @@ func _init(pos):
 	
 	sprite.set_hframes(4)
 	
-	setColor([1, 0, 0, 1])
+	var ColorManager = colors.new()
+	setColor( ColorManager.RYB2RGB([2,0,1]) )
 	
 	var color = getColor()
 	
-	sprite.set_self_modulate(Color(color[0], color[1], color[2], color[3]))
+	sprite.set_self_modulate(Color(color[0], color[1], color[2]))
 	
 	deadsprite = Sprite.new()
 	deadsprite.position = pos

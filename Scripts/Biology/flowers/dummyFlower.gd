@@ -244,7 +244,7 @@ func set_seed(originalItem):
 	
 	var GENES = originalItem.GENES
 	
-	# themadprogramer: No u
+	# themadprogramer™: No u
 	#Generate GENES HERE
 	GENES["size"] = phenoSize();
 	GENES["color"] = phenoColor();
