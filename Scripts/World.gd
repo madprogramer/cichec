@@ -232,7 +232,7 @@ func pass_day():
 						var flowerAt
 						var speciesAt
 						
-						if seeds[polenData[1]] != null:
+						if seeds.has(polenData[1]) and seeds[polenData[1]] != null:
 							seedAt = seeds[polenData[1]]._seed
 							flowerAt = seedAt.flower
 							speciesAt = flowerAt.id
@@ -493,11 +493,14 @@ func _on_Player_water():
 	pass
 
 func sow(pos, item):
-	var _seed = item.seedClass.new(Vector2(
+	var _seed = item.dummySeed.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
 		(pos.y) * tilemap.cell_size.y),
 		item.GENES
 	)
+	
+#	var class1 = item.seedClass
+#	var class2 = item.dummySeed
 	
 	_seed.flower.fatherId = item.fatherId
 	_seed.flower.motherId = item.motherId
@@ -520,7 +523,7 @@ func sow(pos, item):
 #	print(pos)
 	_seed.flower.pos = pos
 	
-	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.GENES)
+	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.dummySeed)
 	
 	newItem.fatherId = item.fatherId
 	newItem.motherId = item.motherId

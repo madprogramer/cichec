@@ -25,6 +25,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 func scan(pos, seeds):
 	for index in seeds:
 		var item = seeds[index]
+
 		if item == null:
 			continue
 		

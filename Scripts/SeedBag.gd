@@ -59,8 +59,10 @@ var itemDictionary = {
 			"seeds": 0,
 			"polens": 0
 		},
+		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/pre.gd"),
 		"seedbag" : true
-	}
+	},
+	
 }
 
 var slotList = Array();
@@ -74,8 +76,10 @@ func _ready():
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
 		var itemSeed = itemDictionary[item]._seed
-		var itemGENES = itemDictionary[item].GENES
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemGENES));
+		var itemDummySeed = itemDictionary[item].dummySeed.new()
+		itemDummySeed.set_seedClass()
+		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
+		itemList[itemList.size()-1].set_count(3)
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
@@ -145,9 +149,9 @@ func add_seed(originalItem):
 			var itemSeed = originalItem.seedClass
 #			print (itemSeed)
 			
-			var GENES = originalItem.GENES
+#			var GENES = originalItem.GENES
 			
-			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
+			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed);
 			
 			newItem.fatherId = originalItem.fatherId
 			newItem.motherId = originalItem.motherId
