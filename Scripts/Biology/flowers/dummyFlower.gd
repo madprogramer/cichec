@@ -265,7 +265,9 @@ func set_seed(originalItem):
 	GENES["seeds"] = phenoSeeds();
 	GENES["polens"] = phenoPolens();
 	
-	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
+	originalItem.dummySeed.GENES = GENES
+	
+	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed);
 	newSeed.fatherId = fatherId
 	newSeed.motherId = motherId
 

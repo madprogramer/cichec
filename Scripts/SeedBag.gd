@@ -13,11 +13,7 @@ var itemDictionary = {
 		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
 		"itemValue" : -1,
 		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-		"GENES" : {
-			"size": 0,
-			"color": [0,0,0,0],
-			"seeds": 0,
-		},
+		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/pre.gd"),
 		"seedbag" : true
 	},
 	1: {
@@ -25,11 +21,7 @@ var itemDictionary = {
 		"itemIcon" : preload("res://Assets/Seeds/SunlightSeed/toolbar.png"),
 		"itemValue" : -1,
 		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd"),
-		"GENES" : {
-			"size": 0,
-			"color": [0,0,0,0],
-			"seeds": 0,
-		},
+		"dummySeed" : preload("res://Scripts/Biology/seeds/SunlightSeed/pre.gd"),
 		"seedbag" : true
 	},
 	2: {
@@ -37,11 +29,7 @@ var itemDictionary = {
 		"itemValue": -1,
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
 		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
-		"GENES" : {
-			"size": 0,
-			"color": [0,0,0,0],
-			"seeds": 0,
-		},
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
 		"seedbag" : true
 	}
 };
@@ -57,8 +45,8 @@ func _ready():
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
 		var itemSeed = itemDictionary[item]._seed
-		var itemGENES = itemDictionary[item].GENES
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemGENES));
+		var itemDummySeed = itemDictionary[item].dummySeed.new()
+		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
@@ -128,9 +116,9 @@ func add_seed(originalItem):
 			var itemSeed = originalItem.seedClass
 #			print (itemSeed)
 			
-			var GENES = originalItem.GENES
+#			var GENES = originalItem.GENES
 			
-			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
+			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed);
 			
 			newItem.fatherId = originalItem.fatherId
 			newItem.motherId = originalItem.motherId

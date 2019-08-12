@@ -485,7 +485,6 @@ tile_data = PoolIntArray( 0, 32, 0, 1, 32, 0, 2, 32, 0, 3, 32, 0, 4, 32, 0, 5, 3
 script = ExtResource( 11 )
 
 [node name="Sprinkler" parent="YSort" instance=ExtResource( 12 )]
-visible = false
 position = Vector2( 19.4052, 13.6077 )
 
 [node name="ExitDoor" parent="YSort" instance=ExtResource( 13 )]

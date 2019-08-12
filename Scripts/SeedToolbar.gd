@@ -21,7 +21,7 @@ func set_itemlist(items):
 	for i in range(items.size()):
 		var item = items[i]
 		if item != null:
-			itemList.append(ItemClass.new(item.name, item.texture, null, -1, item.seedClass, item.GENES))
+			itemList.append(ItemClass.new(item.name, item.texture, null, -1, item.seedClass, item.dummySeed))
 			itemList[i].set_count(item.count)
 			itemList[i].fatherId = item.fatherId
 			itemList[i].motherId = item.motherId

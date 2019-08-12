@@ -4,7 +4,7 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var picked = false;
-var seedClass = dummySeed.new();
+var seedClass = null;
 var _seed = null
 var count = 1
 var label = null
@@ -12,12 +12,14 @@ var labelpos = Vector2()
 var GENES = {}
 var fatherId = 0
 var motherId = 0
+var dummySeed
 
 #Position in World
 #var pIW = Vector2()
 
-func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, GENES):
-	self.GENES = GENES
+func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed):
+	self.dummySeed = dummySeed
+	self.GENES = dummySeed.GENES
 	# print(seedClass)
 	if seedClass == null:
 		self.seedClass = null;
