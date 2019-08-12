@@ -20,6 +20,8 @@ var pos = Vector2(0,0)
 #Identifier End
 
 #Genes Begin
+
+#Inherited Genes
 var matGenes = initGenes({"size": 0,
 	"color": [0,0,0],
 	"seeds": 0,
@@ -28,6 +30,19 @@ var patGenes = initGenes({"size": 0,
 	"color": [0,0,0],
 	"seeds": 0,
 	"polens": 0})
+	
+#Full Phenotype of Ancestor
+var phenoGenesMat = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
+	
+var phenoGenesPat = initGenes({"size": 0,
+	"color": [0,0,0],
+	"seeds": 0,
+	"polens": 0})
+	
+#Own Phenotype	
 var phenoGenes = initGenes({"size": 0,
 	"color": [0,0,0],
 	"seeds": 0,
@@ -68,12 +83,18 @@ func isDead():
 	return dead
 
 func set_dead():
-	print("dead")
+	#print("dead")
 	dead = true
 	_on_flower_death()
 #	sprite.visible = false
 #	deadsprite.offset = sprite.offset
 #	deadsprite.visible = true
+func _on_flower_death():
+	#print("really dead")
+	sprite.visible = false
+	pollinatedsprite.visible = false
+	deadsprite.visible = true
+	pass
 	
 func set_sprite(sprite):
 	self.sprite = sprite
@@ -217,13 +238,6 @@ func phenoPolens():
 
 #Phenotype computations end
 
-func _on_flower_death():
-	print("really dead")
-	sprite.visible = false
-	pollinatedsprite.visible = false
-	deadsprite.visible = true
-	pass
-	
 func pickup():
 	sprite.visible = false
 	pollinatedsprite.visible = false
@@ -250,7 +264,6 @@ func set_seed(originalItem):
 	GENES["color"] = phenoColor();
 	GENES["seeds"] = phenoSeeds();
 	GENES["polens"] = phenoPolens();
-	
 	
 	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, GENES);
 	newSeed.fatherId = fatherId
