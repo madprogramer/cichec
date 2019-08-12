@@ -323,7 +323,19 @@ var character_textures = {
 	"Alpamish" : preload("res://Assets/Characters/Alpamish/Alpamish13x11.png")
 }
 
+var flag = true
+
+func stop_changing_dialogue_text():
+	flag = false
+	
+func continue_changing_dialogue_text():
+	flag = true
+
 func change_dialogue_text(t):
+	stop_changing_dialogue_text()
+	yield(get_tree(), "idle_frame")
+	continue_changing_dialogue_text()
+	
 	dialoguething.frame = 1
 #	print(t)
 	dialoguename.text = t[0].name
@@ -331,13 +343,16 @@ func change_dialogue_text(t):
 	
 	dialoguetext.text = ""
 	for i in range(t[0].text.length()):
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
+		if flag:
+			yield(get_tree(), "idle_frame")
+			yield(get_tree(), "idle_frame")
 		dialoguetext.text = dialoguetext.text.insert(i, String(t[0].text[i]) )
 		print(t[0].text[i])
 		print(dialoguetext.text)
 
 	dialoguething.frame = 0
+	
+	flag = false
 	
 var dialogue_is_playing = false
 
