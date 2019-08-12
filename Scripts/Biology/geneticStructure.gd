@@ -26,7 +26,7 @@ func getColor():
 	return GENES["color"]
 func getSeeds():
 	return GENES["seeds"]
-func getPolens(x):
+func getPolens():
 	return GENES["polens"]
 	
 func isShort():

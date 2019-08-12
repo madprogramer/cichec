@@ -17,14 +17,18 @@ var dummySeed
 #Position in World
 #var pIW = Vector2()
 
-func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed):
+func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, count):
+#func _init(itemName, itemTexture, itemSlot, itemValue, dummySeed, count):
 	self.dummySeed = dummySeed
 	self.GENES = dummySeed.GENES
+	self.count = count
 	# print(seedClass)
+	
 	if seedClass == null:
 		self.seedClass = null;
 	else:
 		self.seedClass = seedClass
+		
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;

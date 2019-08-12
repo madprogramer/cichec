@@ -258,6 +258,8 @@ func set_seed(originalItem):
 	
 	var GENES = originalItem.GENES
 	
+	var itemCount = originalItem.count
+	
 	# themadprogramer™: No u
 	#Generate GENES HERE
 	GENES["size"] = phenoSize();
@@ -267,7 +269,7 @@ func set_seed(originalItem):
 	
 	originalItem.dummySeed.GENES = GENES
 	
-	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed);
+	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed, itemCount);
 	newSeed.fatherId = fatherId
 	newSeed.motherId = motherId
 

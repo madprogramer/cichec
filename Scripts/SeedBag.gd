@@ -52,6 +52,7 @@ var itemDictionary = {
 		"itemName" : "RainbowSeed",
 		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
 		"itemValue" : -1,
+		"count" : 3,
 		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
 		"GENES" : {
 			"size": 0,
@@ -59,7 +60,7 @@ var itemDictionary = {
 			"seeds": 0,
 			"polens": 0
 		},
-		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/pre.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainblue.gd"),
 		"seedbag" : true
 	},
 	
@@ -77,8 +78,10 @@ func _ready():
 		var itemValue = itemDictionary[item].itemValue;
 		var itemSeed = itemDictionary[item]._seed
 		var itemDummySeed = itemDictionary[item].dummySeed.new()
+		var itemCount = itemDictionary[item].count
 		itemDummySeed.set_seedClass()
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
+		#itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
+		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed, itemCount));
 		itemList[itemList.size()-1].set_count(3)
 	
 	for i in range(16):
@@ -146,12 +149,12 @@ func add_seed(originalItem):
 			
 			var itemValue = -1
 			
-			var itemSeed = originalItem.seedClass
+			var itemSeed = originalItem.dummySeed.seedClass
 #			print (itemSeed)
 			
 #			var GENES = originalItem.GENES
 			
-			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed);
+			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed, originalItem.count);
 			
 			newItem.fatherId = originalItem.fatherId
 			newItem.motherId = originalItem.motherId

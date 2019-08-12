@@ -493,11 +493,14 @@ func _on_Player_water():
 	pass
 
 func sow(pos, item):
+	print("item:")
+
 	var _seed = item.dummySeed.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
 		(pos.y) * tilemap.cell_size.y),
 		item.GENES
 	)
+#	var _seed = item.dummySeed.seedClass
 	
 #	var class1 = item.seedClass
 #	var class2 = item.dummySeed
@@ -523,7 +526,7 @@ func sow(pos, item):
 #	print(pos)
 	_seed.flower.pos = pos
 	
-	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.dummySeed)
+	var newItem = player.hud.seedbag.ItemClass.new(item.itemName, item.itemIcon, item.itemSlot, -1, item.seedClass, item.dummySeed, item.count)
 	
 	newItem.fatherId = item.fatherId
 	newItem.motherId = item.motherId
@@ -533,6 +536,8 @@ func sow(pos, item):
 		#"cell": pos,
 		"originalItem" : newItem
 	}
+	var x = 0
+	x/0
 
 func _on_Player_sow(item):
 	var pos = get_mouse_cell()
@@ -555,6 +560,7 @@ func _on_Player_sow(item):
 		player.decrease(player.get_current_item())
 		sow(pos, item)
 	pass
+
 	
 
 func _pick_seed_Routine(pos, force = false):
