@@ -372,7 +372,30 @@ func plow(pos):
 			(pos.y) * tilemap.cell_size.y + 6),
 		4,
 		0)
+
+func _plow_Routine(pos):
+	spawn_animation(Vector2(
+	(pos.x) * tilemap.cell_size.x + 6,
+	(pos.y) * tilemap.cell_size.y + 6),
+	hoeplowanimation)
+#		animationcontainer.connect("animationFinished", self, "plow", [pos])
+	var animation = animationcontainer.get_node(
+	str(Vector2(
+		(pos.x) * tilemap.cell_size.x + 6,
+		(pos.y) * tilemap.cell_size.y + 6)))
+#		print(animation)
+	animation.connect("animation_finished", self, "plow", [pos])
+
+func removeCrop(pos, debugMode = true):
+	if debugMode:
+		print("PRINTING")
+		print(seeds[pos.x][pos.y]._seed.flower.id)
+		_pick_seed_Routine(pos, true)
+	else:
+		pass 
+		
 	
+
 func _on_Player_plow():
 	var pos = get_mouse_cell()
 	
@@ -386,18 +409,20 @@ func _on_Player_plow():
 	
 #	print(dirtDictionary["id"][type].itemName)
 	
+	#Plow normal soil
 	if dirtDictionary["id"][type].itemName == "Normal":
-		spawn_animation(Vector2(
-			(pos.x) * tilemap.cell_size.x + 6,
-			(pos.y) * tilemap.cell_size.y + 6),
-			hoeplowanimation)
-#		animationcontainer.connect("animationFinished", self, "plow", [pos])
-		var animation = animationcontainer.get_node(
-			str(Vector2(
-				(pos.x) * tilemap.cell_size.x + 6,
-				(pos.y) * tilemap.cell_size.y + 6)))
-#		print(animation)
-		animation.connect("animation_finished", self, "plow", [pos])
+		_plow_Routine(pos)
+	
+	#Plow to remove crops
+	elif dirtDictionary["id"][type].itemName == "Sowed":
+		_plow_Routine(pos)
+		removeCrop(pos)
+	
+	#Plow to remove watered crops
+	elif dirtDictionary["id"][type].itemName == "Sowed_Watered":
+		_plow_Routine(pos)
+		removeCrop(pos)
+		
 	pass
 	
 func water(pos):
@@ -522,13 +547,8 @@ func _on_Player_sow(item):
 		sow(pos, item)
 	pass
 	
-	
-func _on_Player_pick_seed():
-	var pos = get_mouse_cell()
-	
-	if cursor_outside_of_window():
-		return
-	
+
+func _pick_seed_Routine(pos, force = false):
 	var type = tilemap.get_cellv(pos)
 	
 	if type == -1:
@@ -565,7 +585,7 @@ func _on_Player_pick_seed():
 		var _seed = item._seed
 		var flower = _seed.flower
 		
-		if flower.isDead():
+		if flower.isDead() or flower.isPolinated():
 			flower.pickup()
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
 			player.add_seed(flower.newSeed)
@@ -576,6 +596,33 @@ func _on_Player_pick_seed():
 				flower.harvest()
 				seeds[pos.x][pos.y] = null
 			return
+	elif force:
+		var item = seeds[pos.x][pos.y]
+		if item == null:
+			return
+		print(item._seed.id)
+		
+		var _seed = item._seed
+		var flower = _seed.flower
+		
+		flower.pickup()
+		tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
+		player.add_seed(flower.newSeed)
+		if flower.isDead():
+			flower.pickup()
+			seeds[pos.x][pos.y] = null
+		else:
+			flower.harvest()
+			seeds[pos.x][pos.y] = null
+		return
+	
+func _on_Player_pick_seed():
+	var pos = get_mouse_cell()
+	
+	if cursor_outside_of_window():
+		return
+	_pick_seed_Routine(pos)
+	
 
 func _on_HoePlowAnimation_animation_finished():
 	pass # Replace with function body.
