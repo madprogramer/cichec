@@ -54,17 +54,7 @@ var itemDictionary = {
 		"itemValue" : -1,
 		"count" : 3,
 		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-<<<<<<< HEAD
 		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainblue.gd"),
-=======
-		"GENES" : {
-			"size": 0,
-			"color": [0,0,0],
-			"seeds": 0,
-			"polens": 0
-		},
-		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
->>>>>>> e16117a0887b2b39fe4564c362020c319faacd1b
 		"seedbag" : true
 	},
 	2: {

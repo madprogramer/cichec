@@ -154,7 +154,10 @@ func getPolinated(polenData):
 	#use polenData to generate seeds
 	polinated = true
 	
-#	print(newSeed)
+	print(newSeed)
+	
+#	var x = 0
+#	x = x / x
 	
 	newSeed.GENES = polenGenes
 	newSeed.fatherId = polenData[3][0]
