@@ -21,7 +21,8 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 #func _init(itemName, itemTexture, itemSlot, itemValue, dummySeed, count):
 	self.dummySeed = dummySeed
 	self.GENES = dummySeed.GENES
-	self.count = count
+#	print(dummySeed.GENES)
+#	print(self.GENES)
 	# print(seedClass)
 	
 	if seedClass == null:

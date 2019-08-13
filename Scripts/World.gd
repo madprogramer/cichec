@@ -498,8 +498,11 @@ func sow(pos, item):
 	var _seed = item.dummySeed.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
 		(pos.y) * tilemap.cell_size.y),
-		item.GENES
+		item.dummySeed.GENES
 	)
+	
+#	var x = 0
+#	x = x / x
 #	var _seed = item.dummySeed.seedClass
 	
 #	var class1 = item.seedClass
@@ -536,8 +539,6 @@ func sow(pos, item):
 		#"cell": pos,
 		"originalItem" : newItem
 	}
-	var x = 0
-	x/0
 
 func _on_Player_sow(item):
 	var pos = get_mouse_cell()

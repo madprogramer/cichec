@@ -274,6 +274,7 @@ func set_seed(originalItem):
 	newSeed.motherId = motherId
 
 func set_genes(GENES):
+#	print(GENES)
 	initGenes(GENES)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
