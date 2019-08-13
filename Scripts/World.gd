@@ -258,6 +258,9 @@ func pass_day():
 			#Age Up
 			elif phase == 2:
 				print("Todo: Add waterseeker trigerred sand tile to earth updates here");
+				if _flower.id == 3:
+					_flower.cultivate()
+					
 				
 			#Phase 3
 			#Age Up
