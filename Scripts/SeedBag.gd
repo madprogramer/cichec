@@ -85,6 +85,15 @@ var itemDictionary = {
 		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
 		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainred.gd"),
 		"seedbag" : true
+	},
+	3: {
+		"itemName" : "WaterseekerSeed",
+		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 3,
+		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
+		"seedbag" : true
 	}
 }
 

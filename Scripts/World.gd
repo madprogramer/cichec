@@ -67,6 +67,11 @@ onready var dirtList = [
 		"id" : 40,
 		"itemName" : "Sprinkler",
 		"itemIcon" : tilemap.tile_set.tile_get_texture(40)
+	},
+	{
+		"id" : 41,
+		"itemName" : "Desert",
+		"itemIcon" : tilemap.tile_set.tile_get_texture(41)
 	}
 ]
 
@@ -134,8 +139,8 @@ func _ready():
 		seeds.push_back(seedsRow)
 	"""
 	
-	for i in range(start_tile_size):
-		for j in range(start_tile_size):
+	for i in range(start_tile_size + 1):
+		for j in range(start_tile_size + 1):
 			seeds[Vector2(i,j)] = null
 	
 	for dirt in dirtList:
@@ -193,8 +198,9 @@ func pass_day():
 	#polenMap[speciesId][coordinate(X,Y)]
 	
 	#for i in range(seeds.size()):	for j in range(seeds[i].size()):
-	for i in range(start_tile_size):	for j in range(start_tile_size):
+	for i in range(start_tile_size + 1):	for j in range(start_tile_size + 1):
 		var item = seeds[Vector2(i,j)]
+		
 		if item == null:
 			continue
 		
@@ -211,6 +217,7 @@ func pass_day():
 			#Age Up
 			#Ignore Ded
 			if phase == 0:
+				print(Vector2(i, j), _flower.id)
 				var _polen = _flower.try_polinate()
 				#print("STANDO POWAH")
 				if _polen.size() > 0:
@@ -259,7 +266,7 @@ func pass_day():
 			elif phase == 2:
 				#print("Todo: Add waterseeker trigerred sand tile to earth updates here");
 				if _flower.id == 3:
-					_flower.cultivate()
+					cultivate_main(Vector2(i, j))
 					
 				
 			#Phase 3
@@ -301,6 +308,30 @@ func pass_day():
 	get_tree().call_group("Sprinklers", "activate")
 
 signal tile_hydrated
+
+func cultivate(pos):
+	print("trying to cultivate: ", pos)
+	tilemap.set_cellv(pos, dirtDictionary["name"]["Normal"].id)
+	emit_signal("tile_hydrated")
+
+func cultivate_main(pos):
+	print("cultivate_main: ", pos)
+	var times = randi()% 4
+	for i in times :
+		var xr = randi()%4 - 2
+		var yr = randi()%4 - 2
+		
+		var targetpos = pos + Vector2(xr, yr)
+		
+		var type = tilemap.get_cellv(targetpos)
+		
+		if type == -1:
+			continue
+		
+		if dirtDictionary["id"][type].itemName == "Desert":
+			cultivate(targetpos)
+	
+
 
 func _input(event):
 	if event is InputEventKey:
@@ -500,7 +531,7 @@ func _on_Player_water():
 	pass
 
 func sow(pos, item):
-	print("item:")
+	print("itempos:", pos)
 
 	var _seed = item.dummySeed.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
