@@ -156,7 +156,9 @@ func getPolinated(polenData):
 	
 #	print(newSeed)
 	
+	#newSeed.GENES = polenGenes
 	newSeed.GENES = polenGenes
+	
 	newSeed.fatherId = polenData[3][0]
 	newSeed.motherId = polenData[3][1]
 #	print("newSeed's parents: ", polenData[3][0], " ", polenData[3][1])
