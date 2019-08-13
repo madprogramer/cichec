@@ -70,24 +70,6 @@ const itemImages = [
 var itemDictionary = {
 	0: {
 		"itemName" : "WaterseekerSeed",
-		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
-		"itemValue" : -1,
-		"count" : 3,
-		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainblue.gd"),
-		"seedbag" : true
-	},
-	2: {
-		"itemName" : "RainbowSeed",
-		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
-		"itemValue" : -1,
-		"count" : 3,
-		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainred.gd"),
-		"seedbag" : true
-	},
-	3: {
-		"itemName" : "WaterseekerSeed",
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
 		"itemValue" : -1,
 		"count" : 3,
@@ -160,11 +142,26 @@ func _gui_input(event):
 			clickedSlot.item = null
 	pass
 	
+const DIFF = 0.05
+	
+func similar(arr1, arr2):
+	if arr1.size() != arr2.size():
+		print("I CAN'T DO THAT, THAT IS ILLEGAL")
+		return false
+	
+	for i in range(arr1):
+		var diff = abs(arr1[i] - arr2[i])
+		if diff > DIFF:
+			return false
+
+	return true
+	
 func add_seed(originalItem):
 	for i in range(16):
 		if slotList[i].item != null:
 			if slotList[i].item.itemName == originalItem.itemName:
 				if (slotList[i].item.fatherId == originalItem.fatherId and slotList[i].item.motherId == originalItem.motherId) or (slotList[i].item.fatherId == originalItem.motherId and slotList[i].item.motherId == originalItem.fatherId):
+					if similar(slotList[i].item.dummySeed.getColor(), originalItem.dummySeed.getColor()):
 						slotList[i].item.set_count(slotList[i].item.count + originalItem.count)
 						print("adding to slot ", i)
 						print("seed count on this slot:", slotList[i].item.count)

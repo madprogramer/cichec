@@ -1,6 +1,7 @@
 extends Node2D
 
-const start_tile_size = 6
+const normal_tile_size = 6
+const start_tile_size = 20
 
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
@@ -153,6 +154,10 @@ func _ready():
 	
 	for i in range(0, start_tile_size):
 		for j in range(0, start_tile_size):
+			tilemap.set_cell(j, i, dirtDictionary["name"]["Desert"].id)
+
+	for i in range(0, normal_tile_size):
+		for j in range(0, normal_tile_size):
 			tilemap.set_cell(j, i, 35 + randi() % 5)
 			
 	dialogueplayer.connect("started", player.hud, "dialogue_started")
