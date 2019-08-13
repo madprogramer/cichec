@@ -60,9 +60,10 @@ func putItem():
 	picked = false;
 	
 func spawn(pos):
-	var newSprinkler = preload("res://Scenes/Entities/Sprinkler.tscn").instance()
+	var newSprinkler = load("res://Scenes/Entities/Sprinkler.tscn").instance()
 	var size = newSprinkler.get_node("Position2D").position
 	pos -= size
 	print(pos)
 	newSprinkler.global_position = pos
-	get_tree().current_scene.get_node("YSort").add_child(newSprinkler)
+#	get_tree().current_scene.get_node("YSort").add_child(newSprinkler)
+	return newSprinkler

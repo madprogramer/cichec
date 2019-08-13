@@ -518,6 +518,9 @@ margin_top = 27.3557
 margin_right = -11.5903
 margin_bottom = 40.3557
 
+[node name="Sprinkler2" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 55.8343, 29.0045 )
+
 [node name="AnimationContainer" type="Node2D" parent="."]
 script = ExtResource( 31 )
 
@@ -535,3 +538,4 @@ format = 1
 [connection signal="water" from="YSort/Player" to="." method="_on_Player_water"]
 [connection signal="animation_finished" from="YSort/WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
 [connection signal="animation_finished" from="YSort/HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
+[connection signal="sprinkler_water" from="YSort/Sprinkler2" to="." method="_on_Sprinkler2_sprinkler_water"]

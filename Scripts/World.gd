@@ -675,6 +675,15 @@ func _on_Player_spawn_sprinkler():
 	var pos = get_mouse_cell()
 	if dirtDictionary["id"][tilemap.get_cellv(pos)].itemName == "Normal":
 		tilemap.set_cellv(pos, dirtDictionary["name"]["Sprinkler"].id)
-		player.get_current_item().spawn(Vector2(
+		var sprinkler = player.get_current_item().spawn(Vector2(
 			(pos.x + 0.5) * tilemap.cell_size.x,
 			(pos.y + 0.5) * tilemap.cell_size.y))
+#		print(sprinkler)
+		sprinkler.connect("sprinkler_water", self, "_on_Sprinkler_sprinkler_water")
+		get_node("YSort").add_child(sprinkler)
+#		print("sprinkler.global_position: ", sprinkler.global_position)
+
+
+func _on_Sprinkler2_sprinkler_water(pos):
+	_on_Sprinkler_sprinkler_water(pos)
+	pass # Replace with function body.
