@@ -501,8 +501,11 @@ func sow(pos, item):
 	var _seed = item.dummySeed.seedClass.new(Vector2(
 		(pos.x + 0.5) * tilemap.cell_size.x,
 		(pos.y) * tilemap.cell_size.y),
-		item.GENES
+		item.dummySeed.GENES
 	)
+	
+#	var x = 0
+#	x = x / x
 #	var _seed = item.dummySeed.seedClass
 	
 #	var class1 = item.seedClass

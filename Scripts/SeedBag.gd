@@ -47,6 +47,7 @@ const itemImages = [
 #	}
 #};
 
+
 #var itemDictionary = {
 #	0: {
 #		"itemName" : "WaterseekerSeed",
@@ -66,6 +67,28 @@ const itemImages = [
 #
 #}
 
+var itemDictionary = {
+	0: {
+		"itemName" : "WaterseekerSeed",
+		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 3,
+		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainblue.gd"),
+		"seedbag" : true
+	},
+	2: {
+		"itemName" : "RainbowSeed",
+		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 3,
+		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/rainred.gd"),
+		"seedbag" : true
+	}
+}
+
+
 var slotList = Array();
 var itemList = Array();
 
@@ -79,10 +102,10 @@ func _ready():
 		var itemSeed = itemDictionary[item]._seed
 		var itemDummySeed = itemDictionary[item].dummySeed.new()
 		var itemCount = itemDictionary[item].count
+#		print(itemDummySeed.getColor())  works here
 		itemDummySeed.set_seedClass()
 		#itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
 		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed, itemCount));
-		itemList[itemList.size()-1].set_count(3)
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);

@@ -154,7 +154,10 @@ func getPolinated(polenData):
 	#use polenData to generate seeds
 	polinated = true
 	
-#	print(newSeed)
+	print(newSeed)
+	
+#	var x = 0
+#	x = x / x
 	
 	#newSeed.GENES = polenGenes
 	newSeed.GENES = polenGenes
@@ -276,6 +279,7 @@ func set_seed(originalItem):
 	newSeed.motherId = motherId
 
 func set_genes(GENES):
+#	print(GENES)
 	initGenes(GENES)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
