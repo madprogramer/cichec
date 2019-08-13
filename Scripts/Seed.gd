@@ -3,6 +3,7 @@ extends TextureRect
 var itemIcon;
 var itemName;
 var itemSlot;
+var itemClass;
 var picked = false;
 var seedClass = null;
 var _seed = null

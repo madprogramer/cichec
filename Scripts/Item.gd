@@ -4,6 +4,7 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var picked = false;
+var itemClass;
 
 func _init(itemName, itemTexture, itemSlot, itemValue):
 	name = itemName;

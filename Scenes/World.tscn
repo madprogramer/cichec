@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Dirt/Tileset1-scaled.png" type="Texture" id=2]
@@ -29,8 +29,9 @@
 [ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=28]
 [ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=29]
-[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=30]
-[ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=31]
+[ext_resource path="res://Scenes/Entities/Chest.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=31]
+[ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=32]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -462,7 +463,7 @@ animations = [ {
 
 [sub_resource type="TileSet" id=4]
 0/name = "Highlight8x8.png 0"
-0/texture = ExtResource( 31 )
+0/texture = ExtResource( 32 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 12, 12 )
@@ -485,7 +486,6 @@ tile_data = PoolIntArray( 0, 32, 0, 1, 32, 0, 2, 32, 0, 3, 32, 0, 4, 32, 0, 5, 3
 script = ExtResource( 11 )
 
 [node name="Sprinkler" parent="YSort" instance=ExtResource( 12 )]
-visible = false
 position = Vector2( 19.4052, 13.6077 )
 
 [node name="ExitDoor" parent="YSort" instance=ExtResource( 13 )]
@@ -495,7 +495,7 @@ position = Vector2( 31.2796, -21.8513 )
 position = Vector2( 32.2648, 32 )
 
 [node name="PlayerCamera" type="Camera2D" parent="YSort/Player"]
-position = Vector2( -4, -7.91221 )
+position = Vector2( -4, -8 )
 offset = Vector2( 4, 8 )
 current = true
 
@@ -512,8 +512,10 @@ speed_scale = 2.0
 [node name="DirtmarkContainer" type="Node2D" parent="YSort"]
 script = ExtResource( 29 )
 
+[node name="Chest" parent="YSort" instance=ExtResource( 30 )]
+
 [node name="AnimationContainer" type="Node2D" parent="."]
-script = ExtResource( 30 )
+script = ExtResource( 31 )
 
 [node name="Highlight" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
