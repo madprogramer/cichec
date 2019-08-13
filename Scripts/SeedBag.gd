@@ -47,24 +47,24 @@ const itemImages = [
 #	}
 #};
 
-var itemDictionary = {
-	0: {
-		"itemName" : "WaterseekerSeed",
-		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
-		"itemValue" : -1,
-		"count" : 3,
-		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-		"GENES" : {
-			"size": 0,
-			"color": [0,0,0],
-			"seeds": 0,
-			"polens": 0
-		},
-		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
-		"seedbag" : true
-	},
-	
-}
+#var itemDictionary = {
+#	0: {
+#		"itemName" : "WaterseekerSeed",
+#		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
+#		"itemValue" : -1,
+#		"count" : 3,
+#		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+#		"GENES" : {
+#			"size": 0,
+#			"color": [0,0,0],
+#			"seeds": 0,
+#			"polens": 0
+#		},
+#		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
+#		"seedbag" : true
+#	},
+#
+#}
 
 var slotList = Array();
 var itemList = Array();
