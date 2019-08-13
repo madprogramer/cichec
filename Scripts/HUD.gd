@@ -203,18 +203,40 @@ func _input(event):
 					quest.hide()
 				pass
 		
-		
+
+var labelArray = []
+
 func set_quest(var labels = ["TEST1", "TEST2", "TEST3"], var progress = 0):
+	for i in range(labelArray.size()):
+		var temp = labelArray[i]
+		quest.remove_child(temp)
+		temp.queue_free()
 	
-	for i in range(labels.size()):
-		quest.remove_child(quest.get_node(str(i)))
+	labelArray = []
+	
+	for i in range(labels.size()):		
 		var y = Label.new()
 		y.name = str(i)
 		y.rect_position = Vector2(4, 6 * (i + 1) + i - 1)
 		y.text = labels[i]
 		quest.add_child(y)
+		labelArray.append(y)
 	
 	progressbar.set_value(progress)
+
+var progress_target = 1
+var progress = 0
+
+signal quest_finished
+
+func progress():
+	progress += 1
+	if progress == progress_target:
+		emit_signal("quest_finished")
+	if progress > progress_target:
+		progress = progress_target
+	progressbar.set_value(100 * progress / progress_target)
+	
 
 # makes hud with name visible, makes others invisible
 

@@ -513,6 +513,10 @@ speed_scale = 2.0
 script = ExtResource( 29 )
 
 [node name="Chest" parent="YSort" instance=ExtResource( 30 )]
+margin_left = -27.5903
+margin_top = 27.3557
+margin_right = -11.5903
+margin_bottom = 40.3557
 
 [node name="AnimationContainer" type="Node2D" parent="."]
 script = ExtResource( 31 )

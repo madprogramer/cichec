@@ -55,7 +55,7 @@ func scan(pos, seeds):
 				y.text = labels[i]
 				x.add_child(y)
 			
-			x.popup(Rect2(0, 0, 64, 32))
+			x.popup(Rect2(0, 0, 64, 36))
 			
 			return
 	print("Couldn't find the scanned flower")

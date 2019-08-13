@@ -9,7 +9,8 @@ class_name sunlightFlower
 
 # Called when the node enters the scene tree for the first time.
 
-func _init(pos):
+func _init(pos, GENES):
+	set_genes(GENES)
 	id = 1;
 	randomize()
 	uniqueId = randi()

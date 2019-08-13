@@ -300,6 +300,8 @@ func pass_day():
 					
 	get_tree().call_group("Sprinklers", "activate")
 
+signal tile_hydrated
+
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ENTER:
@@ -309,6 +311,8 @@ func _input(event):
 
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
+		if event.pressed and event.scancode == KEY_R:
+			emit_signal("tile_hydrated")
 
 func cursor_outside_of_window():
 	#print("pos: ", get_viewport().get_mouse_position())
