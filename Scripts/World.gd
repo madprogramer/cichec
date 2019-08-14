@@ -194,7 +194,6 @@ func get_mouse_cell():
 func highlight_cursor():
 	var mouse_cell = get_mouse_cell()
 	highlight.set_cellv(mouse_cell, 0)
-	pass
 	
 func clear_highlight():
 	for i in range(-100, 100):
@@ -232,6 +231,19 @@ func pass_day():
 		if item == null:
 			continue
 		
+		var _seed = item._seed
+		var _flower = _seed.flower
+		
+		# 『STAND NAME: BOOST』『STAND USER: SUNLIGHT FLOWER』
+		if !_flower.isDead() and !_flower.isPolinated():
+			if _flower.id == 1:
+				boost_main(Vector2(i, j))
+	
+	for i in range(start_tile_size + 1):	for j in range(start_tile_size + 1):
+		var item = seeds[Vector2(i,j)]
+		
+		if item == null:
+			continue
 		for phase in range(5):
 #			print("phase: ", phase)
 			
@@ -293,8 +305,9 @@ func pass_day():
 			#Age Up
 			elif phase == 2:
 				#print("Todo: Add waterseeker trigerred sand tile to earth updates here");
-				if _flower.id == 3:
-					cultivate_main(Vector2(i, j))
+				if !_flower.isDead() and !_flower.isPolinated():
+					if _flower.id == 3:
+						cultivate_main(Vector2(i, j))
 					
 				
 			#Phase 3
@@ -334,6 +347,19 @@ func pass_day():
 				kill_plant(Vector2(j, i))
 					
 	get_tree().call_group("Sprinklers", "activate")
+
+func boost_main(pos):
+	for i in range(-1, 1 + 1):
+		for j in range(-1, 1 + 1):
+			var targetpos = pos + Vector2(i, j)
+			var targetitem = seeds[targetpos]
+			if targetitem == null:
+				continue
+			
+			var targetseed = targetitem._seed
+			var targetflower = targetseed.flower
+			
+			targetflower.boost()
 
 signal tile_hydrated
 

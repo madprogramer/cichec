@@ -63,10 +63,19 @@ var current_frame = 0
 var deadsprite = null
 var pollinatedsprite = null
 
+var boost_flag = false
+
+func boost():
+	boost_flag = true
+
 func age_up():
 	age = age + 1
 	if current_stage < stages.size() and age > stages[current_stage]:
 		stage_up()
+	
+	if boost_flag:
+		boost_flag = false
+		age_up()
 		
 func stage_up():
 	current_stage = current_stage + 1
