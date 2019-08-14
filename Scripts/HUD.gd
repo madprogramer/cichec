@@ -152,12 +152,36 @@ func toolbar_show():
 		toolbar_visible = true
 		showing_toolbar = false
 	pass
+	
+func scroll_up():
+	if current_hud == "inventory":
+		if inventory.rect_position.y != 0:
+			inventory.rect_position.y += 16
+	elif current_hud == "seedbag":
+		if seedbag.rect_position.y != 0:
+			seedbag.rect_position.y += 16
+
+func scroll_down():
+	if current_hud == "inventory":
+		if inventory.rect_position.y != -64:
+			inventory.rect_position.y -= 16
+	elif current_hud == "seedbag":
+		if seedbag.rect_position.y != -64:
+			seedbag.rect_position.y -= 16
 
 func _input(event):
 	if dialogue_is_playing:
 		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		cursor.offset = Vector2(event.position.x, event.position.y);
+		
+		if event is InputEventMouseButton and event.is_pressed():
+			if event.button_index == BUTTON_WHEEL_UP:
+				scroll_up()
+
+			elif event.button_index == BUTTON_WHEEL_DOWN:
+				scroll_down()
+ 
 	
 	elif event is InputEventKey:
 		if event.pressed:
@@ -205,21 +229,17 @@ func _input(event):
 			
 			if current_hud == "inventory":
 				if event.scancode == KEY_DOWN:
-					if inventory.rect_position.y != -64:
-						inventory.rect_position.y -= 16
+					scroll_down()
 				
 				if event.scancode == KEY_UP:
-					if inventory.rect_position.y != 0:
-						inventory.rect_position.y += 16
+					scroll_up()
 			
 			if current_hud == "seedbag":
 				if event.scancode == KEY_DOWN:
-					if seedbag.rect_position.y != -64:
-						seedbag.rect_position.y -= 16
-				
+					scroll_down()
+					
 				if event.scancode == KEY_UP:
-					if seedbag.rect_position.y != 0:
-						seedbag.rect_position.y += 16
+					scroll_up()
 			
 			if event.scancode == KEY_ESCAPE:
 				show("toolbar")
