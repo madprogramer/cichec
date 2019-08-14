@@ -149,7 +149,7 @@ func similar(arr1, arr2):
 		print("I CAN'T DO THAT, THAT IS ILLEGAL")
 		return false
 	
-	for i in range(arr1):
+	for i in range(arr1.size()):
 		var diff = abs(arr1[i] - arr2[i])
 		if diff > DIFF:
 			return false
@@ -157,6 +157,9 @@ func similar(arr1, arr2):
 	return true
 	
 func add_seed(originalItem):
+	if originalItem.count == 0:
+		return -1
+	
 	for i in range(16):
 		if slotList[i].item != null:
 			if slotList[i].item.itemName == originalItem.itemName:

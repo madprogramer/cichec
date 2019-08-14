@@ -39,7 +39,7 @@ func _ready():
 		# important note: not ItemClass, it is itemClass [i at the start is lowercase]
 		itemList.append(itemClass.new(itemName, itemIcon, null, itemValue, itemClass));
 	
-	for i in range(16):
+	for i in range(32):
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);
 		add_child(slot);

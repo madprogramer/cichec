@@ -45,7 +45,7 @@ func ready():
 		itemDummySeed.set_seedClass()
 		#itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
 		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed, itemCount));
-		world.player.hud.seedbag.add_seed(itemList[itemList.size() - 1] )
+		world.player.add_seed(itemList[itemList.size() - 1] )
 
 func progress():
 	world.player.hud.progress()

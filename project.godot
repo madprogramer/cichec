@@ -87,14 +87,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Cichec"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Quests/Game.tscn"
 boot_splash/image="res://Assets/Misc/Inventory-background.png"
 config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
 
 [display]
 
 window/size/width=64
-window/size/height=64
+window/size/height=128
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

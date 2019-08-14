@@ -202,6 +202,27 @@ func _input(event):
 				else:
 					quest.hide()
 				pass
+			
+			if current_hud == "inventory":
+				if event.scancode == KEY_DOWN:
+					if inventory.rect_position.y != -64:
+						inventory.rect_position.y -= 16
+				
+				if event.scancode == KEY_UP:
+					if inventory.rect_position.y != 0:
+						inventory.rect_position.y += 16
+			
+			if current_hud == "seedbag":
+				if event.scancode == KEY_DOWN:
+					if seedbag.rect_position.y != -64:
+						seedbag.rect_position.y -= 16
+				
+				if event.scancode == KEY_UP:
+					if seedbag.rect_position.y != 0:
+						seedbag.rect_position.y += 16
+			
+			if event.scancode == KEY_ESCAPE:
+				show("toolbar")
 		
 
 var labelArray = []
@@ -264,6 +285,9 @@ func show(name):
 #		if hud_element != mentalhealth:
 		hud_element.visible = false
 	
+	seedbag.rect_position.y = 0
+	inventory.rect_position.y = 0
+	
 	if bagtoolbar_flag:
 		for i in range(bagtoolbar.slotList.size()):
 			if bagtoolbar.slotList[i]:
@@ -316,6 +340,8 @@ func show(name):
 		mentalhealth.visible = true
 	
 	current_hud = name
+	if current_hud == "seedtoolbar" or current_hud == "bagtoolbar" or current_hud == "toolbar":
+		change_highlight(current_slot[current_hud])
 
 #func _process(delta):
 #	show(current_hud)

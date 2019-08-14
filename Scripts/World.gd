@@ -210,7 +210,7 @@ func pass_day():
 			continue
 		
 		for phase in range(5):
-			print("phase: ", phase)
+#			print("phase: ", phase)
 			
 			#Selection
 			var _seed = item._seed
@@ -700,9 +700,9 @@ func _on_ExitDoor_body_shape_entered(body_id, body, body_shape, area_shape):
 
 
 func _on_Sprinkler_sprinkler_water(pos):
-	print("Sprinkler finished at ", pos)
+#	print("Sprinkler finished at ", pos)
 	var cellpos = tilemap.world_to_map(pos)
-	print("...and it's cell position: ", cellpos)
+#	print("...and it's cell position: ", cellpos)
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			water(Vector2(cellpos.x + i, cellpos.y + j))

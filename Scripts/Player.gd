@@ -168,6 +168,10 @@ func decrease(item):
 
 func add_seed(originalItem):
 	var i = hud.seedbag.add_seed(originalItem)
-	if i < 4:
+	if i != -1 and i < 4:
+#		var items = []
+#		for i in range(4):
+#			items.push_back(hud.seedbag.slotList[i].item)
+#		hud.seedtoolbar.set_toolbar(items)
 		hud.show("seedtoolbar")
 	print("i: ", i)
