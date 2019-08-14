@@ -80,3 +80,26 @@ func _gui_input(event):
 			clickedSlot.pickItem();
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 	pass
+
+func add_flower(originalItem):
+	for i in range(32):
+		if slotList[i].item == null:
+			print("ading to slot ", i)
+			var itemName = originalItem.name
+			print (itemName)
+			
+			var itemIcon = originalItem.texture
+			print (itemIcon)
+			
+			var itemValue = -1
+			
+			var itemClass = originalItem.itemClass
+			
+			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
+			
+			slotList[i].setItem(newItem)
+			
+#			var x = 0
+#			x = x / x
+			return i
+	return -1

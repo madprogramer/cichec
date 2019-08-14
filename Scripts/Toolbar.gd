@@ -51,7 +51,7 @@ func _ready():
 		var itemName = itemDictionary[item].itemName;
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
-		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue));
+		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, null));
 	
 	for i in range(4):
 		var slot = ItemSlotClass.new(i);

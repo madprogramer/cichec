@@ -14,7 +14,7 @@ var GENES = {}
 var fatherId = 0
 var motherId = 0
 var dummySeed
-
+var newFlower
 #Position in World
 #var pIW = Vector2()
 

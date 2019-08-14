@@ -75,7 +75,8 @@ var itemDictionary = {
 		"count" : 3,
 		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
 		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
-		"seedbag" : true
+		"seedbag" : true,
+		"newFlower" : preload("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
 	}
 }
 
@@ -93,10 +94,12 @@ func _ready():
 		var itemSeed = itemDictionary[item]._seed
 		var itemDummySeed = itemDictionary[item].dummySeed.new()
 		var itemCount = itemDictionary[item].count
+		var newFlower = itemDictionary[item].newFlower
 #		print(itemDummySeed.getColor())  works here
 		itemDummySeed.set_seedClass()
 		#itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
 		itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed, itemCount));
+		itemList[itemList.size() - 1].newFlower = newFlower.new()
 	
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);

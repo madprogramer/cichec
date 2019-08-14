@@ -172,3 +172,9 @@ func add_seed(originalItem):
 #		hud.seedtoolbar.set_toolbar(items)
 		hud.show("seedtoolbar")
 	print("i: ", i)
+
+func add_flower(flower):
+	var i = hud.inventory.add_flower(flower)
+	if i != -1 and i < 4:
+		hud.show("bagtoolbar")
+	print("i: ", i)

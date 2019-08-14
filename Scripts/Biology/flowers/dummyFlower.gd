@@ -68,10 +68,14 @@ var boost_flag = false
 func boost():
 	boost_flag = true
 
+var mature = false
+
 func age_up():
 	age = age + 1
 	if current_stage < stages.size() and age > stages[current_stage]:
 		stage_up()
+		if current_stage == 3:
+			mature = true
 	
 	if boost_flag:
 		boost_flag = false
@@ -252,13 +256,16 @@ func phenoPolens():
 
 #Phenotype computations end
 
+func isMature():
+	return mature
+
 func pickup():
 	sprite.visible = false
 	pollinatedsprite.visible = false
 	deadsprite.visible = false
-	queue_free()
+	return self
 	
-const ItemClass = preload("res://Scripts/Seed.gd");
+const SeedClass = preload("res://Scripts/Seed.gd");
 	
 # pilgrim™: Ugly solutions require modern problems.
 func set_seed(originalItem):
@@ -281,11 +288,25 @@ func set_seed(originalItem):
 	GENES["seeds"] = phenoSeeds();
 	GENES["polens"] = phenoPolens();
 	
+	# What does this do?
 	originalItem.dummySeed.GENES = GENES
 	
-	newSeed = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed, itemCount);
+	newSeed = SeedClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed, itemCount);
 	newSeed.fatherId = fatherId
 	newSeed.motherId = motherId
+	newSeed.newFlower = newFlower
+	
+const ItemClass = preload("res://Scripts/Item.gd")
+
+var newFlower
+
+func set_newFlower(originalItem):
+	var itemName = originalItem.itemName
+	var itemIcon = originalItem.itemIcon
+	var itemValue = -1
+	var itemClass = originalItem.itemClass
+	
+	newFlower = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
 
 func set_genes(GENES):
 #	print(GENES)

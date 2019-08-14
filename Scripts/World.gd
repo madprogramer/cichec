@@ -606,6 +606,7 @@ func sow(pos, item):
 	_seed.flower.motherId = item.motherId
 	
 	_seed.flower.set_seed(item)
+	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	
 	_seed.flower.sprite.name = str(seeds.size()) + "0"
 	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)
@@ -676,18 +677,18 @@ func _pick_seed_Routine(pos, force = false):
 		var _seed = item._seed
 		var flower = _seed.flower
 		
-		flower.pickup()
 		if dirtDictionary["id"][type].itemName == "Sowed":
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 		else:
 			tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
 
-		player.add_seed(flower.newSeed)
-		if flower.isDead():
-			flower.pickup()
+		if flower.isMature() and !flower.isDead() and !flower.isPolinated():
+			flower = flower.pickup()
+			player.add_flower(flower.newFlower)
 			seeds[pos] = null
 			
-		else:
+		elif flower.isDead() or flower.isPolinated():
+			player.add_seed(flower.newSeed)
 			flower.harvest()
 			seeds[pos] = null
 		return
@@ -701,19 +702,26 @@ func _pick_seed_Routine(pos, force = false):
 		var _seed = item._seed
 		var flower = _seed.flower
 		
-		if flower.isDead() or flower.isPolinated():
+		print(flower.isDead())
+		print(flower.isPolinated())
+		print(flower.isMature())
+		
+		if flower.isDead() or flower.isPolinated() or (!flower.isDead() and !flower.isPolinated() and flower.isMature()):
 			
 			if dirtDictionary["id"][type].itemName == "Sowed":
 				tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 			else:
 				tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed_Watered"].id)
 				
-			player.add_seed(flower.newSeed)
-			
-			if flower.isDead():
-				flower.pickup()
+			if flower.isMature() and !flower.isDead() and !flower.isPolinated():
+				print("WRYYYYYYYYYYYYYYY")
+				flower = flower.pickup()
+				player.add_flower(flower.newFlower)
 				seeds[pos] = null
-			else:
+				
+			elif flower.isDead() or flower.isPolinated():
+				print("WRY?")
+				player.add_seed(flower.newSeed)
 				flower.harvest()
 				seeds[pos] = null
 			return
