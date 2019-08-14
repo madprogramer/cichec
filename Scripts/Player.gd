@@ -108,14 +108,10 @@ var seed_names = [
 ]
 
 func use(item):
-#	print(item.name)
 	if !item:
 		if hud.current_hud == "seedtoolbar":
 			emit_signal("pick_seed")
 		return
-#	elif dirtDictionary["id"][tilemap.get_cellv(get_mouse_cell())].name == "Sowed" or dirtDictionary["id"][tilemap.get_cellv(get_mouse_cell())].name == "Sowed_Watered":
-#		if hud.current_hud == "seedtoolbar":
-#			if flowercontainer. emit_signal("pick_seed") 
 	
 #	print(item.name)
 	

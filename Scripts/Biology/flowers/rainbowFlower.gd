@@ -19,8 +19,6 @@ func _init(pos, GENES):
 	sprite.position = pos
 	
 	print(pos)
-	randomize()
-	setSize(randf())
 	if isShort():
 		sprite.set_texture(preload("res://Assets/Flowers/RainbowFlower-short.png"))
 	else:

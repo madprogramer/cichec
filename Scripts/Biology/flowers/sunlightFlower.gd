@@ -18,19 +18,25 @@ func _init(pos, GENES):
 	sprite = Sprite.new()
 	sprite.position = pos
 	print(pos)
-	sprite.set_texture(preload("res://Assets/Flowers/SunlightFlower.png"))
+	if isShort():
+		sprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-short.png"))
+	else:
+		sprite.set_texture(preload("res://Assets/Flowers/SunlightFlower.png"))
 	sprite.set_hframes(4)
 	
 	deadsprite = Sprite.new()
 	deadsprite.position = pos
-	deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-dead.png"))
+	if isShort():
+		deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-short-dead.png"))
+	else:
+		deadsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-dead.png"))
 	deadsprite.visible = false
 	
 	pollinatedsprite = Sprite.new()
 	pollinatedsprite.position = pos
-#	if isShort():
-#		pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-short-pollinated.png"))
-#	else:
-	pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-pollinated.png"))
+	if isShort():
+		pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-short-pollinated.png"))
+	else:
+		pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-pollinated.png"))
 	pollinatedsprite.visible = false
 	pollinatedsprite.set_self_modulate(sprite.get_self_modulate())
