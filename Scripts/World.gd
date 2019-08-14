@@ -163,8 +163,8 @@ func _ready():
 		seeds.push_back(seedsRow)
 	"""
 	
-	for i in range(start_tile_size + 1):
-		for j in range(start_tile_size + 1):
+	for i in range(-2, start_tile_size + 1):
+		for j in range(-2, start_tile_size + 1):
 			seeds[Vector2(i,j)] = null
 	
 	for dirt in dirtList:
