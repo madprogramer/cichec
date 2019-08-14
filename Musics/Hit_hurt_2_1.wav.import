@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hit_hurt_2_1.wav-0af43647f1f9b6580342414e89434696.sample"
+
+[deps]
+
+source_file="res://Musics/Hit_hurt_2_1.wav"
+dest_files=[ "res://.import/Hit_hurt_2_1.wav-0af43647f1f9b6580342414e89434696.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
