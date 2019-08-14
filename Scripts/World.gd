@@ -3,6 +3,8 @@ extends Node2D
 const normal_tile_size = 6
 const start_tile_size = 20
 
+onready var audioplayer = get_node("AudioStreamPlayer")
+
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
 
@@ -129,8 +131,29 @@ func is_normal(id):
 
 var seeds = {}
 
+var songs = [
+	load("res://Musics/ChokkaSong.wav"),
+	load("res://Musics/ChokkaSong3.wav"),
+	load("res://Musics/ChokkaSong4.wav")
+]
+
+var current_song = 0
+
+func next_song():
+	current_song += 1
+	if current_song == songs.size():
+		current_song = 0
+	
+	audioplayer.stream = songs[current_song]
+	audioplayer.play()
+
 func _ready():
 	randomize()
+	
+	current_song = randi() % songs.size()
+	audioplayer.stream = songs[current_song]
+	audioplayer.play()
+	
 	
 	"""
 	for i in range(start_tile_size):
@@ -349,6 +372,8 @@ func _input(event):
 			pass_day()
 		if event.pressed and event.scancode == KEY_R:
 			emit_signal("tile_hydrated")
+		if event.pressed and event.scancode == KEY_N:
+			next_song()
 
 func cursor_outside_of_window():
 	#print("pos: ", get_viewport().get_mouse_position())
@@ -722,4 +747,8 @@ func _on_Player_spawn_sprinkler():
 
 func _on_Sprinkler2_sprinkler_water(pos):
 	_on_Sprinkler_sprinkler_water(pos)
+	pass # Replace with function body.
+
+func _on_AudioStreamPlayer_finished():
+	next_song()
 	pass # Replace with function body.
