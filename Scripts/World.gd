@@ -20,6 +20,8 @@ onready var animationcontainer = get_node("AnimationContainer")
 onready var player = ysort.get_node("Player")
 onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
+onready var desertanimation = get_node("DesertAnimation")
+
 onready var dirtList = [
 	{
 		"id" : 35,
@@ -182,6 +184,14 @@ func _ready():
 	for i in range(0, normal_tile_size):
 		for j in range(0, normal_tile_size):
 			tilemap.set_cell(j, i, 35 + randi() % 5)
+			
+	for i in range(-2, start_tile_size + 1):
+		for j in range(-2, start_tile_size + 1):
+			if tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Desert":
+				if i % 2 == 0:
+					desertanimation.frame += 5
+				desertanimation.frame = (desertanimation.frame + j * 5) % 10
+				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), desertanimation, true)
 			
 	dialogueplayer.connect("started", player.hud, "dialogue_started")
 	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
@@ -366,6 +376,8 @@ signal tile_hydrated
 func cultivate(pos):
 	print("trying to cultivate: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Normal"].id)
+	pos = Vector2((pos.x + 0.5) * tilemap.cell_size.x, (pos.y + 0.5) * tilemap.cell_size.y)
+	animationcontainer.get_node(str(pos)).queue_free()
 	emit_signal("tile_hydrated")
 
 func cultivate_main(pos):
