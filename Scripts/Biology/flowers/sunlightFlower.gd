@@ -39,4 +39,22 @@ func _init(pos, GENES):
 	else:
 		pollinatedsprite.set_texture(preload("res://Assets/Flowers/SunlightFlower-pollinated.png"))
 	pollinatedsprite.visible = false
+	
+	for i in range(1000):
+		pass
+		
+	var color = getColor()
+	
+	var ColorManager = colors.new()
+	
+#	print("GENES: ", GENES)
+	setColor( ColorManager.RYB2RGB([color[0],color[1],color[2] ]) )
+		
+	var colors_array = color#ColorManager.RYB2RGB(color)
+		
+#	var colors_array = getColor()
+#	print("colors_array: ", colors_array)
+		
+	sprite.set_self_modulate(Color(colors_array[0], colors_array[1], colors_array[2]))
+	deadsprite.set_self_modulate(sprite.get_self_modulate())
 	pollinatedsprite.set_self_modulate(sprite.get_self_modulate())
