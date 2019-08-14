@@ -103,7 +103,8 @@ var seed_names = [
 	"DummySeed",
 	"SunlightSeed",
 	"WaterseekerSeed",
-	"RainbowSeed"
+	"RainbowSeed",
+	"HeadacheSeed"
 ]
 
 func use(item):

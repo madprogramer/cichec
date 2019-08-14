@@ -13,6 +13,15 @@ var itemDictionary = {
 		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd"),
 		"dummySeed" : preload("res://Scripts/Biology/seeds/SunlightSeed/pre.gd"),
 		"seedbag" : true
+	},
+	1: {
+		"itemName" : "HeadacheSeed",
+		"itemIcon" : preload("res://Assets/Seeds/HeadacheSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 3,
+		"_seed" : preload("res://Scripts/Biology/seeds/headacheSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/HeadacheSeed/pre.gd"),
+		"seedbag" : true
 	}
 }
 

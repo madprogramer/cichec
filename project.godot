@@ -40,6 +40,16 @@ _global_script_classes=[ {
 "path": "res://Scripts/Biology/geneticStructure.gd"
 }, {
 "base": "dummyflower",
+"class": "headacheFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/headacheFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "headacheSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/headacheSeed.gd"
+}, {
+"base": "dummyflower",
 "class": "rainbowFlower",
 "language": "GDScript",
 "path": "res://Scripts/Biology/flowers/rainbowFlower.gd"
@@ -76,6 +86,8 @@ _global_script_class_icons={
 "dummySeed": "",
 "dummyflower": "",
 "geneticStructure": "",
+"headacheFlower": "",
+"headacheSeed": "",
 "rainbowFlower": "",
 "rainbowSeed": "",
 "sunlightFlower": "",

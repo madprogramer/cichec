@@ -142,7 +142,7 @@ func _gui_input(event):
 			clickedSlot.item = null
 	pass
 	
-const DIFF = 0.05
+const DIFF = 0.25
 	
 func similar(arr1, arr2):
 	if arr1.size() != arr2.size():
