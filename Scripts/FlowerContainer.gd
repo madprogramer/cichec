@@ -18,6 +18,7 @@ func add_sprite(pos, sprite, type):
 	sprite1.set_frame(0)
 	sprite1.visible = sprite2.visible
 	add_child(spriteMatrix[pos.x][pos.y][type])
+	spriteMatrix[pos.x][pos.y][type].set_owner(self)
 	
 func get_sprite(pos, type):
 	return spriteMatrix[pos.x][pos.y][type]

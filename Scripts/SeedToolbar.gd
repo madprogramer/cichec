@@ -37,6 +37,7 @@ func set_toolbar(items):
 			var slot = ItemSlotClass.new(i)
 			slotList.append(slot)
 			add_child(slot)
+			slot.set_owner(self)
 			
 			if itemList[i] != null:
 				slotList[i].setItem(itemList[i])

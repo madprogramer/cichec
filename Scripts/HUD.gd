@@ -37,6 +37,7 @@ func set_cursor_shape(texture):
 		if cursor == null:
 			cursor = Sprite.new()
 			add_child(cursor)
+			cursor.set_owner(self)
 		cursor.set_texture(texture)
 
 var current_slot = {
@@ -261,6 +262,7 @@ func set_quest(var labels = ["TEST1", "TEST2", "TEST3"], var progress = 0):
 		y.rect_position = Vector2(4, 6 * (i + 1) + i - 1)
 		y.text = labels[i]
 		quest.add_child(y)
+		y.set_owner(quest)
 		labelArray.append(y)
 	
 	progressbar.set_value(progress)

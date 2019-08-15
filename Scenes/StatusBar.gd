@@ -15,6 +15,7 @@ func _ready():
 		bar_piece.set_offset(Vector2(i - 4, 0))
 		bar_piece.set_texture(barpiecesprite.get_texture())
 		add_child(bar_piece)
+		bar_piece.set_owner(self)
 		bar.push_back(bar_piece)
 	set_value(100)
 	pass # Replace with function body.
