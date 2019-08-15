@@ -58,24 +58,31 @@ func _input(event):
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		var clickedSlot;
+		var sellMode = false;
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
 			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
 			if isClicked:
-				clickedSlot = slot;
+				if not sellMode:
+					clickedSlot = slot;
+				else:
+					print("We're working on sell mode")
+					print(slot);
 		
-		if holdingItem != null:
-			if clickedSlot.item != null:
-				var tempItem = clickedSlot.item;
-				var oldSlot = slotList[slotList.find(holdingItem.itemSlot)];
-				clickedSlot.pickItem();
-				clickedSlot.putItem(holdingItem);
-				holdingItem = null;
-				oldSlot.putItem(tempItem);
-			else:
-				clickedSlot.putItem(holdingItem);
-				holdingItem = null;
+		if not sellMode:
+			if holdingItem != null:
+				if clickedSlot.item != null:
+					var tempItem = clickedSlot.item;
+					var oldSlot = slotList[slotList.find(holdingItem.itemSlot)];
+					clickedSlot.pickItem();
+					clickedSlot.putItem(holdingItem);
+					holdingItem = null;
+					oldSlot.putItem(tempItem);
+				else:
+					clickedSlot.putItem(holdingItem);
+					holdingItem = null;
+					
 		elif clickedSlot.item != null:
 			holdingItem = clickedSlot.item;
 			clickedSlot.pickItem();

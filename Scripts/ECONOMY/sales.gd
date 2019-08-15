@@ -1,6 +1,8 @@
 extends Node
 
-var price = {}
+var price = {
+	
+}
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -14,7 +16,7 @@ func sizeBonus(price,item):
 func colorBonus(price, item, color):
 	return price
 
-func bonuses(item):
+func bonuses(item): 
 	var p = price[item]
 	p = sizeBonus(price,item)
 	p = colorBonus(price,item,[0,0,0])
