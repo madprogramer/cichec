@@ -21,6 +21,7 @@ onready var player = ysort.get_node("Player")
 onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
 onready var desertanimation = get_node("DesertAnimation")
+onready var grassanimation = get_node("GrassAnimation")
 
 onready var dirtList = [
 	{
@@ -156,7 +157,6 @@ func _ready():
 	audioplayer.stream = songs[current_song]
 	audioplayer.play()
 	
-	
 	"""
 	for i in range(start_tile_size):
 		var seedsRow = []
@@ -191,7 +191,10 @@ func _ready():
 				if i % 2 == 0:
 					desertanimation.frame += 5
 				desertanimation.frame = (desertanimation.frame + j * 5) % 10
-				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), desertanimation, true)
+				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), desertanimation, true, true)
+			elif tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Normal":
+				grassanimation.frame = (desertanimation.frame + j * 5) % 10
+				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
 			
 	dialogueplayer.connect("started", player.hud, "dialogue_started")
 	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
@@ -412,6 +415,11 @@ func _input(event):
 			emit_signal("tile_hydrated")
 		if event.pressed and event.scancode == KEY_N:
 			next_song()
+		if event.pressed and event.scancode == KEY_M:
+			if audioplayer.playing:
+				audioplayer.stop()
+			else:
+				audioplayer.play()
 
 func cursor_outside_of_window():
 	#print("pos: ", get_viewport().get_mouse_position())

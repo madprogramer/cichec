@@ -8,7 +8,7 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-func spawn_animation(pos, animatedSprite, looping = false):
+func spawn_animation(pos, animatedSprite, looping = false, opacity = false):
 	if get_node(str(pos)) != null:
 		return
 	var newSprite = AnimatedSprite.new()
@@ -18,6 +18,11 @@ func spawn_animation(pos, animatedSprite, looping = false):
 	newSprite.set_global_scale(animatedSprite.get_global_scale())
 	newSprite.connect("animation_finished", self, "_on_animatedSprite_finished", [newSprite, looping])
 	newSprite.frame = animatedSprite.frame
+	if opacity == true:
+		newSprite.set_modulate(Color(1, 1, 1, 0.5))
+#		$Tween.interpolate_property(newSprite, "modulate", 
+#	    Color(1, 1, 1, 1), Color(1, 1, 1, 0), 2.0, 
+#	    Tween.TRANS_LINEAR, Tween.EASE_IN)
 	newSprite.play()
 	newSprite.name = str(pos)
 	add_child(newSprite)

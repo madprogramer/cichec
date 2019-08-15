@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Dirt/Tileset1-scaled.png" type="Texture" id=2]
@@ -42,6 +42,15 @@
 [ext_resource path="res://Assets/Sand/Animated/7.png" type="Texture" id=40]
 [ext_resource path="res://Assets/Sand/Animated/8.png" type="Texture" id=41]
 [ext_resource path="res://Assets/Sand/Animated/9.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Dirt/Animated/2.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Dirt/Animated/1.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Dirt/Animated/3.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Dirt/Animated/4.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Dirt/Animated/5.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Dirt/Animated/6.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Dirt/Animated/7.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=51]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -511,18 +520,30 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"toSave",
+]]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 12, 12 )
 format = 1
 tile_data = PoolIntArray( -1, 41, 0, -65536, 41, 0, -65535, 41, 0, -65534, 41, 0, -65533, 41, 0, -65532, 41, 0, -65531, 41, 0, -65530, 41, 0, 65535, 41, 0, 0, 32, 0, 1, 32, 0, 2, 32, 0, 3, 32, 0, 4, 32, 0, 5, 32, 0, 6, 41, 0, 131071, 41, 0, 65536, 32, 0, 65537, 32, 0, 65538, 32, 0, 65539, 32, 0, 65540, 32, 0, 65541, 32, 0, 65542, 41, 0, 196607, 41, 0, 131072, 32, 0, 131073, 32, 0, 131074, 32, 0, 131075, 32, 0, 131076, 32, 0, 131077, 32, 0, 131078, 41, 0, 262143, 41, 0, 196608, 32, 0, 196609, 32, 0, 196610, 32, 0, 196611, 32, 0, 196612, 32, 0, 196613, 32, 0, 196614, 41, 0, 327679, 41, 0, 262144, 32, 0, 262145, 32, 0, 262146, 32, 0, 262147, 32, 0, 262148, 32, 0, 262149, 32, 0, 262150, 41, 0, 393215, 41, 0, 327680, 32, 0, 327681, 32, 0, 327682, 32, 0, 327683, 32, 0, 327684, 32, 0, 327685, 32, 0, 327686, 41, 0, 458751, 41, 0, 393216, 41, 0, 393217, 41, 0, 393218, 41, 0, 393219, 41, 0, 393220, 41, 0, 393221, 41, 0, 393222, 41, 0 )
 
-[node name="AnimationContainer" type="Node2D" parent="."]
+[node name="AnimationContainer" type="Node2D" parent="." groups=[
+"toSave",
+]]
 script = ExtResource( 12 )
 
 [node name="YSort" type="YSort" parent="."]
@@ -572,6 +593,11 @@ format = 1
 [node name="DesertAnimation" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 5 )
+
+[node name="GrassAnimation" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 6 )
+frame = 6
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="sprinkler_water" from="YSort/Sprinkler" to="." method="_on_Sprinkler_sprinkler_water"]
 [connection signal="body_shape_entered" from="YSort/ExitDoor" to="." method="_on_ExitDoor_body_shape_entered"]
