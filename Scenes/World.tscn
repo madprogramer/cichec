@@ -565,7 +565,9 @@ current = true
 
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="YSort"]
 visible = false
+scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 2 )
+frame = 3
 
 [node name="HoePlowAnimation" type="AnimatedSprite" parent="YSort"]
 visible = false

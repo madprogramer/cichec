@@ -23,6 +23,8 @@ onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 onready var desertanimation = get_node("DesertAnimation")
 onready var grassanimation = get_node("GrassAnimation")
 
+var _seeds = preload("res://Scripts/Seeds.tscn").instance()
+
 onready var dirtList = [
 	{
 		"id" : 35,
@@ -48,6 +50,11 @@ onready var dirtList = [
 		"id" : 39,
 		"itemName" : "Normal",
 		"itemIcon": tilemap.tile_set.tile_get_texture(39)
+	},
+	{
+		"id" : 32,
+		"itemName": "Normal",
+		"itemIcon": tilemap.tile_set.tile_get_texture(32)
 	},
 	{
 		"id" : 26,
@@ -132,8 +139,6 @@ func is_normal(id):
 				return false
 	return false
 
-var seeds = {}
-
 var songs = [
 	load("res://Musics/ChokkaSong.wav"),
 	load("res://Musics/ChokkaSong3.wav"),
@@ -150,7 +155,10 @@ func next_song():
 	audioplayer.stream = songs[current_song]
 	audioplayer.play()
 
-func _ready():
+func _ready():	
+	add_child(_seeds)
+	_seeds.set_owner(self)
+	
 	randomize()
 	
 	current_song = randi() % songs.size()
@@ -167,7 +175,7 @@ func _ready():
 	
 	for i in range(-2, start_tile_size + 1):
 		for j in range(-2, start_tile_size + 1):
-			seeds[Vector2(i,j)] = null
+			_seeds.seeds[Vector2(i,j)] = null
 	
 	for dirt in dirtList:
 		dirtDictionary["name"][dirt["itemName"]] = dirt
@@ -179,12 +187,14 @@ func _ready():
 	
 	for i in range(0, start_tile_size):
 		for j in range(0, start_tile_size):
-			tilemap.set_cell(j, i, dirtDictionary["name"]["Desert"].id)
+			if tilemap.get_cell(j, i) == -1:
+				tilemap.set_cell(j, i, dirtDictionary["name"]["Desert"].id)
 
 	for i in range(0, normal_tile_size):
 		for j in range(0, normal_tile_size):
-			tilemap.set_cell(j, i, 35 + randi() % 5)
-			
+			if tilemap.get_cell(j, i) == -1:
+				tilemap.set_cell(j, i, 35 + randi() % 5)
+#
 	for i in range(-2, start_tile_size + 1):
 		for j in range(-2, start_tile_size + 1):
 			if tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Desert":
@@ -194,12 +204,13 @@ func _ready():
 				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), desertanimation, true, true)
 			elif tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Normal":
 				grassanimation.frame = (desertanimation.frame + j * 5) % 10
-				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
+				animationcontainer.spawn_animation(Vector2((j + 0.5) * tilemap.cell_size.x, (i + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
 			
 	dialogueplayer.connect("started", player.hud, "dialogue_started")
 	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
 	dialogueplayer._ready()
 	add_child(dialogueplayer)
+	dialogueplayer.set_owner(self)
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -239,7 +250,7 @@ func pass_day():
 	
 	#for i in range(seeds.size()):	for j in range(seeds[i].size()):
 	for i in range(start_tile_size + 1):	for j in range(start_tile_size + 1):
-		var item = seeds[Vector2(i,j)]
+		var item = _seeds.seeds[Vector2(i,j)]
 		
 		if item == null:
 			continue
@@ -253,7 +264,7 @@ func pass_day():
 				boost_main(Vector2(i, j))
 	
 	for i in range(start_tile_size + 1):	for j in range(start_tile_size + 1):
-		var item = seeds[Vector2(i,j)]
+		var item = _seeds.seeds[Vector2(i,j)]
 		
 		if item == null:
 			continue
@@ -292,8 +303,8 @@ func pass_day():
 						var flowerAt
 						var speciesAt
 						
-						if seeds.has(polenData[1]) and seeds[polenData[1]] != null:
-							seedAt = seeds[polenData[1]]._seed
+						if _seeds.seeds.has(polenData[1]) and _seeds.seeds[polenData[1]] != null:
+							seedAt = _seeds.seeds[polenData[1]]._seed
 							flowerAt = seedAt.flower
 							speciesAt = flowerAt.id
 						else:
@@ -365,7 +376,7 @@ func boost_main(pos):
 	for i in range(-1, 1 + 1):
 		for j in range(-1, 1 + 1):
 			var targetpos = pos + Vector2(i, j)
-			var targetitem = seeds[targetpos]
+			var targetitem = _seeds.seeds[targetpos]
 			if targetitem == null:
 				continue
 			
@@ -437,7 +448,7 @@ var directions = [
 ]
 
 func kill_plant(pos):
-	seeds[pos]._seed.flower.set_dead()
+	_seeds.seeds[pos]._seed.flower.set_dead()
 
 func deplow(pos):
 	for direction in range(0, 4):
@@ -465,6 +476,7 @@ func deplow(pos):
 		0)
 
 func plow(pos):
+	
 #	print("plow: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 	for direction in range(0, 4):
@@ -496,6 +508,9 @@ func plow(pos):
 		0)
 
 func _plow_Routine(pos):
+	var temppos = Vector2((pos.x + 0.5) * tilemap.cell_size.x, (pos.y + 0.5) * tilemap.cell_size.y)
+	animationcontainer.get_node(str(temppos)).queue_free()
+	yield(get_tree(), "idle_frame")
 	spawn_animation(Vector2(
 	(pos.x) * tilemap.cell_size.x + 6,
 	(pos.y) * tilemap.cell_size.y + 6),
@@ -511,7 +526,7 @@ func _plow_Routine(pos):
 func removeCrop(pos, debugMode = true):
 	if debugMode:
 		print("PRINTING")
-		print(seeds[pos]._seed.flower.phenoGenes)
+		print(_seeds.seeds[pos]._seed.flower.phenoGenes)
 		_pick_seed_Routine(pos, true)
 	else:
 		pass 
@@ -615,6 +630,9 @@ func sow(pos, item):
 		item.dummySeed.GENES
 	)
 	
+	add_child(_seed)
+	_seed.set_owner(self)
+	
 #	var x = 0
 #	x = x / x
 #	var _seed = item.dummySeed.seedClass
@@ -628,15 +646,15 @@ func sow(pos, item):
 	_seed.flower.set_seed(item)
 	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	
-	_seed.flower.sprite.name = str(seeds.size()) + "0"
+	_seed.flower.sprite.name = str(_seeds.seeds.size()) + "0"
 	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)
 	_seed.flower.set_sprite(flowercontainer.get_sprite(pos, 0))
 	
-	_seed.flower.deadsprite.name = str(seeds.size()) + "1"
+	_seed.flower.deadsprite.name = str(_seeds.seeds.size()) + "1"
 	flowercontainer.add_sprite(pos, _seed.flower.deadsprite, 1)
 	_seed.flower.set_deadsprite(flowercontainer.get_sprite(pos, 1))
 	
-	_seed.flower.pollinatedsprite.name = str(seeds.size()) + "2"
+	_seed.flower.pollinatedsprite.name = str(_seeds.seeds.size()) + "2"
 	flowercontainer.add_sprite(pos, _seed.flower.pollinatedsprite, 2)
 	_seed.flower.set_pollinatedsprite(flowercontainer.get_sprite(pos, 2))
 	
@@ -649,7 +667,7 @@ func sow(pos, item):
 	newItem.fatherId = item.fatherId
 	newItem.motherId = item.motherId
 	
-	seeds[pos] = {
+	_seeds.seeds[pos] = {
 		"_seed": _seed,
 		#"cell": pos,
 		"originalItem" : newItem
@@ -689,7 +707,7 @@ func _pick_seed_Routine(pos, force = false):
 		return
 	
 	if force:
-		var item = seeds[pos]
+		var item = _seeds.seeds[pos]
 		if item == null:
 			return
 		print(item._seed.id)
@@ -705,16 +723,16 @@ func _pick_seed_Routine(pos, force = false):
 		if flower.isMature() and !flower.isDead() and !flower.isPolinated():
 			flower = flower.pickup()
 			player.add_flower(flower.newFlower)
-			seeds[pos] = null
+			_seeds.seeds[pos] = null
 			
 		elif flower.isDead() or flower.isPolinated():
 			player.add_seed(flower.newSeed)
 			flower.harvest()
-			seeds[pos] = null
+			_seeds.seeds[pos] = null
 		return
 		
 	if dirtDictionary["id"][type].itemName == "Sowed" or dirtDictionary["id"][type].itemName == "Sowed_Watered":
-		var item = seeds[pos]
+		var item = _seeds.seeds[pos]
 		if item == null:
 			return
 		print(item._seed.id)
@@ -737,13 +755,13 @@ func _pick_seed_Routine(pos, force = false):
 				print("WRYYYYYYYYYYYYYYY")
 				flower = flower.pickup()
 				player.add_flower(flower.newFlower)
-				seeds[pos] = null
+				_seeds.seeds[pos] = null
 				
 			elif flower.isDead() or flower.isPolinated():
 				print("WRY?")
 				player.add_seed(flower.newSeed)
 				flower.harvest()
-				seeds[pos] = null
+				_seeds.seeds[pos] = null
 			return
 				
 	
@@ -766,7 +784,7 @@ func _on_WateringCanWaterAnimation_animation_finished():
 
 func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
-	player.get_current_item().scan(get_mouse_cell(), seeds)
+	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
 	pass # Replace with function body.
 
 
@@ -796,6 +814,7 @@ func _on_Player_spawn_sprinkler():
 #		print(sprinkler)
 		sprinkler.connect("sprinkler_water", self, "_on_Sprinkler_sprinkler_water")
 		get_node("YSort").add_child(sprinkler)
+		sprinkler.set_owner(get_node("YSort"))
 #		print("sprinkler.global_position: ", sprinkler.global_position)
 
 

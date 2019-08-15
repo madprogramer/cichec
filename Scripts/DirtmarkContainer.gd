@@ -83,6 +83,7 @@ func _ready():
 			for k in range(0, 4):
 #				print(spriteMatrix[i][j][k])
 				add_child(spriteMatrix[i][j][k])
+				spriteMatrix[i][j][k].set_owner(self)
 	
 	pass # Replace with function body.
 

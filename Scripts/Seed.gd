@@ -42,6 +42,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	labelpos.y += 10
 	label.rect_position = labelpos
 	add_child(label)
+	label.set_owner(self)
 	set_count(count)
 	
 #	hint_tooltip = "%s %d" % [itemName, count] 

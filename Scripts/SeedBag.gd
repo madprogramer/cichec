@@ -105,6 +105,7 @@ func _ready():
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);
 		add_child(slot);
+		slot.set_owner(self)
 		
 	for i in range(itemList.size()):
 		slotList[i].setItem(itemList[i])

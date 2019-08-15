@@ -34,3 +34,33 @@ func transfer_world(quest1, quest2):
 	quest2.world = quest1.world
 	quest1 = null
 	quest2.ready()
+	
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_T:
+			var packed_scene = PackedScene.new()
+			packed_scene.pack(quests[current_quest].world)
+			ResourceSaver.save("res://world_save.tscn", packed_scene)
+			
+			var packed_scene_seed = PackedScene.new()
+			packed_scene_seed.pack(quests[current_quest].world._seeds)
+			ResourceSaver.save("res://seeds_save.tscn", packed_scene_seed)
+			
+			print("SAVED")
+			
+		if event.pressed and event.scancode == KEY_Y:
+			# Load the PackedScene resource
+			var packed_scene = load("res://world_save.tscn")
+			# Instance the scene
+			var my_scene = packed_scene.instance()
+			
+			quests[current_quest].world.queue_free()
+			quests[current_quest].world = my_scene
+			quests[current_quest].add_child(quests[current_quest].world)
+			quests[current_quest].world.set_owner(quests[current_quest])
+			
+			var packed_scene_seed = load("res://seeds_save.tscn").instance()
+			
+			quests[current_quest].world._seeds = packed_scene_seed
+			
+			print("LOADED")

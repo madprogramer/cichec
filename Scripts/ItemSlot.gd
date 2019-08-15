@@ -13,6 +13,7 @@ func _init(slotIndex):
 
 func setItem(newItem):
 	add_child(newItem);
+	newItem.set_owner(self)
 	item = newItem;
 	item.itemSlot = self;
 	pass;
@@ -29,4 +30,5 @@ func putItem(newItem):
 	item.putItem();
 	get_parent().get_parent().remove_child(item);
 	add_child(item);
+	item.set_owner(self)
 	pass;

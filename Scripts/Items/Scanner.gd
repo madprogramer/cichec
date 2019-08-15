@@ -41,6 +41,7 @@ func scan(pos, seeds):
 			print("Scan finished")
 			var x = PopupDialog.new()
 			add_child(x)
+			x.set_owner(self)
 			
 			var labels = [
 				"SIZE: " + str(flower.getSize()),
@@ -54,6 +55,7 @@ func scan(pos, seeds):
 				y.rect_position = Vector2(4, 6 * (i + 1) + i - 1)
 				y.text = labels[i]
 				x.add_child(y)
+				y.set_owner(x)
 			
 			x.popup(Rect2(0, 0, 64, 36))
 			

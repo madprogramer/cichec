@@ -26,6 +26,7 @@ func spawn_animation(pos, animatedSprite, looping = false, opacity = false):
 	newSprite.play()
 	newSprite.name = str(pos)
 	add_child(newSprite)
+	newSprite.set_owner(self)
 	
 func _on_animatedSprite_finished(animatedSprite, looping):
 	if looping:
