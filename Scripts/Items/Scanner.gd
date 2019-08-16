@@ -61,3 +61,16 @@ func scan(pos, seeds):
 			
 			return
 	print("Couldn't find the scanned flower")
+
+func scan2(pos, seeds, hud):
+	for index in seeds:
+		var item = seeds[index]
+
+		if item == null:
+			continue
+		
+		var flower = item._seed.flower
+		if flower.pos == pos:
+			hud.render_dummyFlower(flower.get_dummyFlowerViewer(0), flower.get_dummyFlowerViewer(1))
+			return
+	print("Couldn't find the scanned flower")
