@@ -323,6 +323,9 @@ func set_appearence(GENES):
 	phenoGenes = GENES
 	print("TODO: Update Sprite")
 
+func get_sprite():
+	return null
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

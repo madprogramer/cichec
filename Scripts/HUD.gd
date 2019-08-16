@@ -26,9 +26,18 @@ onready var mentalhealth = get_node("MentalHealth")
 onready var quest = get_node("Quest")
 onready var progressbar = get_node("Quest/ProgressBar")
 
+onready var dummyFlowerRenderer = get_node("dummyFlowerRenderer")
+
 var current_hud = "toolbar"
 
 var cursor = null
+
+func set_dummyFlower(sprite, type):
+	dummyFlowerRenderer.add_dummyFlower(sprite, type)
+
+func render_dummyFlower(dummyFlowerViewer1, dummyFlowerViewer2):
+	set_dummyFlower(dummyFlowerViewer1.get_sprite(), 0)
+	set_dummyFlower(dummyFlowerViewer2.get_sprite(), 1)
 
 func set_cursor_shape(texture):
 	if texture == null:
