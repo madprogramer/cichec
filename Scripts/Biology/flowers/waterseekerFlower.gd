@@ -9,9 +9,22 @@ class_name waterseekerFlower
 
 # Called when the node enters the scene tree for the first time.
 
+
+
 func _init(pos, GENES):
+	
 	set_genes(GENES)
 	id = 3;
+	
+	#Stages
+	stages = [
+		1,
+		3,
+		5,
+		12
+	];
+
+	
 	randomize()
 	uniqueId = randi()
 	
