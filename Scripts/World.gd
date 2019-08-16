@@ -801,7 +801,7 @@ func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
 	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
 #	var flowers = player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds, player.hud)
-	print(flowers)
+#	print(flowers)
 	pass # Replace with function body.
 
 

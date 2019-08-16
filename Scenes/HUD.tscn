@@ -64,7 +64,7 @@ texture = ExtResource( 6 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -114,7 +114,7 @@ script = ExtResource( 21 )
 [node name="ShopHighlight" type="AnimatedSprite" parent="."]
 visible = false
 frames = ExtResource( 22 )
-frame = 5
+frame = 2
 playing = true
 centered = false
 
