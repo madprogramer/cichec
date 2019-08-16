@@ -454,6 +454,9 @@ func kill_plant(pos):
 	_seeds.seeds[pos]._seed.flower.set_dead()
 
 func deplow(pos):
+	grassanimation.frame = (desertanimation.frame + pos.x * 5)
+	grassanimation.frame %= 10
+	animationcontainer.spawn_animation(Vector2((pos.x + 0.5) * tilemap.cell_size.x, (pos.y + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
 	for direction in range(0, 4):
 		if (tilemap.get_cellv(Vector2(
 				pos.x + directions[direction].x,
