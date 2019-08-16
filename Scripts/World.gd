@@ -327,10 +327,11 @@ func pass_day():
 						#use FIXTHIS.harvest() to collect
 			
 			#Phase 2
-			#Age Up
+			#Cultivate
 			elif phase == 2:
 				#print("Todo: Add waterseeker trigerred sand tile to earth updates here");
 				if !_flower.isDead() and !_flower.isPolinated():
+					#Water Seeker Tile Updates
 					if _flower.id == 3:
 						cultivate_main(Vector2(i, j))
 					

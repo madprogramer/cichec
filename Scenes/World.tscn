@@ -588,6 +588,28 @@ scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 3 )
 speed_scale = 2.0
 
+<<<<<<< HEAD
+=======
+[node name="DirtmarkContainer" type="Node2D" parent="YSort"]
+script = ExtResource( 31 )
+
+[node name="Chest" parent="YSort" instance=ExtResource( 32 )]
+visible = false
+margin_left = -27.5903
+margin_top = 27.3557
+margin_right = -11.5903
+margin_bottom = 40.3557
+
+[node name="ShipmentChest" parent="YSort" instance=ExtResource( 32 )]
+margin_left = 80.0
+margin_top = 27.3557
+margin_right = 96.0
+margin_bottom = 40.3557
+
+[node name="Sprinkler2" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 55.8343, 29.0045 )
+
+>>>>>>> 5ea7dcd0b72cebfc3590772ef2afcb162cb1f354
 [node name="Highlight" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
 cell_size = Vector2( 12, 12 )
