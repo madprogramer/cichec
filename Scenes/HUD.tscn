@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Misc/Toolbar-front.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scenes/DialogueBox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/StatusBar.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/dummyFlowerRenderer.gd" type="Script" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -104,3 +105,6 @@ position = Vector2( 32, 32 )
 margin_right = 40.0
 margin_bottom = 7.0
 script = ExtResource( 20 )
+
+[node name="dummyFlowerRenderer" type="Node2D" parent="."]
+script = ExtResource( 21 )

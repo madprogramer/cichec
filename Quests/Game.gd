@@ -34,7 +34,23 @@ func transfer_world(quest1, quest2):
 	quest2.world = quest1.world
 	quest1 = null
 	quest2.ready()
+
+func save(name, dictionary):
+	var save_game = File.new()
+	save_game.open("res://saves/seeds" + name + ".save", File.WRITE)
+	save_game.store_line(to_json(dictionary))
+
+func _load(name):
+	var directory = Directory.new();
+	var doFileExists = directory.file_exists("res://saves/seeds" + name + ".save")
 	
+	if !doFileExists:
+		return null
+	
+	var save_game = File.new()
+	save_game.open("res://saves/seeds" + name + ".save", File.READ)
+	return parse_json(save_game.get_line())
+
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_T:
@@ -42,9 +58,19 @@ func _input(event):
 			packed_scene.pack(quests[current_quest].world)
 			ResourceSaver.save("res://world_save.tscn", packed_scene)
 			
-			var packed_scene_seed = PackedScene.new()
-			packed_scene_seed.pack(quests[current_quest].world._seeds)
-			ResourceSaver.save("res://seeds_save.tscn", packed_scene_seed)
+#			var packed_scene_seed = PackedDataContainer.new()
+#			packed_scene_seed.pack(quests[current_quest].world._seeds.seeds)
+			var seeds = quests[current_quest].world._seeds.seeds 
+			print(seeds)
+			
+			var start_tile_size = quests[current_quest].world.start_tile_size
+			
+			for i in range(-2, start_tile_size + 1):
+					for j in range(-2, start_tile_size + 1):
+						if seeds[Vector2(i, j)] != null:
+							save(str(Vector2(i, j)), seeds[Vector2(i, j)])
+#			ResourceSaver.save("res://seeds_save.res", packed_scene_seed)
+#			save(quests[current_quest].world._seeds.seeds)
 			
 			print("SAVED")
 			
@@ -59,8 +85,17 @@ func _input(event):
 			quests[current_quest].add_child(quests[current_quest].world)
 			quests[current_quest].world.set_owner(quests[current_quest])
 			
-			var packed_scene_seed = load("res://seeds_save.tscn").instance()
+#			var packed_scene_seed = load("res://seeds_save.res")
 			
-			quests[current_quest].world._seeds = packed_scene_seed
+			var start_tile_size = quests[current_quest].world.start_tile_size
 			
+#			quests[current_quest].world.get_node("Seeds").seeds = packed_scene_seed.seeds
+#			quests[current_quest].world.get_node("Seeds").seeds = _load()
+			
+			var seeds = quests[current_quest].world._seeds.seeds 
+			
+			for i in range(-2, start_tile_size + 1):
+				for j in range(-2, start_tile_size + 1):
+					seeds[Vector2(i, j)] = _load(str(Vector2(i, j)))
+#			print(quests[current_quest].world.get_node("Seeds").seeds)
 			print("LOADED")

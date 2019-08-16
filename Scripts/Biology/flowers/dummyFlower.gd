@@ -296,6 +296,9 @@ func set_seed(originalItem):
 	newSeed.motherId = motherId
 	newSeed.newFlower = newFlower
 	
+#	var x = 0
+#	x = x / x
+	
 const ItemClass = preload("res://Scripts/Item.gd")
 
 var newFlower
@@ -311,6 +314,11 @@ func set_newFlower(originalItem):
 func set_genes(GENES):
 #	print(GENES)
 	initGenes(GENES)
+
+var dummyFlowerViewers = [null, null]
+
+func get_dummyFlowerViewer(type):
+	return dummyFlowerViewers[type]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
