@@ -29,6 +29,8 @@ var itemList = Array();
 
 var holdingItem = null;
 
+var toSellArray = []
+
 func _ready():
 	for item in itemDictionary:
 		var itemName = itemDictionary[item].itemName;
@@ -61,17 +63,23 @@ func _gui_input(event):
 		var clickedSlot;
 #		var sellMode = false;
 		var sellMode = true
+		
+		var clickedI = 0
+		var i = 0
+		
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
 			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
 			if isClicked:
+				clickedI = i
 				if not sellMode:
 					clickedSlot = slot;
 				else:
 					clickedSlot = slot
 					print("We're working on sell mode")
 					print(slot);
+			i += 1
 		
 		if not sellMode:
 			if holdingItem != null:
@@ -91,8 +99,14 @@ func _gui_input(event):
 				clickedSlot.pickItem();
 				holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 		else:
-			if clickedSlot != null:
-				clickedSlot.highlight()
+			if clickedSlot != null and clickedSlot.item != null:
+				if clickedSlot.highlight_sprite.visible == false:
+					clickedSlot.highlight()
+					toSellArray.push_back(clickedI)
+				else:
+					clickedSlot.highlight_sprite.visible = false
+					toSellArray.erase(clickedI)
+				print(toSellArray)
 	pass
 
 func add_flower(originalItem):
