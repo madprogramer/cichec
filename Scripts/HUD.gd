@@ -28,6 +28,8 @@ onready var progressbar = get_node("Quest/ProgressBar")
 
 onready var dummyFlowerRenderer = get_node("dummyFlowerRenderer")
 
+onready var shop = get_node("Shop")
+
 var current_hud = "toolbar"
 
 var cursor = null
@@ -186,6 +188,9 @@ func scroll_up():
 	elif current_hud == "seedbag":
 		if seedbag.rect_position.y != 0:
 			seedbag.rect_position.y += 16
+	elif current_hud == "shop":
+		if shop.rect_position.y != 0:
+			shop.rect_position.y += 16
 
 func scroll_down():
 	if current_hud == "inventory":
@@ -194,6 +199,9 @@ func scroll_down():
 	elif current_hud == "seedbag":
 		if seedbag.rect_position.y != -64:
 			seedbag.rect_position.y -= 16
+	elif current_hud == "shop":
+		if shop.rect_position.y != -64:
+			shop.rect_position.y -= 16
 
 func _input(event):
 	if dialogue_is_playing:
@@ -207,10 +215,14 @@ func _input(event):
 
 			elif event.button_index == BUTTON_WHEEL_DOWN:
 				scroll_down()
+		
  
 	
 	elif event is InputEventKey:
 		if event.pressed:
+			if event.scancode == KEY_B:
+				show("shop")
+			
 			# changing current toolbar tool
 			if current_hud == "toolbar":
 				switch_tools(event, current_hud)
@@ -254,6 +266,13 @@ func _input(event):
 				pass
 			
 			if current_hud == "inventory":
+				if event.scancode == KEY_DOWN:
+					scroll_down()
+				
+				if event.scancode == KEY_UP:
+					scroll_up()
+				
+			if current_hud == "shop":
 				if event.scancode == KEY_DOWN:
 					scroll_down()
 				
@@ -324,7 +343,9 @@ onready var hud_elements = [
 	seedtoolbar,
 	
 	highlight,
-	mentalhealth
+	mentalhealth,
+	
+	shop
 ]
 
 func show(name):
@@ -351,6 +372,10 @@ func show(name):
 	
 	if name == "inventory":
 		inventory.visible = true
+		inventory_back.visible = true
+		inventory_front.visible = true
+	elif name == "shop":
+		shop.visible = true
 		inventory_back.visible = true
 		inventory_front.visible = true
 	elif name == "toolbar":

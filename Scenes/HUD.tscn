@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Misc/Toolbar-front.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/dummyFlowerRenderer.gd" type="Script" id=21]
 [ext_resource path="res://Assets/Highlight/Shop/Shop.tres" type="SpriteFrames" id=22]
+[ext_resource path="res://Scripts/Shop.gd" type="Script" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -63,7 +64,7 @@ texture = ExtResource( 6 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 1
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -113,6 +114,14 @@ script = ExtResource( 21 )
 [node name="ShopHighlight" type="AnimatedSprite" parent="."]
 visible = false
 frames = ExtResource( 22 )
-frame = 5
+frame = 1
 playing = true
 centered = false
+
+[node name="Shop" type="GridContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 4
+script = ExtResource( 23 )
