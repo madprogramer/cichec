@@ -160,6 +160,46 @@ func similar(arr1, arr2):
 
 	return true
 	
+func remove_seed(originalItem):
+	print("TODO: might need to change this to take input based on index rather than ogItem")
+	if originalItem.count == 0:
+		return -1
+	
+	for i in range(16):
+		if slotList[i].item != null:
+			if slotList[i].item.itemName == originalItem.itemName:
+				if (slotList[i].item.fatherId == originalItem.fatherId and slotList[i].item.motherId == originalItem.motherId) or (slotList[i].item.fatherId == originalItem.motherId and slotList[i].item.motherId == originalItem.fatherId):
+					if similar(slotList[i].item.dummySeed.getColor(), originalItem.dummySeed.getColor()):
+						slotList[i].item.set_count(slotList[i].item.count - 1)
+						print("removing from slot ", i)
+						print("seed count on this slot:", slotList[i].item.count)
+						return i
+#
+#	for i in range(16):
+#		if slotList[i].item == null:
+#			print("removing from slot ", i)
+#			var itemName = originalItem.name
+#			print (itemName)
+#
+#			var itemIcon = originalItem.texture
+#			print (itemIcon)
+#
+#			var itemValue = -1
+#
+#			var itemSeed = originalItem.dummySeed.seedClass
+##			print (itemSeed)
+#
+##			var GENES = originalItem.GENES
+#
+#			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed, originalItem.count);
+#
+#			newItem.fatherId = originalItem.fatherId
+#			newItem.motherId = originalItem.motherId
+#
+#			slotList[i].setItem(newItem)
+#			return i
+#	return -1
+	
 func add_seed(originalItem):
 	if originalItem.count == 0:
 		return -1
