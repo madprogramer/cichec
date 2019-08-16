@@ -24,6 +24,7 @@ func get_sprite(pos, type):
 	return spriteArray[type]
 
 func add_dummyFlower(type, sprite):
+	print("TRYING TO ADD DUMMY FLOWER")
 	if type == 0:
 		add_sprite(Vector2(0, 0), sprite, type)
 	elif type == 1:

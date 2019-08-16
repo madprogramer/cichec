@@ -117,8 +117,9 @@ func _input(event):
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 
 func _gui_input(event):
+	var clickedSlot;
+	
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		var clickedSlot;
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
@@ -144,6 +145,18 @@ func _gui_input(event):
 			clickedSlot.pickItem();
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 			clickedSlot.item = null
+	
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.pressed:
+		for slot in slotList:
+			var slotMousePos = slot.get_local_mouse_position();
+			var slotTexture = slot.texture;
+			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
+			if isClicked:
+				clickedSlot = slot;
+		if clickedSlot != null:
+			if clickedSlot.item != null:
+				remove_seed(clickedSlot.item)
+		
 	pass
 	
 const DIFF = 0.25
@@ -161,7 +174,7 @@ func similar(arr1, arr2):
 	return true
 	
 func remove_seed(originalItem):
-	print("TODO: might need to change this to take input based on index rather than ogItem")
+	#print("TODO: might need to change this to take input based on index rather than ogItem")
 	if originalItem.count == 0:
 		return -1
 	
@@ -170,9 +183,16 @@ func remove_seed(originalItem):
 			if slotList[i].item.itemName == originalItem.itemName:
 				if (slotList[i].item.fatherId == originalItem.fatherId and slotList[i].item.motherId == originalItem.motherId) or (slotList[i].item.fatherId == originalItem.motherId and slotList[i].item.motherId == originalItem.fatherId):
 					if similar(slotList[i].item.dummySeed.getColor(), originalItem.dummySeed.getColor()):
-						slotList[i].item.set_count(slotList[i].item.count - 1)
+						#slotList[i].item.set_count(slotList[i].item.count - 1)
+							
 						print("removing from slot ", i)
-						print("seed count on this slot:", slotList[i].item.count)
+						print("seed count on this slot:", slotList[i].item.count-1)
+						
+						slotList[i].item.decrease_count()
+						#if slotList[i].item.get_count() == 0:
+						#	slotList[i].item.queue_free()
+						#	slotList[i].item = null
+							
 						return i
 #
 #	for i in range(16):

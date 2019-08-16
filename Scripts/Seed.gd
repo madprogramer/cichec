@@ -58,6 +58,9 @@ func set_count(c):
 	label.text = "%d" % [count]
 	label.rect_position = labelpos
 	
+func get_count():
+	return count
+	
 func decrease_count():
 	set_count(count - 1)
 	if count == 0:
