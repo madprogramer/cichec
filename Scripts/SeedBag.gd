@@ -7,66 +7,6 @@ const itemImages = [
 	preload("res://Assets/Highlight/Highlight.png")
 ];
 
-
-#var itemDictionary = {
-#	0: {
-#		"itemName" : "RainbowSeed",
-#		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
-#		"itemValue" : -1,
-#		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-#		"GENES" : {
-#			"size": 0,
-#			"color": [0,0,0,0],
-#			"seeds": 0,
-#		},
-#		"seedbag" : true
-#	},
-#	1: {
-#		"itemName" : "SunlightSeed",
-#		"itemIcon" : preload("res://Assets/Seeds/SunlightSeed/toolbar.png"),
-#		"itemValue" : -1,
-#		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd"),
-#		"GENES" : {
-#			"size": 0,
-#			"color": [0,0,0,0],
-#			"seeds": 0,
-#		},
-#		"seedbag" : true
-#	},
-#	2: {
-#		"itemName": "WaterseekerSeed",
-#		"itemValue": -1,
-#		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
-#		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
-#		"GENES" : {
-#			"size": 0,
-#			"color": [0,0,0,0],
-#			"seeds": 0,
-#		},
-#		"seedbag" : true
-#	}
-#};
-
-
-#var itemDictionary = {
-#	0: {
-#		"itemName" : "WaterseekerSeed",
-#		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
-#		"itemValue" : -1,
-#		"count" : 3,
-#		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
-#		"GENES" : {
-#			"size": 0,
-#			"color": [0,0,0],
-#			"seeds": 0,
-#			"polens": 0
-#		},
-#		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
-#		"seedbag" : true
-#	},
-#
-#}
-
 var itemDictionary = {
 	0: {
 		"itemName" : "WaterseekerSeed",
@@ -104,6 +44,7 @@ func _ready():
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);
+		slotList[i].highlight_sprite.position = Vector2((i % 4) * 16 + 8, (i / 4) * 16 + 8)
 		add_child(slot);
 		slot.set_owner(self)
 		

@@ -42,6 +42,7 @@ func _ready():
 	for i in range(32):
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);
+		slotList[i].highlight_sprite.position = Vector2((i % 4) + 10 - (i % 4), (i / 4) + 10 - (i / 4))
 		add_child(slot);
 		slot.set_owner(self)
 		
@@ -58,7 +59,8 @@ func _input(event):
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		var clickedSlot;
-		var sellMode = false;
+#		var sellMode = false;
+		var sellMode = true
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
@@ -67,6 +69,7 @@ func _gui_input(event):
 				if not sellMode:
 					clickedSlot = slot;
 				else:
+					clickedSlot = slot
 					print("We're working on sell mode")
 					print(slot);
 		
@@ -83,10 +86,13 @@ func _gui_input(event):
 					clickedSlot.putItem(holdingItem);
 					holdingItem = null;
 					
-		elif clickedSlot.item != null:
-			holdingItem = clickedSlot.item;
-			clickedSlot.pickItem();
-			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+			elif clickedSlot.item != null:
+				holdingItem = clickedSlot.item;
+				clickedSlot.pickItem();
+				holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+		else:
+			if clickedSlot != null:
+				clickedSlot.highlight()
 	pass
 
 func add_flower(originalItem):
