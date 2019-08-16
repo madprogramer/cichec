@@ -129,7 +129,11 @@ func polinate():
 	print("https://github.com/EnoughSensei/cichec/issues/12")
 #	var polinationCount = phenoGenes.getPolens();
 	var polinationCount = 3
+	
 	var polRange = 2
+	if !isShort():
+		polRange = 3
+		
 	var polen = []
 	
 	for i in range(polinationCount):

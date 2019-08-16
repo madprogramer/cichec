@@ -70,6 +70,8 @@ func scan2(pos, seeds, hud):
 			continue
 		
 		var flower = item._seed.flower
+		print(flower.phenoGenesMat)
+		print(flower.phenoGenesPat)
 		if flower.pos == pos:
 			return hud.render_dummyFlower(flower.get_dummyFlowerViewer(0), flower.get_dummyFlowerViewer(1))
 #			var x = 0
