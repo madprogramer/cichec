@@ -787,7 +787,7 @@ func _on_WateringCanWaterAnimation_animation_finished():
 func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
 	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
-	player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds)
+	player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds, player.hud)
 	pass # Replace with function body.
 
 
