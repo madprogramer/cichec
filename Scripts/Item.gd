@@ -5,6 +5,7 @@ var itemName;
 var itemSlot;
 var picked = false;
 var itemClass;
+var itemInfo
 
 func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	self.itemClass = itemClass
