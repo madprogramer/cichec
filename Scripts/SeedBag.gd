@@ -16,7 +16,7 @@ var itemDictionary = {
 		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
 		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
 		"seedbag" : true,
-		"newFlower" : preload("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
+		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
 	}
 }
 

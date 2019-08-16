@@ -21,6 +21,28 @@ var itemDictionary = {
 		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
 		"itemValue" : -1,
 		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},
+	"sprinkler_spawner2" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},
+	"sprinkler_spawner3" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},"sprinkler_spawner4" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},"sprinkler_spawner5" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
 	}
 };
 

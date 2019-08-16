@@ -203,6 +203,9 @@ func scroll_down():
 		if shop.rect_position.y != -64:
 			shop.rect_position.y -= 16
 
+func chest_opened():
+	show("shop")
+
 func _input(event):
 	if dialogue_is_playing:
 		return
@@ -221,7 +224,7 @@ func _input(event):
 	elif event is InputEventKey:
 		if event.pressed:
 			if event.scancode == KEY_B:
-				show("shop")
+				chest_opened()
 			
 			# changing current toolbar tool
 			if current_hud == "toolbar":

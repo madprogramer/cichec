@@ -113,10 +113,11 @@ func add_flower(originalItem):
 	for i in range(32):
 		if slotList[i].item == null:
 			print("ading to slot ", i)
-			var itemName = originalItem.name
+#			var itemName = originalItem.name
+			var itemName = originalItem.item.itemName
 			print (itemName)
 			
-			var itemIcon = originalItem.texture
+			var itemIcon = originalItem.item.itemIcon
 			print (itemIcon)
 			
 			var itemValue = -1

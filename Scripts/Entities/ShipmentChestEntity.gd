@@ -12,15 +12,15 @@ func _ready():
 	
 func _input(event):
 	if event is InputEventKey and event.pressed and event.scancode == KEY_ESCAPE:
-		#if inventory.visible == true:
+#		if inventory.visible == true:
 		#	inventory.visible = false
-		#	emit_signal("chest_closed")
+		emit_signal("chest_closed")
 		print("WIP")
 	pass
 	
 func _gui_input(event):
 	if event is InputEventMouseButton:
-		#if inventory.visible == false:
+#		if inventory.visible == false:
 		#	inventory.visible = true
-		#	emit_signal("chest_opened")
+		emit_signal("chest_opened")
 		pass

@@ -25,6 +25,8 @@ onready var grassanimation = get_node("GrassAnimation")
 
 onready var _seeds = get_node("Seeds")
 
+onready var chest = ysort.get_node("Chest")
+
 onready var dirtList = [
 	{
 		"id" : 35,
@@ -212,6 +214,8 @@ func _ready():
 	dialogueplayer._ready()
 	add_child(dialogueplayer)
 	dialogueplayer.set_owner(self)
+	
+	chest.connect("chest_opened", player.hud, "chest_opened")
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -482,7 +486,6 @@ func deplow(pos):
 		0)
 
 func plow(pos):
-	
 #	print("plow: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 	for direction in range(0, 4):
@@ -655,7 +658,10 @@ func sow(pos, item):
 	_seed.flower.motherId = item.motherId
 	
 	_seed.flower.set_seed(item)
-	_seed.flower.set_newFlower(item.newFlower.itemInfo)
+	_seed.flower.newFlower = load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd").new()
+	_seed.flower.newSeed.newFlower = load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd").new()
+#	_seed.flower.set_newFlower(item)
+	prints(item.newFlower, _seed.flower.newFlower)
 	_seed.flower.set_dummyFlowerViewer(_seed.flower.father, _seed.flower.mother)
 	
 	_seed.flower.sprite.name = str(_seeds.seeds.size()) + "0"
