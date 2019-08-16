@@ -1,6 +1,6 @@
 extends geneticStructure
 
-class_name dummyflower
+class_name dummyflowerviewer
 
 # Declare member variables here. Examples:
 
