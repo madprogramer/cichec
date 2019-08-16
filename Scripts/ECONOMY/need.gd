@@ -1,5 +1,7 @@
 extends Node
 
+class_name needManager
+
 var stockpile = {}
 var consumption = {}
 
