@@ -36,8 +36,24 @@ func set_dummyFlower(sprite, type):
 	dummyFlowerRenderer.add_dummyFlower(sprite, type)
 
 func render_dummyFlower(dummyFlowerViewer1, dummyFlowerViewer2):
-	set_dummyFlower(dummyFlowerViewer1.get_sprite(), 0)
-	set_dummyFlower(dummyFlowerViewer2.get_sprite(), 1)
+	prints("YUH", dummyFlowerViewer1.dummyFlower, dummyFlowerViewer2.dummyFlower)
+	set_dummyFlower(dummyFlowerViewer1.dummyFlower, 0)
+	set_dummyFlower(dummyFlowerViewer2.dummyFlower, 1)
+	var flowers = dummyFlowerRenderer.render()
+	add_child(flowers[0].sprite)
+	add_child(flowers[1].sprite)
+	flowers[0].sprite.visible = true
+	flowers[0].sprite.frame = 3
+	flowers[0].sprite.offset = Vector2(4, 4)
+	
+	flowers[1].sprite.visible = true
+	flowers[1].sprite.frame = 3
+	flowers[1].sprite.offset = Vector2(-4, 4)
+	
+#	var x = 0
+#	x = x / x
+	
+	return dummyFlowerRenderer.flowers
 
 func set_cursor_shape(texture):
 	if texture == null:
