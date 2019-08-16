@@ -330,7 +330,7 @@ func set_newFlower(originalItem):
 	newFlower.itemInfo = originalItem
 	
 	newSeed.newFlower = newFlower
-	
+	print(newSeed)
 	prints(">", newFlower)
 
 func set_genes(GENES):

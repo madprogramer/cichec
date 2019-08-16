@@ -655,6 +655,11 @@ func sow(pos, item):
 	_seed.flower.motherId = item.motherId
 	
 	_seed.flower.set_seed(item)
+	print(item)
+	print(item.newFlower)
+	
+	#setCorrectNewFlower(flower,)
+	
 	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	_seed.flower.set_dummyFlowerViewer(_seed.flower.father, _seed.flower.mother)
 	
