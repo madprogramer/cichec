@@ -13,10 +13,11 @@ func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	self.itemName = itemName;
 	texture = itemTexture;
 #	show_behind_parent = true
-	if itemValue != -1:
-		hint_tooltip = "%s\n%d" % [itemName, itemValue];
-	else:
-		hint_tooltip = "%s" % [itemName];
+#	if itemValue != -1:
+#		hint_tooltip = "%s\n%d" % [itemName, itemValue];
+#	else:
+#		hint_tooltip = "%s" % [itemName];
+#	show_behind_parent = false
 	###
 	# Rect.size_flags_horizontal = 40
 	# Rect.size_flags_vertical = 40

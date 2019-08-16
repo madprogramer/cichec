@@ -31,7 +31,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	else:
 		self.seedClass = seedClass
 		
-	name = itemName;
+#	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
 	itemIcon = itemTexture
@@ -46,7 +46,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	set_count(count)
 	
 #	hint_tooltip = "%s %d" % [itemName, count] 
-	hint_tooltip = "%s" % [itemName] 
+#	hint_tooltip = "%s" % [itemName] 
 		
 	self.itemSlot = itemSlot;
 	mouse_filter = Control.MOUSE_FILTER_PASS;

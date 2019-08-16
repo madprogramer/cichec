@@ -137,6 +137,7 @@ config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
 
 window/size/width=64
 window/size/height=64
+mouse_cursor/tooltip_position_offset=Vector2( 3, 3 )
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -187,12 +188,8 @@ mouse_select={
  ]
 }
 
-[physics]
-
-2d/cell_size=16
-
 [rendering]
 
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
+environment/default_clear_color=Color( 0.866667, 0.717647, 0.415686, 1 )
 environment/default_environment="res://default_env.tres"
