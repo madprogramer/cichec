@@ -11,10 +11,10 @@ onready var highlight = get_node("Highlight")
 onready var ysort = get_node("YSort")
 
 onready var flowercontainer = get_node("YSort")
-onready var dirtmarkcontainer = ysort.get_node("DirtmarkContainer")
+onready var dirtmarkcontainer = get_node("DirtmarkContainer")
 
-onready var hoeplowanimation = ysort.get_node("HoePlowAnimation")
-onready var wateringcanwateranimation = ysort.get_node("WateringCanWaterAnimation")
+onready var hoeplowanimation = get_node("HoePlowAnimation")
+onready var wateringcanwateranimation = get_node("WateringCanWaterAnimation")
 
 onready var animationcontainer = get_node("AnimationContainer")
 onready var player = ysort.get_node("Player")
@@ -23,7 +23,7 @@ onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 onready var desertanimation = get_node("DesertAnimation")
 onready var grassanimation = get_node("GrassAnimation")
 
-var _seeds = preload("res://Scripts/Seeds.tscn").instance()
+onready var _seeds = get_node("Seeds")
 
 onready var dirtList = [
 	{
@@ -158,6 +158,7 @@ func next_song():
 func _ready():	
 	add_child(_seeds)
 	_seeds.set_owner(self)
+#	_seeds._ready()
 	
 	randomize()
 	
@@ -643,8 +644,8 @@ func sow(pos, item):
 	_seed.flower.fatherId = item.fatherId
 	_seed.flower.motherId = item.motherId
 	
-	_seed.flower.set_seed(item)
 	_seed.flower.set_newFlower(item.newFlower.itemInfo)
+	_seed.flower.set_seed(item)
 	
 	_seed.flower.sprite.name = str(_seeds.seeds.size()) + "0"
 	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)

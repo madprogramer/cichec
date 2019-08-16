@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Dirt/Tileset1-scaled.png" type="Texture" id=2]
@@ -11,27 +11,27 @@
 [ext_resource path="res://Assets/Dirt/2.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Entities/Sprinkler/Tile.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Dirt/Sand12x12.png" type="Texture" id=11]
-[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=13]
-[ext_resource path="res://Scenes/Entities/Sprinkler.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Entities/Door.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-3.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-4.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=30]
-[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=31]
-[ext_resource path="res://Scenes/Entities/Chest.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Entities/Sprinkler.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Entities/Door.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Entities/Chest.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-3.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-4.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=32]
 [ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=33]
 [ext_resource path="res://Assets/Sand/Animated/1.png" type="Texture" id=34]
 [ext_resource path="res://Assets/Sand/Animated/2.png" type="Texture" id=35]
@@ -51,6 +51,7 @@
 [ext_resource path="res://Assets/Dirt/Animated/7.png" type="Texture" id=49]
 [ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=50]
 [ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=51]
+[ext_resource path="res://Scripts/Seeds.gd" type="Script" id=52]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -486,7 +487,7 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -494,7 +495,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -541,21 +542,24 @@ cell_size = Vector2( 12, 12 )
 format = 1
 tile_data = PoolIntArray( -1, 41, 0, -65536, 41, 0, -65535, 41, 0, -65534, 41, 0, -65533, 41, 0, -65532, 41, 0, -65531, 41, 0, -65530, 41, 0, 65535, 41, 0, 0, 32, 0, 1, 32, 0, 2, 32, 0, 3, 32, 0, 4, 32, 0, 5, 32, 0, 6, 41, 0, 131071, 41, 0, 65536, 32, 0, 65537, 32, 0, 65538, 32, 0, 65539, 32, 0, 65540, 32, 0, 65541, 32, 0, 65542, 41, 0, 196607, 41, 0, 131072, 32, 0, 131073, 32, 0, 131074, 32, 0, 131075, 32, 0, 131076, 32, 0, 131077, 32, 0, 131078, 41, 0, 262143, 41, 0, 196608, 32, 0, 196609, 32, 0, 196610, 32, 0, 196611, 32, 0, 196612, 32, 0, 196613, 32, 0, 196614, 41, 0, 327679, 41, 0, 262144, 32, 0, 262145, 32, 0, 262146, 32, 0, 262147, 32, 0, 262148, 32, 0, 262149, 32, 0, 262150, 41, 0, 393215, 41, 0, 327680, 32, 0, 327681, 32, 0, 327682, 32, 0, 327683, 32, 0, 327684, 32, 0, 327685, 32, 0, 327686, 41, 0, 458751, 41, 0, 393216, 41, 0, 393217, 41, 0, 393218, 41, 0, 393219, 41, 0, 393220, 41, 0, 393221, 41, 0, 393222, 41, 0 )
 
+[node name="DirtmarkContainer" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
 [node name="AnimationContainer" type="Node2D" parent="." groups=[
 "toSave",
 ]]
-script = ExtResource( 12 )
-
-[node name="YSort" type="YSort" parent="."]
 script = ExtResource( 13 )
 
-[node name="Sprinkler" parent="YSort" instance=ExtResource( 14 )]
+[node name="YSort" type="YSort" parent="."]
+script = ExtResource( 14 )
+
+[node name="Sprinkler" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 19.4052, 13.6077 )
 
-[node name="ExitDoor" parent="YSort" instance=ExtResource( 15 )]
+[node name="ExitDoor" parent="YSort" instance=ExtResource( 16 )]
 position = Vector2( 31.2796, -21.8513 )
 
-[node name="Player" parent="YSort" instance=ExtResource( 16 )]
+[node name="Player" parent="YSort" instance=ExtResource( 17 )]
 position = Vector2( 32.2648, 32 )
 
 [node name="PlayerCamera" type="Camera2D" parent="YSort/Player"]
@@ -563,29 +567,26 @@ position = Vector2( -4, -8 )
 offset = Vector2( 4, 8 )
 current = true
 
-[node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="YSort"]
-visible = false
-scale = Vector2( 0.75, 0.75 )
-frames = SubResource( 2 )
-frame = 3
-
-[node name="HoePlowAnimation" type="AnimatedSprite" parent="YSort"]
-visible = false
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 3 )
-speed_scale = 2.0
-
-[node name="DirtmarkContainer" type="Node2D" parent="YSort"]
-script = ExtResource( 31 )
-
-[node name="Chest" parent="YSort" instance=ExtResource( 32 )]
+[node name="Chest" parent="YSort" instance=ExtResource( 18 )]
 margin_left = -27.5903
 margin_top = 27.3557
 margin_right = -11.5903
 margin_bottom = 40.3557
 
-[node name="Sprinkler2" parent="YSort" instance=ExtResource( 14 )]
+[node name="Sprinkler2" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 55.8343, 29.0045 )
+
+[node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 2 )
+frame = 3
+
+[node name="HoePlowAnimation" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 3 )
+speed_scale = 2.0
 
 [node name="Highlight" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
@@ -600,6 +601,9 @@ frames = SubResource( 5 )
 visible = false
 frames = SubResource( 6 )
 frame = 6
+
+[node name="Seeds" type="Node2D" parent="."]
+script = ExtResource( 52 )
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="sprinkler_water" from="YSort/Sprinkler" to="." method="_on_Sprinkler_sprinkler_water"]
 [connection signal="body_shape_entered" from="YSort/ExitDoor" to="." method="_on_ExitDoor_body_shape_entered"]
@@ -609,6 +613,6 @@ frame = 6
 [connection signal="sow" from="YSort/Player" to="." method="_on_Player_sow"]
 [connection signal="spawn_sprinkler" from="YSort/Player" to="." method="_on_Player_spawn_sprinkler"]
 [connection signal="water" from="YSort/Player" to="." method="_on_Player_water"]
-[connection signal="animation_finished" from="YSort/WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
-[connection signal="animation_finished" from="YSort/HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
 [connection signal="sprinkler_water" from="YSort/Sprinkler2" to="." method="_on_Sprinkler2_sprinkler_water"]
+[connection signal="animation_finished" from="WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
+[connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]

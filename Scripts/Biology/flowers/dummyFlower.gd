@@ -296,6 +296,9 @@ func set_seed(originalItem):
 	newSeed.motherId = motherId
 	newSeed.newFlower = newFlower
 	
+#	var x = 0
+#	x = x / x
+	
 const ItemClass = preload("res://Scripts/Item.gd")
 
 var newFlower
