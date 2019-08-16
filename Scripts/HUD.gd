@@ -39,7 +39,7 @@ func render_dummyFlower(dummyFlowerViewer1, dummyFlowerViewer2):
 	prints("YUH", dummyFlowerViewer1.dummyFlower, dummyFlowerViewer2.dummyFlower)
 	set_dummyFlower(dummyFlowerViewer1.dummyFlower, 0)
 	set_dummyFlower(dummyFlowerViewer2.dummyFlower, 1)
-	var flowers = dummyFlowerRenderer.render()
+	var flowers = dummyFlowerRenderer.render([dummyFlowerViewer1.dummyFlower,dummyFlowerViewer2.dummyFlower])
 	add_child(flowers[0].sprite)
 	add_child(flowers[1].sprite)
 	flowers[0].sprite.visible = true
