@@ -158,7 +158,16 @@ func _gui_input(event):
 				remove_seed(clickedSlot.item)
 		
 	pass
+
+func iamsorry(i):
+	var clickedSlot = null;
 	
+	clickedSlot = slotList[i]
+	
+	if clickedSlot != null:
+		if clickedSlot.item != null:
+			remove_seed(clickedSlot.item)
+
 const DIFF = 0.25
 	
 func similar(arr1, arr2):

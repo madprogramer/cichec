@@ -13,6 +13,15 @@ var direction = {
 	"y" : "down"
 }
 
+# function to remove decrease a seed from toolbar
+func iamnotsorry(i):
+#	print("TEMP")
+	hud.seedbag.iamsorry(i)
+	hud.show("seedtoolbar")
+
+func _ready():
+	hud.seedtoolbar.connect("remove_seed", self, "iamnotsorry")
+
 func get_current_item():
 	return hud.get_current_item()
 
