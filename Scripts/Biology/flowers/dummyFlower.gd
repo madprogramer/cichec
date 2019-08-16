@@ -320,18 +320,26 @@ const ItemClass = preload("res://Scripts/Item.gd")
 var newFlower
 
 func set_newFlower(originalItem):
-	var itemName = originalItem.itemName
-	var itemIcon = originalItem.itemIcon
-	var itemValue = -1
-	var itemClass = originalItem.itemClass
-	
-	newFlower = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
-	
-	newFlower.itemInfo = originalItem
-	
+	newFlower = load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd").new()
+#	var itemName = originalItem.itemName
+#	var itemIcon = originalItem.itemIcon
+#	var itemValue = -1
+#	var itemClass = originalItem.itemClass
+#
+#	newFlower = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
+#
+#	newFlower.itemInfo = originalItem
+#
+	newFlower.visible = true
 	newSeed.newFlower = newFlower
+
 	print(newSeed)
 	prints(">", newFlower)
+
+	
+	add_child(newFlower)
+#
+#	prints(">", newFlower)
 
 func set_genes(GENES):
 #	print(GENES)

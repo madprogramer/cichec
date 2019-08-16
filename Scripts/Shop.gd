@@ -21,6 +21,28 @@ var itemDictionary = {
 		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
 		"itemValue" : -1,
 		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},
+	"sprinkler_spawner2" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},
+	"sprinkler_spawner3" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},"sprinkler_spawner4" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+	},"sprinkler_spawner5" : {
+		"itemName" : "sprinkler_spawner",
+		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
+		"itemValue" : -1,
+		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
 	}
 };
 
@@ -29,7 +51,7 @@ var itemList = Array();
 
 var holdingItem = null;
 
-var toSellArray = []
+var toBuyArray = []
 
 func _ready():
 	for item in itemDictionary:
@@ -102,22 +124,21 @@ func _gui_input(event):
 			if clickedSlot != null and clickedSlot.item != null:
 				if clickedSlot.highlight_sprite.visible == false:
 					clickedSlot.highlight()
-					toSellArray.push_back(clickedI)
+					toBuyArray.push_back(clickedI)
 				else:
 					clickedSlot.highlight_sprite.visible = false
-					toSellArray.erase(clickedI)
-				print(toSellArray)
+					toBuyArray.erase(clickedI)
+				print(toBuyArray)
 	pass
 
 func add_flower(originalItem):
 	for i in range(32):
 		if slotList[i].item == null:
 			print("ading to slot ", i)
-#			var itemName = originalItem.name
-			var itemName = originalItem.item.itemName
+			var itemName = originalItem.name
 			print (itemName)
 			
-			var itemIcon = originalItem.item.itemIcon
+			var itemIcon = originalItem.texture
 			print (itemIcon)
 			
 			var itemValue = -1

@@ -12,6 +12,8 @@ var item
 
 func _ready():
 	item = itemClass.new(itemInfo.itemName, itemInfo.itemIcon, null, itemInfo.itemValue, itemClass)
+	item.itemInfo = itemInfo
+#	item.newFlower = item
 
 func _init():
 	_ready()
