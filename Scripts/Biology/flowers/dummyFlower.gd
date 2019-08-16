@@ -326,6 +326,12 @@ func set_newFlower(originalItem):
 	var itemClass = originalItem.itemClass
 	
 	newFlower = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
+	
+	newFlower.itemInfo = originalItem
+	
+	newSeed.newFlower = newFlower
+	
+	prints(">", newFlower)
 
 func set_genes(GENES):
 #	print(GENES)

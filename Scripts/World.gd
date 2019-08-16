@@ -654,8 +654,8 @@ func sow(pos, item):
 	_seed.flower.fatherId = item.fatherId
 	_seed.flower.motherId = item.motherId
 	
-	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	_seed.flower.set_seed(item)
+	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	_seed.flower.set_dummyFlowerViewer(_seed.flower.father, _seed.flower.mother)
 	
 	_seed.flower.sprite.name = str(_seeds.seeds.size()) + "0"
@@ -738,6 +738,7 @@ func _pick_seed_Routine(pos, force = false):
 			_seeds.seeds[pos] = null
 			
 		elif flower.isDead() or flower.isPolinated():
+			flower.newSeed.newFlower = flower.newFlower
 			player.add_seed(flower.newSeed)
 			flower.harvest()
 			_seeds.seeds[pos] = null
@@ -771,9 +772,11 @@ func _pick_seed_Routine(pos, force = false):
 				
 			elif flower.isDead() or flower.isPolinated():
 				print("WRY?")
+#				flower.newSeed.newFlower = flower.newFlower
+#				print(flower.newFlower)
 				player.add_seed(flower.newSeed)
 				flower.harvest()
-				_seeds.seeds[pos] = null
+#				_seeds.seeds[pos] = null
 			return
 				
 	
