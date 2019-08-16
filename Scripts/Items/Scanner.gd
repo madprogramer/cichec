@@ -71,6 +71,7 @@ func scan2(pos, seeds, hud):
 		
 		var flower = item._seed.flower
 		if flower.pos == pos:
-			hud.render_dummyFlower(flower.get_dummyFlowerViewer(0), flower.get_dummyFlowerViewer(1))
-			return
+			return hud.render_dummyFlower(flower.get_dummyFlowerViewer(0), flower.get_dummyFlowerViewer(1))
+#			var x = 0
+#			x = x / x
 	print("Couldn't find the scanned flower")

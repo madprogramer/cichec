@@ -1,36 +1,23 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var seeds = [null, null]
+var flowers = [null, null]
 
-var spriteArray = []
+func add_dummyFlower(flower, type):
+	seeds[type] = flower
 
-func add_sprite(pos, sprite, type):
-	spriteArray[type] = Sprite.new()
-	var sprite1 = spriteArray[type]
-	var sprite2 = sprite
-#	sprite1.offset = sprite2.offset
-	sprite1.position = sprite2.position
-	sprite1.set_self_modulate(sprite2.get_self_modulate())
-	sprite1.set_texture(sprite2.get_texture())
-	sprite1.set_hframes(sprite2.get_hframes())
-	sprite1.set_frame(0)
-	sprite1.visible = sprite2.visible
-	add_child(spriteArray[type])
-	spriteArray[type].set_owner(self)
+func render():
+	for i in range(2):
+		var pos = Vector2(0, 0)
+		if i == 1:
+			pos.x = 48
+		flowers[i] = seeds[i].flower.dummySeed.seedClass.new(
+			pos,
+			seeds[i].GENES
+		)
+		flowers[i] = flowers[i].flower
+		
+#		var x = 0
+#		x = x / x
 	
-func get_sprite(pos, type):
-	return spriteArray[type]
-
-func add_dummyFlower(type, sprite):
-	if type == 0:
-		add_sprite(Vector2(0, 0), sprite, type)
-	elif type == 1:
-		add_sprite(Vector2(48, 0), sprite, type)
-	else:
-		assert(false)
-
-func _ready():
-	for k in range(0, 2):
-		spriteArray.push_back(null)
+	return flowers

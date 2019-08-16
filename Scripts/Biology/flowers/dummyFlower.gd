@@ -149,7 +149,7 @@ func polinate():
 			
 		#print(Vector2(polX,polY))
 		#print(polenGenes)
-		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, [uniqueId, "INSERT PATERNAL PHENODATA"] ] )
+		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, [uniqueId, "INSERT PATERNAL PHENODATA"], [dummySeed, "INSERT MOTHER"]] )
 		
 	return polen
 	
@@ -159,6 +159,9 @@ func try_polinate():
 	return []
 	
 var newSeed = null
+
+var father
+var mother
 	
 func getPolinated(polenData):
 #	print("Someone is trying to polinate me: ", polenData)
@@ -177,6 +180,10 @@ func getPolinated(polenData):
 	
 	newSeed.fatherId = polenData[3][0]
 	newSeed.motherId = polenData[3][1]
+	
+	father = polenData[4][0]
+	mother = polenData[4][1]
+	
 #	print("newSeed's parents: ", polenData[3][0], " ", polenData[3][1])
 	
 #	self.setColor()
@@ -266,6 +273,11 @@ func pickup():
 	return self
 	
 const SeedClass = preload("res://Scripts/Seed.gd");
+
+var dummySeed
+
+func set_dummySeed(dummySeed):
+	self.dummySeed = dummySeed
 	
 # pilgrim™: Ugly solutions require modern problems.
 func set_seed(originalItem):
@@ -315,7 +327,14 @@ func set_genes(GENES):
 #	print(GENES)
 	initGenes(GENES)
 
-var dummyFlowerViewers = [null, null]
+onready var dummyFlowerViewerClass = preload("res://Scripts/Biology/flowers/dummyFlowerViewer.gd")
+
+var dummyFlowerViewers = []
+
+func set_dummyFlowerViewer(flower1, flower2):
+	dummyFlowerViewerClass = preload("res://Scripts/Biology/flowers/dummyFlowerViewer.gd")
+	dummyFlowerViewers.append(dummyFlowerViewerClass.new(flower1))
+	dummyFlowerViewers.append(dummyFlowerViewerClass.new(flower2))
 
 func get_dummyFlowerViewer(type):
 	return dummyFlowerViewers[type]

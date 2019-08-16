@@ -316,6 +316,7 @@ func pass_day():
 						#print(speciesAt)
 
 						polenData[3][1] = flowerAt.uniqueId
+						polenData[4][1] = flowerAt.dummySeed
 						print(polenData[3])
 
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
@@ -632,6 +633,11 @@ func sow(pos, item):
 		item.dummySeed.GENES
 	)
 	
+	_seed.flower.set_dummySeed(item.dummySeed)
+	
+#	var x = 0
+#	x = x / x
+	
 	add_child(_seed)
 	_seed.set_owner(self)
 	
@@ -647,6 +653,7 @@ func sow(pos, item):
 	
 	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	_seed.flower.set_seed(item)
+	_seed.flower.set_dummyFlowerViewer(_seed.flower.father, _seed.flower.mother)
 	
 	_seed.flower.sprite.name = str(_seeds.seeds.size()) + "0"
 	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)
@@ -786,8 +793,9 @@ func _on_WateringCanWaterAnimation_animation_finished():
 
 func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
-	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
-	player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds, player.hud)
+#	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
+	var flowers = player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds, player.hud)
+	print(flowers)
 	pass # Replace with function body.
 
 
