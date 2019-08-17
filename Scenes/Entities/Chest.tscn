@@ -23,3 +23,5 @@ script = ExtResource( 3 )
 [node name="Sprite" type="Sprite" parent="CanvasLayer/ChestInventory"]
 position = Vector2( 32, 32 )
 texture = ExtResource( 4 )
+
+[node name="SfxPlayer3" type="AudioStreamPlayer" parent="."]

@@ -43,17 +43,9 @@ func scan(pos, seeds):
 			add_child(x)
 			x.set_owner(self)
 			
-			
-			var colorsConverted = flower.getColor()
-			var colors256 = [0,0,0]
-			#print(colorsConverted)
-			colors256[0] = int(colorsConverted[0] * 256 )
-			colors256[1] = int(colorsConverted[1] * 256 )
-			colors256[2] = int(colorsConverted[2] * 256 )
-
 			var labels = [
 				"SIZE: " + str(flower.getSize()),
-				"COLOR: " + str(colors256),
+				"COLOR: " + str(flower.getColor()),
 				"SEEDS: " + str(flower.getSeeds()),
 				"POLEN: " + str(flower.getPolens())
 			]

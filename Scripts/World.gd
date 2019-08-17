@@ -5,7 +5,6 @@ const start_tile_size = 20
 
 onready var audioplayer = get_node("AudioStreamPlayer")
 onready var sfxplayer = get_node("SfxPlayer")
-
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
 
@@ -28,7 +27,6 @@ onready var _seeds = get_node("Seeds")
 
 onready var chest = ysort.get_node("Chest")
 onready var wasp = ysort.get_node("Wasp")
-onready var car = ysort.get_node("Car")
 
 onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()
 onready var salesManager = preload("res://Scripts/Managers/salesManager.gd").new()
@@ -140,10 +138,6 @@ var _seedDictionary = {
 	}
 }
 
-func play_sfx(sfx):
-	sfxplayer.stream = sfx
-	sfxplayer.play()
-
 func spawn_animation(pos, animatedSprite):
 	animationcontainer.spawn_animation(pos, animatedSprite)
 
@@ -161,6 +155,9 @@ var songs = [
 	load("res://Musics/ChokkaSong3.wav"),
 	load("res://Musics/ChokkaSong4.wav")
 ]
+func play_sfx(sfx):
+    sfxplayer.stream = sfx
+    sfxplayer.play()
 
 var current_song = 0
 
@@ -246,7 +243,6 @@ func _ready():
 	chest.connect("chest_closed", player.hud, "chest_closed")
 	wasp.connect("shop_opened", player.hud, "shop_opened")
 	wasp.connect("shop_closed", player.hud, "shop_closed")
-	car.connect("pass_day", self, "pass_day")
 	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
 	
 #	print(tilemap.get_cellv(Vector2(-3, 3)))
@@ -345,7 +341,7 @@ func pass_day():
 			#Age Up
 			#Ignore Ded
 			if phase == 0:
-				#print(Vector2(i, j), _flower.id)
+				print(Vector2(i, j), _flower.id)
 				var _polen = _flower.try_polinate()
 				#print("STANDO POWAH")
 				if _polen.size() > 0:
@@ -380,7 +376,7 @@ func pass_day():
 
 						polenData[3][1] = flowerAt.uniqueId
 						polenData[4][1] = flowerAt.dummySeed
-						#print(polenData[3])
+						print(polenData[3])
 
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
@@ -407,13 +403,12 @@ func pass_day():
 				if _flower.isDead():
 					pass
 				if _flower.isPolinated():
-					#print("Todo: Determine how to disperse seeds from unharvested plant");
+					print("Todo: Determine how to disperse seeds from unharvested plant");
 					pass
 				_flower.age_up()
 			
 			elif phase == 4:
-				#print("Day advanced!")
-				pass
+				print("Day advanced!")
 			
 	get_tree().call_group("Sprinklers", "water")
 	
@@ -456,7 +451,7 @@ signal tile_hydrated
 signal medicine_collected
 
 func cultivate(pos):
-	#print("trying to cultivate: ", pos)
+	print("trying to cultivate: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Normal"].id)
 	
 	var i = pos.y
@@ -473,7 +468,7 @@ func cultivate(pos):
 	emit_signal("tile_hydrated")
 
 func cultivate_main(pos):
-	#print("cultivate_main: ", pos)
+	print("cultivate_main: ", pos)
 	var times = randi()% 4
 	for i in times :
 		var xr = randi()%4 - 2
@@ -490,16 +485,14 @@ func cultivate_main(pos):
 			cultivate(targetpos)
 	
 
-func set_dialogue(path = "res://Dialogues/test_dialogue.json"):
-	dialogueplayer.interact(path)
-	dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 
 func _input(event):
 	if event is InputEventKey:
 		################################### LOOK DOWN #################################
 		if false and event.pressed and event.scancode == KEY_ENTER:
 			if player.hud.dialogue_is_playing == false:
-				set_dialogue()
+				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
+				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
@@ -595,6 +588,7 @@ func _plow_Routine(pos):
 	var temppos = Vector2((pos.x + 0.5) * tilemap.cell_size.x, (pos.y + 0.5) * tilemap.cell_size.y)
 	animationcontainer.get_node(str(temppos)).queue_free()
 	yield(get_tree(), "idle_frame")
+	play_sfx(preload("res://Assets/Audio/Hit_hurt_2_1.wav"))
 	spawn_animation(Vector2(
 	(pos.x) * tilemap.cell_size.x + 6,
 	(pos.y) * tilemap.cell_size.y + 6),
@@ -856,7 +850,6 @@ func _pick_seed_Routine(pos, force = false):
 				print("WRYYYYYYYYYYYYYYY")
 				flower = flower.pickup()
 				player.add_flower(flower.newFlower)
-				_seed.queue_free()
 				_seeds.seeds[pos] = null
 				
 			elif flower.isDead() or flower.isPolinated():
@@ -865,8 +858,6 @@ func _pick_seed_Routine(pos, force = false):
 #				print(flower.newFlower)
 				player.add_seed(flower.newSeed)
 				flower.harvest()
-
-				_seed.queue_free()
 				_seeds.seeds[pos] = null
 			return
 				

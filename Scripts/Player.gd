@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var sfxplayer2= get_node("SfxPlayer2")
 onready var hud = get_node("HUD")
 onready var animationplayer = get_node("AnimationPlayer")
 onready var idlesprite = get_node("IdleSprite")
@@ -45,18 +46,21 @@ func set_direction(d1, d2):
 	
 	if direction.y != d2:
 		direction.y = d2
-
+var k=0
 func move():
+	
 	var move_vec = Vector2(0, 0)
 	if inputEnabled == false:
 		return
 	move_vec.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	move_vec.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	
+
 	move_vec = move_vec.normalized()
 	
 	move_and_slide(move_vec * SPEED)
-	
+	#sfxplayer2.stream=load("res://Assets/Audio/Default_23.wav")
+	#sfxplayer2.play()
 	if move_vec.x > 0:
 		set_direction("right", direction.y)
 	elif move_vec.x < 0:
@@ -68,6 +72,11 @@ func move():
 		set_direction(direction.x, "down")
 	
 	if move_vec.x != 0 or move_vec.y != 0:
+		if k==30:
+			sfxplayer2.stream = (preload("res://Assets/Audio/Default_3.wav"))
+			sfxplayer2.play()
+			k=0
+		k=k+1
 		if direction.y == "down":
 			animationplayer.current_animation = "walk"
 			walksprite.visible = true

@@ -66,7 +66,7 @@ texture = ExtResource( 6 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 4
+frame = 3
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -116,7 +116,7 @@ script = ExtResource( 21 )
 [node name="ShopHighlight" type="AnimatedSprite" parent="."]
 visible = false
 frames = ExtResource( 22 )
-frame = 4
+frame = 3
 playing = true
 centered = false
 
@@ -127,3 +127,6 @@ custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 4
 script = ExtResource( 23 )
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.063

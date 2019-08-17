@@ -1,7 +1,7 @@
 extends dummySeed
 
 func _ready():
-	setSize(0.5)
+	setSize(0)
 	setColor([0, 0, 1])
 	setSeeds(1)
 	setPolens(1)

@@ -1,7 +1,7 @@
 # HUD.gd
 # Manages inventory, toolbar, and seedbag
 extends CanvasLayer
-
+onready var sfxplayer = get_node("SfxPlayer")
 onready var inventory = get_node("Inventory")
 onready var inventory_back = get_node("Inventory-back")
 onready var inventory_front = get_node("Inventory-front")
@@ -190,8 +190,14 @@ func toolbar_show():
 		toolbar_visible = true
 		showing_toolbar = false
 	pass
-	
+var j=0
 func scroll_up():
+	if j==4:
+		j=0
+	if j==0:
+		sfxplayer.stream=(load("res://Assets/EnvanterSFX_2.wav"))
+		sfxplayer.play()
+	j=j+1
 	if current_hud == "inventory":
 		if inventory.rect_position.y != 0:
 			inventory.rect_position.y += 16
@@ -201,8 +207,14 @@ func scroll_up():
 	elif current_hud == "shop":
 		if shop.rect_position.y != 0:
 			shop.rect_position.y += 16
-
+var i=0
 func scroll_down():
+	if i==4:
+		i=0
+	if i==0: 
+		sfxplayer.stream=(load("res://Assets/EnvanterSFX_2.wav"))
+		sfxplayer.play()
+	i=i+1
 	if current_hud == "inventory":
 		if inventory.rect_position.y != -64:
 			inventory.rect_position.y -= 16
@@ -225,7 +237,9 @@ func chest_closed():
 func shop_opened():
 	show("shop")
 
+
 func _input(event):
+	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		cursor.offset = Vector2(event.position.x, event.position.y);
 	if inputEnabled == false:
@@ -245,38 +259,44 @@ func _input(event):
  
 	
 	elif event is InputEventKey:
+		
+		
 		if event.pressed:
 			if event.scancode == KEY_B:
 				chest_opened()
-			
+				sfxplayer.stream=(load("res://Assets/EnvanterSFX_2.wav"))
+				sfxplayer.play()
 			# changing current toolbar tool
 			if current_hud == "toolbar":
 				switch_tools(event, current_hud)
-			
+				
 			# changing current toolbar tool
 			if current_hud == "bagtoolbar":
 				switch_tools(event, current_hud)
-			
+				
 			# changing current toolbar tool
 			if current_hud == "seedtoolbar":
 				switch_tools(event, current_hud)
-			
+				
 			if event.scancode == KEY_SHIFT:
 				if current_hud == "toolbar":
 					toolbar.put_holding_item()
 					current_hud = "bagtoolbar"
 					show("bagtoolbar")
-						
+					sfxplayer.stream=(load("res://Assets/EnvanterSFX_2.wav"))
+					sfxplayer.play()
 				elif current_hud == "bagtoolbar":
 					bagtoolbar.put_holding_item()
 					current_hud = "seedtoolbar"
 					show("seedtoolbar")
-					
+					sfxplayer.stream=(load("res://Assets/EnvanterSFX_2.wav"))
+					sfxplayer.play()
 				elif current_hud == "seedtoolbar":
 					seedtoolbar.put_holding_item()
 					current_hud = "toolbar"
 					show("toolbar")
-
+					sfxplayer.stream=(load("res://Assets/EnvanterSFX_2.wav"))
+					sfxplayer.play()
 			if event.scancode == KEY_TAB:
 				if toolbar_visible == true:
 					toolbar_hide()
@@ -294,7 +314,7 @@ func _input(event):
 			if current_hud == "inventory":
 				if event.scancode == KEY_DOWN:
 					scroll_down()
-				
+					
 				if event.scancode == KEY_UP:
 					scroll_up()
 				
@@ -474,8 +494,7 @@ func change_dialogue_background(b):
 var character_textures = {
 	"Wasp" : preload("res://Assets/Characters/Wasp/Wasp13x11.png"),
 	"Capo" : preload("res://Assets/Characters/Capo/Capo13x11.png"),
-	"Alpamish" : preload("res://Assets/Characters/Alpamish/Alpamish13x11.png"),
-	"Kutalmish" : preload("res://Assets/Characters/Kutalmish/Kutalmish13x11.png")
+	"Alpamish" : preload("res://Assets/Characters/Alpamish/Alpamish13x11.png")
 }
 
 var flag = true

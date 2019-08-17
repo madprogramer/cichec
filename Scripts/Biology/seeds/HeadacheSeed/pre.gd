@@ -2,7 +2,7 @@ extends dummySeed
 
 func _ready():
 	randomize()
-	setSize(0.5)
+	setSize(randf())
 	setColor([1, 1, 1])
 	setSeeds(1)
 	setPolens(1)

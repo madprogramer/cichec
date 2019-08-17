@@ -4,7 +4,6 @@
 [ext_resource path="res://Assets/Misc/Statusbar.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Misc/StatusbarPiece.png" type="Texture" id=3]
 
-
 [node name="StatusBar" type="Node2D"]
 position = Vector2( 31.3932, 32.8202 )
 script = ExtResource( 1 )

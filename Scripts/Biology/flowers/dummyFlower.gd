@@ -5,7 +5,7 @@ class_name dummyflower
 # Declare member variables here. Examples:
 
 #Identifier Begin
-
+onready var sfxplayer = get_node("SfxPlayer3")
 var id = 0
 var uniqueId = null
 var fatherId = 0
@@ -128,8 +128,7 @@ func polinate():
 	
 	print("https://github.com/EnoughSensei/cichec/issues/12")
 #	var polinationCount = phenoGenes.getPolens();
-	#var polinationCount = 3
-	var polinationCount = phenoGenes["polens"]
+	var polinationCount = 3
 	
 	var polRange = 2
 	if !isShort():
@@ -207,6 +206,8 @@ func isPolinated():
 	
 func harvest():
 #	print("TODO: ADD CORRECT SEEDS TO INVENTORY")
+	sfxplayer.stream= (load("res://Assets/Audio/Harvest.wav"))
+	sfxplayer.play()
 	polinated = false
 	set_dead()
 	var seeds = newSeed
@@ -250,8 +251,7 @@ func phenoColor():
 #Size
 #Average of genes, rounded up
 func phenoSize():
-	#return ceil((matGenes.size + patGenes.size)/2)
-	return ((matGenes.size + patGenes.size)/2)
+	return ceil((matGenes.size + patGenes.size)/2)
 
 #Seeds 
 #Random Number in interval of min to max
@@ -276,7 +276,8 @@ func pickup():
 	sprite.visible = false
 	pollinatedsprite.visible = false
 	deadsprite.visible = false
-	#return self
+	sfxplayer.stream= (load("res://Assets/Audio/Harvest.wav"))
+	sfxplayer.play()
 	return self
 	
 const SeedClass = preload("res://Scripts/Seed.gd");

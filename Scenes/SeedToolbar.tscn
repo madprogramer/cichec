@@ -10,3 +10,5 @@ custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 4
 script = ExtResource( 1 )
+
+[node name="SfxPlayer3" type="AudioStreamPlayer" parent="."]

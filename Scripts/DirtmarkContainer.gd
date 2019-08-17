@@ -24,7 +24,7 @@ func add_sprite(pos, globalpos, direction, type):
 		elif type == 1:
 			spriteMatrix[pos.x][pos.y][direction].texture = dirtmarkswater[direction].texture
 		spriteMatrix[pos.x][pos.y][direction].rotation = dirtmarks[direction].rotation
-		spriteMatrix[pos.x][pos.y][direction].position = globalpos
+		spriteMatrix[pos.x][pos.y][direction].global_position = globalpos
 		spriteMatrix[pos.x][pos.y][direction].visible = true
 	
 func clear_sprite(pos, direction):
