@@ -58,6 +58,7 @@ func render_dummyFlower(dummyFlowerViewer1, dummyFlowerViewer2):
 	return dummyFlowerRenderer.flowers
 
 func set_cursor_shape(texture):
+	return
 	if texture == null:
 		cursor.set_texture(texture)
 	else:
@@ -105,12 +106,14 @@ func change_highlight(x):
 	if current_hud == "toolbar" and toolbar.slotList[current_slot[current_hud]].item:
 		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":
 			if dialogue_is_playing == false:
-				set_cursor_shape(preload("res://Assets/Items/Hoe/MouseIcon.png"))
+#				set_cursor_shape(preload("res://Assets/Items/Hoe/MouseIcon.png"))
+				set_cursor_shape(null)
 			else:
 				set_cursor_shape(null)
 		elif toolbar.slotList[current_slot[current_hud]].item.itemName == "watering_can":
 			if dialogue_is_playing == false:
-				set_cursor_shape(preload("res://Assets/Items/Watering_Can/MouseIcon.png"))
+#				set_cursor_shape(preload("res://Assets/Items/Watering_Can/MouseIcon.png"))
+				set_cursor_shape(null)
 			else:
 				set_cursor_shape(null)
 		else:
@@ -221,7 +224,7 @@ func _input(event):
 	if dialogue_is_playing:
 		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
-		cursor.offset = Vector2(event.position.x, event.position.y);
+#		cursor.offset = Vector2(event.position.x, event.position.y);
 		
 		if event is InputEventMouseButton and event.is_pressed():
 			if event.button_index == BUTTON_WHEEL_UP:
