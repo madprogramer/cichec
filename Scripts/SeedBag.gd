@@ -12,9 +12,29 @@ var itemDictionary = {
 		"itemName" : "WaterseekerSeed",
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
 		"itemValue" : -1,
-		"count" : 3,
+		"count" : 10,
 		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
-		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/1.gd"),
+		"seedbag" : true,
+		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
+	},
+	1: {
+		"itemName" : "WaterseekerSeed",
+		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 10,
+		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/2.gd"),
+		"seedbag" : true,
+		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
+	},
+	2: {
+		"itemName" : "WaterseekerSeed",
+		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 10,
+		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/3.gd"),
 		"seedbag" : true,
 		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
 	}
