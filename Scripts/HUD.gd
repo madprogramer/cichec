@@ -58,12 +58,13 @@ func render_dummyFlower(dummyFlowerViewer1, dummyFlowerViewer2):
 	return dummyFlowerRenderer.flowers
 
 func set_cursor_shape(texture):
-	return
 	if texture == null:
-		cursor.set_texture(texture)
+		if cursor != null:
+			cursor.set_texture(texture)
 	else:
 		if cursor == null:
 			cursor = Sprite.new()
+			cursor.centered = false
 			add_child(cursor)
 			cursor.set_owner(self)
 		cursor.set_texture(texture)
@@ -107,19 +108,25 @@ func change_highlight(x):
 		if toolbar.slotList[current_slot[current_hud]].item.itemName == "hoe":
 			if dialogue_is_playing == false:
 #				set_cursor_shape(preload("res://Assets/Items/Hoe/MouseIcon.png"))
-				set_cursor_shape(null)
+#				set_cursor_shape(null)
+				pass
 			else:
-				set_cursor_shape(null)
+#				set_cursor_shape(null)
+				pass
 		elif toolbar.slotList[current_slot[current_hud]].item.itemName == "watering_can":
 			if dialogue_is_playing == false:
 #				set_cursor_shape(preload("res://Assets/Items/Watering_Can/MouseIcon.png"))
-				set_cursor_shape(null)
+#				set_cursor_shape(null)
+				pass
 			else:
-				set_cursor_shape(null)
+#				set_cursor_shape(null)
+				pass
 		else:
-			set_cursor_shape(null)
+#			set_cursor_shape(null)
+			pass
 	else:
-		set_cursor_shape(null)
+#		set_cursor_shape(null)
+		pass
 
 var switchToolKeys = [
 	KEY_1,
@@ -224,7 +231,7 @@ func _input(event):
 	if dialogue_is_playing:
 		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
-#		cursor.offset = Vector2(event.position.x, event.position.y);
+		cursor.offset = Vector2(event.position.x, event.position.y);
 		
 		if event is InputEventMouseButton and event.is_pressed():
 			if event.button_index == BUTTON_WHEEL_UP:
@@ -503,7 +510,7 @@ var dialogue_is_playing = false
 
 func dialogue_started():
 	print("STARTED")
-	set_cursor_shape(null)
+#	set_cursor_shape(null)
 	dialogue_is_playing = true
 	for hud_element in hud_elements:
 		hud_element.visible = false

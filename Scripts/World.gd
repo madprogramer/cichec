@@ -167,6 +167,7 @@ func next_song():
 	audioplayer.play()
 
 func _ready():
+	player.hud.set_cursor_shape(load("res://Assets/Cursor/cursor.png"))
 	player.hud.shop.set_player(player)
 	
 	add_child(_seeds)
@@ -268,7 +269,9 @@ func _on_Inventory_sell(toSellArrayIndices):
 	prints("playerBalance", player.balance)
 
 func get_mouse_cell():
-	return tilemap.world_to_map(get_global_mouse_position() - position)
+	var pos = tilemap.world_to_map(get_global_mouse_position() - position)
+	pos.x -= 1
+	return pos
 
 func highlight_cursor():
 	var mouse_cell = get_mouse_cell()
@@ -448,8 +451,18 @@ signal medicine_collected
 func cultivate(pos):
 	print("trying to cultivate: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Normal"].id)
+	
+	var i = pos.y
+	var j = pos.x
+	grassanimation.frame = (desertanimation.frame + j * 5)
+	grassanimation.frame %= 10
+	
+	if animationcontainer.get_node(str(pos)) != null:
+		animationcontainer.get_node(str(pos)).queue_free()
+	animationcontainer.spawn_animation(Vector2((j + 0.5) * tilemap.cell_size.x, (i + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
+	
 	pos = Vector2((pos.x + 0.5) * tilemap.cell_size.x, (pos.y + 0.5) * tilemap.cell_size.y)
-	animationcontainer.get_node(str(pos)).queue_free()
+
 	emit_signal("tile_hydrated")
 
 func cultivate_main(pos):
