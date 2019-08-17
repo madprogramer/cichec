@@ -26,6 +26,7 @@ onready var grassanimation = get_node("GrassAnimation")
 onready var _seeds = get_node("Seeds")
 
 onready var chest = ysort.get_node("Chest")
+onready var wasp = ysort.get_node("Wasp")
 
 onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()
 onready var salesManager = preload("res://Scripts/Managers/salesManager.gd").new()
@@ -221,6 +222,9 @@ func _ready():
 	dialogueplayer.set_owner(self)
 	
 	chest.connect("chest_opened", player.hud, "chest_opened")
+	chest.connect("chest_closed", player.hud, "chest_closed")
+	wasp.connect("shop_opened", player.hud, "shop_opened")
+	wasp.connect("shop_closed", player.hud, "shop_closed")
 	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
 
 signal lose_game

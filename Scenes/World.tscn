@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Dirt/Tileset1-scaled.png" type="Texture" id=2]
@@ -18,40 +18,42 @@
 [ext_resource path="res://Scenes/Entities/Door.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Entities/Chest.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-3.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-4.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=32]
-[ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=33]
-[ext_resource path="res://Assets/Sand/Animated/1.png" type="Texture" id=34]
-[ext_resource path="res://Assets/Sand/Animated/2.png" type="Texture" id=35]
-[ext_resource path="res://Assets/Sand/Animated/3.png" type="Texture" id=36]
-[ext_resource path="res://Assets/Sand/Animated/4.png" type="Texture" id=37]
-[ext_resource path="res://Assets/Sand/Animated/5.png" type="Texture" id=38]
-[ext_resource path="res://Assets/Sand/Animated/6.png" type="Texture" id=39]
-[ext_resource path="res://Assets/Sand/Animated/7.png" type="Texture" id=40]
-[ext_resource path="res://Assets/Sand/Animated/8.png" type="Texture" id=41]
-[ext_resource path="res://Assets/Sand/Animated/9.png" type="Texture" id=42]
-[ext_resource path="res://Assets/Dirt/Animated/2.png" type="Texture" id=43]
-[ext_resource path="res://Assets/Dirt/Animated/1.png" type="Texture" id=44]
-[ext_resource path="res://Assets/Dirt/Animated/3.png" type="Texture" id=45]
-[ext_resource path="res://Assets/Dirt/Animated/4.png" type="Texture" id=46]
-[ext_resource path="res://Assets/Dirt/Animated/5.png" type="Texture" id=47]
-[ext_resource path="res://Assets/Dirt/Animated/6.png" type="Texture" id=48]
-[ext_resource path="res://Assets/Dirt/Animated/7.png" type="Texture" id=49]
-[ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=50]
-[ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=51]
-[ext_resource path="res://Scripts/Seeds.gd" type="Script" id=52]
+[ext_resource path="res://Assets/Characters/Wasp/Wasp16x16.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/Characters/Wasp.gd" type="Script" id=20]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-3.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-4.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Sand/Animated/1.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Sand/Animated/2.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Sand/Animated/3.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Sand/Animated/4.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Sand/Animated/5.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Sand/Animated/6.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Sand/Animated/7.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Sand/Animated/8.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Sand/Animated/9.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Dirt/Animated/2.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Dirt/Animated/1.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Dirt/Animated/3.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Dirt/Animated/4.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Dirt/Animated/5.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Dirt/Animated/6.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Dirt/Animated/7.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=53]
+[ext_resource path="res://Scripts/Seeds.gd" type="Script" id=54]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -487,7 +489,7 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -495,7 +497,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ) ],
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -503,7 +505,7 @@ animations = [ {
 
 [sub_resource type="TileSet" id=4]
 0/name = "Highlight8x8.png 0"
-0/texture = ExtResource( 33 )
+0/texture = ExtResource( 35 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 12, 12 )
@@ -515,7 +517,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ) ],
+"frames": [ ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -523,7 +525,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ) ],
+"frames": [ ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -576,6 +578,14 @@ margin_bottom = 40.3557
 [node name="Sprinkler2" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 55.8343, 25.4701 )
 
+[node name="Wasp" type="TextureRect" parent="YSort"]
+margin_left = -28.6556
+margin_top = 2.95367
+margin_right = -12.6556
+margin_bottom = 18.9537
+texture = ExtResource( 19 )
+script = ExtResource( 20 )
+
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 0.75, 0.75 )
@@ -603,7 +613,7 @@ frames = SubResource( 6 )
 frame = 6
 
 [node name="Seeds" type="Node2D" parent="."]
-script = ExtResource( 52 )
+script = ExtResource( 54 )
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="sprinkler_water" from="YSort/Sprinkler" to="." method="_on_Sprinkler_sprinkler_water"]
 [connection signal="body_shape_entered" from="YSort/ExitDoor" to="." method="_on_ExitDoor_body_shape_entered"]

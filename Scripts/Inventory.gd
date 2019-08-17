@@ -54,6 +54,14 @@ func _ready():
 	
 	pass
 
+func set_mode(mode):
+	if mode == "sell":
+		sellMode = true
+	elif mode == "normal":
+		sellMode = false
+	else:
+		assert(false)
+
 func _input(event):
 	if event is InputEventKey and event.is_pressed() and visible == true:
 		if event.scancode == KEY_ENTER:
@@ -64,11 +72,13 @@ func _input(event):
 		if holdingItem != null && holdingItem.picked:
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 
+var sellMode = false
+
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		var clickedSlot;
 #		var sellMode = false;
-		var sellMode = true
+#		sellMode = true
 		
 		var clickedI = 0
 		var i = 0

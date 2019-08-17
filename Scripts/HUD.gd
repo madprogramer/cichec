@@ -204,6 +204,15 @@ func scroll_down():
 			shop.rect_position.y -= 16
 
 func chest_opened():
+	print("CHEST OPENED")
+	inventory.set_mode("sell")
+	show("inventory")
+
+func chest_closed():
+	print("CHEST CLOSED")
+	inventory.set_mode("normal")
+
+func shop_opened():
 	show("shop")
 
 func _input(event):
