@@ -99,7 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Cichec"
-run/main_scene="res://Quests/Game.tscn"
+run/main_scene="res://Scenes/World.tscn"
 boot_splash/image="res://Assets/Misc/Inventory-background.png"
 config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
 
