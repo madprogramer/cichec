@@ -24,7 +24,7 @@ func calcFromArray(array):
 			countDictionary[array[i].itemName] += 1 # array[i].count
 	
 	for key in needDictionary:
-		if countDictionary[key] == null:
+		if countDictionary.has(key) == false:
 			return -1
 		if countDictionary[key] < needDictionary[key]:
 			return -1

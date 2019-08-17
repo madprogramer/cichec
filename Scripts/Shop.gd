@@ -6,6 +6,8 @@ const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 
 const slotTexture = preload("res://Assets/Misc/Slot-texture.png");
 
+var player
+
 const itemImages = [
 	preload("res://Assets/Highlight/Highlight.png")
 ];
@@ -14,7 +16,7 @@ var itemDictionary = {
 	"seed1" : {
 		"itemName" : "WaterseekerSeed",
 		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
-		"itemValue" : -1,
+		"itemValue" : 2,
 		"count" : 3,
 		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
 		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
@@ -30,7 +32,12 @@ var holdingItem = null;
 
 var toBuyArray = []
 
+func set_player(p):
+	player = p
+
 func _ready():
+	connect("buy", self, "buy")
+	
 	for item in itemDictionary:
 		var itemName = itemDictionary[item].itemName;
 		var itemIcon = itemDictionary[item].itemIcon;
@@ -56,7 +63,21 @@ func _ready():
 	
 	pass
 
+func buy(toBuyArray):
+	for i in toBuyArray:
+		if player.balance >= slotList[i].item.itemValue:
+			player.hud.seedbag.add_seed(slotList[i].item)
+			player.balance -= slotList[i].item.itemValue
+	pass
+
+signal buy(toBuyArray)
+
 func _input(event):
+	if event is InputEventKey and event.is_pressed() and visible == true:
+		if event.scancode == KEY_ENTER:
+			emit_signal("buy", toBuyArray)
+			print("BUY")
+	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);

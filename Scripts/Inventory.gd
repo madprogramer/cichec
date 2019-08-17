@@ -55,7 +55,7 @@ func _ready():
 	pass
 
 func _input(event):
-	if event is InputEventKey and event.is_pressed():
+	if event is InputEventKey and event.is_pressed() and visible == true:
 		if event.scancode == KEY_ENTER:
 			emit_signal("sell", toSellArray)
 			print("SELL")

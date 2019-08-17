@@ -160,7 +160,9 @@ func next_song():
 	audioplayer.stream = songs[current_song]
 	audioplayer.play()
 
-func _ready():	
+func _ready():
+	player.hud.shop.set_player(player)
+	
 	add_child(_seeds)
 	_seeds.set_owner(self)
 #	_seeds._ready()

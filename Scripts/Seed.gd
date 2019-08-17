@@ -4,6 +4,7 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var itemClass;
+var itemValue;
 var picked = false;
 var seedClass = null;
 var _seed = null
@@ -35,6 +36,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	self.itemName = itemName;
 	texture = itemTexture;
 	itemIcon = itemTexture
+	self.itemValue = itemValue
 	
 	label = Label.new()
 	labelpos = label.rect_position
