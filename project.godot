@@ -135,8 +135,8 @@ config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
 
 [display]
 
-window/size/width=64
-window/size/height=64
+window/size/width=640
+window/size/height=640
 mouse_cursor/custom_image="res://Assets/Cursor/cursor-empty.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
