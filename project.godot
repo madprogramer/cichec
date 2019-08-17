@@ -137,7 +137,7 @@ config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
 
 window/size/width=64
 window/size/height=64
-mouse_cursor/tooltip_position_offset=Vector2( 3, 3 )
+mouse_cursor/custom_image="res://Assets/Cursor/cursor-empty.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
