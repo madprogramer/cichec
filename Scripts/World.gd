@@ -27,7 +27,7 @@ onready var grassanimation = get_node("GrassAnimation")
 onready var _seeds = get_node("Seeds")
 
 onready var chest = ysort.get_node("Chest")
-onready var wasp = ysort.get_node("Wasp")
+onready var wasp = get_node("Wasp")
 onready var car = ysort.get_node("Car")
 
 onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()

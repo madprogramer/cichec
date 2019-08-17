@@ -21,11 +21,11 @@
 [ext_resource path="res://Scenes/Entities/Door.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Entities/Chest.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Assets/Characters/Wasp/Wasp16x16.png" type="Texture" id=22]
-[ext_resource path="res://Scripts/Characters/Wasp.gd" type="Script" id=23]
-[ext_resource path="res://Scripts/Entities/Car.gd" type="Script" id=24]
-[ext_resource path="res://Assets/Entities/Car/frame.png" type="Texture" id=25]
-[ext_resource path="res://Scenes/Entities/Car.tres" type="SpriteFrames" id=26]
+[ext_resource path="res://Scripts/Entities/Car.gd" type="Script" id=22]
+[ext_resource path="res://Assets/Entities/Car/frame.png" type="Texture" id=23]
+[ext_resource path="res://Scenes/Entities/Car.tres" type="SpriteFrames" id=24]
+[ext_resource path="res://Assets/Characters/Wasp/Wasp16x16.png" type="Texture" id=25]
+[ext_resource path="res://Scripts/Characters/Wasp.gd" type="Script" id=26]
 [ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=29]
@@ -729,7 +729,7 @@ position = Vector2( 18.9295, 12.3393 )
 position = Vector2( -171.115, 33.5256 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( -244.302, -11.7654 )
+position = Vector2( -209.092, -38.173 )
 
 [node name="PlayerCamera" type="Camera2D" parent="YSort/Player"]
 position = Vector2( -4, -8 )
@@ -745,32 +745,32 @@ margin_bottom = -60.5723
 [node name="Sprinkler2" parent="YSort" instance=ExtResource( 18 )]
 position = Vector2( 55.8343, 25.4701 )
 
-[node name="Wasp" type="TextureRect" parent="YSort"]
-margin_left = -231.443
-margin_top = -70.2369
-margin_right = -215.443
-margin_bottom = -54.2369
-texture = ExtResource( 22 )
-script = ExtResource( 23 )
-
 [node name="Car" type="Control" parent="YSort"]
 margin_left = -228.348
 margin_top = 18.7292
 margin_right = -188.348
 margin_bottom = 58.7292
-script = ExtResource( 24 )
+script = ExtResource( 22 )
 
 [node name="Rect" type="TextureRect" parent="YSort/Car"]
 margin_left = 87.8017
 margin_top = 22.9499
 margin_right = 127.802
 margin_bottom = 40.9499
-texture = ExtResource( 25 )
+texture = ExtResource( 23 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="YSort/Car"]
 visible = false
 position = Vector2( 107.802, 31.8272 )
-frames = ExtResource( 26 )
+frames = ExtResource( 24 )
+
+[node name="Wasp" type="TextureRect" parent="."]
+margin_left = -228.508
+margin_top = -66.4225
+margin_right = -212.508
+margin_bottom = -50.4225
+texture = ExtResource( 25 )
+script = ExtResource( 26 )
 
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="."]
 visible = false
