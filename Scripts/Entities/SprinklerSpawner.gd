@@ -55,7 +55,7 @@ func pickItem():
 	picked = true;
 	
 func putItem():
-	rect_global_position = Vector2(0, 0);
+	rect_position = Vector2(0, 0);
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	picked = false;
 	
@@ -64,6 +64,6 @@ func spawn(pos):
 	var size = newSprinkler.get_node("Position2D").position
 	pos -= size
 	print(pos)
-	newSprinkler.global_position = pos
+	newSprinkler.position = pos
 #	get_tree().current_scene.get_node("YSort").add_child(newSprinkler)
 	return newSprinkler

@@ -80,7 +80,7 @@ func _input(event):
 	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
-			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+			holdingItem.rect_position = Vector2(event.position.x, event.position.y);
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
@@ -121,7 +121,7 @@ func _gui_input(event):
 			elif clickedSlot.item != null:
 				holdingItem = clickedSlot.item;
 				clickedSlot.pickItem();
-				holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+				holdingItem.rect_position = Vector2(event.position.x, event.position.y);
 		else:
 			if clickedSlot != null and clickedSlot.item != null:
 				if clickedSlot.highlight_sprite.visible == false:

@@ -252,7 +252,7 @@ func _on_Inventory_sell(toSellArrayIndices):
 	prints("playerBalance", player.balance)
 
 func get_mouse_cell():
-	return tilemap.world_to_map(get_global_mouse_position())
+	return tilemap.world_to_map(get_global_mouse_position() - position)
 
 func highlight_cursor():
 	var mouse_cell = get_mouse_cell()

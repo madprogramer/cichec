@@ -532,7 +532,12 @@ animations = [ {
 } ]
 
 [node name="World" type="Node2D"]
+position = Vector2( 333.774, 0.318573 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
