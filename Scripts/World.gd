@@ -91,6 +91,11 @@ onready var dirtList = [
 		"id" : 41,
 		"itemName" : "Desert",
 		"itemIcon" : tilemap.tile_set.tile_get_texture(41)
+	},
+	{
+		"id" : 42,
+		"itemName" : "Desert",
+		"itemIcon" : tilemap.tile_set.tile_get_texture(42)
 	}
 ]
 
@@ -182,8 +187,8 @@ func _ready():
 		seeds.push_back(seedsRow)
 	"""
 	
-	for i in range(-2, start_tile_size + 1):
-		for j in range(-2, start_tile_size + 1):
+	for i in range(-20, start_tile_size + 1):
+		for j in range(-20, start_tile_size + 1):
 			_seeds.seeds[Vector2(i,j)] = null
 	
 	for dirt in dirtList:
@@ -204,13 +209,22 @@ func _ready():
 			if tilemap.get_cell(j, i) == -1:
 				tilemap.set_cell(j, i, 35 + randi() % 5)
 #
-	for i in range(-2, start_tile_size + 1):
-		for j in range(-2, start_tile_size + 1):
+	for i in range(-9, 6 + 1):
+		for j in range(-23, -2 + 1):
+			if i % 2 == 0:
+				desertanimation.frame += 5
+			desertanimation.frame = (desertanimation.frame + j * 5) % 10
+			animationcontainer.spawn_animation(Vector2((j + 0.5) * tilemap.cell_size.x, (i + 0.5) * tilemap.cell_size.y), desertanimation, true, true)
+		
+	for i in range(-20, start_tile_size + 1):
+		for j in range(-20, start_tile_size + 1):
+#			if j == -3 and i == 3:
+#				print(dirtDictionary["id"][tilemap.get_cell(j, i)])
 			if tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Desert":
 				if i % 2 == 0:
 					desertanimation.frame += 5
 				desertanimation.frame = (desertanimation.frame + j * 5) % 10
-				animationcontainer.spawn_animation(Vector2((i + 0.5) * tilemap.cell_size.x, (j + 0.5) * tilemap.cell_size.y), desertanimation, true, true)
+				animationcontainer.spawn_animation(Vector2((j + 0.5) * tilemap.cell_size.x, (i + 0.5) * tilemap.cell_size.y), desertanimation, true, true)
 			elif tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Normal":
 				grassanimation.frame = (desertanimation.frame + j * 5) % 10
 				animationcontainer.spawn_animation(Vector2((j + 0.5) * tilemap.cell_size.x, (i + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
@@ -226,6 +240,8 @@ func _ready():
 	wasp.connect("shop_opened", player.hud, "shop_opened")
 	wasp.connect("shop_closed", player.hud, "shop_closed")
 	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
+	
+#	print(tilemap.get_cellv(Vector2(-3, 3)))
 
 signal lose_game
 
