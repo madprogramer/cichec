@@ -19,14 +19,16 @@ position = Vector2( 0, -0.903744 )
 [node name="Quest2" parent="." instance=ExtResource( 4 )]
 
 [node name="TitleScreen" type="Sprite" parent="."]
+visible = false
+position = Vector2( 32, 32 )
 position = Vector2( 32, 31 )
 texture = ExtResource( 5 )
 
 [node name="NewGameButton" type="TextureRect" parent="TitleScreen"]
-margin_left = -22.8784
-margin_top = 9.78436
-margin_right = 23.1216
-margin_bottom = 18.7844
+margin_left = -23.0
+margin_top = 10.0
+margin_right = 23.0
+margin_bottom = 19.0
 texture = ExtResource( 6 )
 script = ExtResource( 7 )
 [connection signal="new_game" from="TitleScreen/NewGameButton" to="." method="_on_NewGameButton_new_game"]

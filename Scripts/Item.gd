@@ -36,7 +36,7 @@ func pickItem():
 	picked = true;
 	
 func putItem():
-	rect_global_position = Vector2(0, 0);
+	rect_position = Vector2(0, 0);
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	picked = false;
 

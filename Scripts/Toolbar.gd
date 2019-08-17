@@ -67,7 +67,7 @@ func _input(event):
 	# print(event)
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
-			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+			holdingItem.rect_position = Vector2(event.position.x, event.position.y);
 	
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_RIGHT:
 		put_holding_item()
@@ -99,7 +99,7 @@ func _gui_input(event):
 		elif clickedSlot.item != null:
 			holdingItem = clickedSlot.item;
 			clickedSlot.pickItem();
-			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
+			holdingItem.rect_position = Vector2(event.position.x, event.position.y);
 			emit_signal("toolbar_changed")
 	pass
 
