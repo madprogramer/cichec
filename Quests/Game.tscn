@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Quests/Game.gd" type="Script" id=1]
 [ext_resource path="res://Quests/Tutorial.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Quests/Quest1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Quests/Quest2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/TitleScreen/TitleScreen.png" type="Texture" id=5]
+[ext_resource path="res://Assets/TitleScreen/NewGameButton.png" type="Texture" id=6]
+[ext_resource path="res://TitleScreen/NewGameButton.gd" type="Script" id=7]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,3 +17,16 @@ position = Vector2( 0, -0.903744 )
 [node name="Quest1" parent="." instance=ExtResource( 3 )]
 
 [node name="Quest2" parent="." instance=ExtResource( 4 )]
+
+[node name="TitleScreen" type="Sprite" parent="."]
+position = Vector2( 32, 32 )
+texture = ExtResource( 5 )
+
+[node name="NewGameButton" type="TextureRect" parent="TitleScreen"]
+margin_left = -22.8784
+margin_top = 9.78436
+margin_right = 23.1216
+margin_bottom = 18.7844
+texture = ExtResource( 6 )
+script = ExtResource( 7 )
+[connection signal="new_game" from="TitleScreen/NewGameButton" to="." method="_on_NewGameButton_new_game"]

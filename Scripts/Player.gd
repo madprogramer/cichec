@@ -21,6 +21,14 @@ func iamnotsorry(i):
 	hud.seedbag.iamsorry(i)
 	hud.show("seedtoolbar")
 
+var inputEnabled = true
+
+func deactivate():
+	inputEnabled = false
+
+func activate():
+	inputEnabled = true
+
 func _ready():
 	hud.seedtoolbar.connect("remove_seed", self, "iamnotsorry")
 
@@ -40,6 +48,8 @@ func set_direction(d1, d2):
 
 func move():
 	var move_vec = Vector2(0, 0)
+	if inputEnabled == false:
+		return
 	move_vec.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	move_vec.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	
@@ -87,6 +97,8 @@ var validNames = [
 ]
 	
 func _input(event):
+	if inputEnabled == false:
+		return
 	if hud.dialogue_is_playing == true:
 		return
 	if event is InputEventKey:

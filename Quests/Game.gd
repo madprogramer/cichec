@@ -4,6 +4,8 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+onready var titlescreen = get_node("TitleScreen")
+
 onready var tutorial = get_node("Tutorial")
 onready var quest1 = get_node("Quest1")
 onready var quest2 = get_node("Quest2")
@@ -18,6 +20,9 @@ var current_quest = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	tutorial.world.player.hud.set_cursor_shape(null)
+	tutorial.world.player.hud.show("")
+	get_tree().call_group("Input", "deactivate")
 	tutorial.connect("quest_finished", self, "next_quest")
 	pass # Replace with function body.
 
@@ -104,3 +109,9 @@ func _input(event):
 					seeds[Vector2(i, j)] = _load(str(Vector2(i, j)))
 #			print(quests[current_quest].world.get_node("Seeds").seeds)
 			print("LOADED")
+
+func _on_NewGameButton_new_game():
+	titlescreen.visible = false
+	tutorial.world.player.hud.show("toolbar")
+	get_tree().call_group("Input", "activate")
+	pass # Replace with function body.

@@ -206,7 +206,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 6.26965, 10 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"Input",
+]]
 script = ExtResource( 1 )
 
 [node name="WalkSprite" type="AnimatedSprite" parent="."]
@@ -222,7 +224,7 @@ frame = 4
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 3
+frame = 4
 playing = true
 
 [node name="IdleBackSprite" type="AnimatedSprite" parent="."]

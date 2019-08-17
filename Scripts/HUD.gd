@@ -216,6 +216,8 @@ func shop_opened():
 	show("shop")
 
 func _input(event):
+	if inputEnabled == false:
+		return
 	if dialogue_is_playing:
 		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
@@ -433,6 +435,14 @@ func show(name):
 func refresh():
 	print("REFRESH")
 	show(current_hud)
+
+var inputEnabled = true
+
+func deactivate():
+	inputEnabled = false
+
+func activate():
+	inputEnabled = true
 
 func _ready():
 	show(current_hud)
