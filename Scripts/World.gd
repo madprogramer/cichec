@@ -854,7 +854,7 @@ func _pick_seed_Routine(pos, force = false):
 #				print(flower.newFlower)
 				player.add_seed(flower.newSeed)
 				flower.harvest()
-#				_seeds.seeds[pos] = null
+				_seeds.seeds[pos] = null
 			return
 				
 	
