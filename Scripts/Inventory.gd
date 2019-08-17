@@ -29,9 +29,6 @@ var itemList = Array();
 
 var holdingItem = null;
 
-signal sell(toSellArray)
-var toSellArray = []
-
 func _ready():
 	for item in itemDictionary:
 		var itemName = itemDictionary[item].itemName;
@@ -45,7 +42,6 @@ func _ready():
 	for i in range(32):
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);
-		slotList[i].highlight_sprite.position = Vector2((i % 4) + 10 - (i % 4), (i / 4) + 10 - (i / 4))
 		add_child(slot);
 		slot.set_owner(self)
 		
@@ -54,48 +50,25 @@ func _ready():
 	
 	pass
 
-func set_mode(mode):
-	if mode == "sell":
-		sellMode = true
-	elif mode == "normal":
-		sellMode = false
-	else:
-		assert(false)
-
 func _input(event):
-	if event is InputEventKey and event.is_pressed() and visible == true:
-		if event.scancode == KEY_ENTER:
-			emit_signal("sell", toSellArray)
-			print("SELL")
-	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 
-var sellMode = false
-
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		var clickedSlot;
-#		var sellMode = false;
-#		sellMode = true
-		
-		var clickedI = 0
-		var i = 0
-		
+		var sellMode = false;
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
 			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
 			if isClicked:
-				clickedI = i
 				if not sellMode:
 					clickedSlot = slot;
 				else:
-					clickedSlot = slot
 					print("We're working on sell mode")
 					print(slot);
-			i += 1
 		
 		if not sellMode:
 			if holdingItem != null:
@@ -110,34 +83,21 @@ func _gui_input(event):
 					clickedSlot.putItem(holdingItem);
 					holdingItem = null;
 					
-			elif clickedSlot.item != null:
-				holdingItem = clickedSlot.item;
-				clickedSlot.pickItem();
-				holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
-		else:
-			if clickedSlot != null and clickedSlot.item != null:
-				if clickedSlot.highlight_sprite.visible == false:
-					clickedSlot.highlight()
-					toSellArray.push_back(clickedI)
-				else:
-					clickedSlot.highlight_sprite.visible = false
-					toSellArray.erase(clickedI)
-				print(toSellArray)
+		elif clickedSlot.item != null:
+			holdingItem = clickedSlot.item;
+			clickedSlot.pickItem();
+			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 	pass
 
 func add_flower(originalItem):
 	for i in range(32):
 		if slotList[i].item == null:
 			print("ading to slot ", i)
-#			var itemName = originalItem.name
-			var itemName = originalItem.item.itemName
+			var itemName = originalItem.name
 			print (itemName)
 			
-			var itemIcon = originalItem.item.texture
+			var itemIcon = originalItem.texture
 			print (itemIcon)
-			
-#			var x = 0
-#			x = x / x
 			
 			var itemValue = -1
 			

@@ -1,7 +1,7 @@
 extends Node2D
 
 var itemInfo = {
-	"itemName" : "WaterseekerFlower",
+	"itemName" : "RainbowFlower",
 	"itemIcon" : preload("res://Assets/Flowers/WaterseekerFlower/toolbar.png"),
 	"itemValue" : -1,
 	"itemClass" : load("res://Scripts/Item.gd")

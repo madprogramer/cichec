@@ -4,7 +4,6 @@ var itemIcon;
 var itemName;
 var itemSlot;
 var itemClass;
-var itemValue;
 var picked = false;
 var seedClass = null;
 var _seed = null
@@ -36,7 +35,6 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	self.itemName = itemName;
 	texture = itemTexture;
 	itemIcon = itemTexture
-	self.itemValue = itemValue
 	
 	label = Label.new()
 	labelpos = label.rect_position
@@ -48,7 +46,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	set_count(count)
 	
 #	hint_tooltip = "%s %d" % [itemName, count] 
-#	hint_tooltip = "%s" % [itemName] 
+	hint_tooltip = "%s" % [itemName] 
 		
 	self.itemSlot = itemSlot;
 	mouse_filter = Control.MOUSE_FILTER_PASS;
@@ -59,9 +57,6 @@ func set_count(c):
 #	hint_tooltip = "%s %d" % [itemName, count]
 	label.text = "%d" % [count]
 	label.rect_position = labelpos
-	
-func get_count():
-	return count
 	
 func decrease_count():
 	set_count(count - 1)

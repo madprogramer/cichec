@@ -52,11 +52,9 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_RIGHT:
 		put_holding_item()
 
-signal remove_seed(i)
-
 func _gui_input(event):
-	var clickedSlot;
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		var clickedSlot;
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
@@ -83,25 +81,7 @@ func _gui_input(event):
 			clickedSlot.pickItem();
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 			emit_signal("toolbar_changed")
-			
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.pressed:
-		var i = 0
-		var I = 0
-		for slot in slotList:
-			var slotMousePos = slot.get_local_mouse_position();
-			var slotTexture = slot.texture;
-			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
-			if isClicked:
-				clickedSlot = slot;
-				I = i
-			i += 1
-		if clickedSlot != null:
-			if clickedSlot.item != null:
-				print("Can't remove seed from here")
-				emit_signal("remove_seed", I)
-	
 	pass
-	
 
 func put_holding_item():
 	if holdingItem == null:

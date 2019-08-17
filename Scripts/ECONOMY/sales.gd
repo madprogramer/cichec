@@ -1,7 +1,5 @@
 extends Node
 
-class_name salesManager
-
 var price = {
 	
 }
@@ -32,7 +30,6 @@ func makeSales(soldStuff):
 	
 	#Assuming Array
 	for stuff in soldStuff:
-		print(stuff)
 		PROFIT += bonuses(stuff)
 		
 	return PROFIT

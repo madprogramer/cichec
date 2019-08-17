@@ -7,10 +7,10 @@ func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
-#	if itemValue != -1:
-#		hint_tooltip = "%s\n%d" % [itemName, itemValue];
-#	else:
-#		hint_tooltip = "%s" % [itemName];
+	if itemValue != -1:
+		hint_tooltip = "%s\n%d" % [itemName, itemValue];
+	else:
+		hint_tooltip = "%s" % [itemName];
 	###
 	# Rect.size_flags_horizontal = 40
 	# Rect.size_flags_vertical = 40
@@ -60,20 +60,4 @@ func scan(pos, seeds):
 			x.popup(Rect2(0, 0, 64, 36))
 			
 			return
-	print("Couldn't find the scanned flower")
-
-func scan2(pos, seeds, hud):
-	for index in seeds:
-		var item = seeds[index]
-
-		if item == null:
-			continue
-		
-		var flower = item._seed.flower
-		print(flower.phenoGenesMat)
-		print(flower.phenoGenesPat)
-		if flower.pos == pos:
-			return hud.render_dummyFlower(flower.get_dummyFlowerViewer(0), flower.get_dummyFlowerViewer(1))
-#			var x = 0
-#			x = x / x
 	print("Couldn't find the scanned flower")

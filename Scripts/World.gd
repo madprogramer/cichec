@@ -11,10 +11,10 @@ onready var highlight = get_node("Highlight")
 onready var ysort = get_node("YSort")
 
 onready var flowercontainer = get_node("YSort")
-onready var dirtmarkcontainer = get_node("DirtmarkContainer")
+onready var dirtmarkcontainer = ysort.get_node("DirtmarkContainer")
 
-onready var hoeplowanimation = get_node("HoePlowAnimation")
-onready var wateringcanwateranimation = get_node("WateringCanWaterAnimation")
+onready var hoeplowanimation = ysort.get_node("HoePlowAnimation")
+onready var wateringcanwateranimation = ysort.get_node("WateringCanWaterAnimation")
 
 onready var animationcontainer = get_node("AnimationContainer")
 onready var player = ysort.get_node("Player")
@@ -23,13 +23,7 @@ onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 onready var desertanimation = get_node("DesertAnimation")
 onready var grassanimation = get_node("GrassAnimation")
 
-onready var _seeds = get_node("Seeds")
-
-onready var chest = ysort.get_node("Chest")
-onready var wasp = ysort.get_node("Wasp")
-
-onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()
-onready var salesManager = preload("res://Scripts/Managers/salesManager.gd").new()
+var _seeds = preload("res://Scripts/Seeds.tscn").instance()
 
 onready var dirtList = [
 	{
@@ -161,12 +155,9 @@ func next_song():
 	audioplayer.stream = songs[current_song]
 	audioplayer.play()
 
-func _ready():
-	player.hud.shop.set_player(player)
-	
+func _ready():	
 	add_child(_seeds)
 	_seeds.set_owner(self)
-#	_seeds._ready()
 	
 	randomize()
 	
@@ -194,8 +185,8 @@ func _ready():
 		_seedDictionary["name"][_seed.name] = _seed
 		_seedDictionary["id"][_seed.id] = _seed
 	
-	for i in range(-1, start_tile_size):
-		for j in range(-1, start_tile_size):
+	for i in range(0, start_tile_size):
+		for j in range(0, start_tile_size):
 			if tilemap.get_cell(j, i) == -1:
 				tilemap.set_cell(j, i, dirtDictionary["name"]["Desert"].id)
 
@@ -220,36 +211,6 @@ func _ready():
 	dialogueplayer._ready()
 	add_child(dialogueplayer)
 	dialogueplayer.set_owner(self)
-	
-	chest.connect("chest_opened", player.hud, "chest_opened")
-	chest.connect("chest_closed", player.hud, "chest_closed")
-	wasp.connect("shop_opened", player.hud, "shop_opened")
-	wasp.connect("shop_closed", player.hud, "shop_closed")
-	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
-
-signal lose_game
-
-func _on_Inventory_sell(toSellArrayIndices):
-	var toSellArray = []
-	for i in toSellArrayIndices:
-		toSellArray.append(player.hud.inventory.slotList[i].item)
-	
-	var needResponse = needManager.takeNeeds(toSellArray)
-	
-	if needResponse is int and needResponse == -1:
-		emit_signal("lose_game")
-		print("THE GAME")
-		return
-	
-	assert(!(needResponse is int))
-	
-	#var salesResponse = salesManager.calcFromDictionary(needResponse)
-	var salesResponse = salesManager.makeSales(toSellArray)
-	
-	prints("salesResponse", salesResponse)
-	
-	player.balance += salesResponse
-	prints("playerBalance", player.balance)
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -297,11 +258,18 @@ func pass_day():
 		var _seed = item._seed
 		var _flower = _seed.flower
 		
-		# 『STAND NAME: BOOST』『STAND USER: SUNLIGHT FLOWER』
+		# 『STAND NAME: BOOST』『STAND USER: SUNLIGHT FLOWER』STAND NAME: REANIMATE STAND USER: RAINBOW FLOWER
 		if !_flower.isDead() and !_flower.isPolinated():
 			if _flower.id == 1:
 				boost_main(Vector2(i, j))
-	
+			if _flower.id == 2:
+				if _flower.isMature() == true:
+					print(_flower.readyrevive())
+					if _flower.readyrevive() == true:
+						reanimate(Vector2(i,j))
+						_flower.revival()
+						print("AWAKEN MY MASTERS")
+						
 	for i in range(start_tile_size + 1):	for j in range(start_tile_size + 1):
 		var item = _seeds.seeds[Vector2(i,j)]
 		
@@ -354,7 +322,6 @@ func pass_day():
 						#print(speciesAt)
 
 						polenData[3][1] = flowerAt.uniqueId
-						polenData[4][1] = flowerAt.dummySeed
 						print(polenData[3])
 
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
@@ -366,11 +333,10 @@ func pass_day():
 						#use FIXTHIS.harvest() to collect
 			
 			#Phase 2
-			#Cultivate
+			#Age Up
 			elif phase == 2:
 				#print("Todo: Add waterseeker trigerred sand tile to earth updates here");
 				if !_flower.isDead() and !_flower.isPolinated():
-					#Water Seeker Tile Updates
 					if _flower.id == 3:
 						cultivate_main(Vector2(i, j))
 					
@@ -393,8 +359,8 @@ func pass_day():
 	
 	yield(get_tree(), "idle_frame")
 	
-	for i in range(-1, start_tile_size):
-		for j in range(-1, start_tile_size):
+	for i in range(0, start_tile_size):
+		for j in range(0, start_tile_size):
 			var type = tilemap.get_cell(j, i)
 			var name = dirtDictionary["id"][type].itemName
 			
@@ -412,7 +378,20 @@ func pass_day():
 				kill_plant(Vector2(j, i))
 					
 	get_tree().call_group("Sprinklers", "activate")
-
+func reanimate(pos):
+	for i in range(-1, 1 + 1):
+		for j in range(-1, 1 + 1):
+			var targetpos = pos + Vector2(i, j)
+			var targetitem = _seeds.seeds[targetpos]
+			if targetitem == null:
+				continue
+			
+			var targetseed = targetitem._seed
+			var targetflower = targetseed.flower
+			print("REANIMATE") 
+			
+			targetflower.set_alive()
+			#print("AWAKEN MY MASTERS")
 func boost_main(pos):
 	for i in range(-1, 1 + 1):
 		for j in range(-1, 1 + 1):
@@ -427,7 +406,6 @@ func boost_main(pos):
 			targetflower.boost()
 
 signal tile_hydrated
-signal medicine_collected
 
 func cultivate(pos):
 	print("trying to cultivate: ", pos)
@@ -457,17 +435,15 @@ func cultivate_main(pos):
 
 func _input(event):
 	if event is InputEventKey:
-		################################### LOOK DOWN #################################
-		if false and event.pressed and event.scancode == KEY_ENTER:
+		if event.pressed and event.scancode == KEY_ENTER:
 			if player.hud.dialogue_is_playing == false:
 				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
 				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
-#		if event.pressed and event.scancode == KEY_R:
-#			emit_signal("tile_hydrated")
-#			emit_signal("medicine_collected")
+		if event.pressed and event.scancode == KEY_R:
+			emit_signal("tile_hydrated")
 		if event.pressed and event.scancode == KEY_N:
 			next_song()
 		if event.pressed and event.scancode == KEY_M:
@@ -495,9 +471,6 @@ func kill_plant(pos):
 	_seeds.seeds[pos]._seed.flower.set_dead()
 
 func deplow(pos):
-	grassanimation.frame = (desertanimation.frame + pos.x * 5)
-	grassanimation.frame %= 10
-	animationcontainer.spawn_animation(Vector2((pos.x + 0.5) * tilemap.cell_size.x, (pos.y + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
 	for direction in range(0, 4):
 		if (tilemap.get_cellv(Vector2(
 				pos.x + directions[direction].x,
@@ -523,6 +496,7 @@ func deplow(pos):
 		0)
 
 func plow(pos):
+	
 #	print("plow: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Plowed"].id)
 	for direction in range(0, 4):
@@ -676,11 +650,6 @@ func sow(pos, item):
 		item.dummySeed.GENES
 	)
 	
-	_seed.flower.set_dummySeed(item.dummySeed)
-	
-#	var x = 0
-#	x = x / x
-	
 	add_child(_seed)
 	_seed.set_owner(self)
 	
@@ -695,18 +664,7 @@ func sow(pos, item):
 	_seed.flower.motherId = item.motherId
 	
 	_seed.flower.set_seed(item)
-
-	print(item)
-	print(item.newFlower)
-	
-	#setCorrectNewFlower(flower,)
-	
-	_seed.flower.newFlower = load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd").new()
-	_seed.flower.newSeed.newFlower = load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd").new()
-#	_seed.flower.set_newFlower(item)
-	prints(item.newFlower, _seed.flower.newFlower)
-
-	_seed.flower.set_dummyFlowerViewer(_seed.flower.father, _seed.flower.mother)
+	_seed.flower.set_newFlower(item.newFlower.itemInfo)
 	
 	_seed.flower.sprite.name = str(_seeds.seeds.size()) + "0"
 	flowercontainer.add_sprite(pos, _seed.flower.sprite, 0)
@@ -788,7 +746,6 @@ func _pick_seed_Routine(pos, force = false):
 			_seeds.seeds[pos] = null
 			
 		elif flower.isDead() or flower.isPolinated():
-			flower.newSeed.newFlower = flower.newFlower
 			player.add_seed(flower.newSeed)
 			flower.harvest()
 			_seeds.seeds[pos] = null
@@ -822,11 +779,9 @@ func _pick_seed_Routine(pos, force = false):
 				
 			elif flower.isDead() or flower.isPolinated():
 				print("WRY?")
-#				flower.newSeed.newFlower = flower.newFlower
-#				print(flower.newFlower)
 				player.add_seed(flower.newSeed)
 				flower.harvest()
-#				_seeds.seeds[pos] = null
+				_seeds.seeds[pos] = null
 			return
 				
 	
@@ -850,8 +805,6 @@ func _on_WateringCanWaterAnimation_animation_finished():
 func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
 	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
-#	var flowers = player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds, player.hud)
-#	print(flowers)
 	pass # Replace with function body.
 
 
@@ -864,9 +817,9 @@ func _on_ExitDoor_body_shape_entered(body_id, body, body_shape, area_shape):
 
 
 func _on_Sprinkler_sprinkler_water(pos):
-	print("Sprinkler finished at ", pos)
+#	print("Sprinkler finished at ", pos)
 	var cellpos = tilemap.world_to_map(pos)
-	print("...and it's cell position: ", cellpos)
+#	print("...and it's cell position: ", cellpos)
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			water(Vector2(cellpos.x + i, cellpos.y + j))

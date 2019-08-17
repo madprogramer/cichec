@@ -69,7 +69,7 @@ func boost():
 	boost_flag = true
 
 var mature = false
-
+var revival = false
 func age_up():
 	age = age + 1
 	if current_stage < stages.size() and age > stages[current_stage]:
@@ -80,7 +80,8 @@ func age_up():
 	if boost_flag:
 		boost_flag = false
 		age_up()
-		
+func revival():
+	revival = true
 func stage_up():
 	current_stage = current_stage + 1
 	if current_stage >= stages.size():
@@ -117,6 +118,10 @@ func set_deadsprite(deadsprite):
 
 func set_pollinatedsprite(pollinatedsprite):
 	self.pollinatedsprite = pollinatedsprite
+
+		#print("NIGHT OF THE LIVING FLOWER")
+		#if dead == false:
+			#print("Ayeetatortortorvizvivzviz")
 #Age End
 
 #Polination Begin
@@ -129,11 +134,7 @@ func polinate():
 	print("https://github.com/EnoughSensei/cichec/issues/12")
 #	var polinationCount = phenoGenes.getPolens();
 	var polinationCount = 3
-	
 	var polRange = 2
-	if !isShort():
-		polRange = 3
-		
 	var polen = []
 	
 	for i in range(polinationCount):
@@ -153,19 +154,24 @@ func polinate():
 			
 		#print(Vector2(polX,polY))
 		#print(polenGenes)
-		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, [uniqueId, "INSERT PATERNAL PHENODATA"], [dummySeed, "INSERT MOTHER"]] )
+		polen.push_back( [ id, pos + Vector2(polX,polY), polenGenes, [uniqueId, "INSERT PATERNAL PHENODATA"] ] )
 		
 	return polen
-	
+func set_alive():
+	dead = false
+	current_stage=0
+	age=0
+	print("Go commit alive")
+	deadsprite.visible=false
+	sprite.visible=true
+	print(dead)
+	mature = false
 func try_polinate():
 	if current_stage == 3:
 		return polinate()
 	return []
 	
 var newSeed = null
-
-var father
-var mother
 	
 func getPolinated(polenData):
 #	print("Someone is trying to polinate me: ", polenData)
@@ -184,10 +190,6 @@ func getPolinated(polenData):
 	
 	newSeed.fatherId = polenData[3][0]
 	newSeed.motherId = polenData[3][1]
-	
-	father = polenData[4][0]
-	mother = polenData[4][1]
-	
 #	print("newSeed's parents: ", polenData[3][0], " ", polenData[3][1])
 	
 #	self.setColor()
@@ -268,8 +270,15 @@ func phenoPolens():
 #Phenotype computations end
 
 func isMature():
-	return mature
-
+	if mature==true:
+		return true
+	else:
+		return false
+func readyrevive():
+	if revival==false:
+		return true
+	else:
+		return false
 func pickup():
 	sprite.visible = false
 	pollinatedsprite.visible = false
@@ -277,11 +286,6 @@ func pickup():
 	return self
 	
 const SeedClass = preload("res://Scripts/Seed.gd");
-
-var dummySeed
-
-func set_dummySeed(dummySeed):
-	self.dummySeed = dummySeed
 	
 # pilgrim™: Ugly solutions require modern problems.
 func set_seed(originalItem):
@@ -312,50 +316,21 @@ func set_seed(originalItem):
 	newSeed.motherId = motherId
 	newSeed.newFlower = newFlower
 	
-#	var x = 0
-#	x = x / x
-	
 const ItemClass = preload("res://Scripts/Item.gd")
 
 var newFlower
 
 func set_newFlower(originalItem):
-	newFlower = load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd").new()
-#	var itemName = originalItem.itemName
-#	var itemIcon = originalItem.itemIcon
-#	var itemValue = -1
-#	var itemClass = originalItem.itemClass
-#
-#	newFlower = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
-#
-#	newFlower.itemInfo = originalItem
-#
-	newFlower.item.visible = true
-	newSeed.newFlower = newFlower
-
-	print(newSeed.item)
-	prints(">", newFlower)
-
+	var itemName = originalItem.itemName
+	var itemIcon = originalItem.itemIcon
+	var itemValue = -1
+	var itemClass = originalItem.itemClass
 	
-	add_child(newFlower.item)
-#
-#	prints(">", newFlower)
+	newFlower = ItemClass.new(itemName, itemIcon, null, itemValue, itemClass);
 
 func set_genes(GENES):
 #	print(GENES)
 	initGenes(GENES)
-
-onready var dummyFlowerViewerClass = preload("res://Scripts/Biology/flowers/dummyFlowerViewer.gd")
-
-var dummyFlowerViewers = []
-
-func set_dummyFlowerViewer(flower1, flower2):
-	dummyFlowerViewerClass = preload("res://Scripts/Biology/flowers/dummyFlowerViewer.gd")
-	dummyFlowerViewers.append(dummyFlowerViewerClass.new(flower1))
-	dummyFlowerViewers.append(dummyFlowerViewerClass.new(flower2))
-
-func get_dummyFlowerViewer(type):
-	return dummyFlowerViewers[type]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

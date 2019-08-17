@@ -26,36 +26,9 @@ onready var mentalhealth = get_node("MentalHealth")
 onready var quest = get_node("Quest")
 onready var progressbar = get_node("Quest/ProgressBar")
 
-onready var dummyFlowerRenderer = get_node("dummyFlowerRenderer")
-
-onready var shop = get_node("Shop")
-
 var current_hud = "toolbar"
 
 var cursor = null
-
-func set_dummyFlower(sprite, type):
-	dummyFlowerRenderer.add_dummyFlower(sprite, type)
-
-func render_dummyFlower(dummyFlowerViewer1, dummyFlowerViewer2):
-	prints("YUH", dummyFlowerViewer1.dummyFlower, dummyFlowerViewer2.dummyFlower)
-	set_dummyFlower(dummyFlowerViewer1.dummyFlower, 0)
-	set_dummyFlower(dummyFlowerViewer2.dummyFlower, 1)
-	var flowers = dummyFlowerRenderer.render([dummyFlowerViewer1.dummyFlower,dummyFlowerViewer2.dummyFlower])
-	add_child(flowers[0].sprite)
-	add_child(flowers[1].sprite)
-	flowers[0].sprite.visible = true
-	flowers[0].sprite.frame = 3
-	flowers[0].sprite.offset = Vector2(4, 4)
-	
-	flowers[1].sprite.visible = true
-	flowers[1].sprite.frame = 3
-	flowers[1].sprite.offset = Vector2(-4, 4)
-	
-#	var x = 0
-#	x = x / x
-	
-	return dummyFlowerRenderer.flowers
 
 func set_cursor_shape(texture):
 	if texture == null:
@@ -188,9 +161,6 @@ func scroll_up():
 	elif current_hud == "seedbag":
 		if seedbag.rect_position.y != 0:
 			seedbag.rect_position.y += 16
-	elif current_hud == "shop":
-		if shop.rect_position.y != 0:
-			shop.rect_position.y += 16
 
 func scroll_down():
 	if current_hud == "inventory":
@@ -199,25 +169,8 @@ func scroll_down():
 	elif current_hud == "seedbag":
 		if seedbag.rect_position.y != -64:
 			seedbag.rect_position.y -= 16
-	elif current_hud == "shop":
-		if shop.rect_position.y != -64:
-			shop.rect_position.y -= 16
-
-func chest_opened():
-	print("CHEST OPENED")
-	inventory.set_mode("sell")
-	show("inventory")
-
-func chest_closed():
-	print("CHEST CLOSED")
-	inventory.set_mode("normal")
-
-func shop_opened():
-	show("shop")
 
 func _input(event):
-	if inputEnabled == false:
-		return
 	if dialogue_is_playing:
 		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
@@ -229,14 +182,10 @@ func _input(event):
 
 			elif event.button_index == BUTTON_WHEEL_DOWN:
 				scroll_down()
-		
  
 	
 	elif event is InputEventKey:
 		if event.pressed:
-			if event.scancode == KEY_B:
-				chest_opened()
-			
 			# changing current toolbar tool
 			if current_hud == "toolbar":
 				switch_tools(event, current_hud)
@@ -280,13 +229,6 @@ func _input(event):
 				pass
 			
 			if current_hud == "inventory":
-				if event.scancode == KEY_DOWN:
-					scroll_down()
-				
-				if event.scancode == KEY_UP:
-					scroll_up()
-				
-			if current_hud == "shop":
 				if event.scancode == KEY_DOWN:
 					scroll_down()
 				
@@ -357,9 +299,7 @@ onready var hud_elements = [
 	seedtoolbar,
 	
 	highlight,
-	mentalhealth,
-	
-	shop
+	mentalhealth
 ]
 
 func show(name):
@@ -386,10 +326,6 @@ func show(name):
 	
 	if name == "inventory":
 		inventory.visible = true
-		inventory_back.visible = true
-		inventory_front.visible = true
-	elif name == "shop":
-		shop.visible = true
 		inventory_back.visible = true
 		inventory_front.visible = true
 	elif name == "toolbar":
@@ -435,14 +371,6 @@ func show(name):
 func refresh():
 	print("REFRESH")
 	show(current_hud)
-
-var inputEnabled = true
-
-func deactivate():
-	inputEnabled = false
-
-func activate():
-	inputEnabled = true
 
 func _ready():
 	show(current_hud)

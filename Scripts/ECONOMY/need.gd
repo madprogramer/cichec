@@ -1,7 +1,5 @@
 extends Node
 
-class_name needManager
-
 var stockpile = {}
 var consumption = {}
 
@@ -28,19 +26,17 @@ func addNeed(name, start, consumed, typeDict):
 		types[name][type] = typeDict[type]
 
 #Add Resources to be Stockpiled at the end of the day
-#func fulfillNeed():
-	#print("TODO: update this based on shipments")
+func fulfillNeed():
+	print("TODO: update this based on shipments")
 	
-#Update Needs 
-func takeNeeds(sellingArray):
+#Update Needs 		
+func tickNeed():
 	for need in types:
-		print("TODO: CHECK FOR MATCH")
-		for type in types[need]:
-			for item in sellingArray:
-				#if item matches type
-				stockpile[need] += 1
-				
-	for need in types:
+		
+		print("TODO: RECEIVE FROM SHIPMENTS, ADD BONUSES FOR SIZE/COLOR MATCH")
+		#for type in types[need]:
+		#	provided[need] += types[need]
+		
 		stockpile[need] -= consumption[need]
 		#Deficit
 		var needDeficit = - min(0,stockpile[need])

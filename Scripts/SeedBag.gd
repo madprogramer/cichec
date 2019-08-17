@@ -7,6 +7,66 @@ const itemImages = [
 	preload("res://Assets/Highlight/Highlight.png")
 ];
 
+
+#var itemDictionary = {
+#	0: {
+#		"itemName" : "RainbowSeed",
+#		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
+#		"itemValue" : -1,
+#		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+#		"GENES" : {
+#			"size": 0,
+#			"color": [0,0,0,0],
+#			"seeds": 0,
+#		},
+#		"seedbag" : true
+#	},
+#	1: {
+#		"itemName" : "SunlightSeed",
+#		"itemIcon" : preload("res://Assets/Seeds/SunlightSeed/toolbar.png"),
+#		"itemValue" : -1,
+#		"_seed" : preload("res://Scripts/Biology/seeds/sunlightSeed.gd"),
+#		"GENES" : {
+#			"size": 0,
+#			"color": [0,0,0,0],
+#			"seeds": 0,
+#		},
+#		"seedbag" : true
+#	},
+#	2: {
+#		"itemName": "WaterseekerSeed",
+#		"itemValue": -1,
+#		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
+#		"_seed": preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+#		"GENES" : {
+#			"size": 0,
+#			"color": [0,0,0,0],
+#			"seeds": 0,
+#		},
+#		"seedbag" : true
+#	}
+#};
+
+
+#var itemDictionary = {
+#	0: {
+#		"itemName" : "WaterseekerSeed",
+#		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
+#		"itemValue" : -1,
+#		"count" : 3,
+#		"_seed" : preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+#		"GENES" : {
+#			"size": 0,
+#			"color": [0,0,0],
+#			"seeds": 0,
+#			"polens": 0
+#		},
+#		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
+#		"seedbag" : true
+#	},
+#
+#}
+
 var itemDictionary = {
 	0: {
 		"itemName" : "WaterseekerSeed",
@@ -16,8 +76,18 @@ var itemDictionary = {
 		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
 		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
 		"seedbag" : true,
-		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
-	}
+		"newFlower" : preload("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
+	},
+	1: {
+		"itemName" : "RainbowSeed",
+		"itemIcon" : preload("res://Assets/Seeds/RainbowSeed/toolbar.png"),
+		"itemValue": -1,
+		"count": 3,
+		"_seed": preload("res://Scripts/Biology/seeds/rainbowSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/RainbowSeed/pre.gd"),
+		"seedbag" : true,
+		"newFlower" : preload("res://Scripts/Biology/flowers/RainbowFlower/flower.gd")
+		},
 }
 
 
@@ -44,7 +114,6 @@ func _ready():
 	for i in range(16):
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);
-		slotList[i].highlight_sprite.position = Vector2((i % 4) * 16 + 8, (i / 4) * 16 + 8)
 		add_child(slot);
 		slot.set_owner(self)
 		
@@ -58,9 +127,8 @@ func _input(event):
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 
 func _gui_input(event):
-	var clickedSlot;
-	
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		var clickedSlot;
 		for slot in slotList:
 			var slotMousePos = slot.get_local_mouse_position();
 			var slotTexture = slot.texture;
@@ -86,29 +154,8 @@ func _gui_input(event):
 			clickedSlot.pickItem();
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
 			clickedSlot.item = null
-	
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.pressed:
-		for slot in slotList:
-			var slotMousePos = slot.get_local_mouse_position();
-			var slotTexture = slot.texture;
-			var isClicked = slotMousePos.x >= 0 && slotMousePos.x <= slotTexture.get_width() && slotMousePos.y >= 0 && slotMousePos.y <= slotTexture.get_height();
-			if isClicked:
-				clickedSlot = slot;
-		if clickedSlot != null:
-			if clickedSlot.item != null:
-				remove_seed(clickedSlot.item)
-		
 	pass
-
-func iamsorry(i):
-	var clickedSlot = null;
 	
-	clickedSlot = slotList[i]
-	
-	if clickedSlot != null:
-		if clickedSlot.item != null:
-			remove_seed(clickedSlot.item)
-
 const DIFF = 0.25
 	
 func similar(arr1, arr2):
@@ -122,53 +169,6 @@ func similar(arr1, arr2):
 			return false
 
 	return true
-	
-func remove_seed(originalItem):
-	#print("TODO: might need to change this to take input based on index rather than ogItem")
-	if originalItem.count == 0:
-		return -1
-	
-	for i in range(16):
-		if slotList[i].item != null:
-			if slotList[i].item.itemName == originalItem.itemName:
-				if (slotList[i].item.fatherId == originalItem.fatherId and slotList[i].item.motherId == originalItem.motherId) or (slotList[i].item.fatherId == originalItem.motherId and slotList[i].item.motherId == originalItem.fatherId):
-					if similar(slotList[i].item.dummySeed.getColor(), originalItem.dummySeed.getColor()):
-						#slotList[i].item.set_count(slotList[i].item.count - 1)
-							
-						print("removing from slot ", i)
-						print("seed count on this slot:", slotList[i].item.count-1)
-						
-						slotList[i].item.decrease_count()
-						#if slotList[i].item.get_count() == 0:
-						#	slotList[i].item.queue_free()
-						#	slotList[i].item = null
-							
-						return i
-#
-#	for i in range(16):
-#		if slotList[i].item == null:
-#			print("removing from slot ", i)
-#			var itemName = originalItem.name
-#			print (itemName)
-#
-#			var itemIcon = originalItem.texture
-#			print (itemIcon)
-#
-#			var itemValue = -1
-#
-#			var itemSeed = originalItem.dummySeed.seedClass
-##			print (itemSeed)
-#
-##			var GENES = originalItem.GENES
-#
-#			var newItem = ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, originalItem.dummySeed, originalItem.count);
-#
-#			newItem.fatherId = originalItem.fatherId
-#			newItem.motherId = originalItem.motherId
-#
-#			slotList[i].setItem(newItem)
-#			return i
-#	return -1
 	
 func add_seed(originalItem):
 	if originalItem.count == 0:

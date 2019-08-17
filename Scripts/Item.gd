@@ -5,22 +5,16 @@ var itemName;
 var itemSlot;
 var picked = false;
 var itemClass;
-var itemInfo
-var newFlower;
-var itemValue
 
 func _init(itemName, itemTexture, itemSlot, itemValue, itemClass):
 	self.itemClass = itemClass
 	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
-	self.itemValue = itemValue
-#	show_behind_parent = true
-#	if itemValue != -1:
-#		hint_tooltip = "%s\n%d" % [itemName, itemValue];
-#	else:
-#		hint_tooltip = "%s" % [itemName];
-#	show_behind_parent = false
+	if itemValue != -1:
+		hint_tooltip = "%s\n%d" % [itemName, itemValue];
+	else:
+		hint_tooltip = "%s" % [itemName];
 	###
 	# Rect.size_flags_horizontal = 40
 	# Rect.size_flags_vertical = 40
@@ -39,6 +33,3 @@ func putItem():
 	rect_global_position = Vector2(0, 0);
 	mouse_filter = Control.MOUSE_FILTER_PASS;
 	picked = false;
-
-func set_newFlower(nf):
-	newFlower = load("res://Scripts/Item.gd").new(nf.name, nf.texture, null, nf.itemValue, nf.itemClass)

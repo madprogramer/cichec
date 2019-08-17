@@ -7,30 +7,11 @@ onready var idlebacksprite = get_node("IdleBackSprite")
 onready var walksprite = get_node("WalkSprite")
 onready var walkbacksprite = get_node("WalkBackSprite")
 
-var balance = 0
-
 const SPEED = 80
 var direction = {
 	"x" : "right",
 	"y" : "down"
 }
-
-# function to remove decrease a seed from toolbar
-func iamnotsorry(i):
-#	print("TEMP")
-	hud.seedbag.iamsorry(i)
-	hud.show("seedtoolbar")
-
-var inputEnabled = true
-
-func deactivate():
-	inputEnabled = false
-
-func activate():
-	inputEnabled = true
-
-func _ready():
-	hud.seedtoolbar.connect("remove_seed", self, "iamnotsorry")
 
 func get_current_item():
 	return hud.get_current_item()
@@ -48,8 +29,6 @@ func set_direction(d1, d2):
 
 func move():
 	var move_vec = Vector2(0, 0)
-	if inputEnabled == false:
-		return
 	move_vec.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	move_vec.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	
@@ -97,14 +76,11 @@ var validNames = [
 ]
 	
 func _input(event):
-	if inputEnabled == false:
-		return
 	if hud.dialogue_is_playing == true:
 		return
 	if event is InputEventKey:
 		if event.pressed:
 			if event.scancode == KEY_SPACE:
-				prints("used", get_current_item())
 				use(get_current_item())
 				
 	else:
@@ -137,7 +113,7 @@ func use(item):
 			emit_signal("pick_seed")
 		return
 	
-	prints("itemname", item.name)
+#	print(item.name)
 	
 	if item.name == "seed_bag":
 		if hud.current_hud != "seedbag":
@@ -195,10 +171,6 @@ func add_seed(originalItem):
 #			items.push_back(hud.seedbag.slotList[i].item)
 #		hud.seedtoolbar.set_toolbar(items)
 		hud.show("seedtoolbar")
-	print("i: ", i)
-
-func remove_seed(originalItem):
-	var i = hud.seedbag.remove_seed(originalItem)
 	print("i: ", i)
 
 func add_flower(flower):
