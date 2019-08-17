@@ -265,7 +265,7 @@ func _on_Inventory_sell(toSellArrayIndices):
 	
 	prints("salesResponse", salesResponse)
 	
-	player.balance += salesResponse
+	player.balance += salesResponse["earning"]
 	prints("playerBalance", player.balance)
 
 func get_mouse_cell():
