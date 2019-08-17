@@ -97,10 +97,6 @@ var validNames = [
 ]
 	
 func _input(event):
-	if inputEnabled == false:
-		return
-	if hud.dialogue_is_playing == true:
-		return
 	if event is InputEventKey:
 		if event.pressed:
 			if event.scancode == KEY_SPACE:

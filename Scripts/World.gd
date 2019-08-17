@@ -19,19 +19,11 @@ onready var wateringcanwateranimation = get_node("WateringCanWaterAnimation")
 
 onready var animationcontainer = get_node("AnimationContainer")
 onready var player = ysort.get_node("Player")
-onready var dialogueplayer = preload("res://Dialogues/DialogueAction.gd").new()
 
 onready var desertanimation = get_node("DesertAnimation")
 onready var grassanimation = get_node("GrassAnimation")
 
 onready var _seeds = get_node("Seeds")
-
-onready var chest = ysort.get_node("Chest")
-onready var wasp = get_node("Wasp")
-onready var car = ysort.get_node("Car")
-
-onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()
-onready var salesManager = preload("res://Scripts/Managers/salesManager.gd").new()
 
 onready var dirtList = [
 	{
@@ -174,7 +166,6 @@ func next_song():
 
 func _ready():
 	player.hud.set_cursor_shape(load("res://Assets/Cursor/cursor.png"))
-	player.hud.shop.set_player(player)
 	
 	add_child(_seeds)
 	_seeds.set_owner(self)
@@ -186,13 +177,6 @@ func _ready():
 	audioplayer.stream = songs[current_song]
 	audioplayer.play()
 	
-	"""
-	for i in range(start_tile_size):
-		var seedsRow = []
-		for j in range(start_tile_size):
-			seedsRow.push_back(null)
-		seeds.push_back(seedsRow)
-	"""
 	
 	for i in range(-20, start_tile_size + 1):
 		for j in range(-20, start_tile_size + 1):
@@ -235,46 +219,7 @@ func _ready():
 			elif tilemap.get_cell(j, i) != -1 and dirtDictionary["id"][tilemap.get_cell(j, i)].itemName == "Normal":
 				grassanimation.frame = (desertanimation.frame + j * 5) % 10
 				animationcontainer.spawn_animation(Vector2((j + 0.5) * tilemap.cell_size.x, (i + 0.5) * tilemap.cell_size.y), grassanimation, true, true)
-			
-	dialogueplayer.connect("started", player.hud, "dialogue_started")
-	dialogueplayer.connect("finished", player.hud, "dialogue_finished")
-	dialogueplayer._ready()
-	add_child(dialogueplayer)
-	dialogueplayer.set_owner(self)
 	
-	chest.connect("chest_opened", player.hud, "chest_opened")
-	chest.connect("chest_closed", player.hud, "chest_closed")
-	wasp.connect("shop_opened", player.hud, "shop_opened")
-	wasp.connect("shop_closed", player.hud, "shop_closed")
-	car.connect("pass_day", self, "pass_day")
-	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
-	
-#	print(tilemap.get_cellv(Vector2(-3, 3)))
-
-signal lose_game
-
-func _on_Inventory_sell(toSellArrayIndices):
-	var toSellArray = []
-	for i in toSellArrayIndices:
-		toSellArray.append(player.hud.inventory.slotList[i].item)
-	
-	var needResponse = needManager.takeNeeds(toSellArray)
-	
-	if needResponse is int and needResponse == -1:
-		emit_signal("lose_game")
-		print("THE GAME")
-		return
-	
-	assert(!(needResponse is int))
-	
-	#var salesResponse = salesManager.calcFromDictionary(needResponse)
-	var salesResponse = salesManager.makeSales(toSellArray)
-	
-	prints("salesResponse", salesResponse)
-	
-	player.balance += salesResponse["earning"]
-	prints("playerBalance", player.balance)
-
 func get_mouse_cell():
 	var pos = tilemap.world_to_map(get_global_mouse_position() - position)
 	return pos
@@ -490,16 +435,8 @@ func cultivate_main(pos):
 			cultivate(targetpos)
 	
 
-func set_dialogue(path = "res://Dialogues/test_dialogue.json"):
-	dialogueplayer.interact(path)
-	dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
-
 func _input(event):
 	if event is InputEventKey:
-		################################### LOOK DOWN #################################
-		if false and event.pressed and event.scancode == KEY_ENTER:
-			if player.hud.dialogue_is_playing == false:
-				set_dialogue()
 
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()

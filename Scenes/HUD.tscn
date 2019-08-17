@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Misc/Toolbar-front.png" type="Texture" id=2]
@@ -17,12 +17,8 @@
 [ext_resource path="res://Scenes/SeedToolbar.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/SeedBag.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Misc/Inventory-front.png" type="Texture" id=17]
-[ext_resource path="res://Scenes/DialogueBox.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/StatusBar.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=20]
-[ext_resource path="res://Scripts/dummyFlowerRenderer.gd" type="Script" id=21]
-[ext_resource path="res://Assets/Highlight/Shop/Shop.tres" type="SpriteFrames" id=22]
-[ext_resource path="res://Scripts/Shop.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/FPSCounter.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/dummyFlowerRenderer.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -66,7 +62,7 @@ texture = ExtResource( 6 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 4
+frame = 1
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -92,38 +88,10 @@ visible = false
 texture = ExtResource( 17 )
 offset = Vector2( 32, 32 )
 
-[node name="DialogueBox" parent="." instance=ExtResource( 18 )]
-visible = false
-
-[node name="MentalHealth" parent="." instance=ExtResource( 19 )]
-position = Vector2( 32, 47 )
-
-[node name="Quest" type="PopupDialog" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="ProgressBar" parent="Quest" instance=ExtResource( 19 )]
-position = Vector2( 32, 32 )
-
 [node name="FPSCounter" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 7.0
-script = ExtResource( 20 )
+script = ExtResource( 18 )
 
 [node name="dummyFlowerRenderer" type="Node2D" parent="."]
-script = ExtResource( 21 )
-
-[node name="ShopHighlight" type="AnimatedSprite" parent="."]
-visible = false
-frames = ExtResource( 22 )
-frame = 4
-playing = true
-centered = false
-
-[node name="Shop" type="GridContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-custom_constants/vseparation = 0
-custom_constants/hseparation = 0
-columns = 4
-script = ExtResource( 23 )
+script = ExtResource( 19 )

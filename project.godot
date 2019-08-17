@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "DialogueAction",
-"language": "GDScript",
-"path": "res://Dialogues/DialogueAction.gd"
-}, {
-"base": "Node",
 "class": "colors",
 "language": "GDScript",
 "path": "res://Scripts/colors.gd"
@@ -54,16 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Biology/seeds/headacheSeed.gd"
 }, {
-"base": "Node",
-"class": "moneyManager",
-"language": "GDScript",
-"path": "res://Scripts/ECONOMY/money.gd"
-}, {
-"base": "Node",
-"class": "needManager",
-"language": "GDScript",
-"path": "res://Scripts/ECONOMY/need.gd"
-}, {
 "base": "dummyflower",
 "class": "rainbowFlower",
 "language": "GDScript",
@@ -73,16 +58,6 @@ _global_script_classes=[ {
 "class": "rainbowSeed",
 "language": "GDScript",
 "path": "res://Scripts/Biology/seeds/rainbowSeed.gd"
-}, {
-"base": "Node",
-"class": "salesManager",
-"language": "GDScript",
-"path": "res://Scripts/ECONOMY/sales.gd"
-}, {
-"base": "Node",
-"class": "stabilityManager",
-"language": "GDScript",
-"path": "res://Scripts/ECONOMY/stability.gd"
 }, {
 "base": "dummyflower",
 "class": "sunlightFlower",
@@ -105,7 +80,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Biology/seeds/waterseekerSeed.gd"
 } ]
 _global_script_class_icons={
-"DialogueAction": "",
 "colors": "",
 "dummyItem": "",
 "dummySeed": "",
@@ -114,12 +88,8 @@ _global_script_class_icons={
 "geneticStructure": "",
 "headacheFlower": "",
 "headacheSeed": "",
-"moneyManager": "",
-"needManager": "",
 "rainbowFlower": "",
 "rainbowSeed": "",
-"salesManager": "",
-"stabilityManager": "",
 "sunlightFlower": "",
 "sunlightSeed": "",
 "waterseekerFlower": "",

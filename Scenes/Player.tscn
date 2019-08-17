@@ -55,7 +55,7 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "default",
+"name": "New Anim",
 "speed": 5.0
 } ]
 
@@ -214,7 +214,9 @@ script = ExtResource( 1 )
 [node name="WalkSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 1 )
-frame = 7
+animation = "New Anim"
+frame = 3
+playing = true
 
 [node name="WalkBackSprite" type="AnimatedSprite" parent="."]
 visible = false
@@ -224,7 +226,7 @@ frame = 4
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 6
+frame = 3
 playing = true
 
 [node name="IdleBackSprite" type="AnimatedSprite" parent="."]
