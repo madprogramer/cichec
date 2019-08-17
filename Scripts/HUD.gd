@@ -218,8 +218,6 @@ func _input(event):
 	
 	elif event is InputEventKey:
 		if event.pressed:
-			if event.scancode == KEY_B:
-				chest_opened()
 			
 			# changing current toolbar tool
 			if current_hud == "toolbar":

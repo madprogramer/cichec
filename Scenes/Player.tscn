@@ -204,18 +204,16 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 5.54276, 1.3287 )
+extents = Vector2( 4.91164, 1.3287 )
 
-[node name="Player" type="KinematicBody2D" groups=[
-"Input",
-]]
+[node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="WalkSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 1 )
 animation = "New Anim"
-frame = 3
+frame = 2
 playing = true
 
 [node name="WalkBackSprite" type="AnimatedSprite" parent="."]
@@ -226,19 +224,13 @@ frame = 4
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 3
+frame = 2
 playing = true
 
 [node name="IdleBackSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 4 )
 frame = 6
-
-[node name="WalkHoeSpriteDont" type="AnimatedSprite" parent="."]
-visible = false
-
-[node name="WalkHoeSpriteFlip" type="AnimatedSprite" parent="."]
-visible = false
 
 [node name="IdleHoeSpriteDont" type="AnimatedSprite" parent="."]
 visible = false
