@@ -13,8 +13,8 @@
 [ext_resource path="res://Assets/Dirt/2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Entities/Sprinkler/Tile.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Dirt/Sand12x12.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/AnimationContainer.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/DirtmarkContainer.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Port/onlydock.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/FlowerContainer.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/Entities/Sprinkler.tscn" type="PackedScene" id=18]
@@ -702,12 +702,12 @@ cell_size = Vector2( 12, 12 )
 format = 1
 tile_data = PoolIntArray( -1, 41, 0, -65536, 41, 0, -65535, 41, 0, -65534, 41, 0, -65533, 41, 0, -65532, 41, 0, -65531, 41, 0, -65530, 41, 0, 65535, 41, 0, 0, 32, 0, 1, 32, 0, 2, 32, 0, 3, 32, 0, 4, 32, 0, 5, 32, 0, 6, 41, 0, 131071, 41, 0, 65536, 32, 0, 65537, 32, 0, 65538, 32, 0, 65539, 32, 0, 65540, 32, 0, 65541, 32, 0, 65542, 41, 0, 196607, 41, 0, 131072, 32, 0, 131073, 32, 0, 131074, 32, 0, 131075, 32, 0, 131076, 32, 0, 131077, 32, 0, 131078, 41, 0, 262143, 41, 0, 196608, 32, 0, 196609, 32, 0, 196610, 32, 0, 196611, 32, 0, 196612, 32, 0, 196613, 32, 0, 196614, 41, 0, 327679, 41, 0, 262144, 32, 0, 262145, 32, 0, 262146, 32, 0, 262147, 32, 0, 262148, 32, 0, 262149, 32, 0, 262150, 41, 0, 393215, 41, 0, 327680, 32, 0, 327681, 32, 0, 327682, 32, 0, 327683, 32, 0, 327684, 32, 0, 327685, 32, 0, 327686, 41, 0, 458751, 41, 0, 393216, 41, 0, 393217, 41, 0, 393218, 41, 0, 393219, 41, 0, 393220, 41, 0, 393221, 41, 0, 393222, 41, 0, 524261, 42, 0 )
 
-[node name="DirtmarkContainer" type="Node2D" parent="."]
-script = ExtResource( 14 )
-
 [node name="AnimationContainer" type="Node2D" parent="." groups=[
 "toSave",
 ]]
+script = ExtResource( 14 )
+
+[node name="DirtmarkContainer" type="Node2D" parent="."]
 script = ExtResource( 15 )
 
 [node name="Dock" type="Sprite" parent="."]
@@ -781,6 +781,7 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -87.145, -34.0364 )
