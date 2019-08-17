@@ -28,6 +28,7 @@ onready var world = get_node("World")
 var itemList = []
 
 func _ready():
+	world._ready()
 	world.player.hud.set_quest(["TUTORIAL"], 0)
 	world.player.hud.progress_target = 1
 #	world.connect("tile_hydrated", self, "progress")

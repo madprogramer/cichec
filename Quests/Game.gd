@@ -20,7 +20,10 @@ var current_quest = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tutorial.world.player.hud.set_cursor_shape(null)
+#	yield(get_tree(), "idle_frame")
+	titlescreen.offset = tutorial.world.get_node("YSort/Player/PlayerCamera").position + Vector2(4, 8)
+#	tutorial.world.player.hud.set_cursor_shape(null)
+#	tutorial.world.player.hud.set_cursor_shape(preload()
 	tutorial.world.player.hud.show("")
 	get_tree().call_group("Input", "deactivate")
 	tutorial.connect("quest_finished", self, "next_quest")

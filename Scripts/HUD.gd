@@ -226,6 +226,8 @@ func shop_opened():
 	show("shop")
 
 func _input(event):
+	if event is InputEventMouseButton or event is InputEventMouseMotion:
+		cursor.offset = Vector2(event.position.x, event.position.y);
 	if inputEnabled == false:
 		return
 	if dialogue_is_playing:
