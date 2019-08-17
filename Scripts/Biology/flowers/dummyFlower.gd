@@ -330,14 +330,14 @@ func set_newFlower(originalItem):
 #
 #	newFlower.itemInfo = originalItem
 #
-	newFlower.visible = true
+	newFlower.item.visible = true
 	newSeed.newFlower = newFlower
 
-	print(newSeed)
+	print(newSeed.item)
 	prints(">", newFlower)
 
 	
-	add_child(newFlower)
+	add_child(newFlower.item)
 #
 #	prints(">", newFlower)
 

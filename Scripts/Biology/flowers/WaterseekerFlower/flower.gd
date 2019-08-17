@@ -11,9 +11,11 @@ var itemClass = preload("res://Scripts/Item.gd")
 var item
 
 func _ready():
-	item = itemClass.new(itemInfo.itemName, itemInfo.itemIcon, null, itemInfo.itemValue, itemClass)
+	item = itemClass.new(itemInfo.itemName, itemInfo.itemIcon, null, itemInfo.itemValue, itemInfo.itemClass)
+	print(item.texture)
 	item.itemInfo = itemInfo
-#	item.newFlower = item
+	item.set_newFlower(item)
+#	item.newFlower.texture = item.texture
 
 func _init():
 	_ready()

@@ -48,7 +48,8 @@ texture = ExtResource( 3 )
 
 [node name="Inventory-back" type="TextureRect" parent="."]
 visible = false
-margin_right = 64.0
+margin_left = 64.0
+margin_right = 128.0
 margin_bottom = 64.0
 texture = ExtResource( 4 )
 
@@ -64,7 +65,7 @@ texture = ExtResource( 6 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 3
 playing = true
 offset = Vector2( 8, 56 )
 
@@ -88,7 +89,7 @@ visible = false
 [node name="Inventory-front" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 17 )
-offset = Vector2( 32, 32 )
+offset = Vector2( 96, 32 )
 
 [node name="DialogueBox" parent="." instance=ExtResource( 18 )]
 visible = false
@@ -114,7 +115,7 @@ script = ExtResource( 21 )
 [node name="ShopHighlight" type="AnimatedSprite" parent="."]
 visible = false
 frames = ExtResource( 22 )
-frame = 5
+frame = 3
 playing = true
 centered = false
 

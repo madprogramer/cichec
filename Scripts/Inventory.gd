@@ -133,8 +133,11 @@ func add_flower(originalItem):
 			var itemName = originalItem.item.itemName
 			print (itemName)
 			
-			var itemIcon = originalItem.item.itemIcon
+			var itemIcon = originalItem.item.texture
 			print (itemIcon)
+			
+#			var x = 0
+#			x = x / x
 			
 			var itemValue = -1
 			
