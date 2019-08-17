@@ -345,7 +345,7 @@ func pass_day():
 			#Age Up
 			#Ignore Ded
 			if phase == 0:
-				print(Vector2(i, j), _flower.id)
+				#print(Vector2(i, j), _flower.id)
 				var _polen = _flower.try_polinate()
 				#print("STANDO POWAH")
 				if _polen.size() > 0:
@@ -380,7 +380,7 @@ func pass_day():
 
 						polenData[3][1] = flowerAt.uniqueId
 						polenData[4][1] = flowerAt.dummySeed
-						print(polenData[3])
+						#print(polenData[3])
 
 						#FIXTHIS'e flowermap'ten species'ı aynı olan çiçeğin id'si kullnalıcak
 						#ID farklıysa atla
@@ -407,12 +407,13 @@ func pass_day():
 				if _flower.isDead():
 					pass
 				if _flower.isPolinated():
-					print("Todo: Determine how to disperse seeds from unharvested plant");
+					#print("Todo: Determine how to disperse seeds from unharvested plant");
 					pass
 				_flower.age_up()
 			
 			elif phase == 4:
-				print("Day advanced!")
+				#print("Day advanced!")
+				pass
 			
 	get_tree().call_group("Sprinklers", "water")
 	
@@ -455,7 +456,7 @@ signal tile_hydrated
 signal medicine_collected
 
 func cultivate(pos):
-	print("trying to cultivate: ", pos)
+	#print("trying to cultivate: ", pos)
 	tilemap.set_cellv(pos, dirtDictionary["name"]["Normal"].id)
 	
 	var i = pos.y
@@ -472,7 +473,7 @@ func cultivate(pos):
 	emit_signal("tile_hydrated")
 
 func cultivate_main(pos):
-	print("cultivate_main: ", pos)
+	#print("cultivate_main: ", pos)
 	var times = randi()% 4
 	for i in times :
 		var xr = randi()%4 - 2
@@ -855,6 +856,7 @@ func _pick_seed_Routine(pos, force = false):
 				print("WRYYYYYYYYYYYYYYY")
 				flower = flower.pickup()
 				player.add_flower(flower.newFlower)
+				_seed.queue_free()
 				_seeds.seeds[pos] = null
 				
 			elif flower.isDead() or flower.isPolinated():
@@ -863,6 +865,8 @@ func _pick_seed_Routine(pos, force = false):
 #				print(flower.newFlower)
 				player.add_seed(flower.newSeed)
 				flower.harvest()
+
+				_seed.queue_free()
 				_seeds.seeds[pos] = null
 			return
 				

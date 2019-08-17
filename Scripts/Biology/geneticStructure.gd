@@ -36,10 +36,10 @@ func isShort():
 
 #Compute Genes
 func computeSize(a,b):
-	return (a+b+1)/2
+	return (a+b)/2.0
 func computeColor(a,b):
-	var se = [0,0,0,0]
-	for i in range(4):
+	var se = [0,0,0]
+	for i in range(3):
 		se[i] = a[i]+b[i]
 	return se
 func computeSeeds(a,b):

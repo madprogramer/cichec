@@ -128,7 +128,8 @@ func polinate():
 	
 	print("https://github.com/EnoughSensei/cichec/issues/12")
 #	var polinationCount = phenoGenes.getPolens();
-	var polinationCount = 3
+	#var polinationCount = 3
+	var polinationCount = phenoGenes["polens"]
 	
 	var polRange = 2
 	if !isShort():
@@ -249,7 +250,8 @@ func phenoColor():
 #Size
 #Average of genes, rounded up
 func phenoSize():
-	return ceil((matGenes.size + patGenes.size)/2)
+	#return ceil((matGenes.size + patGenes.size)/2)
+	return ((matGenes.size + patGenes.size)/2)
 
 #Seeds 
 #Random Number in interval of min to max
@@ -274,6 +276,7 @@ func pickup():
 	sprite.visible = false
 	pollinatedsprite.visible = false
 	deadsprite.visible = false
+	#return self
 	return self
 	
 const SeedClass = preload("res://Scripts/Seed.gd");
