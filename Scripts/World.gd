@@ -270,7 +270,6 @@ func _on_Inventory_sell(toSellArrayIndices):
 
 func get_mouse_cell():
 	var pos = tilemap.world_to_map(get_global_mouse_position() - position)
-	pos.x -= 1
 	return pos
 
 func highlight_cursor():
