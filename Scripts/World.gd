@@ -258,7 +258,8 @@ func _on_Inventory_sell(toSellArrayIndices):
 	for i in toSellArrayIndices:
 		toSellArray.append(player.hud.inventory.slotList[i].item)
 	
-	var needResponse = needManager.takeNeeds(toSellArray)
+	#var needResponse = needManager.takeNeeds(toSellArray)
+	var needResponse = needManager.calcFromArray(toSellArray)
 	
 	if needResponse is int and needResponse == -1:
 		emit_signal("lose_game")
@@ -267,8 +268,8 @@ func _on_Inventory_sell(toSellArrayIndices):
 	
 	assert(!(needResponse is int))
 	
-	#var salesResponse = salesManager.calcFromDictionary(needResponse)
-	var salesResponse = salesManager.makeSales(toSellArray)
+	var salesResponse = salesManager.calcFromDictionary(needResponse)
+	#var salesResponse = salesManager.makeSales(toSellArray)
 	
 	prints("salesResponse", salesResponse)
 	
@@ -714,6 +715,7 @@ func sow(pos, item):
 		item.dummySeed.GENES
 	)
 	
+	print(item.dummySeed)
 	_seed.flower.set_dummySeed(item.dummySeed)
 	
 #	var x = 0
