@@ -28,6 +28,7 @@ onready var _seeds = get_node("Seeds")
 
 onready var chest = ysort.get_node("Chest")
 onready var wasp = ysort.get_node("Wasp")
+onready var car = ysort.get_node("Car")
 
 onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()
 onready var salesManager = preload("res://Scripts/Managers/salesManager.gd").new()
@@ -245,6 +246,7 @@ func _ready():
 	chest.connect("chest_closed", player.hud, "chest_closed")
 	wasp.connect("shop_opened", player.hud, "shop_opened")
 	wasp.connect("shop_closed", player.hud, "shop_closed")
+	car.connect("pass_day", self, "pass_day")
 	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
 	
 #	print(tilemap.get_cellv(Vector2(-3, 3)))

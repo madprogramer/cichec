@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Port/onlytop.png" type="Texture" id=2]
@@ -23,40 +23,43 @@
 [ext_resource path="res://Scenes/Entities/Chest.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Assets/Characters/Wasp/Wasp16x16.png" type="Texture" id=22]
 [ext_resource path="res://Scripts/Characters/Wasp.gd" type="Script" id=23]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-3.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-4.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=32]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=33]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=34]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=35]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=36]
-[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=37]
-[ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=38]
-[ext_resource path="res://Assets/Sand/Animated/1.png" type="Texture" id=39]
-[ext_resource path="res://Assets/Sand/Animated/2.png" type="Texture" id=40]
-[ext_resource path="res://Assets/Sand/Animated/3.png" type="Texture" id=41]
-[ext_resource path="res://Assets/Sand/Animated/4.png" type="Texture" id=42]
-[ext_resource path="res://Assets/Sand/Animated/5.png" type="Texture" id=43]
-[ext_resource path="res://Assets/Sand/Animated/6.png" type="Texture" id=44]
-[ext_resource path="res://Assets/Sand/Animated/7.png" type="Texture" id=45]
-[ext_resource path="res://Assets/Sand/Animated/8.png" type="Texture" id=46]
-[ext_resource path="res://Assets/Sand/Animated/9.png" type="Texture" id=47]
-[ext_resource path="res://Assets/Dirt/Animated/2.png" type="Texture" id=48]
-[ext_resource path="res://Assets/Dirt/Animated/1.png" type="Texture" id=49]
-[ext_resource path="res://Assets/Dirt/Animated/3.png" type="Texture" id=50]
-[ext_resource path="res://Assets/Dirt/Animated/4.png" type="Texture" id=51]
-[ext_resource path="res://Assets/Dirt/Animated/5.png" type="Texture" id=52]
-[ext_resource path="res://Assets/Dirt/Animated/6.png" type="Texture" id=53]
-[ext_resource path="res://Assets/Dirt/Animated/7.png" type="Texture" id=54]
-[ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=55]
-[ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=56]
-[ext_resource path="res://Scripts/Seeds.gd" type="Script" id=57]
+[ext_resource path="res://Scripts/Entities/Car.gd" type="Script" id=24]
+[ext_resource path="res://Assets/Entities/Car/frame.png" type="Texture" id=25]
+[ext_resource path="res://Scenes/Entities/Car.tres" type="SpriteFrames" id=26]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-0.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-1.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-2.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-3.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-4.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Items/Watering_Can/WateringAnimation/pixil-frame-5.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-0.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-1.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-2.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-3.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-4.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-5.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-6.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Items/Hoe/PlowingAnimation/pixil-frame-7.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Highlight/Highlight12x12.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Sand/Animated/1.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Sand/Animated/2.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Sand/Animated/3.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Sand/Animated/4.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Sand/Animated/5.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Sand/Animated/6.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Sand/Animated/7.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Sand/Animated/8.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Sand/Animated/9.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Dirt/Animated/2.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Dirt/Animated/1.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Dirt/Animated/3.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Dirt/Animated/4.png" type="Texture" id=54]
+[ext_resource path="res://Assets/Dirt/Animated/5.png" type="Texture" id=55]
+[ext_resource path="res://Assets/Dirt/Animated/6.png" type="Texture" id=56]
+[ext_resource path="res://Assets/Dirt/Animated/7.png" type="Texture" id=57]
+[ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=58]
+[ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=59]
+[ext_resource path="res://Scripts/Seeds.gd" type="Script" id=60]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -492,7 +495,7 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -500,7 +503,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ],
+"frames": [ ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -508,7 +511,7 @@ animations = [ {
 
 [sub_resource type="TileSet" id=4]
 0/name = "Highlight8x8.png 0"
-0/texture = ExtResource( 38 )
+0/texture = ExtResource( 41 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 12, 12 )
@@ -520,7 +523,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ) ],
+"frames": [ ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -528,7 +531,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ) ],
+"frames": [ ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -750,6 +753,25 @@ margin_bottom = -54.2369
 texture = ExtResource( 22 )
 script = ExtResource( 23 )
 
+[node name="Car" type="Control" parent="YSort"]
+margin_left = -228.348
+margin_top = 18.7292
+margin_right = -188.348
+margin_bottom = 58.7292
+script = ExtResource( 24 )
+
+[node name="Rect" type="TextureRect" parent="YSort/Car"]
+margin_left = 87.8017
+margin_top = 22.9499
+margin_right = 127.802
+margin_bottom = 40.9499
+texture = ExtResource( 25 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="YSort/Car"]
+visible = false
+position = Vector2( 107.802, 31.8272 )
+frames = ExtResource( 26 )
+
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 0.75, 0.75 )
@@ -777,200 +799,204 @@ frames = SubResource( 6 )
 frame = 6
 
 [node name="Seeds" type="Node2D" parent="."]
-script = ExtResource( 57 )
+script = ExtResource( 60 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Borders" type="StaticBody2D" parent="."]
 editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -87.145, -34.0364 )
 shape = SubResource( 7 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -37.8904, -33.7716 )
 shape = SubResource( 8 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -38.6849, -42.7751 )
 shape = SubResource( 9 )
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -57.6672, -58.6637 )
 shape = SubResource( 10 )
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -44.6626, -93.4511 )
 shape = SubResource( 11 )
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -45.638, -105.48 )
 shape = SubResource( 12 )
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -61.8938, -122.061 )
 shape = SubResource( 13 )
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -271.594, -112.958 )
 shape = SubResource( 14 )
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -101.737, 20.0778 )
 shape = SubResource( 15 )
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -84.3609, 73.2922 )
 shape = SubResource( 16 )
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -61.5547, 51.572 )
 shape = SubResource( 17 )
 
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -60.3636, 26.2697 )
 shape = SubResource( 18 )
 
-[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -26.6667, 17.7429 )
 shape = SubResource( 19 )
 
-[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -26.9183, 3.1916 )
 shape = SubResource( 20 )
 
-[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -63.8724, -0.515732 )
 shape = SubResource( 21 )
 
-[node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -37.6563, -11.6377 )
 shape = SubResource( 22 )
 
-[node name="CollisionShape2D17" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -37.6563, -11.6377 )
 shape = SubResource( 23 )
 
-[node name="CollisionShape2D18" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -97.22, -11.9311 )
 shape = SubResource( 24 )
 
-[node name="CollisionShape2D19" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -102.956, 0.0183868 )
 shape = SubResource( 25 )
 
-[node name="CollisionShape2D20" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -103.88, 0.203314 )
 shape = SubResource( 26 )
 
-[node name="CollisionShape2D21" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -104.25, 36.6338 )
 shape = SubResource( 27 )
 
-[node name="CollisionShape2D22" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -185.803, 37.5584 )
 shape = SubResource( 28 )
 
-[node name="CollisionShape2D23" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -185.618, 23.3191 )
 shape = SubResource( 29 )
 
-[node name="CollisionShape2D24" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -121.818, 21.2849 )
 shape = SubResource( 30 )
 
-[node name="CollisionShape2D25" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -121.818, -9.86056 )
 shape = SubResource( 31 )
 
-[node name="CollisionShape2D26" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -254.26, -29.717 )
 rotation = 1.70077
 shape = SubResource( 32 )
 
-[node name="CollisionShape2D27" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -242.97, -59.4999 )
 rotation = 1.70077
 shape = SubResource( 33 )
 
-[node name="CollisionShape2D28" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -242.97, -59.4999 )
 rotation = 1.70077
 shape = SubResource( 34 )
 
-[node name="CollisionShape2D29" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -242.97, -59.4999 )
 rotation = 1.70077
 shape = SubResource( 35 )
 
-[node name="CollisionShape2D30" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -211.63, -50.5456 )
 rotation = 1.70077
 shape = SubResource( 36 )
 
-[node name="CollisionShape2D31" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -229.098, -48.1284 )
 rotation = 1.70077
 shape = SubResource( 37 )
 
-[node name="CollisionShape2D32" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -229.55, -37.7354 )
 rotation = 1.70077
 shape = SubResource( 38 )
 
-[node name="CollisionShape2D33" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -149.745, -38.5981 )
 rotation = 1.70077
 shape = SubResource( 39 )
 
-[node name="CollisionShape2D34" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -159.882, -82.3829 )
 rotation = 1.70077
 shape = SubResource( 40 )
 
-[node name="CollisionShape2D35" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -159.882, -82.3829 )
 rotation = 1.70077
 shape = SubResource( 41 )
 
-[node name="CollisionShape2D36" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -175.412, -96.4027 )
 rotation = 1.70077
 shape = SubResource( 42 )
 
-[node name="CollisionShape2D37" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -131.411, -96.6184 )
 rotation = 1.70077
 shape = SubResource( 43 )
 
-[node name="CollisionShape2D38" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -130.657, -71.7131 )
 rotation = 1.70077
 shape = SubResource( 44 )
 
-[node name="CollisionShape2D39" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -119.663, -63.3484 )
 rotation = 1.70077
 shape = SubResource( 45 )
 
-[node name="CollisionShape2D40" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D40" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -119.663, -63.3484 )
 rotation = 1.70077
 shape = SubResource( 46 )
 
-[node name="CollisionShape2D41" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D41" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -131.613, -54.0278 )
 rotation = 1.70077
 shape = SubResource( 47 )
 
-[node name="CollisionShape2D42" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D42" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -131.261, -37.1625 )
 rotation = 1.70077
 shape = SubResource( 48 )
 
-[node name="CollisionShape2D43" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D43" type="CollisionShape2D" parent="Borders"]
 position = Vector2( -87.3414, -37.3382 )
 rotation = 1.70077
 shape = SubResource( 49 )
