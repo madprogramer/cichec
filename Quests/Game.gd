@@ -7,12 +7,11 @@ extends Node2D
 onready var titlescreen = get_node("TitleScreen")
 
 onready var tutorial = get_node("Tutorial")
-onready var quest1 = get_node("Quest1")
+#onready var quest1 = get_node("Quest1")
 onready var quest2 = get_node("Quest2")
 
 onready var quests = [
 	tutorial,
-	quest1,
 	quest2
 ]
 
@@ -116,5 +115,7 @@ func _input(event):
 func _on_NewGameButton_new_game():
 	titlescreen.visible = false
 	tutorial.world.player.hud.show("toolbar")
+	yield(get_tree(), "idle_frame")
 	get_tree().call_group("Input", "activate")
+	quests[current_quest].start_quest()
 	pass # Replace with function body.

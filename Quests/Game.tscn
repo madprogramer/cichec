@@ -15,11 +15,12 @@ script = ExtResource( 1 )
 position = Vector2( 0, -0.903744 )
 
 [node name="Quest1" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="Quest2" parent="." instance=ExtResource( 4 )]
 
 [node name="TitleScreen" type="Sprite" parent="."]
-position = Vector2( 365.807, 31.4152 )
+position = Vector2( 101.137, 6.27504 )
 texture = ExtResource( 5 )
 
 [node name="NewGameButton" type="TextureRect" parent="TitleScreen"]
@@ -29,6 +30,4 @@ margin_right = 23.0
 margin_bottom = 19.0
 texture = ExtResource( 6 )
 script = ExtResource( 7 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="new_game" from="TitleScreen/NewGameButton" to="." method="_on_NewGameButton_new_game"]

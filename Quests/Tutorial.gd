@@ -27,14 +27,17 @@ onready var world = get_node("World")
 
 var itemList = []
 
-func _ready():
-	world._ready()
+func start_quest():
 	get_tree().call_group("Input", "deactivate")
 	world.set_dialogue("res://Dialogues/Quest1.json")
 	get_tree().call_group("Input", "activate")
-	world.player.hud.set_quest(["TUTORIAL"], 0)
-	world.player.hud.progress_target = 1
-#	world.connect("tile_hydrated", self, "progress")
+
+func _ready():
+	world._ready()
+	
+	world.player.hud.set_quest(["HYDRATE 25 TILES"], 0)
+	world.player.hud.progress_target = 25
+	world.connect("tile_hydrated", self, "progress")
 	world.player.hud.connect("quest_finished", self, "quest_finished")
 	
 #	for item in itemDictionary:

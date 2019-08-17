@@ -33,7 +33,6 @@ func load_dialogue(file_path):
 		assert dialogue != {}
 	elif dialogue is Array:
 		assert dialogue.size() > 0
-	return
 	
 var line = 1
 	
@@ -55,7 +54,12 @@ func continue_dialogue():
 		line = line + 1
 		play_dialogue()
 
+var flag = true
+
 func _process(delta):
 	if Input.is_action_just_pressed("mouse_select"):
 		if dialogue:
+			if flag:
+				flag = false
+				return
 			continue_dialogue()
