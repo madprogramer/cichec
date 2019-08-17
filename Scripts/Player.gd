@@ -7,6 +7,8 @@ onready var idlebacksprite = get_node("IdleBackSprite")
 onready var walksprite = get_node("WalkSprite")
 onready var walkbacksprite = get_node("WalkBackSprite")
 
+var balance = 0
+
 const SPEED = 80
 var direction = {
 	"x" : "right",

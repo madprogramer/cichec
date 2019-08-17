@@ -554,7 +554,7 @@ script = ExtResource( 13 )
 script = ExtResource( 14 )
 
 [node name="Sprinkler" parent="YSort" instance=ExtResource( 15 )]
-position = Vector2( 19.4052, 13.6077 )
+position = Vector2( 18.9295, 12.3393 )
 
 [node name="ExitDoor" parent="YSort" instance=ExtResource( 16 )]
 position = Vector2( 31.2796, -21.8513 )
@@ -574,7 +574,7 @@ margin_right = -11.5903
 margin_bottom = 40.3557
 
 [node name="Sprinkler2" parent="YSort" instance=ExtResource( 15 )]
-position = Vector2( 55.8343, 29.0045 )
+position = Vector2( 55.8343, 25.4701 )
 
 [node name="WateringCanWaterAnimation" type="AnimatedSprite" parent="."]
 visible = false

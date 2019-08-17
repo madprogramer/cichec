@@ -1,6 +1,7 @@
 # Inventory.gd
 extends GridContainer;
 const ItemClass = preload("res://Scripts/Item.gd");
+const SeedClass = preload("res://Scripts/Seed.gd");
 const ItemSlotClass = preload("res://Scripts/ItemSlot.gd");
 
 const slotTexture = preload("res://Assets/Misc/Slot-texture.png");
@@ -10,39 +11,15 @@ const itemImages = [
 ];
 
 var itemDictionary = {
-	"scanner" : {
-		"itemName" : "scanner",
-		"itemIcon" : preload("res://Assets/Items/Scanner/Scanner.png"),
+	"seed1" : {
+		"itemName" : "WaterseekerSeed",
+		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
 		"itemValue" : -1,
-		"itemClass" : preload("res://Scripts/Items/Scanner.gd")
-	},
-	"sprinkler_spawner" : {
-		"itemName" : "sprinkler_spawner",
-		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
-		"itemValue" : -1,
-		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
-	},
-	"sprinkler_spawner2" : {
-		"itemName" : "sprinkler_spawner",
-		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
-		"itemValue" : -1,
-		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
-	},
-	"sprinkler_spawner3" : {
-		"itemName" : "sprinkler_spawner",
-		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
-		"itemValue" : -1,
-		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
-	},"sprinkler_spawner4" : {
-		"itemName" : "sprinkler_spawner",
-		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
-		"itemValue" : -1,
-		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
-	},"sprinkler_spawner5" : {
-		"itemName" : "sprinkler_spawner",
-		"itemIcon" : preload("res://Assets/Items/SprinklerSpawner/Icon.png"),
-		"itemValue" : -1,
-		"itemClass" : preload("res://Scripts/Entities/SprinklerSpawner.gd")
+		"count" : 3,
+		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
+		"seedbag" : true,
+		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
 	}
 };
 
@@ -58,11 +35,15 @@ func _ready():
 		var itemName = itemDictionary[item].itemName;
 		var itemIcon = itemDictionary[item].itemIcon;
 		var itemValue = itemDictionary[item].itemValue;
-		var itemClass = itemDictionary[item].itemClass
-		
-		# important note: not ItemClass, it is itemClass [i at the start is lowercase]
-		itemList.append(itemClass.new(itemName, itemIcon, null, itemValue, itemClass));
-	
+		var itemSeed = itemDictionary[item]._seed
+		var itemDummySeed = itemDictionary[item].dummySeed.new()
+		var itemCount = itemDictionary[item].count
+		var newFlower = itemDictionary[item].newFlower
+#		print(itemDummySeed.getColor())  works here
+		itemDummySeed.set_seedClass()
+		#itemList.append(ItemClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed));
+		itemList.append(SeedClass.new(itemName, itemIcon, null, itemValue, itemSeed, itemDummySeed, itemCount));
+		itemList[itemList.size() - 1].newFlower = newFlower.new()
 	for i in range(32):
 		var slot = ItemSlotClass.new(i);
 		slotList.append(slot);

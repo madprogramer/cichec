@@ -191,8 +191,8 @@ func _ready():
 		_seedDictionary["name"][_seed.name] = _seed
 		_seedDictionary["id"][_seed.id] = _seed
 	
-	for i in range(0, start_tile_size):
-		for j in range(0, start_tile_size):
+	for i in range(-1, start_tile_size):
+		for j in range(-1, start_tile_size):
 			if tilemap.get_cell(j, i) == -1:
 				tilemap.set_cell(j, i, dirtDictionary["name"]["Desert"].id)
 
@@ -238,6 +238,9 @@ func _on_Inventory_sell(toSellArrayIndices):
 	
 	var salesResponse = salesManager.calcFromDictionary(needResponse)
 	prints("salesResponse", salesResponse)
+	
+	player.balance += salesResponse
+	prints("playerBalance", player.balance)
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -381,8 +384,8 @@ func pass_day():
 	
 	yield(get_tree(), "idle_frame")
 	
-	for i in range(0, start_tile_size):
-		for j in range(0, start_tile_size):
+	for i in range(-1, start_tile_size):
+		for j in range(-1, start_tile_size):
 			var type = tilemap.get_cell(j, i)
 			var name = dirtDictionary["id"][type].itemName
 			
@@ -850,9 +853,9 @@ func _on_ExitDoor_body_shape_entered(body_id, body, body_shape, area_shape):
 
 
 func _on_Sprinkler_sprinkler_water(pos):
-#	print("Sprinkler finished at ", pos)
+	print("Sprinkler finished at ", pos)
 	var cellpos = tilemap.world_to_map(pos)
-#	print("...and it's cell position: ", cellpos)
+	print("...and it's cell position: ", cellpos)
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			water(Vector2(cellpos.x + i, cellpos.y + j))
