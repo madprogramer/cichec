@@ -29,4 +29,6 @@ margin_right = 23.0
 margin_bottom = 19.0
 texture = ExtResource( 6 )
 script = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="new_game" from="TitleScreen/NewGameButton" to="." method="_on_NewGameButton_new_game"]

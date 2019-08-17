@@ -29,6 +29,9 @@ var itemList = []
 
 func _ready():
 	world._ready()
+	get_tree().call_group("Input", "deactivate")
+	world.set_dialogue("res://Dialogues/Quest1.json")
+	get_tree().call_group("Input", "activate")
 	world.player.hud.set_quest(["TUTORIAL"], 0)
 	world.player.hud.progress_target = 1
 #	world.connect("tile_hydrated", self, "progress")
