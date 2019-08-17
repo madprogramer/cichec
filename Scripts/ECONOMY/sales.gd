@@ -32,6 +32,7 @@ func makeSales(soldStuff):
 	
 	#Assuming Array
 	for stuff in soldStuff:
+		print(stuff)
 		PROFIT += bonuses(stuff)
 		
 	return PROFIT
