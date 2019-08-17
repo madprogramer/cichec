@@ -224,7 +224,7 @@ frame = 4
 [node name="IdleSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 4
+frame = 1
 playing = true
 
 [node name="IdleBackSprite" type="AnimatedSprite" parent="."]
@@ -261,3 +261,6 @@ position = Vector2( -0.315559, 6.78452 )
 shape = SubResource( 13 )
 
 [node name="HUD" parent="." instance=ExtResource( 50 )]
+
+[node name="SfxPlayer2" type="AudioStreamPlayer" parent="."]
+volume_db = -11.73
