@@ -21,6 +21,7 @@ position = Vector2( 0, -0.903744 )
 [node name="TitleScreen" type="Sprite" parent="."]
 visible = false
 position = Vector2( 32, 32 )
+position = Vector2( 32, 31 )
 texture = ExtResource( 5 )
 
 [node name="NewGameButton" type="TextureRect" parent="TitleScreen"]
