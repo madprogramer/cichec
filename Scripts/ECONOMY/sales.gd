@@ -3,7 +3,8 @@ extends Node
 class_name salesManager
 
 var price = {
-	
+	"sprinkler_spawner" : 500,
+	"scanner" : 1000
 }
 # Called when the node enters the scene tree for the first time.
 
@@ -19,7 +20,7 @@ func colorBonus(price, item, color):
 	return price
 
 func bonuses(item): 
-	var p = price[item]
+	var p = price[item.itemName]
 	p = sizeBonus(price,item)
 	p = colorBonus(price,item,[0,0,0])
 	return p
@@ -35,4 +36,4 @@ func makeSales(soldStuff):
 		print(stuff)
 		PROFIT += bonuses(stuff)
 		
-	return PROFIT
+	return {earning: PROFIT}

@@ -18,9 +18,11 @@ func _ready():
 #	pass
 
 
+
 #Add New Needs For This Level
-func addNeed(name, start, consumed, typeDict):
-	stockpile[name] = start
+#func addNeed(name, start, consumed, typeDict):
+#	stockpile[name] = start
+func addNeed(name, consumed, typeDict):
 	consumption[name] = consumed
 	types[name] =  {}
 	
