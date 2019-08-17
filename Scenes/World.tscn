@@ -681,6 +681,8 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+
 [node name="Port" type="Node2D" parent="."]
 position = Vector2( -139.899, -14 )
 __meta__ = {

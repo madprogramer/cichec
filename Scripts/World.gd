@@ -4,6 +4,7 @@ const normal_tile_size = 6
 const start_tile_size = 20
 
 onready var audioplayer = get_node("AudioStreamPlayer")
+onready var sfxplayer = get_node("SfxPlayer")
 
 onready var tilemap = get_node("TileMap")
 onready var highlight = get_node("Highlight")
@@ -137,6 +138,10 @@ var _seedDictionary = {
 	"id" : {
 	}
 }
+
+func play_sfx(sfx):
+	sfxplayer.stream = sfx
+	sfxplayer.play()
 
 func spawn_animation(pos, animatedSprite):
 	animationcontainer.spawn_animation(pos, animatedSprite)
