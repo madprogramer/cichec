@@ -6,10 +6,12 @@ extends Node2D
 
 onready var tutorial = get_node("Tutorial")
 onready var quest1 = get_node("Quest1")
+onready var quest2 = get_node("Quest2")
 
 onready var quests = [
 	tutorial,
-	quest1
+	quest1,
+	quest2
 ]
 
 var current_quest = 0
@@ -29,6 +31,7 @@ func next_quest():
 	transfer_world(quests[current_quest], quests[current_quest + 1])
 	current_quest += 1
 	quests[current_quest].connect("quest_finished", self, "next_quest")
+#	quests[current_quest].ready()
 
 func transfer_world(quest1, quest2):
 	quest2.world = quest1.world
@@ -53,6 +56,8 @@ func _load(name):
 
 func _input(event):
 	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_R:
+			quests[current_quest].progress()
 		if event.pressed and event.scancode == KEY_T:
 			var packed_scene = PackedScene.new()
 			packed_scene.pack(quests[current_quest].world)

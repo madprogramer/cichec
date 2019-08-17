@@ -424,6 +424,7 @@ func boost_main(pos):
 			targetflower.boost()
 
 signal tile_hydrated
+signal medicine_collected
 
 func cultivate(pos):
 	print("trying to cultivate: ", pos)
@@ -461,8 +462,9 @@ func _input(event):
 
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
-		if event.pressed and event.scancode == KEY_R:
-			emit_signal("tile_hydrated")
+#		if event.pressed and event.scancode == KEY_R:
+#			emit_signal("tile_hydrated")
+#			emit_signal("medicine_collected")
 		if event.pressed and event.scancode == KEY_N:
 			next_song()
 		if event.pressed and event.scancode == KEY_M:
