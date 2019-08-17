@@ -1,0 +1,195 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "DialogueAction",
+"language": "GDScript",
+"path": "res://Dialogues/DialogueAction.gd"
+}, {
+"base": "Node",
+"class": "colors",
+"language": "GDScript",
+"path": "res://Scripts/colors.gd"
+}, {
+"base": "TextureRect",
+"class": "dummyItem",
+"language": "GDScript",
+"path": "res://Scripts/Items/DummyItem.gd"
+}, {
+"base": "geneticStructure",
+"class": "dummySeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/dummySeed.gd"
+}, {
+"base": "geneticStructure",
+"class": "dummyflower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/dummyFlower.gd"
+}, {
+"base": "geneticStructure",
+"class": "dummyflowerviewer",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/dummyFlowerViewer.gd"
+}, {
+"base": "Node",
+"class": "geneticStructure",
+"language": "GDScript",
+"path": "res://Scripts/Biology/geneticStructure.gd"
+}, {
+"base": "dummyflower",
+"class": "headacheFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/headacheFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "headacheSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/headacheSeed.gd"
+}, {
+"base": "Node",
+"class": "moneyManager",
+"language": "GDScript",
+"path": "res://Scripts/ECONOMY/money.gd"
+}, {
+"base": "Node",
+"class": "needManager",
+"language": "GDScript",
+"path": "res://Scripts/ECONOMY/need.gd"
+}, {
+"base": "dummyflower",
+"class": "rainbowFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/rainbowFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "rainbowSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/rainbowSeed.gd"
+}, {
+"base": "Node",
+"class": "salesManager",
+"language": "GDScript",
+"path": "res://Scripts/ECONOMY/sales.gd"
+}, {
+"base": "Node",
+"class": "stabilityManager",
+"language": "GDScript",
+"path": "res://Scripts/ECONOMY/stability.gd"
+}, {
+"base": "dummyflower",
+"class": "sunlightFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/sunlightFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "sunlightSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/sunlightSeed.gd"
+}, {
+"base": "dummyflower",
+"class": "waterseekerFlower",
+"language": "GDScript",
+"path": "res://Scripts/Biology/flowers/waterseekerFlower.gd"
+}, {
+"base": "dummySeed",
+"class": "waterseekerSeed",
+"language": "GDScript",
+"path": "res://Scripts/Biology/seeds/waterseekerSeed.gd"
+} ]
+_global_script_class_icons={
+"DialogueAction": "",
+"colors": "",
+"dummyItem": "",
+"dummySeed": "",
+"dummyflower": "",
+"dummyflowerviewer": "",
+"geneticStructure": "",
+"headacheFlower": "",
+"headacheSeed": "",
+"moneyManager": "",
+"needManager": "",
+"rainbowFlower": "",
+"rainbowSeed": "",
+"salesManager": "",
+"stabilityManager": "",
+"sunlightFlower": "",
+"sunlightSeed": "",
+"waterseekerFlower": "",
+"waterseekerSeed": ""
+}
+
+[application]
+
+config/name="Cichec"
+run/main_scene="res://Quests/Game.tscn"
+boot_splash/image="res://Assets/Misc/Inventory-background.png"
+config/icon="res://Assets/Flowers/RainbowFlower-short-pollinated.png"
+
+[display]
+
+window/size/width=64
+window/size/height=64
+mouse_cursor/custom_image="res://Assets/Cursor/cursor-empty.png"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[gui]
+
+theme/custom_font="res://Fonts/new_dynamicfont.tres"
+
+[input]
+
+ui_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+mouse_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[rendering]
+
+quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.866667, 0.717647, 0.415686, 1 )
+environment/default_environment="res://default_env.tres"
