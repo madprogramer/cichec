@@ -17,7 +17,7 @@ func interact(file_path):
 	line = 1
 	self.dialogue_file_path = file_path
 #	print("FLAG")
-	dialogue = load_dialogue(self.dialogue_file_path)
+	load_dialogue(self.dialogue_file_path)
 	emit_signal("started")
 	play_dialogue()
 	
@@ -27,10 +27,13 @@ func load_dialogue(file_path):
 	assert file.file_exists(file_path)
 	
 	file.open(file_path, file.READ)
-	var dialogue = parse_json(file.get_as_text())
+	dialogue = parse_json(file.get_as_text())
 	print(file.get_as_text())
-	assert dialogue.size() > 0
-	return dialogue
+	if dialogue is Dictionary:
+		assert dialogue != {}
+	elif dialogue is Array:
+		assert dialogue.size() > 0
+	return
 	
 var line = 1
 	

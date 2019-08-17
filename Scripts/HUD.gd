@@ -474,7 +474,8 @@ func change_dialogue_background(b):
 var character_textures = {
 	"Wasp" : preload("res://Assets/Characters/Wasp/Wasp13x11.png"),
 	"Capo" : preload("res://Assets/Characters/Capo/Capo13x11.png"),
-	"Alpamish" : preload("res://Assets/Characters/Alpamish/Alpamish13x11.png")
+	"Alpamish" : preload("res://Assets/Characters/Alpamish/Alpamish13x11.png"),
+	"Kutalmish" : preload("res://Assets/Characters/Kutalmish/Kutalmish13x11.png")
 }
 
 var flag = true

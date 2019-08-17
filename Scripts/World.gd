@@ -489,14 +489,16 @@ func cultivate_main(pos):
 			cultivate(targetpos)
 	
 
+func set_dialogue(path = "res://Dialogues/test_dialogue.json"):
+	dialogueplayer.interact(path)
+	dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
 
 func _input(event):
 	if event is InputEventKey:
 		################################### LOOK DOWN #################################
 		if false and event.pressed and event.scancode == KEY_ENTER:
 			if player.hud.dialogue_is_playing == false:
-				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
-				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")
+				set_dialogue()
 
 		if event.pressed and event.scancode == KEY_CONTROL:
 			pass_day()
