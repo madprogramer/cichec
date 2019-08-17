@@ -17,6 +17,16 @@ var itemDictionary = {
 		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
 		"seedbag" : true,
 		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
+	},
+	1: {
+		"itemName" : "WaterseekerSeed",
+		"itemIcon" : preload("res://Assets/Seeds/WaterseekerSeed/toolbar.png"),
+		"itemValue" : -1,
+		"count" : 3,
+		"_seed" : preload("res://Scripts/Biology/seeds/waterseekerSeed.gd"),
+		"dummySeed" : preload("res://Scripts/Biology/seeds/WaterseekerSeed/pre.gd"),
+		"seedbag" : true,
+		"newFlower" : load("res://Scripts/Biology/flowers/WaterseekerFlower/flower.gd")
 	}
 }
 
@@ -51,13 +61,25 @@ func _ready():
 	for i in range(itemList.size()):
 		slotList[i].setItem(itemList[i])
 	pass
+	
+var can_input = true
+
+func activate():
+	can_input = true
+
+func deactivate():
+	can_input = false
 
 func _input(event):
+	if !can_input:
+		return
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
 			holdingItem.rect_position = Vector2(event.position.x, event.position.y);
 
 func _gui_input(event):
+	if !can_input:
+		return
 	var clickedSlot;
 	
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:

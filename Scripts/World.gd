@@ -165,6 +165,7 @@ func next_song():
 	audioplayer.play()
 
 func _ready():
+	get_tree().call_group("Input", "deactivate")
 	player.hud.set_cursor_shape(load("res://Assets/Cursor/cursor.png"))
 	
 	add_child(_seeds)
@@ -434,6 +435,14 @@ func cultivate_main(pos):
 		if dirtDictionary["id"][type].itemName == "Desert":
 			cultivate(targetpos)
 	
+
+var can_input = true
+
+func activate():
+	can_input = true
+
+func deactivate():
+	can_input = false
 
 func _input(event):
 	if event is InputEventKey:
@@ -828,9 +837,6 @@ func _on_WateringCanWaterAnimation_animation_finished():
 func _on_Player_scan():
 	# Very ugly, but couldn't think of anything else
 	player.get_current_item().scan(get_mouse_cell(), _seeds.seeds)
-#	var flowers = player.get_current_item().scan2(get_mouse_cell(), _seeds.seeds, player.hud)
-#	print(flowers)
-	pass # Replace with function body.
 
 
 # I wait outside the pilgrim's door, with insufficient schemes 
@@ -862,11 +868,30 @@ func _on_Player_spawn_sprinkler():
 		sprinkler.set_owner(get_node("YSort"))
 #		print("sprinkler.global_position: ", sprinkler.global_position)
 
-
-func _on_Sprinkler2_sprinkler_water(pos):
-	_on_Sprinkler_sprinkler_water(pos)
-	pass # Replace with function body.
-
 func _on_AudioStreamPlayer_finished():
 	next_song()
 	pass # Replace with function body.
+
+func _on_NewGame_start_game():
+	get_tree().call_group("Input", "activate")
+	get_node("TitleScreen").visible = false
+	player.hud.show(player.hud.current_hud)
+
+
+func _on_Intro1_animation_finished():
+	get_node("Intro1").visible = false
+	get_node("Intro1").playing = false
+	get_node("Intro2").visible = true
+	get_node("Intro2").playing = true
+
+
+func _on_Intro2_animation_finished():
+	get_node("Intro2").visible = false
+	get_node("Intro2").playing = false
+	get_node("Intro3").visible = true
+	get_node("Intro3").playing = true
+
+
+func _on_Intro3_animation_finished():
+	get_node("Intro3").visible = false
+	get_node("Intro3").playing = false

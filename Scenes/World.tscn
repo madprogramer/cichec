@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Dirt/Tileset1-scaled.png" type="Texture" id=2]
@@ -51,6 +51,55 @@
 [ext_resource path="res://Assets/Dirt/Animated/8.png" type="Texture" id=49]
 [ext_resource path="res://Assets/Dirt/Animated/9.png" type="Texture" id=50]
 [ext_resource path="res://Scripts/Seeds.gd" type="Script" id=51]
+[ext_resource path="res://Assets/TitleScreen/TitleScreen.png" type="Texture" id=52]
+[ext_resource path="res://Assets/TitleScreen/NewGameButton.png" type="Texture" id=53]
+[ext_resource path="res://Scripts/NewGame.gd" type="Script" id=54]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-0.png" type="Texture" id=55]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-1.png" type="Texture" id=56]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-2.png" type="Texture" id=57]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-3.png" type="Texture" id=58]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-4.png" type="Texture" id=59]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-5.png" type="Texture" id=60]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-6.png" type="Texture" id=61]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-7.png" type="Texture" id=62]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-8.png" type="Texture" id=63]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-9.png" type="Texture" id=64]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-10.png" type="Texture" id=65]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-11.png" type="Texture" id=66]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-12.png" type="Texture" id=67]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-13.png" type="Texture" id=68]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-14.png" type="Texture" id=69]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-15.png" type="Texture" id=70]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-16.png" type="Texture" id=71]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-17.png" type="Texture" id=72]
+[ext_resource path="res://Assets/Intro/Intro1/pixil-frame-18.png" type="Texture" id=73]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-0.png" type="Texture" id=74]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-1.png" type="Texture" id=75]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-2.png" type="Texture" id=76]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-3.png" type="Texture" id=77]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-4.png" type="Texture" id=78]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-5.png" type="Texture" id=79]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-6.png" type="Texture" id=80]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-7.png" type="Texture" id=81]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-8.png" type="Texture" id=82]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-9.png" type="Texture" id=83]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-10.png" type="Texture" id=84]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-11.png" type="Texture" id=85]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-12.png" type="Texture" id=86]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-13.png" type="Texture" id=87]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-14.png" type="Texture" id=88]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-15.png" type="Texture" id=89]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-16.png" type="Texture" id=90]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-17.png" type="Texture" id=91]
+[ext_resource path="res://Assets/Intro/Intro2/pixil-frame-18.png" type="Texture" id=92]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-0.png" type="Texture" id=93]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-1.png" type="Texture" id=94]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-2.png" type="Texture" id=95]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-3.png" type="Texture" id=96]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-4.png" type="Texture" id=97]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-5.png" type="Texture" id=98]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-6.png" type="Texture" id=99]
+[ext_resource path="res://Assets/Intro/Intro3/pixil-frame-7.png" type="Texture" id=100]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset1-scaled.png 0"
@@ -528,6 +577,30 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 86 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 91 ), ExtResource( 92 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 93 ), ExtResource( 94 ), ExtResource( 95 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="World" type="Node2D"]
 position = Vector2( 12.3476, 12.5034 )
 script = ExtResource( 1 )
@@ -596,6 +669,38 @@ frame = 6
 
 [node name="Seeds" type="Node2D" parent="."]
 script = ExtResource( 51 )
+
+[node name="TitleScreen" type="Sprite" parent="."]
+texture = ExtResource( 52 )
+centered = false
+offset = Vector2( -12, -12 )
+
+[node name="NewGame" type="TextureRect" parent="TitleScreen"]
+margin_left = -3.0
+margin_top = 30.0
+margin_right = 43.0
+margin_bottom = 39.0
+texture = ExtResource( 53 )
+script = ExtResource( 54 )
+
+[node name="Intro1" type="AnimatedSprite" parent="."]
+frames = SubResource( 7 )
+frame = 6
+playing = true
+centered = false
+offset = Vector2( -12, -12 )
+
+[node name="Intro2" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 8 )
+centered = false
+offset = Vector2( -12, -12 )
+
+[node name="Intro3" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 9 )
+centered = false
+offset = Vector2( -12, -12 )
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="sprinkler_water" from="YSort/Sprinkler" to="." method="_on_Sprinkler_sprinkler_water"]
 [connection signal="body_shape_entered" from="YSort/ExitDoor" to="." method="_on_ExitDoor_body_shape_entered"]
@@ -607,3 +712,7 @@ script = ExtResource( 51 )
 [connection signal="water" from="YSort/Player" to="." method="_on_Player_water"]
 [connection signal="animation_finished" from="WateringCanWaterAnimation" to="." method="_on_WateringCanWaterAnimation_animation_finished"]
 [connection signal="animation_finished" from="HoePlowAnimation" to="." method="_on_HoePlowAnimation_animation_finished"]
+[connection signal="start_game" from="TitleScreen/NewGame" to="." method="_on_NewGame_start_game"]
+[connection signal="animation_finished" from="Intro1" to="." method="_on_Intro1_animation_finished"]
+[connection signal="animation_finished" from="Intro2" to="." method="_on_Intro2_animation_finished"]
+[connection signal="animation_finished" from="Intro3" to="." method="_on_Intro3_animation_finished"]

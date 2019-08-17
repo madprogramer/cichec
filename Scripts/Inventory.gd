@@ -62,7 +62,17 @@ func set_mode(mode):
 	else:
 		assert(false)
 
+var can_input = true
+
+func activate():
+	can_input = true
+
+func deactivate():
+	can_input = false
+
 func _input(event):
+	if !can_input:
+		return
 	if event is InputEventKey and event.is_pressed() and visible == true:
 		if event.scancode == KEY_ENTER:
 			emit_signal("sell", toSellArray)
@@ -75,6 +85,8 @@ func _input(event):
 var sellMode = false
 
 func _gui_input(event):
+	if !can_input:
+		return
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		var clickedSlot;
 #		var sellMode = false;

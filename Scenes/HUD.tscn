@@ -32,12 +32,14 @@ animations = [ {
 script = ExtResource( 1 )
 
 [node name="Toolbar-front" type="TextureRect" parent="."]
+visible = false
 margin_top = 48.0
 margin_right = 64.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
 [node name="Toolbar-flowers" type="TextureRect" parent="Toolbar-front"]
+visible = false
 margin_top = -10.0
 margin_right = 64.0
 texture = ExtResource( 3 )
@@ -48,7 +50,9 @@ margin_right = 64.0
 margin_bottom = 64.0
 texture = ExtResource( 4 )
 
-[node name="Inventory" parent="." instance=ExtResource( 5 )]
+[node name="Inventory" parent="." groups=[
+"Input",
+] instance=ExtResource( 5 )]
 visible = false
 
 [node name="Inventory-front" type="Sprite" parent="."]
@@ -64,18 +68,24 @@ margin_bottom = 64.0
 texture = ExtResource( 7 )
 
 [node name="HighlightTemp" type="AnimatedSprite" parent="."]
+visible = false
 frames = SubResource( 1 )
-frame = 1
 playing = true
 offset = Vector2( 8, 56 )
 
-[node name="Toolbar" parent="." instance=ExtResource( 14 )]
+[node name="Toolbar" parent="." groups=[
+"Input",
+] instance=ExtResource( 14 )]
 visible = false
 
-[node name="BagToolbar" parent="." instance=ExtResource( 15 )]
+[node name="BagToolbar" parent="." groups=[
+"Input",
+] instance=ExtResource( 15 )]
 visible = false
 
-[node name="SeedToolbar" parent="." instance=ExtResource( 16 )]
+[node name="SeedToolbar" parent="." groups=[
+"Input",
+] instance=ExtResource( 16 )]
 visible = false
 
 [node name="temp" type="Sprite" parent="."]
@@ -83,7 +93,9 @@ visible = false
 texture = ExtResource( 2 )
 offset = Vector2( 32, 56 )
 
-[node name="SeedBag" parent="." instance=ExtResource( 17 )]
+[node name="SeedBag" parent="." groups=[
+"Input",
+] instance=ExtResource( 17 )]
 visible = false
 
 [node name="FPSCounter" type="Label" parent="."]
@@ -92,4 +104,5 @@ margin_bottom = 7.0
 script = ExtResource( 18 )
 
 [node name="dummyFlowerRenderer" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 19 )

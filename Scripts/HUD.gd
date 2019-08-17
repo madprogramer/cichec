@@ -201,9 +201,21 @@ func chest_closed():
 func shop_opened():
 	show("shop")
 
+var can_input = true
+
+func activate():
+	can_input = true
+
+func deactivate():
+	can_input = false
+
 func _input(event):
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		cursor.offset = Vector2(event.position.x, event.position.y);
+	
+	if !can_input:
+		return
+	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		cursor.offset = Vector2(event.position.x, event.position.y);
 		
@@ -355,7 +367,7 @@ func refresh():
 	show(current_hud)
 
 func _ready():
-	show(current_hud)
+#	show(current_hud)
 	toolbar.connect("toolbar_changed", self, "refresh")
 	seedtoolbar.connect("toolbar_changed", self, "refresh")
 	bagtoolbar.connect("toolbar_changed", self, "refresh")

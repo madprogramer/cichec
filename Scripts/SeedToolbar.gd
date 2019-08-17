@@ -43,7 +43,17 @@ func set_toolbar(items):
 				slotList[i].setItem(itemList[i])
 	pass
 
+var can_input = true
+
+func activate():
+	can_input = true
+
+func deactivate():
+	can_input = false
+
 func _input(event):
+	if !can_input:
+		return
 	# print(event)
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
@@ -55,6 +65,8 @@ func _input(event):
 signal remove_seed(i)
 
 func _gui_input(event):
+	if !can_input:
+		return
 	var clickedSlot;
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		for slot in slotList:
