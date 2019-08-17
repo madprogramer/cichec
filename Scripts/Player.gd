@@ -90,6 +90,7 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			if event.scancode == KEY_SPACE:
+				prints("used", get_current_item())
 				use(get_current_item())
 				
 	else:
@@ -122,7 +123,7 @@ func use(item):
 			emit_signal("pick_seed")
 		return
 	
-#	print(item.name)
+	prints("itemname", item.name)
 	
 	if item.name == "seed_bag":
 		if hud.current_hud != "seedbag":

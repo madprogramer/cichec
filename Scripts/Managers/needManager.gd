@@ -18,10 +18,10 @@ func set_needDictionary(needDictionary):
 func calcFromArray(array):
 	var countDictionary = {}
 	for i in range(array.size()):
-		if countDictionary[array[i].itemName] == null:
-			countDictionary[array[i].itemName] = array[i].count
+		if countDictionary.has(array[i].itemName) == false:
+			countDictionary[array[i].itemName] = 1 # array[i].count
 		else:
-			countDictionary[array[i].itemName] += array[i].count
+			countDictionary[array[i].itemName] += 1 # array[i].count
 	
 	for key in needDictionary:
 		if countDictionary[key] == null:

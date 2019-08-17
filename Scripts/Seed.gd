@@ -31,7 +31,7 @@ func _init(itemName, itemTexture, itemSlot, itemValue, seedClass, dummySeed, cou
 	else:
 		self.seedClass = seedClass
 		
-#	name = itemName;
+	name = itemName;
 	self.itemName = itemName;
 	texture = itemTexture;
 	itemIcon = itemTexture

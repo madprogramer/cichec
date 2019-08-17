@@ -27,6 +27,9 @@ onready var _seeds = get_node("Seeds")
 
 onready var chest = ysort.get_node("Chest")
 
+onready var needManager = preload("res://Scripts/Managers/needManager.gd").new()
+onready var salesManager = preload("res://Scripts/Managers/salesManager.gd").new()
+
 onready var dirtList = [
 	{
 		"id" : 35,
@@ -216,6 +219,25 @@ func _ready():
 	dialogueplayer.set_owner(self)
 	
 	chest.connect("chest_opened", player.hud, "chest_opened")
+	player.hud.inventory.connect("sell", self, "_on_Inventory_sell")
+
+signal lose_game
+
+func _on_Inventory_sell(toSellArrayIndices):
+	var toSellArray = []
+	for i in toSellArrayIndices:
+		toSellArray.append(player.hud.inventory.slotList[i].item)
+	var needResponse = needManager.calcFromArray(toSellArray)
+	
+	if needResponse is int and needResponse == -1:
+		emit_signal("lose_game")
+		print("THE GAME")
+		return
+	
+	assert(!(needResponse is int))
+	
+	var salesResponse = salesManager.calcFromDictionary(needResponse)
+	prints("salesResponse", salesResponse)
 
 func get_mouse_cell():
 	return tilemap.world_to_map(get_global_mouse_position())
@@ -422,7 +444,8 @@ func cultivate_main(pos):
 
 func _input(event):
 	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_ENTER:
+		################################### LOOK DOWN #################################
+		if false and event.pressed and event.scancode == KEY_ENTER:
 			if player.hud.dialogue_is_playing == false:
 				dialogueplayer.interact("res://Dialogues/test_dialogue.json")
 				dialogueplayer.connect("text_changed", player.hud, "change_dialogue_text")

@@ -29,6 +29,7 @@ var itemList = Array();
 
 var holdingItem = null;
 
+signal sell(toSellArray)
 var toSellArray = []
 
 func _ready():
@@ -54,6 +55,11 @@ func _ready():
 	pass
 
 func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_ENTER:
+			emit_signal("sell", toSellArray)
+			print("SELL")
+	
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		if holdingItem != null && holdingItem.picked:
 			holdingItem.rect_global_position = Vector2(event.position.x, event.position.y);
